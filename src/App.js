@@ -8,7 +8,12 @@ import Canvas from './Components/canvas/canvas'
 
 export default function App() {
   return (
-    <Menu/>
+    <div>
+      <Menu/>
+      <Canvas/>
+    </div>
+   
+   
   )
 }
 
