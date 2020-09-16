@@ -19,7 +19,7 @@ function App() {
     dispatch(rename(value, player))
   }
   return (
-    <div className="App">
+    <div className="App" >
       <div id='interface' style={{ visibility : (player.name === 'placeholder') ? 'visible' : 'hidden'}}>
       <h1>Enter your name</h1>
       <form method={onSubmit}>
