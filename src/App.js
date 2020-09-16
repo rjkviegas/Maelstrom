@@ -11,10 +11,10 @@ export default function App() {
     <div>
       <Menu/>
       <Canvas/>
+   
     </div>
-   
-   
   )
+  
 }
 
 /* 

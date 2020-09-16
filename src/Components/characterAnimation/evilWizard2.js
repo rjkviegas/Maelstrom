@@ -1,37 +1,49 @@
 
-export const evilWizard2IdleImage = new Image();
-evilWizard2IdleImage.src = "public/assets/characterSprites/EVil Wizard 2/Idle.png"
 
+//     export const evilWizard2IdleImage = new Image();
+//     evilWizard2IdleImage.src = "public/assets/characterSprites/EVil Wizard 2/Idle.png"
 
-export default function sprite (options) {
-    var that = {};
+//   export default function Sprite(img, width, height, positions){
+//     this.img = img;
+//     this.width = width;
+//     this.height = height;
+//     this.positions = positions;
+    
+//     var spriteWidth  = 350,
+//     spriteHeight = 170,
+//     pixelsLeft   = 170,
+//     pixelsTop    = 10,
 
-    that.context = options.context;
-    that.width = options.width;
-    that.height = options.height;
-    that.image = options.image;
+//     // Where are we going to draw
+//     // the sprite on the canvas
+//     canvasPosX   = 20,
+//     canvasPosY   = 20
+// ;
 
-    that.render = function () {
-        that.context.drawImage(
-            that.image,
-            0,
-            0,
-            that.width,
-            that.height,
-            0,
-            0,
-            that.width,
-            that.height);
-    };
-    return that;
-}
+// context.drawImage(img,
+//     pixelsLeft,
+//     pixelsTop,
+//     spriteWidth,
+//     spriteHeight,
+//     canvasPosX,
+//     canvasPosY,
+//     spriteWidth,
+//     spriteHeight
+// );
 
-// var canvas = document.getElementById("game-area");
+//     const draw = (position, x, y) => {
+//         var pos = this.positions[position];
+//         context.drawImage(
+//           this.img,
+//           pos[0],
+//           pos[1],
+//           this.width,
+//           this.height,
+//           x, y,
+//           this.width,
+//           this.height
+//         );
+//         }
+//   };
 
-// console.log(document.getElementById("game-area"))
-
-// var evilWizard2Idle = sprite({
-//     width: 100,
-//     height: 100,
-//     image: evilWizard2IdleImage
-// });
+  
