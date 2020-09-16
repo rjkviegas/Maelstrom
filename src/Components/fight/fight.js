@@ -10,7 +10,7 @@ export default function Fight() {
   return (
     <div>
         Fight component
-      <Player/>
+      <Player {...player} />
     </div>
   )
 }

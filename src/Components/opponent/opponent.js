@@ -2,7 +2,7 @@ import React from "react";
 import { useOpponent } from "./opponent-hook";
 
 export default function Opponent({ name, hp}) {
-  const { opponent, setOpponent } = useOpponent(); 
+  const { opponent } = useOpponent(); 
   return (
     <section>
       <h1>{name}</h1>
