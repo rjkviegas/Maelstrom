@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { attack, rename } from './Actions';
+import Canvas from './components/canvas/canvas'
 
 function App() {
 
@@ -18,7 +19,6 @@ function App() {
     dispatch(rename(value, player))
   }
   return (
-  
     <div className="App">
       <div id='interface' style={{ visibility : (player.name === 'placeholder') ? 'visible' : 'hidden'}}>
       <h1>Enter your name</h1>
@@ -36,7 +36,7 @@ function App() {
       <h1>Option 1 Hook useState: {playerName}</h1>
       <h1>Option 2 Redux state management: {player.name}</h1>
       </div>
-
+      <Canvas />
     </div>
   );
 }
