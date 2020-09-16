@@ -1,11 +1,11 @@
 import React from 'react';
+let playerHpPlaceholder = "60%"
 
 const healthbar = (
 
-  
-  <div class="health-bar">
-      <div class="health-bar-glass">
-          <div class="health-bar-fluid anim-width"></div>
+  <div className="health-bar">
+      <div className="health-bar-glass">
+          <div className="health-bar-fluid anim-width" style={{width: playerHpPlaceholder}}></div>
       </div>
   </div>
 )
