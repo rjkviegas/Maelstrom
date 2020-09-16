@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { attack, rename } from './Actions';
 import Menu from './Components/menu/menu.js'
 import Canvas from './Components/canvas/canvas'
-import Sprite from './Components/characterAnimation/evilWizard2'
+
 
 export default function App() {
   return (
