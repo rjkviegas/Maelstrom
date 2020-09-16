@@ -1,5 +1,5 @@
 import React from 'react';
-let playerHpPlaceholder = "60%"
+let playerHpPlaceholder = "20%"
 
 const healthbar = (
 

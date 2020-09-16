@@ -1,5 +1,5 @@
 import React from 'react';
-let enemyHpPlaceholder = "40%"
+let enemyHpPlaceholder = "80%"
 
 const enemyHealthbar = (
 

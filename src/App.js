@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
-import './components/healthbar/healthbar.css'
+import './Components/healthbar/healthbar.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { attack, rename } from './Actions';
-import Canvas from './components/canvas/canvas'
+import Canvas from './Components/canvas/canvas'
 
 function App() {
 
