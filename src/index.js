@@ -31,13 +31,15 @@
 
 import React from "react";
 import { PlayerProvider } from "./Components/player/player-hook";
-// import { OpponentProvider } from "./Components/opponent/opponent-hook";
+import { OpponentProvider } from "./Components/opponent/opponent-hook";
 import { render } from "react-dom";
 import App from "./App";
 
 render (
+  <OpponentProvider>
   <PlayerProvider>
     <App />
-  </PlayerProvider>,
+  </PlayerProvider>
+  </OpponentProvider>,
   document.getElementById("root")
 );

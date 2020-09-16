@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { attack, rename } from './Actions';
 import Menu from './Components/menu/menu.js'
 
-function App() {
+export default function App() {
   return (
     <Menu/>
   )
@@ -50,4 +50,3 @@ function App() {
   );
 }
  */
-export default App;
