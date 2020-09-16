@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
+import './Components/healthbar/healthbar.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { attack, rename } from './Actions';
 import Menu from './Components/menu/menu.js'
+import Canvas from './Components/canvas/canvas'
 
 export default function App() {
   return (
@@ -26,8 +28,7 @@ function App() {
     dispatch(rename(value, player))
   }
   return (
-  
-    <div className="App">
+    <div className="App" >
       <div id='interface' style={{ visibility : (player.name === 'placeholder') ? 'visible' : 'hidden'}}>
       <h1>Enter your name</h1>
       <form method={onSubmit}>
@@ -45,7 +46,7 @@ function App() {
       <h1>Option 1 Hook useState: {playerName}</h1>
       <h1>Option 2 Redux state management: {player.name}</h1>
       </div>
-
+      <Canvas />
     </div>
   );
 }
