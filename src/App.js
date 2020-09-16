@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import './App.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { attack, rename } from './Actions';
+import Menu from './Components/menu/menu.js'
 
+function App() {
+  return (
+    <Menu/>
+  )
+}
+
+/* 
 function App() {
 
   const [value, setValue] = useState('');
@@ -23,12 +31,13 @@ function App() {
       <div id='interface' style={{ visibility : (player.name === 'placeholder') ? 'visible' : 'hidden'}}>
       <h1>Enter your name</h1>
       <form method={onSubmit}>
-        <input type='text' name='name' onChange={e => setValue(e.target.value)}
+        <input type='text' name='name' placeholder="Enter your name"
+        onChange={e => setValue(e.target.value)}
                         value={value}></input>
         <button onClick={onSubmit}>
           Submit
         </button>
-      </form>
+      </form> 
       </div>
       <div id='game_interface' style={{ visibility : (player.name !== 'placeholder') ? 'visible' : 'hidden'}}>
       <h1>{player.hp}</h1>
@@ -40,5 +49,5 @@ function App() {
     </div>
   );
 }
-
+ */
 export default App;
