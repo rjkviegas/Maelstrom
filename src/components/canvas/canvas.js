@@ -45,7 +45,7 @@ const Canvas = (props) => {
        { healthbar } 
        { enemyHealthbar }
        <div>
-         <canvas ref={canvasRef} id='game-area' style={{ height: "90%", width: "80%", position: "relative", border: "solid 5px #000000"}} {...props}/> 
+         <canvas ref={canvasRef} id='game-area' style={{ height: "90%", width: "80%", position: "relative", padding:"30px", border: "solid 5px #000000"}} {...props}/> 
        </div>
     </div>)
 }
