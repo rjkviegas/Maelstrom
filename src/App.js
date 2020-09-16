@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import './components/healthbar/healthbar.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { attack, rename } from './Actions';
 import Canvas from './components/canvas/canvas'
