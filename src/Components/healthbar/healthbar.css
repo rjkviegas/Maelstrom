@@ -1,7 +1,7 @@
 .health-bar
 {
     position: relative;
-    right: 10%;
+    left: 5%;
     
     display: inline-block;
     
@@ -11,7 +11,7 @@
 .enemy-health-bar
 {
     position: relative;
-    left: 20%;
+    left: 40%;
     
     display: inline-block;
     

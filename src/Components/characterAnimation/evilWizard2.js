@@ -1,49 +1,59 @@
 
 
-//     export const evilWizard2IdleImage = new Image();
-//     evilWizard2IdleImage.src = "public/assets/characterSprites/EVil Wizard 2/Idle.png"
+// const Sprite = () => {
+//         const evilWizard2IdleImage = new Image();
+//         evilWizard2IdleImage.src = "public/assets/characterSprites/EVil Wizard 2/Idle.png";
+//         let img = evilWizard2IdleImage;
+//         console.log("hello")
+//         var canvas = document.getElementById('game-area');
+//         var context = canvas.getContext('2d');
+//         context.drawImage(img, 10, 30, 300, 300);
 
-//   export default function Sprite(img, width, height, positions){
-//     this.img = img;
-//     this.width = width;
-//     this.height = height;
-//     this.positions = positions;
+//         return ()
+//  }
+
+    //     function sprite (options) {
+        
+    //       var that = {};
+        
+    //       that.context = options.context;
+    //       that.width = options.width;
+    //       that.height = options.height;
+    //       that.image = options.image;
+          
+    //       that.render = function () {
+
+    //         // Draw the animation
+    //         that.context.drawImage(
+    //            that.image,
+    //            50,
+    //            50,
+    //            that.width,
+    //            that.height,
+    //            200,
+    //            200,
+    //            that.width,
+    //            that.height);
+    //     }
+    // }
+    //       var canvas = document.getElementById('game-area');
+          
+    //       var wizard = sprite({
+    //         context: canvas.getContext("2d"),
+    //         width: 100,
+    //         height: 100,
+    //         image: img
+            
+    //       });
+
+         
+        
+    //     wizard.render();
+    //     console.log("hello")
+    //     }; 
     
-//     var spriteWidth  = 350,
-//     spriteHeight = 170,
-//     pixelsLeft   = 170,
-//     pixelsTop    = 10,
+ 
 
-//     // Where are we going to draw
-//     // the sprite on the canvas
-//     canvasPosX   = 20,
-//     canvasPosY   = 20
-// ;
 
-// context.drawImage(img,
-//     pixelsLeft,
-//     pixelsTop,
-//     spriteWidth,
-//     spriteHeight,
-//     canvasPosX,
-//     canvasPosY,
-//     spriteWidth,
-//     spriteHeight
-// );
-
-//     const draw = (position, x, y) => {
-//         var pos = this.positions[position];
-//         context.drawImage(
-//           this.img,
-//           pos[0],
-//           pos[1],
-//           this.width,
-//           this.height,
-//           x, y,
-//           this.width,
-//           this.height
-//         );
-//         }
-//   };
 
   
