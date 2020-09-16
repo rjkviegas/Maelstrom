@@ -8,8 +8,8 @@ const Canvas = (props) => {
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
         ctx.fillstyle = '#000000'
         ctx.beginPath()
-        ctx.arc(50, 130, 20*Math.sin(frameCount*0.05)**2, 0, 2*Math.PI)
-        ctx.arc(250, 130, 20*Math.sin(frameCount*0.05)**2, 0, 2*Math.PI)
+        ctx.arc(50, (140 - 10*Math.sin(frameCount*0.05)**2), 10, 0, 2*Math.PI)
+        ctx.arc(250, (140 -10*Math.sin(0.15+frameCount*0.05)**2), 10, 0, 2*Math.PI)
         // ctx.canvas.width = 300
         // ctx.canvas.height = 150
         ctx.fill()
