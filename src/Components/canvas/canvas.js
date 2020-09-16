@@ -9,13 +9,13 @@ const Canvas = (props) => {
 
     const draw = useCallback((ctx, frameCount) => {
         
-            // ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    //         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
             
-            // ctx.beginPath()
+    //         ctx.beginPath()
             
             
-            // ctx.arc(50, (140 - 10*Math.sin(frameCount*0.05)**2), 10, 0, 2*Math.PI)
-            // ctx.arc(250, (140 - 10*Math.sin(0.15+frameCount*0.05)**2), 10, 0, 2*Math.PI)
+    //         ctx.arc(50, (140 - 10*Math.sin(frameCount*0.05)**2), 10, 0, 2*Math.PI)
+    //         ctx.arc(250, (140 - 10*Math.sin(0.15+frameCount*0.05)**2), 10, 0, 2*Math.PI)
            
            
             
@@ -24,10 +24,10 @@ const Canvas = (props) => {
         
         
         
-            // ctx.canvas.width = 300
-            // ctx.canvas.height = 150
-            // ctx.fillStyle = '#7FFFD4';
-            // ctx.fill();
+    //         // ctx.canvas.width = 300
+    //         // ctx.canvas.height = 150
+    //         ctx.fillStyle = '#7FFFD4';
+    //         ctx.fill();
        
         
         }, [])
@@ -41,23 +41,45 @@ const Canvas = (props) => {
             img.onload = function () {
              init();
             };
+            const scale = 1;
+            const width = img.width/8;
+            const height = img.height;
+            const scaledWidth = width*scale;
+            const scaledHeight = height*scale;
 
-            function init() {
-              context.drawImage(img, 0,-20, img.width, img.height);
-            }
+            function drawFrame(frameX, frameY, canvasX, canvasY) {
+                context.drawImage(img,
+                              frameX * width, (frameY * height)+20, width, height,
+                              canvasX, canvasY, scaledWidth, scaledHeight);
+              }
+
+            
         
         let frameCount = 0
         let animationFrameId
-
-        const render = () => {
+        const cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
+        let currentLoopIndex = 0;
+        let numberOfFramesPerCycle = 10;
+        function render() {
             frameCount++
-            draw(context, frameCount)
+            if (frameCount < numberOfFramesPerCycle) {
+                window.requestAnimationFrame(render);
+                return;
+              }
+            frameCount = 0;
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            drawFrame(cycleLoop[currentLoopIndex], 0, 0, 0);
+            currentLoopIndex++;
+            console.log(currentLoopIndex)
+            if (currentLoopIndex >= cycleLoop.length) {
+                currentLoopIndex = 0;
+            }
+            window.requestAnimationFrame(render);
     
-            
-
-            animationFrameId = window.requestAnimationFrame(render)
         }
-        render()
+        function init() {
+            window.requestAnimationFrame(render);
+          }
      
         return () => {
          
