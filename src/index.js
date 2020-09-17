@@ -1,3 +1,16 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+
+ReactDOM.render(
+  <React.StrictMode>  
+      <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+
 // import React from 'react';
 // import ReactDOM from 'react-dom';
 // import './index.css';
@@ -29,7 +42,7 @@
 // Learn more about service workers: https://bit.ly/CRA-PWA
 // serviceWorker.unregister();
 
-import React from "react";
+/* import React from "react";
 import { PlayerProvider } from "./Components/player/player-hook";
 import { OpponentProvider } from "./Components/opponent/opponent-hook";
 import { render } from "react-dom";
@@ -42,4 +55,4 @@ render (
   </PlayerProvider>
   </OpponentProvider>,
   document.getElementById("root")
-);
+); */

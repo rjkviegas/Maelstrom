@@ -1,5 +1,5 @@
 import loggedReducer from './isLogged';
-import playerReducer from './player.js';
+import playerReducer from './playerReducer.js';
 import { combineReducers } from 'redux';
 
 const allReducers = combineReducers({

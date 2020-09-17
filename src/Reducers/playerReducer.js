@@ -1,4 +1,17 @@
-export let currentPlayer = { 
+
+export default function playerReducer(state, action) {
+    switch(action.type) {
+      case "attack":
+          //console.log((((state.hp - action.payload)/state.MAX_HP)*100)+ '%')          
+        return { ...state, hp: state.hp - action.payload}
+      case "rename":
+        return {...state, name: action.payload}
+      default: 
+        return {...state};
+    }
+  }
+
+/* export let currentPlayer = { 
     hp: 100,
     name: 'placeholder'
 }
@@ -17,4 +30,4 @@ const playerReducer = ( player = currentPlayer, action ) => {
     }
 }
 
-export default playerReducer;
+export default playerReducer; */

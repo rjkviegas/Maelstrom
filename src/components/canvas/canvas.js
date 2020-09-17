@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from 'react';
-import healthbar from '../healthbar/healthbar'
+import React, { useRef, useEffect, useContext } from 'react';
+import playerHealthBar from '../healthbar/healthbar'
 import enemyHealthbar from '../healthbar/enemyHealthbar'
-
+import playerContext from '../../config/playerContext.js'
 const Canvas = (props) => {
-
+    const { playerObj, dispatch } = useContext(playerContext)
     const canvasRef = useRef(null)
 
     const draw = (ctx, frameCount) => {
@@ -42,8 +42,8 @@ const Canvas = (props) => {
     
     return (
     <div>
-       { healthbar } 
-       { enemyHealthbar }
+       {/* { playerHealthBar } 
+       { enemyHealthbar } */}
        <div>
          <canvas ref={canvasRef} id='game-area' style={{ height: "90%", width: "80%", position: "relative", padding:"10px", border: "solid 5px #000000"}} {...props}/> 
        </div>

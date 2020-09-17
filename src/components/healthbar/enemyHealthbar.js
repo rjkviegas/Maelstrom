@@ -1,4 +1,5 @@
 import React from 'react';
+import './healthbar.css'
 let enemyHpPlaceholder = "80%"
 
 const enemyHealthbar = (
