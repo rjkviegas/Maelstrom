@@ -3,7 +3,7 @@ import healthbar from '../../Components/healthbar/healthbar'
 import enemyHealthbar from '../../Components/healthbar/enemyHealthbar'
 import Wizard from '../characterAnimation/wizard.js'
 import Bandit from '../characterAnimation/bandit.js'
-import Animation from '../characterAnimation/banditwizardanimationtest'
+import Animation from '../characterAnimation/spriteAnimation'
 
 const FightCanvas = (props) => {
 
