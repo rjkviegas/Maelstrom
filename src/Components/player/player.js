@@ -1,4 +1,3 @@
-
 import React,{ useContext } from 'react'
 import PlayerContext from '../../config/playerContext.js'
 
@@ -8,7 +7,6 @@ const player = {
   hp: starting_hitpoints,
   MAX_HP: starting_hitpoints,
 }
-
 
 export default player;
 
