@@ -3,7 +3,6 @@ import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import { Player } from '../../Components/player/player.js'
 import { Opponent } from '../../Components/opponent/opponent.js'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 export default function Fight() {
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
