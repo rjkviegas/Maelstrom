@@ -24,7 +24,7 @@ const idleAnimation = () => {
   let currentLoopIndex = 0;
   let numberOfFramesPerCycle = 10; //decrease value to increase speed of animation
   var fpsInterval, startTime, now, then, elapsed;
-  init(20); //initiate animation
+  init(10); //initiate animation
  
 
   function render() {

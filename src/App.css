@@ -47,3 +47,9 @@ canvas {
   background-repeat: no-repeat;
   background-position: center;
 }
+
+#healthbars{
+  right: 40%;
+  z-index: 1;
+  position: absolute;
+}

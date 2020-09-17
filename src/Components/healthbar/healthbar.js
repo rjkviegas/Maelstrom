@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import './healthbar.css'
 import PlayerContext from '../../config/playerContext.js'
+// import domtoimage from 'dom-to-image';
 
 function PlayerHealthBar() {
   const { PlayerObj, setPlayerObjValue } = useContext(PlayerContext)
@@ -12,6 +13,28 @@ function PlayerHealthBar() {
       </div>
     </div>
   )
-}
+  }
 
-export default PlayerHealthBar
+    // function renderPlayerHealthBar() {
+    //   var node = PlayerHealthBar();
+    //   const canvas = document.getElementById('game-area')
+    //   const context = canvas.getContext('2d')
+
+    //   const PlayerHealthBarImage = () => {  
+    //     domtoimage.toPng(node)
+    //       .then (function (dataUrl) {
+    //           var img = new Image();
+    //           img.src = dataUrl;
+    //           document.appendChild(img);
+    //       })
+    //       .catch(function (error) {
+    //           console.error('oops, something went wrong!', error);
+    //       });
+    //   }
+
+    //   context.drawImage(PlayerHealthBarImage(), 0,0);
+    //   }
+
+
+export default PlayerHealthBar;
+
