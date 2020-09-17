@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+- '12'
+
+install:
+- npm ci
+
+script:
+- npm test
+- npm run test:coverage
+- npm run build
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: G0I/WK1BqOyNqAwtbXNw+zNpCN+aonobS93ymI8URLMS8daBlnt/FH3lGUmkj3vO7CLhUvtuY81Ax4sksPA6hGESTQOSIqei0gbL78URzx2IxklCvhgH0e/SbwjRYZc152WXGpbZHrGyhchYt+tazZUT7i9Pa6eFhW66tuE42ko33TnyK9VK0qPwE6obJ912khdS6mA9wrgNlBHEuhPO2FcazHgCNtaXsVMSuUg2pVGWjNH2XiFNOlwnGNJ3FTlkxLMtLRmQ5SduDmAL96UrVcZPZ1sqMLavahhxMyqfO9B9HThFWCangeK1AUG6Y42ynUpxrYgpUJ8Fd9boVlmnpc1AbhtXguYF3/8xQLDILwBQN4f/IKx9Uara0IY0SgvdytXcoLANBsZg4G4IE5J4feFtP1f0b29MuStKrDXJkDtbyYscLWqsmP4geJj9ApSeGX51DLvEgxA9qevr2eaGQONDm46yrcQrIDdcRZnB/xtYTdPXmyQSxYiWmbPVg6EZKVO2lx3EpbA1G+4U9kGSoO08b7wCQzGbCNE7xhoXgDkUqX1yr1sHRsTQFPQNyHUv3ivstMEdu2+DOElhhRd8rQmEZNZLd6ikMjfO4XLL6dLk0F66knMYbRLM9akTt4X0y9mv4EBBitnUO6fw5sYbNsw9g5GGoCBOtuPEYzKQSSU=
+  app: maelstrom-rpg
+  on:
+    repo: dwram/Maelstrom
+    branch: master
+  skip_cleanup: 'true'
