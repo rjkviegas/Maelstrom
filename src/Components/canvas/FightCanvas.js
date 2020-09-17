@@ -3,18 +3,23 @@ import healthbar from '../../Components/healthbar/healthbar'
 import enemyHealthbar from '../../Components/healthbar/enemyHealthbar'
 import Wizard from '../characterAnimation/wizard.js'
 import Bandit from '../characterAnimation/bandit.js'
+import Animation from '../characterAnimation/banditwizardanimationtest'
 
 const FightCanvas = (props) => {
 
     const canvasRef = useRef(null)
 
     useEffect(() => {
-        //  Bandit();
-      Wizard(); 
+     Animation();
+      // Wizard();
+      // Bandit() 
+      
+      
      
       let animationFrameId
      
       return () => {
+        
         window.cancelAnimationFrame(animationFrameId)
     } 
     })
