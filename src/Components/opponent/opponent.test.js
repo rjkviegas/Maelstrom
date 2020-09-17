@@ -13,7 +13,7 @@ afterEach(() => {
     container = null;
 });
 
-test("title has id", () => {
+/* test("title has id", () => {
     ReactDOM.render(<Opponent />, container);
     expect(container.querySelector("h1")).toHaveAttribute("id", "opponent-id")
 });
@@ -28,4 +28,4 @@ test("title has id", () => {
     const opponent = { name: "Ryan", hp: 2000 };
     ReactDOM.render((<Opponent {...opponent}/>), container);
       expect(container.querySelector("h2").textContent).toBe("2000");
-  });
+  }); */

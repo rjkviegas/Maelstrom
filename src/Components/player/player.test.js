@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import { Player } from "./player";
 import PlayerContext from '../../config/playerContext.js'
@@ -16,11 +16,6 @@ beforeEach(() => {
     document.body.appendChild(container);
     ReactDOM.render( playerRender, container);
 });
-
-/* afterEach(() => {
-    document.body.removeChild(container);
-    container = null;
-}); */
 
 afterEach(cleanup);
 
