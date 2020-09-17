@@ -6,15 +6,15 @@ import idleAnimation from '../characterAnimation/fightAnimation'
 const FightCanvas = (props) => {
 
     const canvasRef = useRef(null)
-
-    useEffect(() => {
-      idleAnimation();  
-      let animationFrameId
+    let animationFrameId
      
+    useEffect(() => {
+      //insert animation methods here
+      idleAnimation();  
+      
       return () => {
-        
         window.cancelAnimationFrame(animationFrameId)
-    } 
+      } 
     })
     
     return (
@@ -23,7 +23,6 @@ const FightCanvas = (props) => {
        { enemyHealthbar }
 
        <div style={{align: "center"}}>
-
          <canvas ref={canvasRef} style={{ }} id="game-area"{...props}/> 
        </div>
       

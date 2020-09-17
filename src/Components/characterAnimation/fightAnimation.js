@@ -1,10 +1,10 @@
-import { bandit } from './bandit/bandit_idle.js';
-import { wizard } from './wizard/wizard_idle.js';
+import { banditIdle } from './bandit/bandit_idle.js';
+import { wizardIdle } from './wizard/wizard_idle.js';
 
 const idleAnimation = () => {
   const canvas = document.getElementById('game-area')
   const context = canvas.getContext('2d')
-  const sprites = [bandit,wizard];
+  const sprites = [banditIdle,wizardIdle];
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       context.imageSmoothingEnabled = true;

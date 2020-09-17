@@ -1,7 +1,7 @@
-export const wizard = new Image();
-wizard.src = "./assets/characterSprites/EVil Wizard 2/idle.png";
-wizard.width = wizard.width/8
-wizard.height = wizard.height
-wizard.yOffset = -25
-wizard.xOffset = -40
-wizard.cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
+export const wizardIdle = new Image();
+wizardIdle.src = "./assets/characterSprites/EVil Wizard 2/idle.png";
+wizardIdle.width = wizardIdle.width/8
+wizardIdle.height = wizardIdle.height
+wizardIdle.yOffset = -25
+wizardIdle.xOffset = -40
+wizardIdle.cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
