@@ -7,7 +7,7 @@ export default function Rename() {
     const { PlayerObj, dispatch } = useContext(PlayerContext)
     return (
         <div>
-   
+            
         </div>
     )
 }

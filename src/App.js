@@ -4,7 +4,8 @@ import Menu from './Components/menu/menu.js'
 import PlayerContext from './config/playerContext.js';
 import playerReducer from './Reducers/playerReducer.js'
 import player from './Components/player/player.js'
-import Canvas from './Components/canvas/canvas'
+import FightCanvas from './Components/canvas/FightCanvas'
+
 
 function App() {
   const [PlayerObj, dispatch] = useReducer(playerReducer, player)
@@ -13,7 +14,7 @@ function App() {
       <header className="App-header">
         
       <PlayerContext.Provider value={{PlayerObj, dispatch}}>
-        <Canvas />
+        <FightCanvas/>
         <Menu/>
       </PlayerContext.Provider>
       </header>
