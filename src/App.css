@@ -38,8 +38,11 @@
 }
 
 canvas {
+  position: relative;
+  height: 100%;
+  width: 100%;
   background-image: url('https://i.pinimg.com/originals/53/9c/48/539c483ff16585f1014ce8bff226bc56.png');
-  background-size: cover;                      
+  background-size: contain;                      
   background-repeat: no-repeat;
   background-position: center;
 }

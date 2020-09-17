@@ -14,11 +14,15 @@ const Wizard = () => {
     const height = img.height;
     const scaledWidth = width*scale;
     const scaledHeight = height*scale;
+    const yOffset = 25;
+    const xOffset = 30;
     
     //function for selecting frame of sprite
     function drawFrame(frameX, frameY, canvasX, canvasY) {
+        context.imageSmoothingEnabled = true;
+        context.imageSmoothingQuality = 'high';
         context.drawImage(img,
-                        frameX * width, (frameY * height)+20, width, height,
+                        (frameX * width)+xOffset, (frameY * height)+yOffset, width, height,
                         canvasX, canvasY, scaledWidth, scaledHeight);
         }
 
