@@ -30,6 +30,4 @@ test("fight ending after hp is less than 0", () =>{
     fireEvent.click(attackButton);
     expect(getByTestId("h1")).toHaveTextContent("YOU WIN")
     expect(attackButton.style.visibility).toEqual("hidden");
-    //expect(getByTestId("player_name")).toHaveTextContent("Ilja")
-    //expect(getByTestId("player_hp")).toHaveTextContent("100");
 });
