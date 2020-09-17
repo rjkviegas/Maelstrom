@@ -1,31 +1,41 @@
-import React from "react";
+import React, { useContext } from "react";
 import ReactDOM from "react-dom";
 import { Player } from "./player";
+import PlayerContext from '../../config/playerContext.js'
+import { render, cleanup } from "@testing-library/react";
+
+const PlayerObj  = { name: "Ilja", hp: 100};
+const playerRender = (
+<PlayerContext.Provider value={{PlayerObj}}>
+  <Player />,
+</PlayerContext.Provider> )
 
 let container;
 beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
+    ReactDOM.render( playerRender, container);
 });
 
-afterEach(() => {
+/* afterEach(() => {
     document.body.removeChild(container);
     container = null;
+}); */
+
+afterEach(cleanup);
+
+test("name and hp fields exist", () => {
+  const { getByTestId } = render(<> playerRender </>)
+  expect(getByTestId("player_name")).toHaveTextContent("Ilja")
+  expect(getByTestId("player_hp")).toHaveTextContent("100");
+
 });
 
-test("title has id", () => {
-    ReactDOM.render(<Player />, container);
-    expect(container.querySelector("h1")).toHaveAttribute("id", "player-one-name")
+test("player_name id contains the player's name", () => {
+    expect(document.getElementById('player_name').textContent).toContain('Ilja');
 });
 
-  test("it can pass name", () => {
-        const player = { name: "Ilja", hp: 2000 };
-        ReactDOM.render((<Player {...player}/>), container);
-          expect(container.querySelector("h1").textContent).toBe("Ilja");
-  });
 
-  test("it can pass hp", () => {
-    const player = { name: "Ilja", hp: 2000 };
-    ReactDOM.render((<Player {...player}/>), container);
-      expect(container.querySelector("h2").textContent).toBe("2000");
-  });
+test("it can pass hp", () => {
+  expect(container.querySelector("div").textContent).toContain('100')
+});
