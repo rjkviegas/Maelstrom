@@ -23,10 +23,9 @@ const idleAnimation = () => {
   let animationFrameId
   let currentLoopIndex = 0;
   let numberOfFramesPerCycle = 10; //decrease value to increase speed of animation
-
-  // ( bandit && wizard ).onload = function () {
-    init();
-  // };
+  var fpsInterval, startTime, now, then, elapsed;
+  init(20); //initiate animation
+ 
 
   function render() {
     frameCount++
@@ -35,25 +34,34 @@ const idleAnimation = () => {
         return;
       }
     frameCount = 0;
-    
     context.clearRect(0, 0, canvas.width, canvas.height); //clear animation after each frame
 
-    for(var i = 0; i < sprites.length; i++){
-      drawFrame(sprites[i], sprites[i].cycleLoop[currentLoopIndex], 0, 0, 0);
-      currentLoopIndex++;
+    now = Date.now();
+    elapsed = now - then;
+    //only draw image if enough time has passed since last frame
+    if (elapsed > fpsInterval) {
+      then = now - (elapsed % fpsInterval);
 
-      if (currentLoopIndex >= sprites[i].cycleLoop.length) {
-        currentLoopIndex = 0;
-      }
-    } //iterate through every sprite in sprites array
+      for(var i = 0; i < sprites.length; i++){
+        drawFrame(sprites[i], sprites[i].cycleLoop[currentLoopIndex], 0, 0, 0);
+        currentLoopIndex++;
 
+        if (currentLoopIndex >= sprites[i].cycleLoop.length) {
+          currentLoopIndex = 0;
+        }
+      } //iterate through every sprite in sprites array and draw sprites to canvas
+    }
     
     window.requestAnimationFrame(render);
 
   }
 
-  function init() {
-      window.requestAnimationFrame(render); 
+  //define framespersecond and begin animation
+  function init(fps) {
+    fpsInterval = 1000 / fps;
+    then = Date.now();
+    startTime = then;
+    window.requestAnimationFrame(render); 
     }
 
   return () => {
