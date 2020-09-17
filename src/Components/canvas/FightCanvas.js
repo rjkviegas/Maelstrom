@@ -1,21 +1,14 @@
 import React, { useRef, useEffect, useCallback } from 'react';
 import healthbar from '../../Components/healthbar/healthbar'
 import enemyHealthbar from '../../Components/healthbar/enemyHealthbar'
-import Wizard from '../characterAnimation/wizard.js'
-import Bandit from '../characterAnimation/bandit.js'
-import Animation from '../characterAnimation/spriteAnimation'
+import idleAnimation from '../characterAnimation/fightAnimation'
 
 const FightCanvas = (props) => {
 
     const canvasRef = useRef(null)
 
     useEffect(() => {
-     Animation();
-      // Wizard();
-      // Bandit() 
-      
-      
-     
+      idleAnimation();  
       let animationFrameId
      
       return () => {

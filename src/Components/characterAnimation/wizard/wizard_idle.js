@@ -4,3 +4,4 @@ wizard.width = wizard.width/8
 wizard.height = wizard.height
 wizard.yOffset = -25
 wizard.xOffset = -40
+wizard.cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
