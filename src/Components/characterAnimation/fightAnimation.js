@@ -24,7 +24,9 @@ const idleAnimation = () => {
   let currentLoopIndex = 0;
   let numberOfFramesPerCycle = 10; //decrease value to increase speed of animation
   var fpsInterval, startTime, now, then, elapsed;
+  (banditIdle && wizardIdle).onload = function () {
   init(10); //initiate animation
+  }
  
 
   function render() {
@@ -45,7 +47,6 @@ const idleAnimation = () => {
       for(var i = 0; i < sprites.length; i++){
         drawFrame(sprites[i], sprites[i].cycleLoop[currentLoopIndex], 0, 0, 0);
         currentLoopIndex++;
-
         if (currentLoopIndex >= sprites[i].cycleLoop.length) {
           currentLoopIndex = 0;
         }
