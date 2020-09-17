@@ -1,31 +1,32 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import healthbar from '../../Components/healthbar/healthbar'
 import enemyHealthbar from '../../Components/healthbar/enemyHealthbar'
-import Wizard from '../characterAnimation/wizard.js'
-import Bandit from '../characterAnimation/bandit.js'
+import PlayerHealthBar from '../../Components/healthbar/healthbar'
+import idleAnimation from '../characterAnimation/fightAnimation'
 
 const FightCanvas = (props) => {
 
     const canvasRef = useRef(null)
-
+   
+    let animationFrameId
+    
     useEffect(() => {
-        //  Bandit();
-      Wizard(); 
-     
-      let animationFrameId
-     
+      //insert animation methods here
+      idleAnimation(); 
+      
+      
       return () => {
         window.cancelAnimationFrame(animationFrameId)
-    } 
+      } 
     })
     
     return (
     <div>
-       { healthbar } 
+      <div id="healthbars">
+       { PlayerHealthBar() }
        { enemyHealthbar }
+       </div>
 
        <div style={{align: "center"}}>
-
          <canvas ref={canvasRef} style={{ }} id="game-area"{...props}/> 
        </div>
       

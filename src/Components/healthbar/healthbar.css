@@ -1,7 +1,7 @@
 .health-bar
 {
     position: relative;
-    left: 5%;
+    left: -10%;
     
     display: inline-block;
     
@@ -11,14 +11,14 @@
 .enemy-health-bar
 {
     position: relative;
-    left: 40%;
+    left: 55%;
     
     display: inline-block;
     
     margin: 6px 0;
 }
 
-.health-bar:before
+/* .health-bar:before
 {
     content: '';
     
@@ -82,7 +82,7 @@
     background-image: url('http://i.imgur.com/s0bMFR7.png');
     background-position: -304px -2px;
     background-repeat: none;
-}
+} */
 
 .health-bar-glass
 {
