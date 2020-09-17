@@ -34,3 +34,4 @@ test("opponent_name id contains the opponent's name", () => {
 test("it can pass hp", () => {
   expect(container.querySelector("div").textContent).toContain('100')
 });
+
