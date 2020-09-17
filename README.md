@@ -1,4 +1,7 @@
 # Welcome to Maelstrom
+
+![image](https://travis-ci.com/dwram/Maelstrom.svg?token=qT72mABNmswyKZFVotqL&branch=master)
+
 Maelstrom is a fantasy turned based role playing game!
 Play [here]()!
 
