@@ -4,12 +4,18 @@ import './Components/healthbar/healthbar.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { attack, rename } from './Actions';
 import Menu from './Components/menu/menu.js'
-import Canvas from './Components/canvas/canvas'
+import FightCanvas from './Components/canvas/FightCanvas'
+
 
 export default function App() {
   return (
-    <Menu/>
+    <div>
+      <Menu/>
+      <FightCanvas/>
+    
+    </div>
   )
+  
 }
 
 /* 
