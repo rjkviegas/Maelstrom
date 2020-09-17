@@ -32,7 +32,7 @@ const Wizard = () => {
     let animationFrameId
     const cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
     let currentLoopIndex = 0;
-    let numberOfFramesPerCycle = 10; //decrease value to increase speed of animation
+    let numberOfFramesPerCycle = 8; //decrease value to increase speed of animation
 
     function render() {
         frameCount++

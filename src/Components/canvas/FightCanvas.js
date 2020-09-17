@@ -4,12 +4,12 @@ import enemyHealthbar from '../../Components/healthbar/enemyHealthbar'
 import Wizard from '../characterAnimation/wizard.js'
 import Bandit from '../characterAnimation/bandit.js'
 
-const Canvas = (props) => {
+const FightCanvas = (props) => {
 
     const canvasRef = useRef(null)
 
     useEffect(() => {
-      Bandit();
+        //  Bandit();
       Wizard(); 
      
       let animationFrameId
@@ -33,4 +33,4 @@ const Canvas = (props) => {
 }
 
 
-export default Canvas
+export default FightCanvas

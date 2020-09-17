@@ -32,7 +32,7 @@ const Bandit = () => {
   let animationFrameId
   const cycleLoop = [0, 1, 2, 3];
   let currentLoopIndex = 0;
-  let numberOfFramesPerCycle = 10; //decrease value to increase speed of animation
+  let numberOfFramesPerCycle = 4; //decrease value to increase speed of animation
 
   function render() {
       frameCount++
