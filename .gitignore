@@ -7,6 +7,7 @@
 /app/node_modules
 
 # testing
+/app/coverage
 /coverage
 
 # production

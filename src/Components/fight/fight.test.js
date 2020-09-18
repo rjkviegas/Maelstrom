@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Fight from '../fight.js'
-import OpponentContext from '../../../config/opponentContext.js'
-import PlayerContext from '../../../config/playerContext'
+import Fight from './fight.js'
+import OpponentContext from '../../config/opponentContext.js'
+import PlayerContext from '../../config/playerContext'
 import { render, cleanup, fireEvent } from "@testing-library/react";
 
 const OpponentObj  = { name: "Mouldie Harry", hp: 1};
@@ -24,10 +24,12 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-/* test("fight ending after hp is less than 0", () =>{
-    const { getByTestId } = render(<> fightRender </>);
-    const attackButton = getByTestId("attack_button");
-    fireEvent.click(attackButton);
-    expect(getByTestId("h1")).toHaveTextContent("YOU WIN")
-    expect(attackButton.style.visibility).toEqual("hidden");
-}); */
+describe("Fight", function() {
+    it("fight ends when hp of enemy is less than 0", function() {
+        const { getByTestId } = render(<> fightRender </>);
+        const attackButton = getByTestId("attack_button");
+        fireEvent.click(attackButton);
+        expect(getByTestId("h1")).toHaveTextContent("YOU WIN")
+        expect(attackButton.style.visibility).toEqual("hidden");
+    })
+});

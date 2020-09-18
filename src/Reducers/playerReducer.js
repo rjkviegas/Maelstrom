@@ -6,6 +6,8 @@ export default function playerReducer(state, action) {
         return { ...state, hp: state.hp - action.payload}
       case "rename":
         return {...state, name: action.payload}
+      case "attackAnimation": 
+        return { ...state, is_attacking: action.payload}
       default: 
         return {...state};
     }
