@@ -5,12 +5,20 @@ import { Player } from '../../Components/player/player.js'
 import { Opponent } from '../../Components/opponent/opponent.js'
 
 export default function Fight() {
+
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const {  OpponentObj, dispatchOpp } = useContext(OpponentContext)
+
+    const handleAttack = () => {
+      dispatchOpp({type: 'attack', payload: 10});
+      dispatch({type: 'attackAnimation', payload: true})
+    }
+
     return (
     <div>
         <div style={{visibility: (PlayerObj.hp > 0 && OpponentObj.hp <= 0) ? "hidden" : "visible"}} ><button onClick={() => 
-          dispatchOpp({type: 'attack', payload: 10})} 
+          handleAttack()
+        }
           >Attack</button>
             <Player/>
             <Opponent/>

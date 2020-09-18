@@ -1,17 +1,22 @@
-import React, { useRef, useEffect, useCallback } from 'react';
+import React, { useRef, useEffect, useContext} from 'react';
 import enemyHealthbar, { OpponentHealthBar } from '../../Components/healthbar/enemyHealthbar'
 import PlayerHealthBar from '../../Components/healthbar/healthbar'
-import idleAnimation from '../characterAnimation/fightAnimation'
+import idleAnimation from '../characterAnimation/idleAnimation'
+
 
 const FightCanvas = (props) => {
-
+    
     const canvasRef = useRef(null)
    
     let animationFrameId
     
+
+    
     useEffect(() => {
       //insert animation methods here
+      
       idleAnimation(); 
+      
       
       
       return () => {

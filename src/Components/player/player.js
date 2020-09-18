@@ -6,6 +6,7 @@ const player = {
   name: 'placeholder',
   hp: starting_hitpoints,
   MAX_HP: starting_hitpoints,
+  is_attacking: false
 }
 
 export default player;

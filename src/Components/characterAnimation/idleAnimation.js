@@ -1,10 +1,13 @@
 import { banditIdle } from './bandit/bandit_idle.js';
 import { wizardIdle } from './wizard/wizard_idle.js';
+import { wizardAttack } from './wizard/wizard_attack.js';
+import PlayerAttacking from './playerAttacking'
 
 const idleAnimation = () => {
-  const canvas = document.getElementById('game-area')
-  const context = canvas.getContext('2d')
-  const sprites = [banditIdle,wizardIdle];
+  const canvas = document.getElementById('game-area');
+  const context = canvas.getContext('2d');
+  var player = wizardIdle;
+  const sprites = [banditIdle,player];
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       context.imageSmoothingEnabled = true;
@@ -30,6 +33,7 @@ const idleAnimation = () => {
  
 
   function render() {
+    
     frameCount++
     if (frameCount < numberOfFramesPerCycle) {
         window.requestAnimationFrame(render);
@@ -43,6 +47,12 @@ const idleAnimation = () => {
     //only draw image if enough time has passed since last frame
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
+    
+      // if(PlayerAttacking() === true){
+      //   player = wizardAttack; 
+      // }else{
+      //   player = wizardIdle;
+      // }
 
       for(var i = 0; i < sprites.length; i++){
         drawFrame(sprites[i], sprites[i].cycleLoop[currentLoopIndex], 0, 0, 0);
