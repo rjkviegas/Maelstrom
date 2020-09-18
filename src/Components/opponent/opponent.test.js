@@ -19,19 +19,22 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-test("name and hp fields exist", () => {
-  const { getByTestId } = render(<> opponentRender </>)
-  expect(getByTestId("opponent_name")).toHaveTextContent("Ilja")
-  expect(getByTestId("opponent_hp")).toHaveTextContent("100");
-
+describe("Opponent Component", function() {
+  it("name and hp fields exist", function() {
+    const { getByTestId } = render(<> opponentRender </>)
+    expect(getByTestId("opponent_name")).toHaveTextContent("Ilja")
+    expect(getByTestId("opponent_hp")).toHaveTextContent("100"); 
+  })
 });
 
-test("opponent_name id contains the opponent's name", () => {
+describe("Opponent Component", function() {
+  it("opponent_name id contains the opponent's name", function() {
     expect(document.getElementById('opponent_name').textContent).toContain('Ilja');
+  })
 });
 
-
-test("it can pass hp", () => {
-  expect(container.querySelector("div").textContent).toContain('100')
+describe("Opponent Component", function() {
+  it("it can pass hp", function() {
+    expect(container.querySelector("div").textContent).toContain('100');
+  })
 });
-
