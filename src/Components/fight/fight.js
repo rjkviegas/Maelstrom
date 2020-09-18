@@ -11,7 +11,7 @@ export default function Fight() {
 
     const handleAttack = () => {
       dispatchOpp({type: 'attack', payload: 10});
-      changeAnimation(2000);
+      changeAnimation(2);
     }
 
     const changeAnimation = (delay) => {
@@ -24,7 +24,7 @@ export default function Fight() {
 
     return (
     <div>
-        <div style={{visibility: (PlayerObj.hp > 0 && OpponentObj.hp <= 0) ? "hidden" : "visible"}} ><button onClick={() => 
+        <div style={{visibility: ((PlayerObj.hp > 0 && OpponentObj.hp <= 0) || PlayerObj.is_attacking) ? "hidden" : "visible"}} ><button onClick={() => 
           handleAttack()
         }
           >Attack</button>
