@@ -4,11 +4,13 @@ import PlayerHealthBar from '../../Components/healthbar/healthbar'
 import IdleAnimation from '../characterAnimation/idleAnimation'
 import PlayerContext from '../../config/playerContext.js'
 import AttackAnimation from '../characterAnimation/playerAttacking.js'
+import OpponentContext from '../../config/opponentContext';
 
 const FightCanvas = (props) => {
   
     const canvasRef = useRef(null)
     const { PlayerObj }  = useContext(PlayerContext)
+    const { OpponentObj } = useContext(OpponentContext)
     let animationFrameId;
     
 
@@ -35,7 +37,7 @@ const FightCanvas = (props) => {
     <div>
       <div id="healthbars">
         <PlayerHealthBar PlayerObj={PlayerObj}/>
-        <OpponentHealthBar/>
+        <OpponentHealthBar OpponentObj={OpponentObj}/>
        </div>
 
        <div style={{align: "center"}}>

@@ -2,8 +2,7 @@ import React, { useContext } from 'react';
 import OpponentContext from '../../config/opponentContext';
 import './healthbar.css'
 
-export function OpponentHealthBar() {
-  const { OpponentObj }  = useContext(OpponentContext)
+export function OpponentHealthBar({OpponentObj}) {
   let barWidth = (OpponentObj.hp <= 0) ? "0%" : ((OpponentObj.hp)/OpponentObj.MAX_HP)*100 + '%'
   return (
     <div className="health-bar" data-testid="health-bar">
