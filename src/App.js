@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
 import './App.css';
-import Menu from './Components/menu/menu.js'
 import PlayerContext from './config/playerContext.js';
 import playerReducer from './Reducers/playerReducer.js'
 import player, { Player } from './Components/player/player.js'
@@ -17,7 +16,6 @@ function App() {
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
 
   function handleNewFight(){
-    console.log("new fight")
     dispatchOpp({type: 'reset', payload: new opponent()})
   }
  
@@ -31,7 +29,6 @@ function App() {
               </Route>
             <Route exact path='/menu'>
               <Link to="/play">Play Game</Link>
-              {/* <Menu/> */}
             </Route>
             <Route exact path='/play'>
               <Link to="/fight">Fight</Link>
