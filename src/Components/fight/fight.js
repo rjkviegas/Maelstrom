@@ -11,7 +11,7 @@ export default function Fight() {
 
     const handleAttack = () => {
       dispatchOpp({type: 'attack', payload: 10});
-      changeAnimation(2000);
+      changeAnimation(2);
     }
 
     const changeAnimation = (delay) => {
