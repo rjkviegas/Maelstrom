@@ -31,7 +31,7 @@ function App() {
               <Link to="/play">Play Game</Link>
             </Route>
             <Route exact path='/play'>
-              <Link to="/fight">Fight</Link>
+              <Link to="/fight">Fight</Link>              
               <Link to="/shop">Shop</Link>
               <Link to="/character">Your character</Link>
             </Route>
