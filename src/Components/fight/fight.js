@@ -9,7 +9,7 @@ export default function Fight() {
     const {  OpponentObj, dispatchOpp } = useContext(OpponentContext)
     return (
     <div>
-        <div style={{visibility: (PlayerObj.hp > 0 && OpponentObj.hp <= 0) ? "hidden" : "visible"}} ><button onClick={() => 
+        <div style={{visibility: (OpponentObj.isDead()) ? "hidden" : "visible"}} ><button onClick={() => 
           dispatchOpp({type: 'attack', payload: 10})} 
           >Attack</button>
             <Player/>

@@ -1,8 +1,10 @@
-import opponent from "../Components/opponent/opponent";
+// import opponent from "../Components/opponent/opponent";
 
 export default function opponentReducer(state, action) {
     switch(action.type) {
       case "attack":
+        //console.log(state)
+        //console.log( { ...state, hp: state.hp - action.payload} )
           //console.log((((state.hp - action.payload)/state.MAX_HP)*100)+ '%')          
         return { ...state, hp: state.hp - action.payload}
       case "rename":

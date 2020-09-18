@@ -14,7 +14,16 @@ class opponent {
     this.name = 'Opponent_Placeholder'
     this.hp = starting_hitpoints
     this.MAX_HP = starting_hitpoints
+    this.isDead = function() {
+      return this.hp <= 0
+    }
+  
+    this.isAlive = function() {
+      return this.hp > 0
+    }
   }
+
+ 
 }
 
 export default opponent;
