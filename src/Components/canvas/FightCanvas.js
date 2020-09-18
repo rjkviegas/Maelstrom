@@ -5,10 +5,10 @@ import IdleAnimation from '../characterAnimation/idleAnimation'
 import PlayerContext from '../../config/playerContext.js'
 
 const FightCanvas = (props) => {
-    
+  
     const canvasRef = useRef(null)
     const { PlayerObj }  = useContext(PlayerContext)
-    let animationFrameId
+    let animationFrameId;
     
 
     
@@ -27,12 +27,12 @@ const FightCanvas = (props) => {
     return (
     <div>
       <div id="healthbars">
-        <PlayerHealthBar/>
+        <PlayerHealthBar PlayerObj={PlayerObj}/>
         <OpponentHealthBar/>
        </div>
 
        <div style={{align: "center"}}>
-         <canvas ref={canvasRef} style={{ }} id="game-area"{...props}/> 
+         <canvas ref={canvasRef} style={{ }} id="game-area"/> 
        </div>
       
     </div>)

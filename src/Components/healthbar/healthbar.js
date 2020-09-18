@@ -3,8 +3,9 @@ import './healthbar.css'
 import PlayerContext from '../../config/playerContext.js'
 // import domtoimage from 'dom-to-image';
 
-function PlayerHealthBar() {
-  const { PlayerObj, setPlayerObjValue } = useContext(PlayerContext)
+function PlayerHealthBar(playerObj) {
+  const { PlayerObj } = playerObj
+  // const { PlayerObj, setPlayerObjValue } = useContext(PlayerContext)
   let barWidth = ((PlayerObj.hp)/PlayerObj.MAX_HP)*100 + '%'
   return (
     <div className="health-bar">

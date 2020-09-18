@@ -2,14 +2,14 @@ import { banditIdle } from './bandit/bandit_idle.js';
 import { wizardIdle } from './wizard/wizard_idle.js';
 import { wizardAttack } from './wizard/wizard_attack.js';
 import PlayerAttacking from './playerAttacking'
-
+import React, { useContext } from 'react'
 
 function IdleAnimation(playerObj) {
   const canvas = document.getElementById('game-area');
   const context = canvas.getContext('2d');
   let player;
   let sprites;
-  console.log(playerObj.is_attacking);
+  console.log("Wizard attack status: " + playerObj.is_attacking);
   
  
 
@@ -29,10 +29,10 @@ function IdleAnimation(playerObj) {
   let frameCount = 0
   let animationFrameId
   let currentLoopIndex = 0;
-  let numberOfFramesPerCycle = 8; //decrease value to increase speed of animation
+  let numberOfFramesPerCycle = 10; //decrease value to increase speed of animation
   var fpsInterval, startTime, now, then, elapsed;
   // (banditIdle && wizardIdle && wizardAttack).onload = function () {
-    init(8); //initiate animation
+    init(10); //initiate animation
   // }
  
   if(playerObj.is_attacking) {
@@ -40,6 +40,9 @@ function IdleAnimation(playerObj) {
   }else{
     player = wizardIdle;
   }
+
+     
+  sprites = [banditIdle, player];
 
   function render() {
     
@@ -62,10 +65,6 @@ function IdleAnimation(playerObj) {
     //only draw image if enough time has passed since last frame
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
-      
-     
-      
-      sprites = [banditIdle, player];
 
       for(var i = 0; i < sprites.length; i++){
         drawFrame(sprites[i], sprites[i].cycleLoop[currentLoopIndex], 0, 0, 0);
