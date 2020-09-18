@@ -1,5 +1,5 @@
+import { OpponentHealthBar } from '../../Components/healthbar/enemyHealthbar'
 import React, { useRef, useEffect, useContext} from 'react';
-import enemyHealthbar, { OpponentHealthBar } from '../../Components/healthbar/enemyHealthbar'
 import PlayerHealthBar from '../../Components/healthbar/healthbar'
 import IdleAnimation from '../characterAnimation/idleAnimation'
 import PlayerContext from '../../config/playerContext.js'
@@ -25,7 +25,7 @@ const FightCanvas = (props) => {
       }
       
       
-      
+
       return () => {
         window.cancelAnimationFrame(animationFrameId)
       } 
@@ -39,11 +39,11 @@ const FightCanvas = (props) => {
        </div>
 
        <div style={{align: "center"}}>
-         <canvas ref={canvasRef} style={{ }} id="game-area"/> 
+         <canvas ref={canvasRef} style={{ }} id="game-area" data-testid="game-area" /> 
        </div>
       
     </div>)
 }
 
 
-export default FightCanvas
+export default FightCanvas;
