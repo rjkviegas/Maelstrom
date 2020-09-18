@@ -8,6 +8,7 @@ install:
 script:
 - npm test
 - npm run test:coverage
+- serve -s build
 
 deploy:
   provider: heroku
@@ -16,5 +17,5 @@ deploy:
   app: maelstrom-rpg
   on:
     repo: dwram/Maelstrom
-    branch: master
+    branch: serve
   skip_cleanup: 'true'
