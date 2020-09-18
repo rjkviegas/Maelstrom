@@ -24,6 +24,8 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-test("canvas rendered", () => {
-    expect(container.querySelector("canvas")).toBeTruthy();
+describe("FightCanvas", function () {
+    it("canvas is rendered", function () {
+        expect(container.querySelector("canvas")).toBeTruthy();
+    })
 });
