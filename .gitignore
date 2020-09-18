@@ -8,6 +8,7 @@
 
 # testing
 /app/coverage
+/coverage
 
 # production
 /build
