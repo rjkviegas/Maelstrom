@@ -3,12 +3,11 @@ node_js:
 - '12'
 
 install:
-- npm ci
+  - npm ci
 
 script:
 - npm test
 - npm run test:coverage
-
 
 deploy:
   provider: heroku

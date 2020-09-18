@@ -12,8 +12,15 @@ import Fight from './Components/fight/fight.js'
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 function App() {
+
   const [PlayerObj, dispatch] = useReducer(playerReducer, player)
-  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, opponent)
+  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
+
+  function handleNewFight(){
+    console.log("new fight")
+    dispatchOpp({type: 'reset', payload: new opponent()})
+  }
+ 
   return (
       <div className="App">
       <header className="App-header">
@@ -36,7 +43,7 @@ function App() {
                 <OpponentContext.Provider value={{OpponentObj, dispatchOpp}}>
                   <FightCanvas/>
                   <Fight/>
-                  <div style={{visibility: (OpponentObj.hp <= 0) ? "visible" : "hidden" }}><Link to='/'>Go back</Link></div>
+                  <button onClick={handleNewFight} style={{visibility: (OpponentObj.hp <= 0) ? "visible" : "hidden" }}><Link to='/play'>Go back</Link></button>
                 </OpponentContext.Provider>
               </PlayerContext.Provider>
             </Route>
