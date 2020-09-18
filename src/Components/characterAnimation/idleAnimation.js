@@ -35,12 +35,7 @@ function IdleAnimation(playerObj) {
     init(10); //initiate animation
   // }
  
-  if(playerObj.is_attacking) {
-    player = wizardAttack; 
-  }else{
-    player = wizardIdle;
-  }
-
+  player = (playerObj.is_attacking) ? wizardAttack :  wizardIdle
      
   sprites = [banditIdle, player];
 
