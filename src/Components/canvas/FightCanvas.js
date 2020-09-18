@@ -3,7 +3,7 @@ import React, { useRef, useEffect, useContext} from 'react';
 import PlayerHealthBar from '../../Components/healthbar/healthbar'
 import IdleAnimation from '../characterAnimation/idleAnimation'
 import PlayerContext from '../../config/playerContext.js'
-import AttackAnimation from '../characterAnimation/playerAttacking.js'
+import PlayerAttackAnimation from '../characterAnimation/playerAttacking.js'
 import OpponentContext from '../../config/opponentContext';
 
 const FightCanvas = (props) => {
@@ -20,8 +20,8 @@ const FightCanvas = (props) => {
       
       
       if(PlayerObj.is_attacking === true) {
-        AttackAnimation(PlayerObj);
-        PlayerObj.toggleAttack();
+        PlayerAttackAnimation(PlayerObj);
+        PlayerObj.toggleAttack(); // TODO: redundant line?
       }else{
         IdleAnimation(PlayerObj); 
       }

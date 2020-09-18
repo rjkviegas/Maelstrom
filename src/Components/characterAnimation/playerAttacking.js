@@ -3,7 +3,7 @@ import { banditIdle } from './bandit/bandit_idle.js';
 import PlayerAttacking from './playerAttacking'
 import React, { useContext } from 'react'
 
-export default function AttackAnimation(playerObj) {
+export default function PlayerAttackAnimation(playerObj) {
   const canvas = document.getElementById('game-area');
   const context = canvas.getContext('2d');
   let player;
