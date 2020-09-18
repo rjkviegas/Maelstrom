@@ -9,6 +9,7 @@ function IdleAnimation(playerObj) {
   const context = canvas.getContext('2d');
   let player;
   let sprites;
+  console.log(playerObj.is_attacking);
   
  
 
@@ -28,12 +29,17 @@ function IdleAnimation(playerObj) {
   let frameCount = 0
   let animationFrameId
   let currentLoopIndex = 0;
-  let numberOfFramesPerCycle = 10; //decrease value to increase speed of animation
+  let numberOfFramesPerCycle = 8; //decrease value to increase speed of animation
   var fpsInterval, startTime, now, then, elapsed;
   // (banditIdle && wizardIdle && wizardAttack).onload = function () {
-    init(10); //initiate animation
+    init(8); //initiate animation
   // }
  
+  if(playerObj.is_attacking) {
+    player = wizardAttack; 
+  }else{
+    player = wizardIdle;
+  }
 
   function render() {
     
@@ -52,16 +58,13 @@ function IdleAnimation(playerObj) {
 
     now = Date.now();
     elapsed = now - then;
+    
     //only draw image if enough time has passed since last frame
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
-    
-      if(playerObj.is_attacking) {
-        player = wizardAttack; 
-        console.log("Attacking " + playerObj.is_attacking)
-      }else{
-        player = wizardIdle;
-      }
+      
+     
+      
       sprites = [banditIdle, player];
 
       for(var i = 0; i < sprites.length; i++){
