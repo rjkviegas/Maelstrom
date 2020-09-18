@@ -4,6 +4,8 @@ node_js:
 
 install:
   - npm ci
+env:
+  - CI=false
 
 script:
   - npm test
