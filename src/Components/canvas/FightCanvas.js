@@ -13,7 +13,7 @@ const FightCanvas = (props) => {
       //insert animation methods here
       idleAnimation(); 
       
-      
+
       return () => {
         window.cancelAnimationFrame(animationFrameId)
       } 
@@ -27,7 +27,7 @@ const FightCanvas = (props) => {
        </div>
 
        <div style={{align: "center"}}>
-         <canvas ref={canvasRef} style={{ }} id="game-area"{...props}/> 
+         <canvas ref={canvasRef} style={{ }} data-testid="game-area" id="game-area"{...props}/> 
        </div>
       
     </div>)
