@@ -3,6 +3,7 @@ import enemyHealthbar, { OpponentHealthBar } from '../../Components/healthbar/en
 import PlayerHealthBar from '../../Components/healthbar/healthbar'
 import IdleAnimation from '../characterAnimation/idleAnimation'
 import PlayerContext from '../../config/playerContext.js'
+import AttackAnimation from '../characterAnimation/playerAttacking.js'
 
 const FightCanvas = (props) => {
   
@@ -15,7 +16,13 @@ const FightCanvas = (props) => {
     useEffect(() => {
       //insert animation methods here
       
-      IdleAnimation(PlayerObj); 
+      
+      if(PlayerObj.is_attacking === true) {
+        AttackAnimation(PlayerObj);
+        PlayerObj.toggleAttack();
+      }else{
+        IdleAnimation(PlayerObj); 
+      }
       
       
       

@@ -11,20 +11,21 @@ export default function Fight() {
 
     const handleAttack = () => {
       dispatchOpp({type: 'attack', payload: 10});
-      changeAnimation(2);
+      dispatch({type: 'attackAnimation', payload: true})
+      // changeAnimation(2000);
     }
 
-    const changeAnimation = (delay) => {
-      dispatch({type: 'attackAnimation', payload: true})
-      setTimeout(() => {
-          console.log("Changing Animation");
-          dispatch({type: 'attackAnimation', payload: false})
-          }, delay)
-    }
+    // const changeAnimation = (delay) => {
+    //   dispatch({type: 'attackAnimation', payload: true})
+    //   setTimeout(() => {
+    //       console.log("Changing Animation");
+    //       dispatch({type: 'attackAnimation', payload: false})
+    //       }, delay)
+    // }
 
     return (
     <div>
-        <div style={{visibility: ((PlayerObj.hp > 0 && OpponentObj.hp <= 0) || PlayerObj.is_attacking) ? "hidden" : "visible"}} ><button onClick={() => 
+        <div style={{visibility: ((PlayerObj.hp > 0 && OpponentObj.hp <= 0)) ? "hidden" : "visible"}} ><button onClick={() => 
           handleAttack()
         }
           >Attack</button>
