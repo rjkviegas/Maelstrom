@@ -3,11 +3,14 @@ import { wizardIdle } from './wizard/wizard_idle.js';
 import { wizardAttack } from './wizard/wizard_attack.js';
 import PlayerAttacking from './playerAttacking'
 
-const idleAnimation = () => {
+
+function IdleAnimation(playerObj) {
   const canvas = document.getElementById('game-area');
   const context = canvas.getContext('2d');
-  var player = wizardIdle;
-  const sprites = [banditIdle,player];
+  let player;
+  let sprites;
+  
+ 
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       context.imageSmoothingEnabled = true;
@@ -27,9 +30,9 @@ const idleAnimation = () => {
   let currentLoopIndex = 0;
   let numberOfFramesPerCycle = 10; //decrease value to increase speed of animation
   var fpsInterval, startTime, now, then, elapsed;
-  (banditIdle && wizardIdle).onload = function () {
-  init(10); //initiate animation
-  }
+  // (banditIdle && wizardIdle && wizardAttack).onload = function () {
+    init(10); //initiate animation
+  // }
  
 
   function render() {
@@ -40,6 +43,11 @@ const idleAnimation = () => {
         return;
       }
     frameCount = 0;
+
+    // if(playerObj.is_attacking && frameCount === 8){
+    //   playerObj.is_attacking = false;
+    // }
+
     context.clearRect(0, 0, canvas.width, canvas.height); //clear animation after each frame
 
     now = Date.now();
@@ -48,11 +56,13 @@ const idleAnimation = () => {
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
     
-      // if(PlayerAttacking() === true){
-      //   player = wizardAttack; 
-      // }else{
-      //   player = wizardIdle;
-      // }
+      if(playerObj.is_attacking) {
+        player = wizardAttack; 
+        console.log("Attacking " + playerObj.is_attacking)
+      }else{
+        player = wizardIdle;
+      }
+      sprites = [banditIdle, player];
 
       for(var i = 0; i < sprites.length; i++){
         drawFrame(sprites[i], sprites[i].cycleLoop[currentLoopIndex], 0, 0, 0);
@@ -80,4 +90,4 @@ const idleAnimation = () => {
   } 
 }
 
-export default idleAnimation;
+export default IdleAnimation;
