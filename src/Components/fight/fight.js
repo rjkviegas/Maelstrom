@@ -10,8 +10,8 @@ export default function Fight() {
     return (
     <div>
         <div style={{visibility: (OpponentObj.isDead()) ? "hidden" : "visible"}} ><button onClick={() => 
-          dispatchOpp({type: 'attack', payload: 10})} 
-          >Attack</button>
+          dispatchOpp({type: 'attack', payload: 10})}>
+            Attack</button>
             <Player/>
             <Opponent/>
         </div>
