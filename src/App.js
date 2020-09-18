@@ -13,7 +13,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 function App() {
 
-  const [PlayerObj, dispatch] = useReducer(playerReducer, player)
+  const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
 
   function handleNewFight(){
