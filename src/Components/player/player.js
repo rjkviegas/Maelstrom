@@ -1,12 +1,21 @@
 import React,{ useContext } from 'react'
 import PlayerContext from '../../config/playerContext.js'
+import wizardIdle from '../characterAnimation/wizard/wizard_idle.js'
 
 const starting_hitpoints = 100;
-const player = {
-  name: 'placeholder',
-  hp: starting_hitpoints,
-  MAX_HP: starting_hitpoints,
-  is_attacking: false
+class player {
+
+  constructor() {
+    this.name = 'placeholder'
+    this.hp = starting_hitpoints
+    this.MAX_HP = starting_hitpoints
+    this.is_attacking = false
+    
+    this.toggleAttacking = function() {
+      this.is_attacking = !this.is_attacking
+    }
+  }
+
 }
 
 export default player;
