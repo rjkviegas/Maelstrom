@@ -2,7 +2,7 @@
 Maelstrom is a fantasy turned based role playing game!
 A world bending whirlpool has merged the sci-fi and fantasy worlds into one, you must battle against all divisions of monsters to get gold and survive!
 
-Play [here](https://maelstrom-rpg.herokuapp.com/)!
+Play [here](https://maelstrom-rpg.netlify.app/)!
 
 # How to play
 
