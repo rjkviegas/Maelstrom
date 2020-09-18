@@ -21,7 +21,7 @@ afterEach(cleanup);
 
 test("name and hp fields exist", () => {
   const { getByTestId } = render(<> playerRender </>)
-  expect(getByTestId("player_name")).toHaveTextContent("Ilja")
+  expect(getByTestId("player_name")).toHaveTextContent("Ilja");
   expect(getByTestId("player_hp")).toHaveTextContent("100");
 
 });

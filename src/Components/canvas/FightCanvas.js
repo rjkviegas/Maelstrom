@@ -1,12 +1,10 @@
-import React, { useRef, useEffect, useCallback } from 'react';
-import enemyHealthbar, { OpponentHealthBar } from '../../Components/healthbar/enemyHealthbar'
+import React, { useEffect } from 'react';
+import { OpponentHealthBar } from '../../Components/healthbar/enemyHealthbar'
 import PlayerHealthBar from '../../Components/healthbar/healthbar'
 import idleAnimation from '../characterAnimation/fightAnimation'
 
-const FightCanvas = (props) => {
+const FightCanvas = () => {
 
-    const canvasRef = useRef(null)
-   
     let animationFrameId
     
     useEffect(() => {
@@ -21,17 +19,13 @@ const FightCanvas = (props) => {
     
     return (
     <div>
-      <div id="healthbars">
+      <div data-testid="healthbars" id="healthbars">
         <PlayerHealthBar/>
         <OpponentHealthBar/>
-       </div>
-
-       <div style={{align: "center"}}>
-         <canvas ref={canvasRef} style={{ }} data-testid="game-area" id="game-area"{...props}/> 
-       </div>
-      
+      </div>
+      <canvas data-testid="game-area" id="game-area"/> 
     </div>)
 }
 
 
-export default FightCanvas
+export default FightCanvas;
