@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Player } from "./player";
-import PlayerContext from '../../config/playerContext.js'
+import { Player } from "../player";
+import PlayerContext from '../../../config/playerContext.js'
 import { render, cleanup } from "@testing-library/react";
 
 const PlayerObj  = { name: "Ilja", hp: 100};

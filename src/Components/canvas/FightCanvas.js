@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
-import enemyHealthbar from '../../Components/healthbar/enemyHealthbar'
+import enemyHealthbar, { OpponentHealthBar } from '../../Components/healthbar/enemyHealthbar'
 import PlayerHealthBar from '../../Components/healthbar/healthbar'
 import idleAnimation from '../characterAnimation/fightAnimation'
 
@@ -22,8 +22,8 @@ const FightCanvas = (props) => {
     return (
     <div>
       <div id="healthbars">
-       { PlayerHealthBar() }
-       { enemyHealthbar }
+        <PlayerHealthBar/>
+        <OpponentHealthBar/>
        </div>
 
        <div style={{align: "center"}}>

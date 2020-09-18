@@ -2,10 +2,19 @@ import React, { useContext } from "react";
 import OpponentContext from '../../config/opponentContext.js'
 
 const starting_hitpoints = 125;
-const opponent = {
+/* const opponent = {
   name: 'Opponent_Placeholder',
   hp: starting_hitpoints,
   MAX_HP: starting_hitpoints,
+} */
+
+class opponent {
+
+  constructor(){
+    this.name = 'Opponent_Placeholder'
+    this.hp = starting_hitpoints
+    this.MAX_HP = starting_hitpoints
+  }
 }
 
 export default opponent;

@@ -1,3 +1,4 @@
+import opponent from "../Components/opponent/opponent";
 
 export default function opponentReducer(state, action) {
     switch(action.type) {
@@ -6,6 +7,8 @@ export default function opponentReducer(state, action) {
         return { ...state, hp: state.hp - action.payload}
       case "rename":
         return {...state, name: action.payload}
+      case "reset":
+        return action.payload;
       default: 
         return {...state};
     }

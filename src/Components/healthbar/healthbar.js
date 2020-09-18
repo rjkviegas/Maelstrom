@@ -13,7 +13,7 @@ function PlayerHealthBar() {
       </div>
     </div>
   )
-  }
+}
 
     // function renderPlayerHealthBar() {
     //   var node = PlayerHealthBar();
