@@ -8,14 +8,11 @@ import PlayerHealthBar from '../../healthbar/healthbar';
 export function Canvas(props) {
     const canvasRef = React.createRef(null)
     let animationFrameId;
-
+    
     useEffect(() => {
         const canvas = canvasRef.current
         const ctx = canvas.getContext('2d')
-        FightAnimation()
-        return () => {
-            window.cancelAnimationFrame(animationFrameId)
-          } 
+        FightAnimation(canvas, ctx)
     });
     
     return (
@@ -27,24 +24,32 @@ export function Canvas(props) {
     
 }
 
-export default function FightAnimation(props) {
+let animation, now, elapsed, fpsInterval, then, startTime
+let fps = 24
 
-    //const canvas = useRef(canvasRef)
-    //const { PlayerObj }  = useContext(PlayerContext)
-    //const { OpponentObj } = useContext(OpponentContext)
-    const canvas = document.getElementById('game-area');
-    const ctx = canvas.getContext('2d');
-    canvas.height = window.innerHeight / 5;
-    canvas.width = window.innerWidth / 5;
-
+export default function FightAnimation(canvas, ctx) {
+    function startAnimating(fps) {
+        fpsInterval = 1000 / fps
+        then = Date.now();
+        startTime = then;
+        animate();
+    }
 
     // load image
 
     const images = {}
+    images.wizard = new Image();
+    images.wizard.src = 'assets/characterSprites/EvilWizard/Run.png';
+    images.wizard.onload = drawImageMock
     images.player = new Image();
-    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBandit.png';
-    console.log(images)
-    //images.player.src = './HeavyBanditReverse.png'
+    images.player.src = 'assets/characterSprites/bandit/HeavyBandit.png';
+    images.player.onload = drawImageMock
+
+    function drawImageMock() {
+        // ctx.drawImage(this, 0, 0, 48, 48, 0, 0, 48, 48);
+        // setInterval(animate, 1000 / 8);
+        startAnimating(fps)
+    }
 
     // How big is each individual frame. Find image properties via right click (image) > image properties.
     // Calculate width via image length (width) by the sprite column count
@@ -66,15 +71,19 @@ export default function FightAnimation(props) {
     const characterActions = [ 'attack', 'run','idle']
 
     class Character {
-        constructor(actionArg, characterWidth, characterHeight) {
+        constructor(imageSrc, actionArg, characterWidth, characterHeight, startPosX = 0, startPosY = 0, imageForward, imageReverse) {
+            this.imageSrc = imageSrc
+            this.imageForward = imageForward
+            this.imageReverse = imageReverse
+
             this.width = characterWidth;
             this.height = characterHeight;
             this.frameX = 0
-            this.x = 0; // starting point (on the canvas)
-            this.y = 0; // starting point (on the canvas)
-            this.speed = 20;
-            this.runStartCoord = this.x + 700;
-            this.runDistanceLeft = -100; //  SMALLER THE GREATER DISTANCE RUN LEFT!
+            this.x = startPosX; // starting point (on the canvas)
+            this.y = startPosY; // starting point (on the canvas)
+            this.speed = 4;
+            this.runStartCoord = this.x + 200;
+            this.runDistanceLeft = 50; //  SMALLER THE GREATER DISTANCE RUN LEFT!
             this.runDistanceRight = 1500;
             this.testOffset = this.runStartCoord; // distance to travel
             this.endFrame = 7;
@@ -97,47 +106,71 @@ export default function FightAnimation(props) {
         }
 
         draw() {
-            drawSprite(images.player, this.width * this.frameX, this.width * this.frameY, this.width, this.height, this.testOffset, this.y, this.width * 10, this.height * 10);
+            if (animation) {
+                window.cancelAnimationFrame(animation)
+            }
+            // const [posX, posY] = [200, 100] // Controls the location of the sprite on canvas
+
+
+            ctx.drawImage(this.imageSrc, this.width * this.frameX, this.height * this.frameY, this.width, this.height, this.testOffset, this.y, this.width, this.height);
+
             // [this.endFrame, this.speed] = (this.action === 'idle') ? [3, 5] : [7, 20]   // parallel deconstruction + ternary to conditionally determine speed.
             this.endFrame = (this.action === 'idle') ? 3 : 7; // ternary  to determine where the frame ends
-            if (this.frameX < this.endFrame) this.frameX++; else if (this.frameX === this.endFrame && this.action === 'die') return; else this.frameX = 0;
+            if (this.frameX < this.endFrame)
+                this.frameX++;
+            else if (this.frameX === this.endFrame && this.action === 'die')
+                return;
+            else this.frameX = 0;
         }
 
         // difference between offset and the rundistance is the actual distance. Once express condition is met, execute the next sequence. e.g. run -> attack, attack -> run_back
         update() {
             switch(this.action){
                 case 'run':
-                    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBandit.png';                    if (this.testOffset > this.runDistanceLeft) this.testOffset -= this.speed; else 
-                    this.testOffset = this.runStartCoord;
-                    if (this.testOffset <= this.runDistanceLeft) this.action = 'attack';
+                    images.player.src = this.imageForward
+
+                    if (this.testOffset > this.runDistanceLeft)
+                        this.testOffset -= this.speed;
+                    else 
+                        this.testOffset = this.runStartCoord;
+
+                    if (this.testOffset <= this.runDistanceLeft) { 
+                        this.action = 'attack';
+                        this.frameX = 0;
+                    }
                     break;
                 case 'attack':
-                    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBandit.png';                    this.frameY = 2;
+                    images.player.src = this.imageForward
+                    this.frameY = 2;
                     if(this.frameX === 7) this.action = 'run_back';
-                    break;    
+                    break;
                 case 'run_back':
-                    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBanditReverse.png'  
+                    images.player.src = this.imageReverse  
                     this.frameY = 1;
                     if (this.testOffset < this.runStartCoord) this.testOffset += this.speed; else
                     this.testOffset = this.runStartCoord;
                     if (this.testOffset >= this.runStartCoord) this.action = 'idle';
                     break;
                 case 'idle':
-                    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBandit.png';                    this.frameY = 0; 
+                    images.player.src = this.imageForward;
+                    this.frameY = 0; 
                     break;
                 case 'die':
-                    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBanditReverse.png'  
-                    this.frameY = 3;     
+                    images.player.src = this.imageReverse  
+                    this.frameY = 3;
                     break;  
                 default:
+                    images.player.src = this.imageForward
                     this.action = 'idle';
                     break;    
             }
         }
     }
 
-    const characters = [];
-    characters.push(new Character('run', 48, 48)); //, new Character('idle', 48, 48)
+    const characters = {};
+    characters.player = new Character(images.player, 'run', 48, 48, 0, 100, 'assets/characterSprites/bandit/HeavyBandit.png', 'assets/characterSprites/bandit/HeavyBanditReverse.png'); //, new Character('idle', 48, 48)
+
+    characters.oppenent =  new Character(images.wizard, 'idle', 250, 250, -250, -25, 'assets/characterSprites/EvilWizard/Run.png', 'assets/characterSprites/EvilWizard/Run.png');
 
     // img = image =>  sX, sY, sW, sH = area we want to draw => dx, dY, dW, dH = destination on the canvas
 
@@ -150,33 +183,34 @@ export default function FightAnimation(props) {
     // dW, the width of the drawn image
     // dH, the height of the drawn image
 
-    function drawSprite(img, sX, sY, sW, sH, dx, dY, dW, dH) {
-        img.onload = function () {ctx.drawImage(img, sX, sY, sW, sH, dx, dY, dW, dH)}
-    }
+    // function drawSprite(img, sX, sY, sW, sH, dx, dY, dW, dH) {
+    //     ctx.drawImage(img, sX, sY, sW, sH, dx, dY, dW, dH)
+    // }
     
 
     function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        /* drawSprite(images.player, playerWidth * playerFrameX, playerWidth * playerFrameY, playerWidth, playerHeight, testOffset, playerY, playerWidth * 10, playerHeight * 10);
-        if (playerFrameX < 7) playerFrameX++; else playerFrameX = 0; */
-        console.log("test offset: " + testOffset + " || playerWidth : " + playerWidth + canvas.width)
-        /* if (testOffset > playerWidth) testOffset -= playerSpeed; else testOffset = testOffset + 300 */
-        characters[0].draw()
-        characters[0].update()
-    /*     characters[1].draw()
-        characters[1].update() */
+        requestAnimationFrame(animate);
+        now = Date.now();
+        elapsed = now - then;
+
+        // if enough time has elapsed, draw the next frame
+
+        if (elapsed > fpsInterval) {
+
+            // Get ready for next frame by setting then=now, but also adjust for your
+            // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
+            then = now - (elapsed % fpsInterval);
+            // Put your drawing code here
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            characters.player.draw()
+            characters.player.update()
+
+            characters.oppenent.draw()
+            // characters.oppenent.update()
+        }
     }
-
-    // run the animate function every 1000(ms) / frames || FPS
-
-    window.onload = setInterval(animate, 1000/20);
-
-
-    // Sprites don't get pixelate or stretch using following resize event listener functions. 
-    window.addEventListener('resize', function() {
-        canvas.height = window.innerHeight / 5;
-        canvas.width = window.innerWidth / 5;
-    })
 
 }
 
