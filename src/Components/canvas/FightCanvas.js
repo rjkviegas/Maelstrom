@@ -21,7 +21,7 @@ const FightCanvas = (props) => {
       
       if(PlayerObj.is_attacking === true) {
         PlayerAttackAnimation(PlayerObj);
-        PlayerObj.toggleAttack(); // TODO: redundant line?
+        PlayerObj.toggleAttack(); // TODO:redundant line?
       }else{
         IdleAnimation(PlayerObj); 
       }

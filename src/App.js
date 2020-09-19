@@ -9,6 +9,7 @@ import OpponentContext from './config/opponentContext.js';
 import opponentReducer from './Reducers/opponentReducer.js'
 import Fight from './Components/fight/fight.js'
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import FightAnimation from './Components/canvas/FightCanvas2/FightCanvas2';
 
 function App() {
 
@@ -38,7 +39,8 @@ function App() {
             <Route exact path='/fight'>
               <PlayerContext.Provider value={{PlayerObj, dispatch}}>
                 <OpponentContext.Provider value={{OpponentObj, dispatchOpp}}>
-                  <FightCanvas/>
+                  <canvas id="canvas"><FightAnimation/></canvas>
+                  {/* <FightCanvas/> */}
                   <Fight/>
                   <button onClick={handleNewFight} style={{visibility: (OpponentObj.hp <= 0) ? "visible" : "hidden" }}><Link to='/play'>Go back</Link></button>
                 </OpponentContext.Provider>
