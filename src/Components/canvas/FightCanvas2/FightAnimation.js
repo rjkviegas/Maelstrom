@@ -5,45 +5,22 @@ import PlayerContext from '../../../config/playerContext';
 import { OpponentHealthBar } from '../../healthbar/enemyHealthbar';
 import PlayerHealthBar from '../../healthbar/healthbar';
 
-export function Canvas(props) {
-    const canvasRef = React.createRef(null)
-    let animationFrameId;
-
-    useEffect(() => {
-        const canvas = canvasRef.current
-        const ctx = canvas.getContext('2d')
-        FightAnimation()
-        return () => {
-            window.cancelAnimationFrame(animationFrameId)
-          } 
-    });
-    
-    return (
-        <div>
-            <canvas ref={canvasRef} id="game-area"></canvas>
-        </div>
-    )
-
-    
-}
-
 export default function FightAnimation(props) {
 
     //const canvas = useRef(canvasRef)
-    //const { PlayerObj }  = useContext(PlayerContext)
-    //const { OpponentObj } = useContext(OpponentContext)
-    const canvas = document.getElementById('game-area');
+    const { PlayerObj }  = useContext(PlayerContext)
+    const { OpponentObj } = useContext(OpponentContext)
+    const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
-    canvas.height = window.innerHeight / 5;
-    canvas.width = window.innerWidth / 5;
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
 
 
     // load image
 
     const images = {}
     images.player = new Image();
-    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBandit.png';
-    console.log(images)
+    images.player.src = './HeavyBandit.png';
     //images.player.src = './HeavyBanditReverse.png'
 
     // How big is each individual frame. Find image properties via right click (image) > image properties.
@@ -107,26 +84,29 @@ export default function FightAnimation(props) {
         update() {
             switch(this.action){
                 case 'run':
-                    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBandit.png';                    if (this.testOffset > this.runDistanceLeft) this.testOffset -= this.speed; else 
+                    images.player.src = './HeavyBandit.png';
+                    if (this.testOffset > this.runDistanceLeft) this.testOffset -= this.speed; else 
                     this.testOffset = this.runStartCoord;
                     if (this.testOffset <= this.runDistanceLeft) this.action = 'attack';
                     break;
                 case 'attack':
-                    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBandit.png';                    this.frameY = 2;
+                    images.player.src = './HeavyBandit.png';
+                    this.frameY = 2;
                     if(this.frameX === 7) this.action = 'run_back';
                     break;    
                 case 'run_back':
-                    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBanditReverse.png'  
+                    images.player.src = './HeavyBanditReverse.png'  
                     this.frameY = 1;
                     if (this.testOffset < this.runStartCoord) this.testOffset += this.speed; else
                     this.testOffset = this.runStartCoord;
                     if (this.testOffset >= this.runStartCoord) this.action = 'idle';
                     break;
                 case 'idle':
-                    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBandit.png';                    this.frameY = 0; 
+                    images.player.src = './HeavyBandit.png';
+                    this.frameY = 0; 
                     break;
                 case 'die':
-                    images.player.src = '../../../../public/assets/characterSprites/bandit/HeavyBanditReverse.png'  
+                    images.player.src = './HeavyBanditReverse.png';
                     this.frameY = 3;     
                     break;  
                 default:
@@ -137,7 +117,7 @@ export default function FightAnimation(props) {
     }
 
     const characters = [];
-    characters.push(new Character('run', 48, 48)); //, new Character('idle', 48, 48)
+    characters.push(new Character('die', 48, 48)); //, new Character('idle', 48, 48)
 
     // img = image =>  sX, sY, sW, sH = area we want to draw => dx, dY, dW, dH = destination on the canvas
 
@@ -151,9 +131,9 @@ export default function FightAnimation(props) {
     // dH, the height of the drawn image
 
     function drawSprite(img, sX, sY, sW, sH, dx, dY, dW, dH) {
-        img.onload = function () {ctx.drawImage(img, sX, sY, sW, sH, dx, dY, dW, dH)}
+        ctx.drawImage(img, sX, sY, sW, sH, dx, dY, dW, dH)
     }
-    
+
 
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -174,9 +154,15 @@ export default function FightAnimation(props) {
 
     // Sprites don't get pixelate or stretch using following resize event listener functions. 
     window.addEventListener('resize', function() {
-        canvas.height = window.innerHeight / 5;
-        canvas.width = window.innerWidth / 5;
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
     })
+
+    return (
+        <div>
+            <canvas ref={canvasRef}></canvas>
+        </div>
+    )
 
 }
 

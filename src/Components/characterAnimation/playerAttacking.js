@@ -40,17 +40,6 @@ export default function PlayerAttackAnimation(playerObj) {
 
   function render() {
     
-    // frameCount++
-    // if (frameCount < numberOfFramesPerCycle) {
-    //     window.requestAnimationFrame(render);
-    //     return;
-    //   }
-    // frameCount = 0;
-
-    // if(playerObj.is_attacking && frameCount === 8){
-    //   playerObj.is_attacking = false;
-    // }
-
     //clear animation after each frame
 
     now = Date.now();
