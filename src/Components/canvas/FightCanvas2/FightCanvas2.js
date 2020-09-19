@@ -7,6 +7,8 @@ import PlayerHealthBar from '../../healthbar/healthbar';
 
 export function Canvas(props) {
     const canvasRef = React.createRef(null)
+    const { PlayerObj }  = useContext(PlayerContext)
+    const { OpponentObj } = useContext(OpponentContext)
     let animationFrameId;
     
     useEffect(() => {
@@ -17,7 +19,13 @@ export function Canvas(props) {
     
     return (
         <div>
-            <canvas ref={canvasRef} id="game-area"></canvas>
+            <div id="healthbars">
+                <div><PlayerHealthBar PlayerObj={PlayerObj} style={{fontSize:  "10px"}}/>{PlayerObj.name}</div>
+                <div style={{fontSize:  "10px"}}><OpponentHealthBar OpponentObj={OpponentObj}/>{OpponentObj.name}</div>
+            </div>
+            <div style={{align: "center"}}>
+                <canvas ref={canvasRef} id="game-area"></canvas>
+            </div>
         </div>
     )
 
@@ -38,12 +46,14 @@ export default function FightAnimation(canvas, ctx) {
     // load image
 
     const images = {}
-    images.wizard = new Image();
-    images.wizard.src = 'assets/characterSprites/EvilWizard/Run.png';
-    images.wizard.onload = drawImageMock
     images.player = new Image();
-    images.player.src = 'assets/characterSprites/bandit/HeavyBandit.png';
-    images.player.onload = drawImageMock
+    images.type = new Image();
+    images.wizard = new Image();
+    images.wizard.src = 'assets/characterSprites/EvilWizard/Idle.png';
+    images.wizard.onload = drawImageMock
+    images.bandit = new Image();
+    images.bandit.src = 'assets/characterSprites/bandit/HeavyBandit.png';
+    images.bandit.onload = drawImageMock
 
     function drawImageMock() {
         // ctx.drawImage(this, 0, 0, 48, 48, 0, 0, 48, 48);
@@ -71,11 +81,15 @@ export default function FightAnimation(canvas, ctx) {
     const characterActions = [ 'attack', 'run','idle']
 
     class Character {
-        constructor(imageSrc, actionArg, characterWidth, characterHeight, startPosX = 0, startPosY = 0, imageForward, imageReverse) {
+        constructor(type, imageSrc, actionArg, characterWidth, characterHeight, startPosX = 0, startPosY = 0, imageForward, imageReverse, imageRun, imageRunback, imageAttack, imageIdle, imageDie) {
             this.imageSrc = imageSrc
             this.imageForward = imageForward
             this.imageReverse = imageReverse
-
+            this.imageRun = imageRun || imageForward;
+            this.imageRunback = imageRunback || imageReverse;
+            this.imageAttack = imageAttack || imageForward;
+            this.imageIdle = imageIdle || imageForward;
+            this.imageDie = imageDie || imageReverse;
             this.width = characterWidth;
             this.height = characterHeight;
             this.frameX = 0
@@ -127,7 +141,7 @@ export default function FightAnimation(canvas, ctx) {
         update() {
             switch(this.action){
                 case 'run':
-                    images.player.src = this.imageForward
+                    this.imageSrc.src = this.imageForward
 
                     if (this.testOffset > this.runDistanceLeft)
                         this.testOffset -= this.speed;
@@ -140,27 +154,27 @@ export default function FightAnimation(canvas, ctx) {
                     }
                     break;
                 case 'attack':
-                    images.player.src = this.imageForward
+                    this.imageSrc.src  = this.imageAttack;
                     this.frameY = 2;
                     if(this.frameX === 7) this.action = 'run_back';
                     break;
                 case 'run_back':
-                    images.player.src = this.imageReverse  
+                    this.imageSrc.src = this.imageRunback;
                     this.frameY = 1;
                     if (this.testOffset < this.runStartCoord) this.testOffset += this.speed; else
                     this.testOffset = this.runStartCoord;
                     if (this.testOffset >= this.runStartCoord) this.action = 'idle';
                     break;
                 case 'idle':
-                    images.player.src = this.imageForward;
+                    this.imageSrc.src = this.imageIdle;
                     this.frameY = 0; 
                     break;
                 case 'die':
-                    images.player.src = this.imageReverse  
+                    this.imageSrc.src = this.imageDie;
                     this.frameY = 3;
                     break;  
                 default:
-                    images.player.src = this.imageForward
+                    this.imageSrc.src = this.imageIdle;
                     this.action = 'idle';
                     break;    
             }
@@ -168,9 +182,12 @@ export default function FightAnimation(canvas, ctx) {
     }
 
     const characters = {};
-    characters.player = new Character(images.player, 'run', 48, 48, 0, 100, 'assets/characterSprites/bandit/HeavyBandit.png', 'assets/characterSprites/bandit/HeavyBanditReverse.png'); //, new Character('idle', 48, 48)
 
-    characters.oppenent =  new Character(images.wizard, 'idle', 250, 250, -250, -25, 'assets/characterSprites/EvilWizard/Run.png', 'assets/characterSprites/EvilWizard/Run.png');
+    // Create instance with syntax [IMAGE, METHOD, FRAMESIZEX, FRAMESIZEY, STARTING POSITION X, STARTING POSITION Y, ASSET SHEET WHEN FACING FORWARD, ASSET SHEET REVERSED ...]
+    // ... ASSET SHEET RUN, ASSET SHEET ATTACK, ASSET SHEET RUN_BACK, ASSET SHEET IDLE, ASSET SHEET DIE]
+    characters.opponent = new Character('bandit', images.bandit, 'run', 48, 48, 0, 95, 'assets/characterSprites/bandit/HeavyBandit.png', 'assets/characterSprites/bandit/HeavyBanditReverse.png'); //, new Character('idle', 48, 48)
+
+    characters.player = new Character('wizard', images.wizard, 'idle', 250, 250, -250, -25, 'assets/characterSprites/EvilWizard/Idle.png', 'assets/characterSprites/EvilWizard/Run.png');
 
     // img = image =>  sX, sY, sW, sH = area we want to draw => dx, dY, dW, dH = destination on the canvas
 
@@ -207,8 +224,8 @@ export default function FightAnimation(canvas, ctx) {
             characters.player.draw()
             characters.player.update()
 
-            characters.oppenent.draw()
-            // characters.oppenent.update()
+            characters.opponent.draw()
+            characters.opponent.update()
         }
     }
 
