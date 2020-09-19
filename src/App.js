@@ -22,9 +22,10 @@ function App() {
   }
  
   return (
+    
       <div className="App">
       <header className="App-header">
-        <Router>
+        <Router><h1>Maelstrom</h1>
           <Switch>
             <Route exact path='/'>
               <Link to="/menu">Menu</Link>
