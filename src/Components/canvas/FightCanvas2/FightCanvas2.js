@@ -13,8 +13,8 @@ export function Canvas(props) {
     
     useEffect(() => {
         console.log(PlayerObj.is_attacking)
-        if(PlayerObj.is_attacking === true) {
-            FightAnimation({ player_action: 'attack' }, { opponent_action: "die" } );
+        if (PlayerObj.is_attacking === true) {
+            FightAnimation({ player_action: 'run' }, { opponent_action: "die" } );
         } else {
             FightAnimation({ player_action: 'attack' }, { opponent_action: "idle" })
         }
@@ -40,7 +40,7 @@ let animation, now, elapsed, fpsInterval, then, startTime
 let fps = 24
 
 export default function FightAnimation({ player_action = "idle" }, { opponent_action ="idle" }) {
-    console.log(player_action, opponent_action)
+    // console.log(player_action, opponent_action)
     let animationFrameId;
     const canvas = document.getElementById('game-area');
     const ctx = canvas.getContext('2d');
@@ -152,6 +152,7 @@ export default function FightAnimation({ player_action = "idle" }, { opponent_ac
 
         setAction(action) {
             this.action = action
+            this.update();
         }
 
         // difference between offset and the rundistance is the actual distance. Once express condition is met, execute the next sequence. e.g. run -> attack, attack -> run_back
@@ -277,6 +278,7 @@ export default function FightAnimation({ player_action = "idle" }, { opponent_ac
         }
 
         update() {
+            console.log(this.action)
             switch(this.action){
                 case 'run':
                     this.frameY = 0;
@@ -348,7 +350,7 @@ export default function FightAnimation({ player_action = "idle" }, { opponent_ac
     // function drawSprite(img, sX, sY, sW, sH, dx, dY, dW, dH) {
     //     ctx.drawImage(img, sX, sY, sW, sH, dx, dY, dW, dH)
     // }
-    
+
     
     function animate() {
         requestAnimationFrame(animate);
@@ -363,7 +365,6 @@ export default function FightAnimation({ player_action = "idle" }, { opponent_ac
             // Put your drawing code here
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
             characters.player.draw()
             characters.player.update()
 
