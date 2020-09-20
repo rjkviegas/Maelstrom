@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import OpponentContext from '../../config/opponentContext.js'
+import { Bandit } from "../playerCharacters/classes.js";
 
 const starting_hitpoints = 125;
 /* const opponent = {
@@ -8,9 +9,10 @@ const starting_hitpoints = 125;
   MAX_HP: starting_hitpoints,
 } */
 
-class opponent {
+class opponent extends Bandit  {
 
-  constructor(){
+  constructor() {
+    super()
     this.name = 'Opponent_Placeholder'
     this.hp = starting_hitpoints
     this.MAX_HP = starting_hitpoints

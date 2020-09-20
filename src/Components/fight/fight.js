@@ -10,9 +10,9 @@ export default function Fight() {
     const {  OpponentObj, dispatchOpp } = useContext(OpponentContext)
 
     const handleAttack = () => {
-      dispatchOpp({type: 'attack', payload: 10});
+      dispatchOpp({type: 'attack', payload: 1});
       dispatch({type: 'attackAnimation', payload: true})
-      dispatch({type: 'newAction', payload: 'attack'})
+      dispatch({type: 'newAction', payload: 'run'})
       // changeAnimation(2000);
     }
 

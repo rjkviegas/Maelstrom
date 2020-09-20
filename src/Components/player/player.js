@@ -9,19 +9,10 @@ class player extends Wizard {
 
   constructor() {
     super();
-    this.action = 'idle'
     this.name = 'placeholder'
     this.hp = starting_hitpoints
     this.MAX_HP = starting_hitpoints
     this.is_attacking = false
-    this.current_avatar = wizardIdle
-    this.current_avatar_text = function() {
-      if (this.current_avatar === wizardIdle ) { return "wizard idle" } else { return "wizard attacking"}
-    }
-    this.toggleAttack = function() {
-      return this.is_attacking = !this.is_attacking
-    }
-    this.setAction = function(action) { return this.action = action;}
 /*     this.render = function(){
       return (
         <div>
