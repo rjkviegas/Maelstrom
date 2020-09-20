@@ -21,7 +21,7 @@ export class Wizard extends Character {
             return this.is_attacking = !this.is_attacking
         }
         // REFACTOR END
-
+     
         this.runDistanceRight = wizard_run_right_distance;
         this.deathFrame = wizard_death_frame;
         this.getFrameYValues = function() {
@@ -29,6 +29,7 @@ export class Wizard extends Character {
         }
         this.getFrameYValues();
         this.update = function () {
+            //this.resetFrames();
                 switch (this.action) {
                     case 'run':
                         this.frameY = 0;
@@ -60,6 +61,7 @@ export class Wizard extends Character {
                         break;
                     case 'idle':
                         console.log("i am idle wizard")
+                        this.action = 'idle';
                         this.imageSrc.src = this.imageIdle;
                         this.frameY = 0;
                         break;
@@ -73,7 +75,9 @@ export class Wizard extends Character {
                         this.action = 'idle';
                         break;    
                 }
-
+        }
+        this.resetFrames = function() {
+            if (this.frameX === 3 && this.action === 'idle') { this.action = 'run' }
         }
     }  
 }

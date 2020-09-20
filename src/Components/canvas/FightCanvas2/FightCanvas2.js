@@ -6,13 +6,14 @@ import { OpponentHealthBar } from '../../healthbar/enemyHealthbar';
 import PlayerHealthBar from '../../healthbar/healthbar';
 import { Sprite } from '../../player/sprite';
 
-let canvas, ctx
+let canvas, ctx, player
 export function Canvas(props) {
     const canvasRef = useRef(null)
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext)
     let log = console.log
     log(PlayerObj, OpponentObj)
+
     useEffect(() => {
         canvas = canvasRef.current
         ctx = canvas.getContext('2d')
