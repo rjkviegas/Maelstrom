@@ -9,14 +9,15 @@ export function Canvas(props) {
     const canvasRef = useRef(null)
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext)
-    let animationFrameId;
+
     
     useEffect(() => {
-        console.log(PlayerObj.is_attacking)
+        let animationFrameId;
+        console.log(PlayerObj)
         if (PlayerObj.is_attacking === true) {
             FightAnimation({ player_action: 'run' }, { opponent_action: "die" } );
         } else {
-            FightAnimation({ player_action: 'attack' }, { opponent_action: "idle" })
+            FightAnimation({ player_action: 'idle' }, { opponent_action: "idle" })
         }
         window.cancelAnimationFrame(animationFrameId)
     });
@@ -83,7 +84,7 @@ export default function FightAnimation({ player_action = "idle" }, { opponent_ac
     class Character {
 
         constructor(type, imageSrc, actionArg, characterWidth, characterHeight, startPosX = 0, startPosY = 0, imageForward, imageReverse, imageRun, imageRunback, imageAttack, imageDie, imageIdle) {
-        
+            this.type = type;
             this.imageSrc = imageSrc
             this.imageForward = imageForward
             this.imageReverse = imageReverse
@@ -128,7 +129,7 @@ export default function FightAnimation({ player_action = "idle" }, { opponent_ac
 
 
  
-        draw() {
+        draw(animation) {
             if (animation) {
                 window.cancelAnimationFrame(animation)
             }
@@ -152,7 +153,6 @@ export default function FightAnimation({ player_action = "idle" }, { opponent_ac
 
         setAction(action) {
             this.action = action
-            this.update();
         }
 
         // difference between offset and the rundistance is the actual distance. Once express condition is met, execute the next sequence. e.g. run -> attack, attack -> run_back
@@ -365,10 +365,10 @@ export default function FightAnimation({ player_action = "idle" }, { opponent_ac
             // Put your drawing code here
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            characters.player.draw()
+            characters.player.draw(animation)
             characters.player.update()
 
-            characters.opponent.draw()
+            characters.opponent.draw(animation)
             characters.opponent.update()
         }
     }

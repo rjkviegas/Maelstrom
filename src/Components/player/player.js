@@ -2,11 +2,13 @@ import React,{ useContext } from 'react'
 import PlayerContext from '../../config/playerContext.js'
 import { wizardAttack } from '../characterAnimation/wizard/wizard_attack.js';
 import { wizardIdle } from '../characterAnimation/wizard/wizard_idle.js'
+import { Wizard } from '../playerCharacters/classes.js';
 
 const starting_hitpoints = 100;
-class player {
+class player extends Wizard {
 
   constructor() {
+    super();
     this.action = 'idle'
     this.name = 'placeholder'
     this.hp = starting_hitpoints
@@ -35,3 +37,5 @@ export function Player() {
     </div>
   )
 }
+
+
