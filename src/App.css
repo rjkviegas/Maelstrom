@@ -50,7 +50,7 @@ canvas {
   font-family: 'A_Goblin_Appears_';
   font-style: normal;
   font-weight: normal;
-  src: local('A_Goblin_Appears_'), url('A_Goblin_Appears_.woff') format('woff');
+  src: local('A_Goblin_Appears_'), url('media/A_Goblin_Appears_.woff') format('woff');
   }
 
 * {

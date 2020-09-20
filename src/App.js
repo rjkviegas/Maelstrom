@@ -28,10 +28,10 @@ function App() {
         <Router><h1>Maelstrom</h1>
           <Switch> 
             <Route exact path='/'>
-              <Link to="/menu">Menu</Link>
+              <Link to="/startgame">Start Game</Link>
               </Route>
-            <Route exact path='/menu'>
-              <Link to="/play">Play Game</Link>
+            <Route exact path='/startgame'>
+              <Link to="/play">Menu</Link>
               {/* <Menu/> */}
             </Route>
             <Route exact path='/play'>

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import backgroundMusic from './background_music.mp3'
+import backgroundMusic from './media/background_music.mp3'
 
 
 let music = new Audio(backgroundMusic)
