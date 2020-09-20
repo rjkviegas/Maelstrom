@@ -6,15 +6,18 @@ import { OpponentHealthBar } from '../../healthbar/enemyHealthbar';
 import PlayerHealthBar from '../../healthbar/healthbar';
 
 export function Canvas(props) {
-    const canvasRef = React.createRef(null)
-    const { PlayerObj }  = useContext(PlayerContext)
-    const { OpponentObj } = useContext(OpponentContext)
+    const canvasRef = useRef(null)
+    const { PlayerObj, dispatch }  = useContext(PlayerContext)
+    const { OpponentObj, dispatchOpp } = useContext(OpponentContext)
     let animationFrameId;
     
     useEffect(() => {
-        const canvas = canvasRef.current
-        const ctx = canvas.getContext('2d')
-        FightAnimation(canvas, ctx, { player_action: "die" }, { opponent_action: "die" } );
+        console.log(PlayerObj.is_attacking)
+        if(PlayerObj.is_attacking === true) {
+            FightAnimation({ player_action: 'attack' }, { opponent_action: "die" } );
+        } else {
+            FightAnimation({ player_action: 'attack' }, { opponent_action: "idle" })
+        }
         window.cancelAnimationFrame(animationFrameId)
     });
     
@@ -25,7 +28,7 @@ export function Canvas(props) {
                 <div style={{fontSize:  "10px"}}><OpponentHealthBar OpponentObj={OpponentObj}/>{OpponentObj.name}</div>
             </div>
             <div style={{align: "center"}}>
-                <canvas ref={canvasRef} id="game-area"></canvas>
+                <canvas ref={canvasRef} id="game-area" data-testid="game-area"></canvas>
             </div>
         </div>
     )
@@ -36,8 +39,11 @@ export function Canvas(props) {
 let animation, now, elapsed, fpsInterval, then, startTime
 let fps = 24
 
-export default function FightAnimation(canvas, ctx, { player_action = "idle" }, { opponent_action ="idle" }) {
+export default function FightAnimation({ player_action = "idle" }, { opponent_action ="idle" }) {
     console.log(player_action, opponent_action)
+    let animationFrameId;
+    const canvas = document.getElementById('game-area');
+    const ctx = canvas.getContext('2d');
     function startAnimating(fps) {
         fpsInterval = 1000 / fps
         then = Date.now();
@@ -83,7 +89,6 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
             this.imageReverse = imageReverse
             this.imageRun = imageRun || imageForward;
             this.imageRunback = imageRunback || imageReverse;
-            console.log(this.imageRunback, imageRunback)
             this.imageAttack = imageAttack || imageForward;
             this.imageIdle = imageIdle || imageForward;
             this.imageDie = imageDie || imageReverse;
@@ -266,22 +271,9 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
 
         runDistanceRight = 50;
         deathFrame = 6;
+
         getFrameYValues() {
-            switch(this.action){
-                case 'attack':
-                    this.frameLimit = 7;
-                    return this.frameY = 0;
-                case 'run':
-                    return this.frameY = 0;
-                case 'run_back':
-                    return this.frameY = 0;  
-                case 'die':
-                    return this.frameY = 0;
-                case 'idle':
-                    return this.frameY = 0;
-                default:
-                    return this.frameY = 0;   
-            }
+            this.frameY = 0;
         }
 
         update() {
@@ -371,7 +363,7 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
             // Put your drawing code here
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+  
             characters.player.draw()
             characters.player.update()
 
@@ -380,8 +372,8 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
         }
     }
 
-    return (
-        <div></div>
-    )
+    return () => {
+        window.cancelAnimationFrame(animationFrameId)
+    } 
 }
 

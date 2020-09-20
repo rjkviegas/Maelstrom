@@ -8,6 +8,9 @@ export default function playerReducer(state, action) {
         return {...state, name: action.payload}
       case "attackAnimation": 
         return { ...state, is_attacking: action.payload}
+      case "newAction":
+        state.setAction('attack')
+        return { ...state, payload: 'attack'}   
       default: 
         return {...state};
     }

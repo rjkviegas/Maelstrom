@@ -7,6 +7,7 @@ const starting_hitpoints = 100;
 class player {
 
   constructor() {
+    this.action = 'idle'
     this.name = 'placeholder'
     this.hp = starting_hitpoints
     this.MAX_HP = starting_hitpoints
@@ -18,6 +19,7 @@ class player {
     this.toggleAttack = function() {
       return this.is_attacking = !this.is_attacking
     }
+    this.setAction = function(action) { return this.action = action;}
   }
 
 }
