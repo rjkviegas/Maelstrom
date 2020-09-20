@@ -133,8 +133,12 @@ export default function FightAnimation(canvas, ctx) {
             if (this.frameX < this.endFrame)
                 this.frameX++;
             else if (this.frameX === this.endFrame && this.action === 'die')
-                return;
+                return
             else this.frameX = 0;
+        }
+
+        setAction(action) {
+            this.action = action
         }
 
         // difference between offset and the rundistance is the actual distance. Once express condition is met, execute the next sequence. e.g. run -> attack, attack -> run_back
@@ -171,6 +175,7 @@ export default function FightAnimation(canvas, ctx) {
                     break;
                 case 'die':
                     this.imageSrc.src = this.imageDie;
+                    this.endFrame = 3;
                     this.frameY = 3;
                     break;  
                 default:
@@ -185,10 +190,11 @@ export default function FightAnimation(canvas, ctx) {
 
     // Create instance with syntax [IMAGE, METHOD, FRAMESIZEX, FRAMESIZEY, STARTING POSITION X, STARTING POSITION Y, ASSET SHEET WHEN FACING FORWARD, ASSET SHEET REVERSED ...]
     // ... ASSET SHEET RUN, ASSET SHEET ATTACK, ASSET SHEET RUN_BACK, ASSET SHEET IDLE, ASSET SHEET DIE]
-    characters.opponent = new Character('bandit', images.bandit, 'run', 48, 48, 0, 95, 'assets/characterSprites/bandit/HeavyBandit.png', 'assets/characterSprites/bandit/HeavyBanditReverse.png'); //, new Character('idle', 48, 48)
+    characters.opponent = new Character('bandit', images.bandit, 'idle', 48, 48, 0, 95, 'assets/characterSprites/bandit/HeavyBandit.png', 'assets/characterSprites/bandit/HeavyBanditReverse.png'); //, new Character('idle', 48, 48)
 
     characters.player = new Character('wizard', images.wizard, 'idle', 250, 250, -250, -25, 'assets/characterSprites/EvilWizard/Idle.png', 'assets/characterSprites/EvilWizard/Run.png');
-
+ 
+    console.log(characters.opponent)
     // img = image =>  sX, sY, sW, sH = area we want to draw => dx, dY, dW, dH = destination on the canvas
 
     // sX, the distance of the frame from the left in the X plane
@@ -209,7 +215,6 @@ export default function FightAnimation(canvas, ctx) {
         requestAnimationFrame(animate);
         now = Date.now();
         elapsed = now - then;
-
         // if enough time has elapsed, draw the next frame
 
         if (elapsed > fpsInterval) {
