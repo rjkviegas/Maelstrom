@@ -14,7 +14,7 @@ export function Canvas(props) {
     useEffect(() => {
         const canvas = canvasRef.current
         const ctx = canvas.getContext('2d')
-        FightAnimation(canvas, ctx, { player_action: "run" }, { opponent_action: "idle" } );
+        FightAnimation(canvas, ctx, { player_action: "die" }, { opponent_action: "die" } );
         window.cancelAnimationFrame(animationFrameId)
     });
     
@@ -58,8 +58,6 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
     images.bandit.onload = drawImageMock
 
     function drawImageMock() {
-        // ctx.drawImage(this, 0, 0, 48, 48, 0, 0, 48, 48);
-        // setInterval(animate, 1000 / 8);
         startAnimating(fps)
     }
 
@@ -74,17 +72,12 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
     let playerFrameX = 0;
     let playerFrameY = 2;
 
-    // where to draw the frame in canvas
-    let playerX = 0;
-    let playerY = 0;
-    let testOffset = playerX + 300;
-    const playerSpeed = 6;
-
     const characterActions = ['attack', 'run','idle']
 
     class Character {
 
-        constructor(type, imageSrc, actionArg, characterWidth, characterHeight, startPosX = 0, startPosY = 0, imageForward, imageReverse, imageRun, imageRunback, imageAttack, imageIdle, imageDie) {
+        constructor(type, imageSrc, actionArg, characterWidth, characterHeight, startPosX = 0, startPosY = 0, imageForward, imageReverse, imageRun, imageRunback, imageAttack, imageDie, imageIdle) {
+        
             this.imageSrc = imageSrc
             this.imageForward = imageForward
             this.imageReverse = imageReverse
@@ -106,6 +99,7 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
             this.testOffset = this.runStartCoord; // distance to travel
             this.endFrame = 7;
             this.action = actionArg
+            this.deathFrame = 7
             this.getFrameYValues()
         }
 
@@ -140,10 +134,14 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
 
             // [this.endFrame, this.speed] = (this.action === 'idle') ? [3, 5] : [7, 20]   // parallel deconstruction + ternary to conditionally determine speed.
             this.endFrame = (this.action === 'idle') ? 3 : 7; // ternary  to determine where the frame ends
+            this.endFrame = (this.action === 'die') ? this.deathFrame : this.endFrame
             if (this.frameX < this.endFrame)
                 this.frameX++;
-            else if (this.frameX === this.endFrame && this.action === 'die')
-                return
+            else if (this.action === 'die') {
+                if(this.frameX >= this.endFrame){
+                    return
+                }
+            }
             else this.frameX = 0;
         }
 
@@ -198,6 +196,8 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
     }
 
     class Bandit extends Character {
+        runDistanceLeft = 50;
+        deathFrame = 7;
 
         getFrameYValues() {
             switch(this.action){
@@ -264,8 +264,8 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
 
     class Wizard extends Character {
 
-        runDistanceRight = 100;
-
+        runDistanceRight = 50;
+        deathFrame = 6;
         getFrameYValues() {
             switch(this.action){
                 case 'attack':
@@ -308,7 +308,6 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
                 case 'run_back':  
                     this.frameY = 0;
                     this.imageSrc.src = 'assets/characterSprites/EvilWizard/RunReverse.png'
-                    console.log(this.frameX, this.frameY, this.imageSrc.src)
                     if (this.testOffset > this.runStartCoord) this.testOffset -= this.speed; else
                     this.testOffset = this.runStartCoord;
                     if (this.testOffset <= this.runStartCoord) this.action = 'idle';
@@ -318,9 +317,9 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
                     this.frameY = 0; 
                     break;
                 case 'die':
-                    this.imageSrc.src = this.imageDie;
-                    this.endFrame = 3;
+                    this.endFrame = this.deathFrame;
                     this.frameY = 0;
+                    this.imageSrc.src = this.imageDie;
                     break;  
                 default:
                     this.imageSrc.src = this.imageIdle;
@@ -336,7 +335,13 @@ export default function FightAnimation(canvas, ctx, { player_action = "idle" }, 
     // ... ASSET SHEET RUN, ASSET SHEET ATTACK, ASSET SHEET RUN_BACK, ASSET SHEET IDLE, ASSET SHEET DIE]
     characters.opponent = new Bandit('bandit', images.bandit, opponent_action, 48, 48, 0, 95, 'assets/characterSprites/bandit/HeavyBandit.png', 'assets/characterSprites/bandit/HeavyBanditReverse.png'); //, new Character('idle', 48, 48)
 
-    characters.player = new Wizard('wizard', images.wizard, player_action, 250, 250, -250, -25, 'assets/characterSprites/EvilWizard/Idle.png', 'assets/characterSprites/EvilWizard/Run.png', 'assets/characterSprites/EvilWizard/Run.png', 'assets/characterSprites/EvilWizard/RunReverse.png','');
+    characters.player = new Wizard('wizard', images.wizard, player_action, 250, 250, -250, -25, 
+    'assets/characterSprites/EvilWizard/Idle.png', 
+    'assets/characterSprites/EvilWizard/Run.png', 
+    'assets/characterSprites/EvilWizard/Run.png', 
+    'assets/characterSprites/EvilWizard/RunReverse.png',
+    'assets/characterSprites/EvilWizard/Attack1.png',
+    'assets/characterSprites/EvilWizard/Death.png');
     // img = image =>  sX, sY, sW, sH = area we want to draw => dx, dY, dW, dH = destination on the canvas
 
     // sX, the distance of the frame from the left in the X plane
