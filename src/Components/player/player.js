@@ -22,7 +22,16 @@ class player extends Wizard {
       return this.is_attacking = !this.is_attacking
     }
     this.setAction = function(action) { return this.action = action;}
+/*     this.render = function(){
+      return (
+        <div>
+        <div data-testid="player_name" id="player_name">{ this.hp }</div>
+        <div data-testid="player_hp" id="player_hp"> {this}</div>
+      </div>
+      )
+    } */
   }
+
 
 }
 

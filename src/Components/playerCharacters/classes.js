@@ -1,6 +1,7 @@
 
 const images = {}
 images.wizard = new Image();
+images.wizard.src = 'assets/characterSprites/EvilWizard/Idle.png';
 images.bandit = new Image();
 
 const canvas = document.getElementById('canvas') // DIFFERENT CANVAS THAN THE FIGHT CANVAS!
@@ -9,47 +10,53 @@ const ctx = canvas.getContext('2d');
 class Character {
 
   constructor(type, imageSrc, actionArg, characterWidth, characterHeight, startPosX = 0, startPosY = 0, imageForward, imageReverse, imageRun, imageRunback, imageAttack, imageDie, imageIdle) {
-      this.type = type;
-      this.imageSrc = imageSrc
-      this.imageForward = imageForward
-      this.imageReverse = imageReverse
-      this.imageRun = imageRun || imageForward;
-      this.imageRunback = imageRunback || imageReverse;
-      this.imageAttack = imageAttack || imageForward;
-      this.imageIdle = imageIdle || imageForward;
-      this.imageDie = imageDie || imageReverse;
-      this.width = characterWidth;
-      this.height = characterHeight;
-      this.frameX = 0
-      this.x = startPosX; // starting point (on the canvas)
-      this.y = startPosY; // starting point (on the canvas)
-      this.speed = 4;
-      this.runStartCoord = this.x + 200;
-      this.runDistanceLeft = 50; //  SMALLER THE GREATER DISTANCE RUN LEFT!
-      this.runDistanceRight = 1500;
-      this.testOffset = this.runStartCoord; // distance to travel
-      this.endFrame = 7;
-      this.action = actionArg
-      this.deathFrame = 7
+    this.type = type;
+    this.imageSrc = imageSrc
+    this.imageForward = imageForward
+    this.imageReverse = imageReverse
+    this.imageRun = imageRun || imageForward;
+    this.imageRunback = imageRunback || imageReverse;
+    this.imageAttack = imageAttack || imageForward;
+    this.imageIdle = imageIdle || imageForward;
+    this.imageDie = imageDie || imageReverse;
+    this.width = characterWidth;
+    this.height = characterHeight;
+    this.frameX = 0
+    this.x = startPosX; // starting point (on the canvas)
+    this.y = startPosY; // starting point (on the canvas)
+    this.speed = 4;
+    this.runStartCoord = this.x + 200;
+    this.runDistanceLeft = 50; //  SMALLER THE GREATER DISTANCE RUN LEFT!
+    this.runDistanceRight = 1500;
+    this.testOffset = this.runStartCoord; // distance to travel
+    this.endFrame = 7;
+    this.action = actionArg
+    this.deathFrame = 7
+    this.isDead = function() {
+        return this.hp <= 0
+    }
+    this.isAlive = function() {
+        return this.hp > 0
+     }
 
-      this.getFrameYValues = function() {
-            switch(this.action){
-                case 'attack':
-                    this.frameLimit = 7;
-                    return this.frameY = 2;
-                case 'run':
-                    return this.frameY = 1;
-                case 'run_back':
-                    return this.frameY = 1;  
-                case 'die':
-                    return this.frameY = 4;
-                case 'idle':
-                    return this.frameY = 0;
-                default:
-                    return this.frameY = 0;   
-            }
+    this.getFrameYValues = function() {
+        switch(this.action){
+            case 'attack':
+                this.frameLimit = 7;
+                return this.frameY = 2;
+            case 'run':
+                return this.frameY = 1;
+            case 'run_back':
+                return this.frameY = 1;  
+            case 'die':
+                return this.frameY = 4;
+            case 'idle':
+                return this.frameY = 0;
+            default:
+                return this.frameY = 0;   
+        }
       }
-      this.getFrameYValues()
+    this.getFrameYValues()
 
     this.draw = function(animation) {
         if (animation) {
@@ -131,79 +138,108 @@ class Character {
 
 }
 
+
+const bandit_starting_hitpoints = 150;
+const bandit_run_distance_left = 50;
+const bandit_death_frame = 7;
+
 class Bandit extends Character {
-  runDistanceLeft = 50;
-  deathFrame = 7;
 
-  getFrameYValues() {
-      switch(this.action){
-          case 'attack':
-              this.frameLimit = 7;
-              return this.frameY = 2;
-          case 'run':
-              return this.frameY = 1;
-          case 'run_back':
-              return this.frameY = 1;  
-          case 'die':
-              return this.frameY = 4;
-          case 'idle':
-              return this.frameY = 0;
-          default:
-              return this.frameY = 0;   
-      }
-  }
+  constructor(type, imageSrc, actionArg, characterWidth, characterHeight, startPosX = 0, startPosY = 0, imageForward, imageReverse, imageRun, imageRunback, imageAttack, imageDie, imageIdle) {
+        super(type, imageSrc, actionArg, characterWidth, characterHeight, startPosX = 0, startPosY = 0, imageForward, imageReverse, imageRun, imageRunback, imageAttack, imageDie, imageIdle)
+        this.name = 'Opponent_Placeholder'
+        this.runDistanceLeft = bandit_run_distance_left;
+        this.deathFrame = bandit_death_frame;
+        this.hp = bandit_starting_hitpoints
+        this.MAX_HP = bandit_starting_hitpoints
+        this.getFrameYValues = function() {
+            switch(this.action){
+                case 'attack':
+                    this.frameLimit = 7;
+                    return this.frameY = 2;
+                case 'run':
+                    return this.frameY = 1;
+                case 'run_back':
+                    return this.frameY = 1;  
+                case 'die':
+                    return this.frameY = 4;
+                case 'idle':
+                    return this.frameY = 0;
+                default:
+                    return this.frameY = 0;   
+            }
+        }
 
-  update() {
-      switch(this.action){
-          case 'run':
-              this.frameY = 1;
-              this.imageSrc.src = this.imageRun
-
-              if (this.testOffset > this.runDistanceLeft)
-                  this.testOffset -= this.speed;
-              else 
-                  this.testOffset = this.runStartCoord;
-
-              if (this.testOffset <= this.runDistanceLeft) { 
-                  this.action = 'attack';
-                  this.frameX = 0;
-              }
-              break;
-          case 'attack':
-              this.frameY = 2;
-              this.imageSrc.src  = this.imageAttack;
-              if(this.frameX === 7) this.action = 'run_back';
-              break;
-          case 'run_back':
-              this.frameY = 1;
-              this.imageSrc.src = this.imageRunback;
-              if (this.testOffset < this.runStartCoord) this.testOffset += this.speed; else
-              this.testOffset = this.runStartCoord;
-              if (this.testOffset >= this.runStartCoord) this.action = 'idle';
-              break;
-          case 'idle':
-              this.imageSrc.src = this.imageIdle;
-              this.frameY = 0; 
-              break;
-          case 'die':
-              this.imageSrc.src = this.imageDie;
-              this.endFrame = 3;
-              this.frameY = 3;
-              break;  
-          default:
-              this.imageSrc.src = this.imageIdle;
-              this.action = 'idle';
-              break;    
-      }
-  }
+        this.update = function() {
+            switch(this.action){
+                case 'run':
+                    this.frameY = 1;
+                    this.imageSrc.src = this.imageRun
+      
+                    if (this.testOffset > this.runDistanceLeft)
+                        this.testOffset -= this.speed;
+                    else 
+                        this.testOffset = this.runStartCoord;
+      
+                    if (this.testOffset <= this.runDistanceLeft) { 
+                        this.action = 'attack';
+                        this.frameX = 0;
+                    }
+                    break;
+                case 'attack':
+                    this.frameY = 2;
+                    this.imageSrc.src  = this.imageAttack;
+                    if(this.frameX === 7) this.action = 'run_back';
+                    break;
+                case 'run_back':
+                    this.frameY = 1;
+                    this.imageSrc.src = this.imageRunback;
+                    if (this.testOffset < this.runStartCoord) this.testOffset += this.speed; else
+                    this.testOffset = this.runStartCoord;
+                    if (this.testOffset >= this.runStartCoord) this.action = 'idle';
+                    break;
+                case 'idle':
+                    this.imageSrc.src = this.imageIdle;
+                    this.frameY = 0; 
+                    break;
+                case 'die':
+                    this.imageSrc.src = this.imageDie;
+                    this.endFrame = 3;
+                    this.frameY = 3;
+                    break;  
+                default:
+                    this.imageSrc.src = this.imageIdle;
+                    this.action = 'idle';
+                    break;    
+            }
+        }
+    } 
 }
+
+
+
+const wizard_starting_hitpoints = 50;
+const wizard_run_right_distance = 50;
+const wizard_death_frame = 6;
 
 export class Wizard extends Character {
 
-    constructor(){
-        super()
-        this.runDistanceRight = 50;
-        this.deathFrame = 6;
+    constructor(type, imageSrc, actionArg, characterWidth, characterHeight, startPosX = 0, startPosY = 0, imageForward, imageReverse, imageRun, imageRunback, imageAttack, imageDie, imageIdle){
+        super(type, imageSrc, actionArg, characterWidth, characterHeight, startPosX = 0, startPosY = 0, imageForward, imageReverse, imageRun, imageRunback, imageAttack, imageDie, imageIdle)
+        
+        // REFACTOR OUT INTO SUPER AFTER SEPARATED INTO OWN FILES
+        this.action = 'idle'
+        this.name = 'placeholder'
+        this.hp = wizard_starting_hitpoints
+        this.MAX_HP = wizard_starting_hitpoints
+        this.is_attacking = false
+        this.toggleAttack = function() {
+            return this.is_attacking = !this.is_attacking
+        }
+        // REFACTOR END
+
+        this.runDistanceRight = wizard_run_right_distance;
+        this.deathFrame = wizard_death_frame;
         this.getFrameYValues = function() {
             this.frameY = 0;
         }
@@ -251,13 +287,16 @@ export class Wizard extends Character {
                     break;    
             } 
         }
-    }
-
-  
-
-
-  
+    }  
 }
+
+export const wizardPlayer = new Wizard('wizard', images.wizard, 'idle', 250, 250, -250, -25, 
+'assets/characterSprites/EvilWizard/Idle.png', 
+'assets/characterSprites/EvilWizard/Run.png', 
+'assets/characterSprites/EvilWizard/Run.png', 
+'assets/characterSprites/EvilWizard/RunReverse.png',
+'assets/characterSprites/EvilWizard/Attack1.png',
+'assets/characterSprites/EvilWizard/Death.png');
 
 const characters = {};
 
@@ -282,6 +321,8 @@ characters.player = new Wizard('wizard', images.wizard, 'idle', 250, 250, -250, 
 // dy, y coordinate to draw frame on canvas
 // dW, the width of the drawn image
 // dH, the height of the drawn image
+
+console.log(wizardPlayer)
 
 // function drawSprite(img, sX, sY, sW, sH, dx, dY, dW, dH) {
 //     ctx.drawImage(img, sX, sY, sW, sH, dx, dY, dW, dH)

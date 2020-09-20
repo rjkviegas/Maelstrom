@@ -10,16 +10,17 @@ import opponentReducer from './Reducers/opponentReducer.js'
 import Fight from './Components/fight/fight.js'
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import FightAnimation, { Canvas } from './Components/canvas/FightCanvas2/FightCanvas2';
+import { wizardPlayer } from './Components/playerCharacters/classes';
 
 function App() {
 
-  const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
+  const [PlayerObj, dispatch] = useReducer(playerReducer, wizardPlayer)
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
 
   function handleNewFight(){
     dispatchOpp({type: 'reset', payload: new opponent()})
   }
- 
+  console.log(wizardPlayer)
   return (
       <div className="App">
       <header className="App-header">

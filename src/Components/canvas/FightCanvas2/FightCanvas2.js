@@ -25,8 +25,8 @@ export function Canvas(props) {
     return (
         <div>
             <div id="healthbars">
-                <div><PlayerHealthBar PlayerObj={PlayerObj} style={{fontSize:  "10px"}}/>{PlayerObj.name}</div>
-                <div style={{fontSize:  "10px"}}><OpponentHealthBar OpponentObj={OpponentObj}/>{OpponentObj.name}</div>
+    <div><PlayerHealthBar PlayerObj={PlayerObj} style={{fontSize:  "10px"}}/>{PlayerObj.name}: {PlayerObj.hp}</div>
+    <div style={{fontSize:  "10px"}}><OpponentHealthBar OpponentObj={OpponentObj}/>{OpponentObj.name}: {OpponentObj.hp}</div>
             </div>
             <div style={{align: "center"}}>
                 <canvas ref={canvasRef} id="game-area" data-testid="game-area"></canvas>
@@ -351,7 +351,7 @@ export default function FightAnimation({ player_action = "idle" }, { opponent_ac
     //     ctx.drawImage(img, sX, sY, sW, sH, dx, dY, dW, dH)
     // }
 
-    
+
     function animate() {
         requestAnimationFrame(animate);
         now = Date.now();

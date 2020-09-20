@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
-import { Player } from '../../Components/player/player.js'
+import player, { Player } from '../../Components/player/player.js'
 import { Opponent } from '../../Components/opponent/opponent.js'
 
 export default function Fight() {
