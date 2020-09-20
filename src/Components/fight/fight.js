@@ -10,10 +10,18 @@ export default function Fight() {
     const {  OpponentObj, dispatchOpp } = useContext(OpponentContext)
 
     const handleAttack = () => {
-      dispatchOpp({type: 'attack', payload: 1});
+      dispatchOpp({type: 'attack', payload: 10});
       dispatch({type: 'attackAnimation', payload: true})
-      dispatch({type: 'newAction', payload: 'run'})
+      dispatch({type: 'newAction', payload: 'attack'})
       // changeAnimation(2000);
+    }
+
+    const handleIdle = () => {
+      dispatch({type: 'idle', payload: 'idle'})
+    }
+
+    const handleRun = () => {
+      dispatch({type: 'run', payload: 'run'})
     }
 
     // const changeAnimation = (delay) => {
@@ -27,12 +35,11 @@ export default function Fight() {
     return (
     <div>
         <div style={{visibility: ((PlayerObj.hp > 0 && OpponentObj.hp <= 0)) ? "hidden" : "visible"}} ><button onClick={() => 
-          handleAttack()
-        }
-          >Attack</button>
+          handleAttack()}>Attack</button><button onClick={() => handleIdle()}>Idle</button><button onClick={() => handleRun()}>Run</button>
             <Player/>
             <Opponent/>
         </div>
+
         <div data-testid="attack_button" style={{visibility: (OpponentObj.hp <= 0) ? "visible" : "hidden" }}>
           <h1 data-testid="h1">YOU WIN</h1>
         </div>

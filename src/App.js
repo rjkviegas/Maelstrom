@@ -9,8 +9,9 @@ import OpponentContext from './config/opponentContext.js';
 import opponentReducer from './Reducers/opponentReducer.js'
 import Fight from './Components/fight/fight.js'
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import FightAnimation, { Canvas } from './Components/canvas/FightCanvas2/FightCanvas2';
+import drawAnimation, { Canvas } from './Components/canvas/FightCanvas2/FightCanvas2';
 import { Bandit, banditPlayer, wizardPlayer } from './Components/playerCharacters/classes';
+import { Sprite } from './Components/player/sprite';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path='/'>
+              <Sprite/>
               <Link to="/menu">Menu</Link>
               </Route>
             <Route exact path='/menu'>

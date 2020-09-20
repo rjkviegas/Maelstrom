@@ -4,6 +4,7 @@ import OpponentContext from '../../../config/opponentContext';
 import PlayerContext from '../../../config/playerContext';
 import { OpponentHealthBar } from '../../healthbar/enemyHealthbar';
 import PlayerHealthBar from '../../healthbar/healthbar';
+import { Sprite } from '../../player/sprite';
 
 let canvas, ctx
 export function Canvas(props) {
@@ -11,24 +12,22 @@ export function Canvas(props) {
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext)
     let log = console.log
-    // log(PlayerObj)
+    log(PlayerObj, OpponentObj)
     useEffect(() => {
         canvas = canvasRef.current
         ctx = canvas.getContext('2d')
-        // console.log(PlayerObj.action)
-        if (PlayerObj.is_attacking === true) {
-            FightAnimation(canvas, ctx, PlayerObj, OpponentObj);
-        } else {
-            FightAnimation(canvas, ctx, PlayerObj, OpponentObj);
-        }
+        drawAnimation(canvas, ctx, PlayerObj, OpponentObj);
     }, [PlayerObj, OpponentObj]);
 
     return (
         <div>
+                        <div>{JSON.stringify(PlayerObj.action)}</div>
+                        {    console.log(PlayerObj.frameX)}
             <div id="healthbars">
-    <div><PlayerHealthBar PlayerObj={PlayerObj} style={{fontSize:  "10px"}}/>{PlayerObj.name}: {PlayerObj.hp}</div>
-    <div style={{fontSize:  "10px"}}><OpponentHealthBar OpponentObj={OpponentObj}/>{OpponentObj.name}: {OpponentObj.hp}</div>
+            <div><PlayerHealthBar PlayerObj={PlayerObj} style={{fontSize:  "10px"}}/>{PlayerObj.name}: {PlayerObj.hp}</div>
+            <div style={{fontSize:  "10px"}}><OpponentHealthBar OpponentObj={OpponentObj}/>{OpponentObj.name}: {OpponentObj.hp}</div>
             </div>
+        
             <div style={{align: "center"}}>
                 <canvas ref={canvasRef} id="game-area" data-testid="game-area"></canvas>
             </div>
@@ -39,8 +38,12 @@ export function Canvas(props) {
 let animation, now, elapsed, fpsInterval, then, startTime
 let fps = 16
 
-export default function FightAnimation(canvas, ctx, player, opponent) {
+export default function drawAnimation(canvas, ctx, player, opponent) {
     // console.log(player_action, opponent_action)
+    let arr = []
+    arr.push(player.action)
+    console.log(player.action)
+    console.log(arr)
     function startAnimating(fps) {
         fpsInterval = 1000 / fps
         then = Date.now();

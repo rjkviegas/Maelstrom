@@ -5,7 +5,7 @@ import IdleAnimation from '../characterAnimation/idleAnimation'
 import PlayerContext from '../../config/playerContext.js'
 import PlayerAttackAnimation from '../characterAnimation/playerAttacking.js'
 import OpponentContext from '../../config/opponentContext';
-import FightAnimation from './FightCanvas2/FightCanvas2.js'
+import drawAnimation from './FightCanvas2/FightCanvas2.js'
 const FightCanvas = (props) => {
   
     const canvasRef = useRef(null)
@@ -39,7 +39,6 @@ const FightCanvas = (props) => {
         <PlayerHealthBar PlayerObj={PlayerObj}/>
         <OpponentHealthBar OpponentObj={OpponentObj}/>
        </div>
-
        <div style={{align: "center"}}>
          <canvas ref={canvasRef} style={{ }} id="game-area" data-testid="game-area" /> 
        </div>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import OpponentContext from '../../config/opponentContext.js'
-import { Bandit } from "../playerCharacters/classes.js";
+import { Bandit } from "../playerCharacters/bandit.js";
 
 const starting_hitpoints = 125;
 /* const opponent = {
