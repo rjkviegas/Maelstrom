@@ -2,21 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import backgroundMusic from './media/background_music.mp3'
-
-
-let music = new Audio(backgroundMusic)
-const playMusic = function() {
-  music.play()
-}
 
 ReactDOM.render(
-  
-  <React.StrictMode>  
-      <App /> 
+  <React.StrictMode> 
+      <App />
   </React.StrictMode>,
   document.getElementById('root'),
-  playMusic
 );
 
 
