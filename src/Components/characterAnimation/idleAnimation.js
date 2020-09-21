@@ -4,12 +4,15 @@ import { wizardAttack } from './wizard/wizard_attack.js';
 // import PlayerAttacking from './playerAttacking'
 import React, { useContext } from 'react'
 
+let animation;
 export default function IdleAnimation(playerObj, canvas, ctx) {
   let player;
   let sprites;
   console.log("Wizard attack status (IDLE): " + playerObj.is_attacking);
   // console.log("Wizard avatar: " + playerObj.current_avatar_text() );  
- 
+  if (animation) {
+    window.cancelAnimationFrame(animation)
+  }
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       ctx.imageSmoothingEnabled = true;
@@ -70,7 +73,7 @@ export default function IdleAnimation(playerObj, canvas, ctx) {
       } //iterate through every sprite in sprites array and draw sprites to canvas
     }
     
-    window.requestAnimationFrame(render);
+    animation = window.requestAnimationFrame(render);
 
   }
   const fps = 10;
@@ -80,10 +83,10 @@ export default function IdleAnimation(playerObj, canvas, ctx) {
     fpsInterval = 1000 / fps;
     then = Date.now();
     startTime = then;
-    window.requestAnimationFrame(render); 
+    animation = window.requestAnimationFrame(render); 
     }
     init(fps);
   return () => {
-      window.cancelAnimationFrame(animationFrameId)
+      animation = window.cancelAnimationFrame(animationFrameId)
   } 
 }

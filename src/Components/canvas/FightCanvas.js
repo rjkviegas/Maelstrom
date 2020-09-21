@@ -37,21 +37,22 @@ const FightCanvas = (props) => {
           dispatch({type: 'set_attack', payload: false});
         }, 1000 )
       } else if (OpponentObj.is_attacking && !PlayerObj.is_attacking) {
-        OpponentAttackAnimation(OpponentObj, canvas, ctx);
+ 
         //OpponentObj.toggleAttack();
         setTimeout(() => { 
+          OpponentAttackAnimation(OpponentObj, canvas, ctx);
           dispatchOpp({type: 'set_attack', payload: false})
-        }, 3000 );
+        }, 1000 );
       } else if (!OpponentObj.is_attacking && !PlayerObj.is_attacking) {
+        console.log("IDLE TIME")
         IdleAnimation(PlayerObj, canvas, ctx); 
       } else {
         console.log("wtf? Player: " + PlayerObj.is_attacking + "| Opponent: " + OpponentObj.is_attacking)
-        console.log(PlayerObj, OpponentObj)
       }
       return () => {
         window.cancelAnimationFrame(animationFrameId)
       } 
-    },[PlayerObj, animationFrameId, OpponentObj])
+    },[PlayerObj])
     
     return (
     <div>

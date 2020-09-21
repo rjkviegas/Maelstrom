@@ -3,10 +3,13 @@ import { banditIdle } from './bandit/bandit_idle.js';
 import PlayerAttacking from './playerAttacking'
 import React, { useContext } from 'react'
 
+let animation;
 export default function PlayerAttackAnimation(playerObj, canvas, ctx) {
   let player;
   let sprites;
-
+  if (animation) {
+    window.cancelAnimationFrame(animation)
+  }
   console.log("Wizard attack status (PLAYER ATTACK): " + playerObj.is_attacking);
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {

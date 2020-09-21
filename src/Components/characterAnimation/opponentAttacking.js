@@ -5,11 +5,14 @@ import { banditAttack } from './bandit/bandit_attack.js'
 import PlayerAttacking from './playerAttacking'
 import React, { useContext } from 'react'
 
+let animation;
 export default function OpponentAttackAnimation(OpponentObj, canvas, ctx) {
   let player;
   let sprites; 
   console.log("Opponent attack status (OPPONENT ATTACK): " + OpponentObj.is_attacking);
-
+  if (animation) {
+    window.cancelAnimationFrame(animation)
+  }
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
