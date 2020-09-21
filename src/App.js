@@ -10,10 +10,10 @@ import OpponentContext from './config/opponentContext.js';
 import opponentReducer from './Reducers/opponentReducer.js'
 import Fight from './Components/fight/fight.js'
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import ShopCanvas from './Components/canvas/shopCanvas';
 
 function App() {
 
- 
   const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
 
@@ -23,22 +23,32 @@ function App() {
   }
  
   return (
+      
       <div className="App">
       <header className="App-header">
-        <Router><h1>Maelstrom</h1>
+        <Router><h1>Maelstrom</h1> 
           <Switch> 
+
             <Route exact path='/'>
               <Link to="/startgame" data-testid="menu_link">Start Game</Link>
-              </Route>
+            </Route>
+
             <Route exact path='/startgame'>
               <Link to="/play" data-testid="play_link">Menu</Link>
-              {/* <Menu/> */}
             </Route>
+
             <Route exact path='/play'>
               <Link to="/fight" data-testid="fight">Fight</Link>
               <Link to="/shop">Shop</Link>
               <Link to="/character">Your character</Link>
             </Route>
+
+            <Route exact path='/shop'>
+              <PlayerContext.Provider value={{PlayerObj}}>
+                <ShopCanvas />
+              </PlayerContext.Provider>
+            </Route>
+
             <Route exact path='/fight'>
               <PlayerContext.Provider value={{PlayerObj, dispatch}}>
                 <OpponentContext.Provider value={{OpponentObj, dispatchOpp}}>
@@ -48,6 +58,7 @@ function App() {
                 </OpponentContext.Provider>
               </PlayerContext.Provider>
             </Route>
+
           </Switch>
         </Router>
       </header>
