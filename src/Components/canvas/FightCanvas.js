@@ -25,18 +25,20 @@ const FightCanvas = (props) => {
         setTimeout(() => { 
           dispatchOpp({type: 'set_attack', payload: true});
           dispatch({type: 'attacked', payload: 15});
+          dispatch({type: 'set_attack', payload: false});
         }, 1000 )
       }else if (OpponentObj.is_attacking) {
         console.log("Opponent attacking block")
         OpponentAttackAnimation(OpponentObj);
-        setTimeout(() => { OpponentObj.toggleAttack();}, 3000 )
+        OpponentObj.toggleAttack();
+        setTimeout(() => { OpponentObj.toggleAttack(); dispatchOpp({type: 'set_attack', payload: false})}, 3000 )
       }else {
         IdleAnimation(PlayerObj); 
       }
       return () => {
-        window.cancelAnimationFrame(animationFrameId)
+        //window.cancelAnimationFrame(animationFrameId)
       } 
-    },[PlayerObj, animationFrameId])
+    },[PlayerObj, animationFrameId, OpponentObj])
     
     return (
     <div>
