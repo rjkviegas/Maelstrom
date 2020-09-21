@@ -10,7 +10,7 @@ function PlayerHealthBar(playerObj) {
   return (
     <div className="health-bar">
       <div className="health-bar-glass">
-          <div className="health-bar-fluid anim-width" style={{width: barWidth}}></div>
+          <div className="health-bar-fluid anim-width" data-testid="player-health-bar" style={{width: barWidth}}></div>
       </div>
     </div>
   )
