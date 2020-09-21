@@ -29,7 +29,7 @@ const FightCanvas = (props) => {
       return () => {
         window.cancelAnimationFrame(animationFrameId)
       } 
-    })
+    },[PlayerObj, animationFrameId])
     
     return (
     <div>

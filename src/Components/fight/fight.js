@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import { Player } from '../../Components/player/player.js'
@@ -15,7 +15,6 @@ export default function Fight() {
       dispatch({type: 'attacked', payload: 15})
       // changeAnimation(2000);
     }
-
     // const changeAnimation = (delay) => {
     //   dispatch({type: 'attackAnimation', payload: true})
     //   setTimeout(() => {
@@ -26,18 +25,12 @@ export default function Fight() {
 
     return (
     <div>
-        <div style={{visibility: ((PlayerObj.hp <= 0 || OpponentObj.hp <= 0)) ? "hidden" : "visible"}} ><button onClick={() => 
-          handleAttack()
-        }>Attack</button>
-            <Player/>
-            <Opponent/>
-        </div>
-        <div data-testid="attack_button" style={{visibility: (OpponentObj.hp <= 0) ? "visible" : "hidden" }}>
-          <h1 data-testid="h1">YOU WIN</h1>
-        </div>
-          <div data-testid="attack_button" style={{visibility: (PlayerObj.hp <= 0) ? "visible" : "hidden" }}>
-            <h1 data-testid="h1">YOU LOSE</h1>
-        </div>
+      {OpponentObj.hp > 0 && PlayerObj.hp > 0 ? 
+        (PlayerObj.hp <= 0 || OpponentObj.hp <= 0 ? 
+          <div>Attack disappears</div> : 
+          <div><button onClick={() =>handleAttack()}>Attack</button></div>) : //MAIN FALSE
+      (PlayerObj.hp <= 0 ? <div><h1>YOU LOSE</h1></div> : 
+        <div><h1>YOU WIN</h1></div>)}
     </div>
     )
 }
