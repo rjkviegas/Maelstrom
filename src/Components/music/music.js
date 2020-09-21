@@ -1,12 +1,14 @@
 import React from 'react'
 import backgroundMusic from '../../media/background_music.mp3'
+
 let music = {}
 music.background = new Audio(backgroundMusic)
+music.fight = new Audio()
 
 export function BackgroundMusic() {
     const playMusic = function() {
         music.background.play()
-        music.background.volume = 0.5
+        music.background.volume = 0.3
     }
 
     music.background.onload = playMusic()  
