@@ -28,14 +28,14 @@ function App() {
         <Router><h1>Maelstrom</h1>
           <Switch> 
             <Route exact path='/'>
-              <Link to="/startgame">Start Game</Link>
+              <Link to="/startgame" data-testid="menu_link">Start Game</Link>
               </Route>
             <Route exact path='/startgame'>
-              <Link to="/play">Menu</Link>
+              <Link to="/play" data-testid="play_link">Menu</Link>
               {/* <Menu/> */}
             </Route>
             <Route exact path='/play'>
-              <Link to="/fight">Fight</Link>
+              <Link to="/fight" data-testid="fight">Fight</Link>
               <Link to="/shop">Shop</Link>
               <Link to="/character">Your character</Link>
             </Route>
