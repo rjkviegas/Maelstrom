@@ -2,19 +2,11 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
+  background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpaperplay.com%2Fwalls%2Ffull%2Fd%2Ff%2F5%2F52122.jpg&f=1&nofb=1");
+  background-size: auto;                      
+  background-repeat: no-repeat;
+  background-position: center;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -52,4 +44,15 @@ canvas {
   right: 40%;
   z-index: 1;
   position: absolute;
+}
+
+@font-face {
+  font-family: 'A_Goblin_Appears_';
+  font-style: normal;
+  font-weight: normal;
+  src: local('A_Goblin_Appears_'), url('media/A_Goblin_Appears_.woff') format('woff');
+  }
+
+* {
+  font-family: "A_Goblin_Appears_";
 }
