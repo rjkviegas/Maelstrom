@@ -15,9 +15,9 @@ export default function Fight() {
 
     
       /* setTimeout(() => { */
-      dispatchOpp({type: 'set_attack', payload: true});
-      dispatch({type: 'attacked', payload: 15});
-     /*  }, 1500) */
+/*       dispatchOpp({type: 'set_attack', payload: true});
+      dispatch({type: 'attacked', payload: 15}); */
+      /* }, 1500) */
      
       // changeAnimation(2000);
     }
