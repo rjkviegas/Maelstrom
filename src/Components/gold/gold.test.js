@@ -1,14 +1,9 @@
 import React from "react";
 import Gold from "./gold";
 import { render } from "@testing-library/react"
-import PlayerContext from "../../config/playerContext";
 
-const player = { name: "Ilja MoneyBags", money: -8000 };
-const goldRender = (
-            <PlayerContext.Provider value={{player}}>
-                <Gold />
-            </PlayerContext.Provider>
-        )
+const PlayerObj = { name: "Ilja MoneyBags", money: -8000 };
+const goldRender = (<Gold PlayerObj={PlayerObj}/>)
 
 describe("Gold", function() {
     it("renders div element", function() {

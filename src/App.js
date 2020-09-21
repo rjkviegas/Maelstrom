@@ -44,7 +44,9 @@ function App() {
             </Route>
 
             <Route exact path='/shop'>
-              <ShopCanvas />
+              <PlayerContext.Provider value={{PlayerObj}}>
+                <ShopCanvas />
+              </PlayerContext.Provider>
             </Route>
 
             <Route exact path='/fight'>

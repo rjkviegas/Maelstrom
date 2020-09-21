@@ -1,13 +1,16 @@
 import React from "react";
 import ShopCanvas from "./shopCanvas";
-import ShallowRenderer from 'react-test-renderer/shallow';
-import Gold from "../gold/gold";
+import { render } from "@testing-library/react"
+import PlayerContext from "../../config/playerContext";
 
 describe("Shop canvas", function() {
     it("shop is displayed", function() {
-        const renderer = new ShallowRenderer();
-        renderer.render(<ShopCanvas />);
-        const result = renderer.getRenderOutput();
-        expect(result.props.children).toEqual([<Gold />, <canvas data-testid="shop" id="shop" />]) 
+        const PlayerObj = { money: 0 }
+        const { getByTestId } = render(
+            <PlayerContext.Provider value={{PlayerObj}}>
+                <ShopCanvas />
+            </PlayerContext.Provider>
+            );
+        expect(getByTestId("shop")).toBeTruthy();
     });
 });
