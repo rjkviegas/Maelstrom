@@ -43,7 +43,7 @@ describe('App', () => {
 describe('App', () => {
 it('shows menu link', () => {
     const { getByText } = render(<App />);
-    const linkElement = getByText(/Menu/i);
+    const linkElement = getByText(/Start Game/i);
     expect(linkElement).toBeInTheDocument();
   });
 });
@@ -61,17 +61,17 @@ describe('App', () => {
 describe('App', () => {
     it('menu link sends to menu', () => {
         const { getByText } = render(<App />);
-        const linkElement = getByText(/Menu/i);
+        const linkElement = getByText(/Start Game/i);
         fireEvent.click(linkElement, { button: 0});
-        expect(linkElement).toHaveTextContent('Play Game')
+        expect(linkElement).toHaveTextContent('Menu')
         expect(linkElement).toHaveAttribute('href')
     });
 });
 describe('App', () => {
     it('play link sends to play', () => {
         const { getByText } = render(<App />);
-        const linkElement = getByText(/Play Game/i);
-        expect(global.window.location.pathname).toEqual('/menu');
+        const linkElement = getByText(/Menu/i);
+        expect(global.window.location.pathname).toEqual('/startgame');
         fireEvent.click(linkElement, { button: 0});
         expect(linkElement).toHaveTextContent('Fight')
         expect(global.window.location.pathname).toEqual('/play');
