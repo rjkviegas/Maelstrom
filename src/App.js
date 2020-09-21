@@ -13,6 +13,7 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 function App() {
 
+ 
   const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
 
@@ -24,13 +25,13 @@ function App() {
   return (
       <div className="App">
       <header className="App-header">
-        <Router>
-          <Switch>
+        <Router><h1>Maelstrom</h1>
+          <Switch> 
             <Route exact path='/'>
-              <Link to="/menu">Menu</Link>
+              <Link to="/startgame">Start Game</Link>
               </Route>
-            <Route exact path='/menu'>
-              <Link to="/play">Play Game</Link>
+            <Route exact path='/startgame'>
+              <Link to="/play">Menu</Link>
               {/* <Menu/> */}
             </Route>
             <Route exact path='/play'>
