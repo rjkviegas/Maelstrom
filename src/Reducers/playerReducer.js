@@ -9,7 +9,7 @@ export default function playerReducer(state, action) {
       case "attackAnimation": 
         return { ...state, is_attacking: action.payload}
       case "reset":
-        return { ...state, hp: state.MAX_hP}
+        return { ...state, hp: state.MAX_HP}
       default: 
         return {...state};
     }

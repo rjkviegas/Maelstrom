@@ -18,7 +18,7 @@ function App() {
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
 
   function handleNewFight(){
-    console.log("new fight")
+    dispatch({type: 'reset', payload: {...PlayerObj, hp: PlayerObj.MAX_HP}})
     dispatchOpp({type: 'reset', payload: new opponent()})
   }
  
@@ -45,6 +45,7 @@ function App() {
                   <FightCanvas/>
                   <Fight/>
                   <button onClick={handleNewFight} style={{visibility: (OpponentObj.hp <= 0) ? "visible" : "hidden" }}><Link to='/play'>Go back</Link></button>
+                  <button onClick={handleNewFight} style={{visibility: (PlayerObj.hp <= 0) ? "visible" : "hidden" }}><Link to='/play'>Go back</Link></button>
                 </OpponentContext.Provider>
               </PlayerContext.Provider>
             </Route>
