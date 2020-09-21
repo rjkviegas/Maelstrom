@@ -26,7 +26,7 @@ function App() {
       
       <div className="App">
       <header className="App-header">
-        <Router> 
+        <Router><h1>Maelstrom</h1> 
           <Switch> 
 
             <Route exact path='/'>
