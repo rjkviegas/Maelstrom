@@ -11,8 +11,11 @@ export default function Fight() {
 
     const handleAttack = () => {
       dispatchOpp({type: 'attacked', payload: 50});
-      dispatch({type: 'attackAnimation', payload: true})
-      dispatch({type: 'attacked', payload: 15})
+      dispatch({type: 'set_attack', payload: true})
+      setTimeout(() => {
+        dispatch({type: 'attacked', payload: 15})
+      }, 1500)
+     
       // changeAnimation(2000);
     }
 

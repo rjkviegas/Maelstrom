@@ -1,16 +1,18 @@
 import { wizardAttack } from './wizard/wizard_attack.js';
+import { wizardIdle } from './wizard/wizard_idle.js'
 import { banditIdle } from './bandit/bandit_idle.js';
+import { banditAttack } from './bandit/bandit_attack.js'
 import PlayerAttacking from './playerAttacking'
 import React, { useContext } from 'react'
 
-export default function AttackAnimation(playerObj) {
+export default function AttackAnimation(PlayerObj, OpponentObj) {
   const canvas = document.getElementById('game-area');
   const context = canvas.getContext('2d');
   let player;
-  let sprites;
-  console.log("Wizard attack status: " + playerObj.is_attacking);
-  console.log("Wizard avatar: " + playerObj.current_avatar_text() );  
- 
+  let sprites; 
+  console.log(PlayerObj.is_attacking)
+
+  console.log(sprites)
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       context.imageSmoothingEnabled = true;
@@ -34,9 +36,9 @@ export default function AttackAnimation(playerObj) {
     init(20); //initiate animation
   // }
  
-
+  sprites = [wizardAttack, banditIdle]
      
-  sprites = [wizardAttack, banditIdle];
+
 
   function render() {
     
