@@ -7,19 +7,24 @@ import { Link } from 'react-router-dom'
 export default function Fight() {
 
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
-    const {  OpponentObj, dispatchOpp } = useContext(OpponentContext)
+    const {  OpponentObj, dispatchOpp } = useContext(OpponentContext);
 
     const handleAttack = () => {
+      dispatch({type: 'set_attack', payload: true});
       dispatchOpp({type: 'attacked', payload: 50});
-      dispatch({type: 'set_attack', payload: true})
-      setTimeout(() => {
-        dispatch({type: 'attacked', payload: 15})
-      }, 1500)
+
+    
+      /* setTimeout(() => { */
+      dispatchOpp({type: 'set_attack', payload: true});
+      dispatch({type: 'attacked', payload: 15});
+     /*  }, 1500) */
      
       // changeAnimation(2000);
     }
 
     function handleNewFight(){
+      dispatch({type: 'set_attack', payload: false});
+      dispatchOpp({type: 'set_attack', payload: false});
       dispatch({type: 'reset', payload: {...PlayerObj, hp: PlayerObj.MAX_HP}})
       dispatchOpp({type: 'reset', payload: new opponent()})
     }

@@ -5,12 +5,12 @@ import { banditAttack } from './bandit/bandit_attack.js'
 import PlayerAttacking from './playerAttacking'
 import React, { useContext } from 'react'
 
-export default function AttackAnimation(PlayerObj, OpponentObj) {
+export default function OpponentAttackAnimation(OpponentObj) {
   const canvas = document.getElementById('game-area');
   const context = canvas.getContext('2d');
   let player;
   let sprites; 
-  console.log(PlayerObj.is_attacking)
+  console.log(OpponentObj.is_attacking)
 
   console.log(sprites)
 
@@ -36,7 +36,7 @@ export default function AttackAnimation(PlayerObj, OpponentObj) {
     init(16); //initiate animation
   // }
  
-  sprites = [wizardAttack, banditIdle]
+  sprites = [wizardIdle, banditAttack]
      
 
 
@@ -64,15 +64,14 @@ export default function AttackAnimation(PlayerObj, OpponentObj) {
 
       context.clearRect(0, 0, canvas.width, canvas.height);
 
-      for(var i = 0; i < sprites.length; i++){
-        
-        drawFrame(sprites[i], sprites[i].cycleLoop[currentLoopIndex], 0, 0, 0);
+     
+        drawFrame(sprites[0], sprites[0].cycleLoop[currentLoopIndex], 0, 0, 0);
+        drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], 2, 0, 0);
    
-        if (currentLoopIndex >= sprites[i].cycleLoop.length -1 ) {
+        if (currentLoopIndex >= 7 ) {
           return;
         }
         currentLoopIndex++; 
-      }
        //iterate through every sprite in sprites array and draw sprites to canvas
     }
     

@@ -6,6 +6,7 @@ import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import AttackAnimation from '../characterAnimation/playerAttacking.js'
 import { Opponent } from '../opponent/opponent';
+import OpponentAttackAnimation from '../characterAnimation/opponentAttacking';
 
 const FightCanvas = (props) => {
   
@@ -18,14 +19,20 @@ const FightCanvas = (props) => {
       //insert animation methods here
       
       if(PlayerObj.is_attacking) {
-        AttackAnimation(PlayerObj);
+        console.log("Player attacking block")
+        AttackAnimation(PlayerObj); 
         PlayerObj.toggleAttack();
-      }else{
+        setTimeout(() => { 
+          dispatchOpp({type: 'set_attack', payload: true});
+          dispatch({type: 'attacked', payload: 15});
+        }, 1000 )
+      }else if (OpponentObj.is_attacking) {
+        console.log("Opponent attacking block")
+        OpponentAttackAnimation(OpponentObj);
+        setTimeout(() => { OpponentObj.toggleAttack();}, 3000 )
+      }else {
         IdleAnimation(PlayerObj); 
       }
-      
-      
-
       return () => {
         window.cancelAnimationFrame(animationFrameId)
       } 
