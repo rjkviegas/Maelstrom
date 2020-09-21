@@ -4,9 +4,7 @@ import { wizardAttack } from './wizard/wizard_attack.js';
 // import PlayerAttacking from './playerAttacking'
 import React, { useContext } from 'react'
 
-export default function IdleAnimation(playerObj) {
-  const canvas = document.getElementById('game-area');
-  const context = canvas.getContext('2d');
+export default function IdleAnimation(playerObj, canvas, ctx) {
   let player;
   let sprites;
   console.log("Wizard attack status (IDLE): " + playerObj.is_attacking);
@@ -14,13 +12,13 @@ export default function IdleAnimation(playerObj) {
  
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
-      context.imageSmoothingEnabled = true;
-      context.imageSmoothingQuality = 'high';
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
       const scale = 1; 
       const scaledWidth = img.width*scale;
       const scaledHeight = img.height*scale;
 
-      context.drawImage(img,
+      ctx.drawImage(img,
                       (frameX * img.width), (frameY * img.height), img.width, img.height,
                       canvasX+img.xOffset, canvasY+img.yOffset, scaledWidth, scaledHeight);
         
@@ -53,7 +51,7 @@ export default function IdleAnimation(playerObj) {
     //   playerObj.is_attacking = false;
     // }
 
-    context.clearRect(0, 0, canvas.width, canvas.height); //clear animation after each frame
+    ctx.clearRect(0, 0, canvas.width, canvas.height); //clear animation after each frame
 
     now = Date.now();
     elapsed = now - then;

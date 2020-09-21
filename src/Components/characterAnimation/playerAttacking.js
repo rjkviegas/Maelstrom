@@ -3,22 +3,20 @@ import { banditIdle } from './bandit/bandit_idle.js';
 import PlayerAttacking from './playerAttacking'
 import React, { useContext } from 'react'
 
-export default function PlayerAttackAnimation(playerObj) {
-  const canvas = document.getElementById('game-area');
-  const context = canvas.getContext('2d');
+export default function PlayerAttackAnimation(playerObj, canvas, ctx) {
   let player;
   let sprites;
 
   console.log("Wizard attack status (PLAYER ATTACK): " + playerObj.is_attacking);
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
-      context.imageSmoothingEnabled = true;
-      context.imageSmoothingQuality = 'high';
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
       const scale = 1; 
       const scaledWidth = img.width*scale;
       const scaledHeight = img.height*scale;
 
-      context.drawImage(img,
+      ctx.drawImage(img,
                       (frameX * img.width), (frameY * img.height), img.width, img.height,
                       canvasX+img.xOffset, canvasY+img.yOffset, scaledWidth, scaledHeight);
         
@@ -48,7 +46,7 @@ export default function PlayerAttackAnimation(playerObj) {
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
 
-      context.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for(var i = 0; i < sprites.length; i++){
         

@@ -8,6 +8,12 @@ import AttackAnimation from '../characterAnimation/playerAttacking.js'
 import { Opponent } from '../opponent/opponent';
 import OpponentAttackAnimation from '../characterAnimation/opponentAttacking';
 
+let canvas, ctx
+let cancelAnimationFrame = window.requestAnimationFrame || 
+                        window.mozRequestAnimationFrame ||
+                        window.webkitRequestAnimationFrame ||
+                        window.msRequestAnimationFrame;
+
 const FightCanvas = (props) => {
   
     let canvasRef = createRef(null)
@@ -16,10 +22,14 @@ const FightCanvas = (props) => {
     let animationFrameId;
     
     useEffect(() => {
+
+      canvas = canvasRef.current
+      ctx = canvas.getContext('2d')
+
       //insert animation methods here
       console.log("USE EFFECT TRIGGERED")
       if(PlayerObj.is_attacking && !OpponentObj.is_attacking) {
-        AttackAnimation(PlayerObj); 
+        AttackAnimation(PlayerObj, canvas, ctx); 
         //PlayerObj.toggleAttack();
         setTimeout(() => { 
           dispatchOpp({type: 'set_attack', payload: true});
@@ -27,19 +37,19 @@ const FightCanvas = (props) => {
           dispatch({type: 'set_attack', payload: false});
         }, 1000 )
       } else if (OpponentObj.is_attacking && !PlayerObj.is_attacking) {
-        OpponentAttackAnimation(OpponentObj);
+        OpponentAttackAnimation(OpponentObj, canvas, ctx);
         //OpponentObj.toggleAttack();
         setTimeout(() => { 
           dispatchOpp({type: 'set_attack', payload: false})
-        }, 3000 )
+        }, 3000 );
       } else if (!OpponentObj.is_attacking && !PlayerObj.is_attacking) {
-        IdleAnimation(PlayerObj); 
+        IdleAnimation(PlayerObj, canvas, ctx); 
       } else {
         console.log("wtf? Player: " + PlayerObj.is_attacking + "| Opponent: " + OpponentObj.is_attacking)
         console.log(PlayerObj, OpponentObj)
       }
       return () => {
-        //window.cancelAnimationFrame(animationFrameId)
+        window.cancelAnimationFrame(animationFrameId)
       } 
     },[PlayerObj, animationFrameId, OpponentObj])
     
