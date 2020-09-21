@@ -3,7 +3,6 @@ import Menu from './menu';
 import Rename from '../rename/rename.js'
 import Fight from '../fight/fight.js'
 import ShallowRenderer from 'react-test-renderer/shallow';
-import { render } from '@testing-library/react';
 
 test('menu link click displays menu', () => {
     
