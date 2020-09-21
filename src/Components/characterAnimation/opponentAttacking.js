@@ -10,9 +10,7 @@ export default function OpponentAttackAnimation(OpponentObj) {
   const context = canvas.getContext('2d');
   let player;
   let sprites; 
-  console.log(OpponentObj.is_attacking)
-
-  console.log(sprites)
+  console.log("Opponent attack status (OPPONENT ATTACK): " + OpponentObj.is_attacking);
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       context.imageSmoothingEnabled = true;
@@ -33,7 +31,7 @@ export default function OpponentAttackAnimation(OpponentObj) {
   // let numberOfFramesPerCycle = 16; //decrease value to increase speed of animation
   var fpsInterval, startTime, now, then, elapsed;
   // (banditIdle && wizardIdle && wizardAttack).onload = function () {
-    init(16); //initiate animation
+    init(10); //initiate animation
   // }
  
   sprites = [wizardIdle, banditAttack]

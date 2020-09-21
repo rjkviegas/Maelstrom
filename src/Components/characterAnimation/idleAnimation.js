@@ -9,7 +9,7 @@ export default function IdleAnimation(playerObj) {
   const context = canvas.getContext('2d');
   let player;
   let sprites;
-  console.log("Wizard attack status: " + playerObj.is_attacking);
+  console.log("Wizard attack status (IDLE): " + playerObj.is_attacking);
   // console.log("Wizard avatar: " + playerObj.current_avatar_text() );  
  
 
@@ -32,13 +32,13 @@ export default function IdleAnimation(playerObj) {
   let numberOfFramesPerCycle = 10; //decrease value to increase speed of animation
   var fpsInterval, startTime, now, then, elapsed;
   // (banditIdle && wizardIdle && wizardAttack).onload = function () {
-    init(10); //initiate animation
+ //initiate animation
   // }
  
   // player = (playerObj.is_attacking) ? wizardAttack :  wizardIdle
-  player = wizardIdle;
+
      
-  sprites = [banditIdle, player];
+  sprites = [banditIdle, wizardIdle];
 
   function render() {
     
@@ -75,15 +75,16 @@ export default function IdleAnimation(playerObj) {
     window.requestAnimationFrame(render);
 
   }
-
+  const fps = 10;
+  console.log(fps)
   //define framespersecond and begin animation
-  function init(fps) {
+  const init = (fps) => {
     fpsInterval = 1000 / fps;
     then = Date.now();
     startTime = then;
     window.requestAnimationFrame(render); 
     }
-
+    init(fps);
   return () => {
       window.cancelAnimationFrame(animationFrameId)
   } 

@@ -8,9 +8,8 @@ export default function PlayerAttackAnimation(playerObj) {
   const context = canvas.getContext('2d');
   let player;
   let sprites;
-  console.log("Wizard attack status: " + playerObj.is_attacking);
-  console.log("Wizard avatar: " + playerObj.current_avatar_text() );  
- 
+
+  console.log("Wizard attack status (PLAYER ATTACK): " + playerObj.is_attacking);
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       context.imageSmoothingEnabled = true;
@@ -31,7 +30,7 @@ export default function PlayerAttackAnimation(playerObj) {
   // let numberOfFramesPerCycle = 16; //decrease value to increase speed of animation
   var fpsInterval, startTime, now, then, elapsed;
   // (banditIdle && wizardIdle && wizardAttack).onload = function () {
-    init(20); //initiate animation
+    init(10); //initiate animation
   // }
  
 
