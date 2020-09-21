@@ -10,7 +10,7 @@ export default function IdleAnimation(playerObj) {
   let player;
   let sprites;
   console.log("Wizard attack status: " + playerObj.is_attacking);
-  console.log("Wizard avatar: " + playerObj.current_avatar_text() );  
+  // console.log("Wizard avatar: " + playerObj.current_avatar_text() );  
  
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {

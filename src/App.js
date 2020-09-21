@@ -27,14 +27,14 @@ function App() {
         <Router>
           <Switch>
             <Route exact path='/'>
-              <Link to="/menu">Menu</Link>
+              <Link to="/menu" data-testid="menu_link">Menu</Link>
               </Route>
             <Route exact path='/menu'>
-              <Link to="/play">Play Game</Link>
+              <Link to="/play" data-testid="play_link">Play Game</Link>
               {/* <Menu/> */}
             </Route>
             <Route exact path='/play'>
-              <Link to="/fight">Fight</Link>
+              <Link to="/fight" data-testid="fight">Fight</Link>
               <Link to="/shop">Shop</Link>
               <Link to="/character">Your character</Link>
             </Route>

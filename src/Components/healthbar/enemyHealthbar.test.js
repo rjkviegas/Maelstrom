@@ -6,7 +6,7 @@ import OpponentContext from '../../config/opponentContext';
 import { render, cleanup } from "@testing-library/react";
 
 
-const OpponentObj  = { name: "Ilja", hp: 100};
+const OpponentObj  = { name: "Ilja", hp: 100, MAX_HP: 100 };
 const opponentHealthbarRender = (
                       <OpponentContext.Provider value={{OpponentObj}}>
                         <OpponentHealthBar />,
@@ -15,11 +15,10 @@ const opponentHealthbarRender = (
 
 
 
-afterEach(cleanup);
-
 describe("Opponent Healthbar", function() {
     it("Opponent Healthbar renders with 100% width", function() {
-        const { getByTestId } = render(opponentHealthbarRender)
-        const test = getByTestId("health-bar-fluid")
+      const { getByTestId } = render(opponentHealthbarRender)
+      const element = getByTestId("health-bar-fluid")
+      expect(element.style.width).toEqual('100%');
     })
 })
