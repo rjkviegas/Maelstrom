@@ -1,17 +1,15 @@
 import React from 'react'
 import backgroundMusic from '../../media/background_music.mp3'
-
+let music = new Audio(backgroundMusic)
 
 export function BackgroundMusic() {
-
-    let music = new Audio(backgroundMusic)
 
     const playMusic = function() {
         music.play()
         music.volume = 0.5
     }
 
-    music.onload = playMusic()
+    music.onload = playMusic()  
 
     const toggleSound = function() {
         music.paused ? music.play() : music.pause()
