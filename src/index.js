@@ -6,17 +6,13 @@ import backgroundMusic from './media/background_music.mp3'
 
 
 let music = new Audio(backgroundMusic)
-const playMusic = function() {
-  music.play()
-}
 
 ReactDOM.render(
   
   <React.StrictMode>  
-      <App /> 
+      <App music={music}/> 
   </React.StrictMode>,
   document.getElementById('root'),
-  playMusic
 );
 
 

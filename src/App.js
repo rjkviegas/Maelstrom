@@ -10,10 +10,10 @@ import OpponentContext from './config/opponentContext.js';
 import opponentReducer from './Reducers/opponentReducer.js'
 import Fight from './Components/fight/fight.js'
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BackgroundMusic } from './Components/music/music';
 
 function App() {
 
- 
   const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
  
@@ -44,6 +44,7 @@ function App() {
             </Route>
           </Switch>
         </Router>
+        <BackgroundMusic/>
       </header>
     </div>
   );
