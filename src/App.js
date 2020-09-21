@@ -44,8 +44,8 @@ function App() {
                 <OpponentContext.Provider value={{OpponentObj, dispatchOpp}}>
                   <FightCanvas/>
                   <Fight/>
-                  <button onClick={handleNewFight} style={{visibility: (OpponentObj.hp <= 0) ? "visible" : "hidden" }}><Link to='/play'>Go back</Link></button>
-                  <button onClick={handleNewFight} style={{visibility: (PlayerObj.hp <= 0) ? "visible" : "hidden" }}><Link to='/play'>Go back</Link></button>
+                  {/* <button onClick={handleNewFight} style={{visibility: (OpponentObj.hp <= 0) ? "visible" : "hidden" }}><Link to='/play'>Go back</Link></button>
+                  <button onClick={handleNewFight} style={{visibility: (PlayerObj.hp <= 0) ? "visible" : "hidden" }}><Link to='/play'>Go back</Link></button> */}
                 </OpponentContext.Provider>
               </PlayerContext.Provider>
             </Route>
