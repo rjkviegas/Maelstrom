@@ -2,26 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import backgroundMusic from './media/background_music.mp3'
+import Sound from './Components/sound/sound.js';
+import Input from './Components/input/input';
 
+let sound;
+let input;
 
-let music = new Audio(backgroundMusic)
-const playMusic = function() {
-  music.play()
-}
+sound = new Sound()
+input = new Input(sound)
 
 ReactDOM.render(
-  
   <React.StrictMode>  
       <App /> 
   </React.StrictMode>,
   document.getElementById('root'),
-  playMusic
 );
 
+window.onload = () => {
+  // sound.playMusic()
 
-
-
+  input.listenForMute()
+}
 
 // import React from 'react';
 // import ReactDOM from 'react-dom';
