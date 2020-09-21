@@ -55,7 +55,7 @@ export default function PlayerAttackAnimation(playerObj, canvas, ctx) {
         
         drawFrame(sprites[i], sprites[i].cycleLoop[currentLoopIndex], 0, 0, 0);
    
-        if (currentLoopIndex >= sprites[i].cycleLoop.length -1 ) {
+        if (currentLoopIndex >= 7 ) {
           return;
         }
         currentLoopIndex++; 

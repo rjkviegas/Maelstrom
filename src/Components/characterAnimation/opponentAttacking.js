@@ -74,7 +74,7 @@ export default function OpponentAttackAnimation(OpponentObj, canvas, ctx) {
        //iterate through every sprite in sprites array and draw sprites to canvas
     }
     
-    window.requestAnimationFrame(render);
+    animation = window.requestAnimationFrame(render);
 
   }
 
@@ -83,7 +83,7 @@ export default function OpponentAttackAnimation(OpponentObj, canvas, ctx) {
     fpsInterval = 1000 / fps;
     then = Date.now();
     startTime = then;
-    window.requestAnimationFrame(render); 
+    animation = window.requestAnimationFrame(render); 
     }
 
   return () => {

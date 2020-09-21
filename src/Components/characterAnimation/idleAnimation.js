@@ -67,7 +67,7 @@ export default function IdleAnimation(playerObj, canvas, ctx) {
         drawFrame(sprites[i], sprites[i].cycleLoop[currentLoopIndex], 0, 0, 0);
         currentLoopIndex++;
 
-        if (currentLoopIndex >= sprites[i].cycleLoop.length) {
+        if (currentLoopIndex >= 7) {
           currentLoopIndex = 0;
         }
       } //iterate through every sprite in sprites array and draw sprites to canvas
@@ -87,6 +87,6 @@ export default function IdleAnimation(playerObj, canvas, ctx) {
     }
     init(fps);
   return () => {
-      animation = window.cancelAnimationFrame(animationFrameId)
+      window.cancelAnimationFrame(animationFrameId)
   } 
 }

@@ -29,24 +29,29 @@ const FightCanvas = (props) => {
       //insert animation methods here
       console.log("USE EFFECT TRIGGERED")
       if(PlayerObj.is_attacking && !OpponentObj.is_attacking) {
+        if (OpponentObj.is_attacking || !PlayerObj.is_attacking) { return }
+        console.log("Play attack triggered")
         AttackAnimation(PlayerObj, canvas, ctx); 
-        //PlayerObj.toggleAttack();
+        PlayerObj.toggleAttack();
+        console.log(PlayerObj.is_attacking)
         setTimeout(() => { 
           dispatchOpp({type: 'set_attack', payload: true});
           dispatch({type: 'attacked', payload: 15});
           dispatch({type: 'set_attack', payload: false});
         }, 1000 )
       } else if (OpponentObj.is_attacking && !PlayerObj.is_attacking) {
- 
-        //OpponentObj.toggleAttack();
+        if (!OpponentObj.is_attacking || PlayerObj.is_attacking) { return }
+        console.log("Opponent attack triggered")
         setTimeout(() => { 
           OpponentAttackAnimation(OpponentObj, canvas, ctx);
           dispatchOpp({type: 'set_attack', payload: false})
         }, 1000 );
       } else if (!OpponentObj.is_attacking && !PlayerObj.is_attacking) {
+        if (OpponentObj.is_attacking || PlayerObj.is_attacking) { return }
         console.log("IDLE TIME")
         IdleAnimation(PlayerObj, canvas, ctx); 
       } else {
+        IdleAnimation(PlayerObj, canvas, ctx); 
         console.log("wtf? Player: " + PlayerObj.is_attacking + "| Opponent: " + OpponentObj.is_attacking)
       }
       return () => {
