@@ -1,18 +1,22 @@
 import { wizardAttack } from './wizard/wizard_attack.js';
 import { wizardIdle } from './wizard/wizard_idle.js'
 import { banditIdle } from './bandit/bandit_idle.js';
-import { banditAttack } from './bandit/bandit_attack.js'
 import PlayerAttacking from './playerAttacking'
 import React, { useContext } from 'react'
+import { banditAttack } from './bandit/bandit_attack.js';
 
 let animation;
-export default function OpponentAttackAnimation(OpponentObj, canvas, ctx) {
-  let player;
-  let sprites; 
-  console.log("Opponent attack status (OPPONENT ATTACK): " + OpponentObj.is_attacking);
+export default function PlayerAttackAnimation(OpponentObj, canvas, ctx) {
+  let character; let endframe; let notYetSwitched = false;
+  let sprites;
+  let playerSrcY = 0; let opponentSrcY = 2; let opponentIdleSrcY = 0;
+
   if (animation) {
     window.cancelAnimationFrame(animation)
   }
+
+  //canvas.currentActor = 'playerAttackAnimation'
+
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
@@ -25,53 +29,41 @@ export default function OpponentAttackAnimation(OpponentObj, canvas, ctx) {
                       canvasX+img.xOffset, canvasY+img.yOffset, scaledWidth, scaledHeight);
         
   }
-     
-  // let frameCount = 0
-  let animationFrameId
+
   let currentLoopIndex = 0;
-  // let numberOfFramesPerCycle = 16; //decrease value to increase speed of animation
   var fpsInterval, startTime, now, then, elapsed;
-  // (banditIdle && wizardIdle && wizardAttack).onload = function () {
-    init(10); //initiate animation
-  // }
+
  
-  sprites = [wizardIdle, banditAttack]
+  const loadOne = () => { sprites[1].onload = loadTwo() }
+  const loadTwo = () => {sprites[2].onload = loadThree()}
+  const loadThree = () => { character = wizardAttack; sprites[3].onload = init(16)}
      
+  sprites = [wizardAttack, banditIdle, wizardIdle, banditAttack];
+  sprites[0].onload = loadOne()
 
 
   function render() {
-    
-    // frameCount++
-    // if (frameCount < numberOfFramesPerCycle) {
-    //     window.requestAnimationFrame(render);
-    //     return;
-    //   }
-    // frameCount = 0;
-
-    // if(playerObj.is_attacking && frameCount === 8){
-    //   playerObj.is_attacking = false;
-    // }
-
-    //clear animation after each frame
+    if (animation) {
+      window.cancelAnimationFrame(animation)
+    }
 
     now = Date.now();
     elapsed = now - then;
     
-    //only draw image if enough time has passed since last frame
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-     
-        drawFrame(sprites[0], sprites[0].cycleLoop[currentLoopIndex], 0, 0, 0);
-        drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], 2, 0, 0);
-   
-        if (currentLoopIndex >= 7 ) {
-          return;
+        if(currentLoopIndex >= 7) { character = wizardIdle}
+        if (currentLoopIndex < 7 && character === wizardAttack) {
+          drawFrame(sprites[3], sprites[3].cycleLoop[currentLoopIndex], opponentSrcY, 0, 0);
+        } else {
+          if (notYetSwitched) { currentLoopIndex = 0; notYetSwitched = false}
+          drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0);
         }
+        drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerSrcY, 0, 0);
+        if (currentLoopIndex >= 7) { currentLoopIndex = 0}
         currentLoopIndex++; 
-       //iterate through every sprite in sprites array and draw sprites to canvas
     }
     
     animation = window.requestAnimationFrame(render);
@@ -83,12 +75,12 @@ export default function OpponentAttackAnimation(OpponentObj, canvas, ctx) {
     fpsInterval = 1000 / fps;
     then = Date.now();
     startTime = then;
-    animation = window.requestAnimationFrame(render); 
+    render()
+   
     }
 
   return () => {
-      window.cancelAnimationFrame(animationFrameId)
+      
   } 
 }
-
 

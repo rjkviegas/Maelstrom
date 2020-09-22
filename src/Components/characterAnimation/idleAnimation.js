@@ -5,10 +5,16 @@ import { wizardAttack } from './wizard/wizard_attack.js';
 import React, { useContext } from 'react'
 
 let animation;
-export default function IdleAnimation(playerObj, canvas, ctx) {
+export default function IdleAnimation(PlayerObj, OpponentObj, canvas, ctx) {
+  //if(canvas.currentActor !== "idleAnimation") { console.log("Bad actor"); return; }
   let player;
   let sprites;
-  console.log("Wizard attack status (IDLE): " + playerObj.is_attacking);
+  console.log('OPPONENT attack status (IDLE): ' + OpponentObj.is_attacking);
+  console.log("PLAYER attack status (IDLE): " + PlayerObj.is_attacking);
+  if(PlayerObj.is_attacking || OpponentObj.is_attacking) {
+    console.log("One is attacking")
+    return
+  }
   // console.log("Wizard avatar: " + playerObj.current_avatar_text() );  
   if (animation) {
     window.cancelAnimationFrame(animation)
@@ -49,7 +55,7 @@ export default function IdleAnimation(playerObj, canvas, ctx) {
         return;
       }
     frameCount = 0;
-
+      console.log(frameCount, "idle")
     // if(playerObj.is_attacking && frameCount === 8){
     //   playerObj.is_attacking = false;
     // }
@@ -76,7 +82,7 @@ export default function IdleAnimation(playerObj, canvas, ctx) {
     animation = window.requestAnimationFrame(render);
 
   }
-  const fps = 10;
+  const fps = 16;
   console.log(fps)
   //define framespersecond and begin animation
   const init = (fps) => {
@@ -87,6 +93,6 @@ export default function IdleAnimation(playerObj, canvas, ctx) {
     }
     init(fps);
   return () => {
-      window.cancelAnimationFrame(animationFrameId)
+     //window.cancelAnimationFrame(animationFrameId)
   } 
 }
