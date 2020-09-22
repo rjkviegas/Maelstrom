@@ -15,6 +15,9 @@
   "jest": {
     "collectCoverageFrom": [
       "!**/serviceWorker.js",
+      "!**/Components/characterAnimation/idleAnimation.js",
+      "!**/Components/characterAnimation/opponentAttacking.js",
+      "!**/Components/characterAnimation/playerAttacking.js",
       "**/*.{js,jsx}",
       "!**/node_modules/**",
       "!**/vendor/**"
