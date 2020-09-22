@@ -18,7 +18,7 @@ export function OpponentHealthBar() {
   return (
     <div className="health-bar" data-testid="health-bar">
       <div className="health-bar-glass">
-          <div className="health-bar-fluid anim-width" data-testid="health-bar-fluid" style={{width: barWidth}}></div>
+          <div className="health-bar-fluid anim-width" data-testid="opponent-health-bar" style={{width: barWidth}}></div>
       </div>
     </div>
   )

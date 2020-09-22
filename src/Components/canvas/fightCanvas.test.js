@@ -4,14 +4,18 @@ import FightCanvas from './FightCanvas.js'
 import OpponentContext from '../../config/opponentContext.js'
 import PlayerContext from '../../config/playerContext'
 import { render, cleanup, fireEvent } from "@testing-library/react";
+import FightRoundsContext from "../../config/fightRoundsContext.js";
 
 
 const OpponentObj  = { name: "Mouldie Harry", hp: 1 };
 const PlayerObj = { name: "Righteous Ilja", hp: 10000, is_attacking: false, current_avatar_text: jest.fn() };
+const FightRounds = { round: 0 };
 const fightCanvasRender = (
   <PlayerContext.Provider value={{PlayerObj}}>
       <OpponentContext.Provider value={{OpponentObj}}>
-          <FightCanvas />,
+          <FightRoundsContext.Provider value={{FightRounds}}>
+            <FightCanvas />
+          </FightRoundsContext.Provider>
       </OpponentContext.Provider>
   </PlayerContext.Provider>
   )
