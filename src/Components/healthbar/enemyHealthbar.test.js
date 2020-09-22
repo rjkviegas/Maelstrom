@@ -15,7 +15,7 @@ const opponentHealthbarRender = (
 describe("Opponent Healthbar", function() {
     it("Opponent Healthbar renders with 100% width", function() {
       const { getByTestId } = render(opponentHealthbarRender)
-      const element = getByTestId("health-bar-fluid")
+      const element = getByTestId("opponent-health-bar")
       expect(element.style.width).toEqual('100%');
     })
 })

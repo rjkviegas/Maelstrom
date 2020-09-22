@@ -5,6 +5,7 @@ import { Player } from '../../Components/player/player.js'
 import opponent,{ Opponent } from '../../Components/opponent/opponent.js'
 import { Link } from 'react-router-dom'
 import FightRoundsContext from '../../config/fightRoundsContext.js'
+
 export default function Fight() {
 
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
@@ -33,7 +34,7 @@ export default function Fight() {
       {OpponentObj.hp > 0 && PlayerObj.hp > 0 ? 
         (PlayerObj.hp <= 0 || OpponentObj.hp <= 0 ? 
           <div>Attack disappears</div> : 
-          <div><button style={{visibility: (PlayerObj.is_attacking === true && OpponentObj.is_attacking === true) ? 'hidden' : 'visible' }} onClick={() =>handleAttack()}>Attack</button></div>) : //MAIN FALSE
+          <div><button data-testid = 'attack_button' style={{visibility: (PlayerObj.is_attacking === true && OpponentObj.is_attacking === true) ? 'hidden' : 'visible' }} onClick={() =>handleAttack()}>Attack</button></div>) : //MAIN FALSE
       (PlayerObj.hp <= 0 ? <div><h1>YOU LOSE</h1><div><button onClick={handleNewFight}><Link to='/play'>Go back</Link></button></div> </div> : 
         <div><h1>YOU WIN</h1> <div><button onClick={handleNewFight}><Link to='/play'>Go back</Link></button></div></div>)}
 
