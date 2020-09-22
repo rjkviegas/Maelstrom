@@ -35,7 +35,7 @@ export default function Fight() {
         (PlayerObj.hp <= 0 || OpponentObj.hp <= 0 ? 
           <div>Attack disappears</div> : 
           <div><button data-testid = 'attack_button' style={{visibility: (PlayerObj.is_attacking === true && OpponentObj.is_attacking === true) ? 'hidden' : 'visible' }} onClick={() =>handleAttack()}>Attack</button></div>) : //MAIN FALSE
-      (PlayerObj.hp <= 0 ? <div><h1 data-testid="lose-message">YOU LOSE</h1><div><button onClick={handleNewFight}><Router><Route><Link to='/play'>Go backa</Link></Route></Router></button></div> </div> : 
+      (PlayerObj.hp <= 0 ? <div><h1 data-testid="lose-message">YOU LOSE</h1><div><button onClick={handleNewFight}><Router><Route><Link to='/play'>Go back</Link></Route></Router></button></div> </div> : 
         <div><h1 data-testid="win-message">YOU WIN</h1> <div><button onClick={handleNewFight}><Router><Route><Link to='/play'>Go back</Link></Route></Router></button></div></div>)}
 
     </div>
