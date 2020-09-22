@@ -58,15 +58,15 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   sprites[0].onload = loadOne()
 
   function renderPlayerDead() {
-    drawFrame(sprites[4], sprites[4].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // DEAD PLAYER
+    drawFrame(PlayerObj.deathImage, sprites[4].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // DEAD PLAYER
   }
 
   function renderPlayerIdle() {
-    drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // IDLE PLAYER
+    drawFrame(PlayerObj.idleImage, sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // IDLE PLAYER
   }
 
   function renderOpponentIdle(){
-    drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // OPPONENT IDLE
+    drawFrame(OpponentObj.idleImage, sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // OPPONENT IDLE
   }
 
   function renderPlayerAttack(){
@@ -88,6 +88,17 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     drawFrame(sprites[4], 7, opponentIdleSrcY, 0, 0); // DEAD PLAYER
   }
 
+  function anyDead() {
+    return (PlayerObj.hp <= 0 || OpponentObj.hp <= 0)
+  }
+
+  function playerDead() {
+    return (PlayerObj.hp <= 0)
+  }
+
+  function opponentDead() {
+    return (OpponentObj.hp <= 0)
+  }
   
 
   function render() {
@@ -103,11 +114,11 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if ( PlayerObj.hp <= 0 || OpponentObj.hp <= 0) {
-          character = (PlayerObj.hp <= 0) ? "dead" : "alive"
-          opponent = (OpponentObj.hp <= 0) ? "dead" : "alive"
+        if ( anyDead() ) {
+          character = (playerDead()) ? "dead" : "alive"
+          opponent = (opponentDead()) ? "dead" : "alive"
 
-          if (character === "dead") { // player is dead
+          if (playerDead()) { // player is dead
             if (!deathAnimSwitch && !finalSwing) {
               if(currentLoopIndex === 7) { deathAnimSwitch = true; finalSwing = true;}
               renderPlayerDead();

@@ -22,6 +22,7 @@ class opponent {
     this.idleImage = idleImage
     this.attackImage = attackImage
     this.deathImage = deathImage
+    this.isDead = () => { return this.hp <= 0}
   }
 }
 
