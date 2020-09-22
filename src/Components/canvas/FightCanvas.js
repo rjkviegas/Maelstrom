@@ -43,36 +43,35 @@ const FightCanvas = (props) => {
 
       if(PlayerObj.is_attacking && !OpponentObj.is_attacking) {
         if (OpponentObj.is_attacking || !PlayerObj.is_attacking) { return }
+          
         console.log("Play attack triggered")
-        //canvas.currentActor = "PlayerAttackAnimation"
-        setTimeout(() => { 
-          if(OpponentObj.hp < 0) {
-            console.log("Stopped here!")
-            return 
-          } else {
-            console.log("Stopped here 2")
-            dispatchOpp({type: 'set_attack', payload: true});
-            dispatch({type: 'attacked', payload: Math.floor(Math.random()*10)});
-            dispatch({type: 'set_attack', payload: false});
-          }
-        }, 1000 )
+          setTimeout(() => { 
+            if(OpponentObj.hp < 0) {
+              console.log("Stopped here!")
+              return 
+            } else {
+              console.log("Stopped here 2")
+              dispatchOpp({type: 'set_attack', payload: true});
+              dispatch({type: 'attacked', payload: Math.floor(Math.random()*100)});
+              dispatch({type: 'set_attack', payload: false});
+            }
+          }, 1000 )
+
       } else if (OpponentObj.is_attacking && !PlayerObj.is_attacking) {
         if (!OpponentObj.is_attacking || PlayerObj.is_attacking) { return }
-        console.log("Opponent attack triggered")
-        
-        setTimeout(() => { 
-          //OpponentAttackAnimation(OpponentObj, canvas, ctx);    
-          dispatchOpp({type: 'set_attack', payload: false})
-        }, 2000 );
+          
+        console.log("Opponent attack triggered")  
+          setTimeout(() => {    
+            dispatchOpp({type: 'set_attack', payload: false})
+          }, 2000 );
+
       } else if (!OpponentObj.is_attacking && !PlayerObj.is_attacking) {
         if (OpponentObj.is_attacking || PlayerObj.is_attacking) { return }
-        //canvas.currentActor = "idleAnimation"
+          
         console.log("IDLE TIME")
-        //setTimeout(() => { IdleAnimation(PlayerObj, OpponentObj, canvas, ctx);  },1000)
 
       } else {
-        console.log("wtf? Player: " + PlayerObj.is_attacking + "| Opponent: " + OpponentObj.is_attacking)
-        //IdleAnimation(PlayerObj, OpponentObj, canvas, ctx); 
+          console.log("wtf? Player: " + PlayerObj.is_attacking + "| Opponent: " + OpponentObj.is_attacking)
       }
       return () => {
         window.cancelAnimationFrame(animationFrameId)
