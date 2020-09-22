@@ -6,13 +6,5 @@ describe('player reducer', () => {
     playerReducer(undefined, mockCallBack)
     expect(playerReducer(undefined, mockCallBack)).toBeTruthy();
     expect(playerReducer(undefined, {})).toEqual({});
-    
   });
-
 });
-
-
-
-
-
-

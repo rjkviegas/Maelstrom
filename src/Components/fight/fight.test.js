@@ -26,7 +26,7 @@ describe("Fight", function() {
         );
         expect(getByTestId("attack_button")).toBeTruthy();
     })
-    it("shows win when opponent hp 0", function() {
+    it("shows win message when opponent hp 0", function() {
         const OpponentObj = { hp: 0 };
         const { getByTestId } = render(
             <PlayerContext.Provider value={{PlayerObj, dispatch}}>
@@ -37,9 +37,9 @@ describe("Fight", function() {
                 </OpponentContext.Provider>
             </PlayerContext.Provider>
         );
-        expect(getByTestId("h1")).toHaveTextContent("YOU WIN")
+        expect(getByTestId("win-message")).toHaveTextContent("YOU WIN")
     });
-    it("shows win when opponent hp 0", function() {
+    it("shows lose message when player hp 0", function() {
         const PlayerObj = { hp: 0 };
         const { getByTestId } = render(
             <PlayerContext.Provider value={{PlayerObj, dispatch}}>
@@ -50,6 +50,6 @@ describe("Fight", function() {
                 </OpponentContext.Provider>
             </PlayerContext.Provider>
         );
-        expect(getByTestId("h1")).toHaveTextContent("YOU LOSE")
+        expect(getByTestId("lose-message")).toHaveTextContent("YOU LOSE")
     })
 });
