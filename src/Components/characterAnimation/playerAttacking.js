@@ -42,21 +42,16 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   var fpsInterval, startTime, now, then, elapsed;
 
  
-  const loadOne = () => { sprites[1].onload = loadTwo() }
-  const loadTwo = () => { sprites[2].onload = loadThree()}
-  const loadFour = () => { sprites[4].onload = loadFive() }
+  const loadOne = () => { OpponentObj.idleImage.onload = loadTwo() }
+  const loadTwo = () => { PlayerObj.idleImage.onload = loadThree()}
+  const loadThree = () => { OpponentObj.attackImage = loadFour();}
+  const loadFour = () => { PlayerObj.deathImage.onload = loadFive() }
   const loadFive = () => { 
     character = (PlayerObj.is_attacking || OpponentObj.is_attacking) ? wizardAttack : "idle"; 
     opponent = (PlayerObj.is_attacking || OpponentObj.is_attacking) ? banditIdle : "idle"; 
-    sprites[5].onload = init(framespersecond)
+    OpponentObj.deathImage.onload = init(framespersecond)
   }
-  const loadThree = () => { 
-    sprites[3].onload = loadFour();
-    
-    /* sprites[3].onload = init(framespersecond) */}
-     
-  sprites = [wizardAttack, banditIdle, wizardIdle, banditAttack, wizardDead, banditDead];
-  sprites[0].onload = loadOne()
+  PlayerObj.attackImage.onload = loadOne()
 
   function renderPlayerDead() {
     drawFrame(PlayerObj.deathImage, PlayerObj.deathImage.cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // DEAD PLAYER
