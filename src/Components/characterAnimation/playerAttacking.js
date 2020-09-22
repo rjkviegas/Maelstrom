@@ -1,22 +1,16 @@
 import { wizardAttack } from './wizard/wizard_attack.js';
 import { wizardIdle } from './wizard/wizard_idle.js'
 import { banditIdle } from './bandit/bandit_idle.js';
-import PlayerAttacking from './playerAttacking'
-import React, { useContext } from 'react'
 import { banditAttack } from './bandit/bandit_attack.js';
-import { wizardDead } from './wizard/wizard_dead.js';
-import { banditDead } from './bandit/bandit_dead.js';
+
 const framespersecond = 16
 let animation; let animation_time = 0;
-let count = 1;
+
 export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ctx) {
   const endFrame = 7;
   let bothAttacked = false; let finalTurnCompleted = false; let deathAnimSwitch = false; let finalSwing = false;
-  let sprites; let character; let opponent; 
-  let playerAttackSrcY = 0; let opponentIdleSrcY = 0; 
-  let playerIdleSrcY = 0; let opponentAttackSrcY = 2;
+  let character; let opponent; 
 
-  let banditDeadSrcY = 3;
   if (animation) {
     window.cancelAnimationFrame(animation)
   }
@@ -39,7 +33,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   }
 
   let currentLoopIndex = 0;
-  var fpsInterval, startTime, now, then, elapsed;
+  var fpsInterval, now, then, elapsed;
 
  
   const loadOne = () => { OpponentObj.idleImage.onload = loadTwo() }
@@ -186,13 +180,11 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   function init(fps) {
     fpsInterval = 1000 / fps;
     then = Date.now();
-    startTime = then;
     render()
    
     }
 
   return () => {
-    count += 1
     window.cancelAnimationFrame(animation)
   } 
 }

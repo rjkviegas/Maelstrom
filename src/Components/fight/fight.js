@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
-import { Player } from '../../Components/player/player.js'
-import opponent,{ Opponent } from '../../Components/opponent/opponent.js'
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+
+import opponent from '../../Components/opponent/opponent.js'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import FightRoundsContext from '../../config/fightRoundsContext.js'
 
 export default function Fight() {
 
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext);
-    const { FightRounds, dispatchFight } = useContext(FightRoundsContext)
+    const { dispatchFight } = useContext(FightRoundsContext)
 
     const handleAttack = () => {
       if(PlayerObj.hp < 0) { 

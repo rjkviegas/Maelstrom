@@ -1,26 +1,19 @@
 import { OpponentHealthBar } from '../../Components/healthbar/enemyHealthbar'
-import React, { createRef, useRef, useEffect, useContext} from 'react';
+import React, { createRef, useEffect, useContext} from 'react';
 import PlayerHealthBar from '../../Components/healthbar/healthbar'
-import IdleAnimation from '../characterAnimation/idleAnimation'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import AttackAnimation from '../characterAnimation/playerAttacking.js'
-import { Opponent } from '../opponent/opponent';
-import OpponentAttackAnimation from '../characterAnimation/opponentAttacking';
 import FightRoundsContext from '../../config/fightRoundsContext';
 
 let canvas, ctx
-let cancelAnimationFrame = window.requestAnimationFrame || 
-                        window.mozRequestAnimationFrame ||
-                        window.webkitRequestAnimationFrame ||
-                        window.msRequestAnimationFrame;
 
 const FightCanvas = (props) => {
   
     let canvasRef = createRef(null)
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext)
-    const { FightRounds, dispatchFight } = useContext(FightRoundsContext)
+    const { dispatchFight } = useContext(FightRoundsContext)
 
     let animationFrameId;
 
@@ -75,7 +68,7 @@ const FightCanvas = (props) => {
       }
       return () => {
         window.cancelAnimationFrame(animationFrameId)
-      } 
+      }  // eslint-disable-next-line
     },[PlayerObj])
     
     return (

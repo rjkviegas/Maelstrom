@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import PlayerContext from '../../config/playerContext';
+import React from 'react';
 import coin from '../../media/coin.gif'
 
 const Gold = ({PlayerObj}) => {

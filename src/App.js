@@ -2,9 +2,9 @@ import React, { useReducer } from 'react';
 import './App.css';
 import PlayerContext from './config/playerContext.js';
 import playerReducer from './Reducers/playerReducer.js'
-import player, { Player } from './Components/player/player.js'
+import Player from './Components/player/player.js'
 import FightCanvas from './Components/canvas/FightCanvas.js'
-import opponent, { Opponent } from './Components/opponent/opponent.js';
+import Opponent from './Components/opponent/opponent.js';
 import OpponentContext from './config/opponentContext.js';
 import opponentReducer from './Reducers/opponentReducer.js'
 import Fight from './Components/fight/fight.js'
@@ -19,8 +19,8 @@ import ShopCanvas from './Components/canvas/shopCanvas';
 function App() {
 
   const [FightRounds, dispatchFight] = useReducer(fightRoundsReducer, fightRounds)
-  const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
-  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
+  const [PlayerObj, dispatch] = useReducer(playerReducer, new Player())
+  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new Opponent())
   
   return (
       
