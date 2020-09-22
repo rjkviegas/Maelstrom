@@ -14,6 +14,10 @@ class opponent {
     this.name = 'Opponent_Placeholder'
     this.hp = starting_hitpoints
     this.MAX_HP = starting_hitpoints
+    this.is_attacking = false;
+    this.toggleAttack = function() {
+      return this.is_attacking = !this.is_attacking
+    }
   }
 }
 
