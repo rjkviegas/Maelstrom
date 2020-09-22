@@ -12,6 +12,15 @@
     "react-scripts": "3.4.3",
     "react-test-renderer": "^16.13.1"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "!**/serviceWorker.js",
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**"
+    ],
+    "coverageReporters": ["text"]
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
