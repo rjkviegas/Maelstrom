@@ -7,7 +7,7 @@ import { wizardIdle } from '../characterAnimation/wizard/wizard_idle.js'
 const starting_hitpoints = 100;
 class player {
 
-  constructor(idleImage = wizardIdle, attackImage = wizardAttack, deathImage = wizardDead) {
+  constructor(idleImage = wizardIdle, attackImage = wizardAttack, deathImage = wizardDead, deathFrameNumber = 7) {
     this.name = 'placeholder'
     this.hp = starting_hitpoints
     this.MAX_HP = starting_hitpoints
@@ -16,6 +16,7 @@ class player {
     this.idleImage = idleImage
     this.attackImage = attackImage
     this.deathImage = deathImage
+    this.deathFrameNumber = deathFrameNumber
     this.isDead = () => { return this.hp <= 0}
   }
 

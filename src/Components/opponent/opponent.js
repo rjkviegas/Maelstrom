@@ -13,7 +13,7 @@ const starting_hitpoints = 125;
 
 class opponent {
 
-  constructor(idleImage = banditIdle, attackImage = banditAttack, deathImage = banditDead){
+  constructor(idleImage = banditIdle, attackImage = banditAttack, deathImage = banditDead, deathFrameNumber = 7){
     this.name = 'Opponent_Placeholder'
     this.hp = starting_hitpoints
     this.MAX_HP = starting_hitpoints
@@ -22,6 +22,7 @@ class opponent {
     this.idleImage = idleImage
     this.attackImage = attackImage
     this.deathImage = deathImage
+    this.deathFrameNumber = deathFrameNumber
     this.isDead = () => { return this.hp <= 0}
   }
 }
