@@ -14,13 +14,14 @@ import fightRoundsReducer from './Reducers/fightRoundsReducer';
 import fightRounds from './Components/fight/fightRounds';
 import FightRoundsContext from './config/fightRoundsContext';
 import ShopCanvas from './Components/canvas/shopCanvas';
+import King from './Components/classes/king';
 
 
 function App() {
 
   const [FightRounds, dispatchFight] = useReducer(fightRoundsReducer, fightRounds)
   const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
-  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
+  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new King())
   
   return (
       

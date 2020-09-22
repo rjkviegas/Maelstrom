@@ -1,3 +1,4 @@
+import King from "../Components/classes/king";
 import opponent from "../Components/opponent/opponent";
 
 export default function opponentReducer(state, action) {
@@ -12,7 +13,7 @@ export default function opponentReducer(state, action) {
       case "unset_attack": 
         return { ...state, is_atacking: action.payload}   
       case "reset":
-        return action.payload;
+        return new King();
       default: 
         return {...state};
     }

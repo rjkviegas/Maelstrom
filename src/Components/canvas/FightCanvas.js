@@ -48,7 +48,7 @@ const FightCanvas = (props) => {
         } else {
           console.log("OpponentAttack set: true, Player take damage, PlayerAttack set: false")
           dispatchOpp({type: 'set_attack', payload: true});
-          dispatch({type: 'attacked', payload: Math.floor(Math.random()*50)});
+          dispatch({type: 'attacked', payload: Math.floor(Math.random()*5)});
           dispatch({type: 'set_attack', payload: false});
         }}, 1000 )
 

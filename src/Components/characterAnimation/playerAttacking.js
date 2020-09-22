@@ -21,6 +21,8 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     window.cancelAnimationFrame(animation)
   }
 
+  console.log(OpponentObj, OpponentObj.attackImage)
+
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
@@ -137,7 +139,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
             renderPlayerIdle();
             renderOpponentIdle();
           }
-          
+          if (bothAlive()){
           if(currentLoopIndex >= endFrame && character === wizardAttack && opponent === banditIdle) { character = wizardIdle}
           if(character === wizardAttack && opponent === banditIdle) {
             if (currentLoopIndex <= endFrame) {
@@ -167,6 +169,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
               renderOpponentIdle(); // idle bandit
             }
           }
+        }
           
         if (currentLoopIndex >= endFrame) { currentLoopIndex = 0}
         currentLoopIndex++;
