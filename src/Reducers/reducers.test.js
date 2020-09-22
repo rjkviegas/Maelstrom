@@ -1,7 +1,4 @@
 import playerReducer from './playerReducer.js';
-import * as actions from '../Actions/index.js'
-
-actions.attack = jest.fn()
 
 describe('player reducer', () => {
   it('should return the initial state', () => {
