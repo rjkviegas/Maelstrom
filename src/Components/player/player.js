@@ -18,6 +18,7 @@ class player {
     this.toggleAttack = function() {
       return this.is_attacking = !this.is_attacking
     }
+    this.money = 0;
   }
 
 }

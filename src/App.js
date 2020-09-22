@@ -14,29 +14,42 @@ import { BackgroundMusic } from './Components/music/music';
 import fightRoundsReducer from './Reducers/fightRoundsReducer';
 import fightRounds from './Components/fight/fightRounds';
 import FightRoundsContext from './config/fightRoundsContext';
+import ShopCanvas from './Components/canvas/shopCanvas';
+
 
 function App() {
+
   const [FightRounds, dispatchFight] = useReducer(fightRoundsReducer, fightRounds)
   const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
   
   return (
+      
       <div className="App">
       <header className="App-header">
-        <Router><h1>Maelstrom</h1>
+        <Router><h1>Maelstrom</h1> 
           <Switch> 
+
             <Route exact path='/'>
               <Link to="/startgame" data-testid="menu_link">Start Game</Link>
-              </Route>
+            </Route>
+
             <Route exact path='/startgame'>
               <Link to="/play" data-testid="play_link">Menu</Link>
-              {/* <Menu/> */}
             </Route>
+
             <Route exact path='/play'>
               <Link to="/fight" data-testid="fight">Fight</Link>
               <Link to="/shop">Shop</Link>
               <Link to="/character">Your character</Link>
             </Route>
+
+            <Route exact path='/shop'>
+              <PlayerContext.Provider value={{PlayerObj}}>
+                <ShopCanvas />
+              </PlayerContext.Provider>
+            </Route>
+
             <Route exact path='/fight'>
               <PlayerContext.Provider value={{PlayerObj, dispatch}}>
                 <OpponentContext.Provider value={{OpponentObj, dispatchOpp}}>
@@ -47,6 +60,7 @@ function App() {
                 </OpponentContext.Provider>
               </PlayerContext.Provider>
             </Route>
+
           </Switch>
         </Router>
         <BackgroundMusic/>

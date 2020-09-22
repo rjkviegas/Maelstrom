@@ -81,7 +81,7 @@ const FightCanvas = (props) => {
     
     return (
     <div>
-      <div id="healthbars">
+      <div id="healthbars" data-testid="healthbars">
         <PlayerHealthBar PlayerObj={PlayerObj}/>
         <OpponentHealthBar OpponentObj={OpponentObj}/>
        </div>
