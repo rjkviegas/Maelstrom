@@ -161,7 +161,6 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
 
           if(character === wizardIdle  && opponent === banditAttack) {
             if(!bothAttacked) {
-              console.log("attack test", animation_time)
               if(!finalTurnCompleted) { currentLoopIndex = 0; finalTurnCompleted = true; } 
               renderPlayerIdle();
               renderOpponentAttack(); // attacking bandit 

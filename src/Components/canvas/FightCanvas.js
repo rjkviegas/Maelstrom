@@ -29,54 +29,44 @@ const FightCanvas = (props) => {
       
       canvas = canvasRef.current
       ctx = canvas.getContext('2d')
-      //insert animation methods here
       console.log("USE EFFECT TRIGGERED")
       if(PlayerObj.is_attacking && OpponentObj.is_attacking) {
         dispatch({type: 'set_attack', payload: false});
         dispatchOpp({type: 'set_attack', payload: false});
         dispatchFight({type: 'next_round', payload: 1})
-
         return
       } else {
         AttackAnimation(PlayerObj, OpponentObj, canvas, ctx);
       }
 
-      if(PlayerObj.is_attacking && !OpponentObj.is_attacking) {
-        if (OpponentObj.is_attacking || !PlayerObj.is_attacking) { return }
-          
-        console.log("Play attack triggered")
-          setTimeout(() => { 
-            if(OpponentObj.hp < 0) {
-              console.log("Stopped here!")
-              return 
-            } else {
-              console.log("Stopped here 2")
-              dispatchOpp({type: 'set_attack', payload: true});
-              dispatch({type: 'attacked', payload: Math.floor(Math.random()*50)});
-              dispatch({type: 'set_attack', payload: false});
-            }
-          }, 1000 )
+    if(PlayerObj.is_attacking || OpponentObj.is_attacking) {   
+      
+      setTimeout(() => { 
+        if(OpponentObj.hp < 0) {
+          console.log("Stopped here!")
+          return 
+        } else {
+          console.log("OpponentAttack set: true, Player take damage, PlayerAttack set: false")
+          dispatchOpp({type: 'set_attack', payload: true});
+          dispatch({type: 'attacked', payload: Math.floor(Math.random()*50)});
+          dispatch({type: 'set_attack', payload: false});
+        }}, 1000 )
 
-      } else if (OpponentObj.is_attacking && !PlayerObj.is_attacking) {
-        if (!OpponentObj.is_attacking || PlayerObj.is_attacking) { return }
-          
-        console.log("Opponent attack triggered")  
-          setTimeout(() => {    
-            dispatchOpp({type: 'set_attack', payload: false})
-          }, 2000 );
+      setTimeout(() => {    
+        console.log("OpponentAttack set: false")  
+        dispatchOpp({type: 'set_attack', payload: false})}, 2000 );
 
-      } else if (!OpponentObj.is_attacking && !PlayerObj.is_attacking) {
-        if (OpponentObj.is_attacking || PlayerObj.is_attacking) { return }
-          
+      if (!OpponentObj.is_attacking && !PlayerObj.is_attacking) {          
         console.log("IDLE TIME")
-
       } else {
-          console.log("wtf? Player: " + PlayerObj.is_attacking + "| Opponent: " + OpponentObj.is_attacking)
+        console.log("wtf? Player: " + PlayerObj.is_attacking + "| Opponent: " + OpponentObj.is_attacking)
       }
+
       return () => {
         window.cancelAnimationFrame(animationFrameId)
       } 
-    },[PlayerObj])
+    }
+  },[PlayerObj])
     
     return (
     <div>
