@@ -105,7 +105,7 @@ export default function PlayerSpecialAttackAnimation(PlayerObj, OpponentObj, can
         //   }
         // }
         
-        if (currentLoopIndex >= 7) { currentLoopIndex = 0}
+        if (currentLoopIndex >= 7) { return }
         currentLoopIndex++;
         animation_time++; 
     }

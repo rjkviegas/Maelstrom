@@ -67,7 +67,8 @@ const FightCanvas = (props) => {
       } else if (PlayerObj.is_special_attacking) {
         console.log("special attack time!")
         PlayerSpecialAttackAnimation(PlayerObj, OpponentObj, canvas, ctx)
-
+        
+       
       } else {
 
         //IdleAnimation(PlayerObj, OpponentObj, canvas, ctx); 
