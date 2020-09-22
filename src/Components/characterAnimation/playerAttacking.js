@@ -24,7 +24,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   console.log(PlayerObj.hp, OpponentObj.hp)
 
   //canvas.currentActor = 'playerAttackAnimation'
-
+  console.log(OpponentObj)
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
@@ -44,7 +44,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
  
   const loadOne = () => { OpponentObj.idleImage.onload = loadTwo() }
   const loadTwo = () => { PlayerObj.idleImage.onload = loadThree()}
-  const loadThree = () => { OpponentObj.attackImage = loadFour();}
+  const loadThree = () => { OpponentObj.attackImage.onload = loadFour();}
   const loadFour = () => { PlayerObj.deathImage.onload = loadFive() }
   const loadFive = () => { 
     character = (PlayerObj.is_attacking || OpponentObj.is_attacking) ? wizardAttack : "idle"; 
@@ -124,7 +124,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
               renderOpponentIdle(); // bandit idle
               renderPlayerDeathFrame(); // Wizard Dead Frame
             }
-          } else { // opponent is dead
+          } else if (opponentDead()) { // opponent is dead
             if(!deathAnimSwitch && !finalSwing) {
               if(currentLoopIndex === endFrame) { deathAnimSwitch = true; finalSwing = true;}
               renderPlayerAttack();
