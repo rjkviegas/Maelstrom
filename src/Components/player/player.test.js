@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Player } from "./player";
+import { Player } from "./player"
 import PlayerContext from '../../config/playerContext.js'
 import { render, cleanup } from "@testing-library/react";
 

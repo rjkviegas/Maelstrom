@@ -1,15 +1,16 @@
 import React,{ useContext } from 'react'
 import PlayerContext from '../../config/playerContext.js'
-import { wizardAttack } from '../characterAnimation/wizard/wizard_attack.js';
 import { wizardIdle } from '../characterAnimation/wizard/wizard_idle.js'
 
-const starting_hitpoints = 100;
+const STARTING_HITPOINTS = 100;
+const STARTING_GOLD = 0;
+
 class player {
 
   constructor() {
     this.name = 'placeholder'
-    this.hp = starting_hitpoints
-    this.MAX_HP = starting_hitpoints
+    this.hp = STARTING_HITPOINTS
+    this.MAX_HP = STARTING_HITPOINTS
     this.is_attacking = false
     this.current_avatar = wizardIdle
     this.current_avatar_text = function() {
@@ -18,9 +19,8 @@ class player {
     this.toggleAttack = function() {
       return this.is_attacking = !this.is_attacking
     }
-    this.money = 0;
+    this.money = STARTING_GOLD;
   }
-
 }
 
 export default player;
