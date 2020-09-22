@@ -11,12 +11,15 @@ import opponentReducer from './Reducers/opponentReducer.js'
 import Fight from './Components/fight/fight.js'
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { BackgroundMusic } from './Components/music/music';
+import fightRoundsReducer from './Reducers/fightRoundsReducer';
+import fightRounds from './Components/fight/fightRounds';
+import FightRoundsContext from './config/fightRoundsContext';
 
 function App() {
-
+  const [FightRounds, dispatchFight] = useReducer(fightRoundsReducer, fightRounds)
   const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
- 
+  
   return (
       <div className="App">
       <header className="App-header">
@@ -37,8 +40,10 @@ function App() {
             <Route exact path='/fight'>
               <PlayerContext.Provider value={{PlayerObj, dispatch}}>
                 <OpponentContext.Provider value={{OpponentObj, dispatchOpp}}>
-                  <FightCanvas/>
-                  <Fight/>
+                  <FightRoundsContext.Provider value={{FightRounds, dispatchFight}}>
+                    <FightCanvas/>
+                    <Fight/>
+                  </FightRoundsContext.Provider>
                 </OpponentContext.Provider>
               </PlayerContext.Provider>
             </Route>

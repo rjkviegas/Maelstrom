@@ -78,12 +78,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
           if (currentLoopIndex <= 7) {
             drawFrame(sprites[0], sprites[0].cycleLoop[currentLoopIndex], playerAttackSrcY, 0, 0);
             drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); //idle bandit
-          } /* else {
-            if (!playerAttackToIdle) { currentLoopIndex = 0; playerAttackToIdle = true;}
-            drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0);
-            drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // idle bandit
-            console.log("???")
-          } */
+          }
         }
         if(currentLoopIndex >= 7 && character === wizardIdle && opponent === banditIdle) {let putStallLogicHere = true}
         if(currentLoopIndex >= 7 && character === wizardIdle && opponent === banditIdle) { character = wizardIdle; opponent = banditAttack}
@@ -93,13 +88,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
             console.log("test 71",  currentLoopIndex)
             drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // idle wizard
             drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // idle bandit
-            if (currentLoopIndex === 7) { }
-          } /* else {
-            console.log("test 75")
-            //if (!opponentIdleToAttack) { currentLoopIndex = 0; opponentIdleToAttack = true; opponent = banditAttack}
-            drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // idle wizard
-            drawFrame(sprites[3], sprites[3].cycleLoop[currentLoopIndex], opponentAttackSrcY, 0, 0); // attacking bandit    
-          } */
+          } 
         }
 
         if(character === wizardIdle  && opponent === banditAttack) {
@@ -115,9 +104,6 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
             drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // idle bandit
           }
         }
-      /*   if(character === wizardIdle && opponent == banditAttack) {
-          if(currentLoopIndex <= 7 && )
-        } */
         
         if (currentLoopIndex >= 7) { currentLoopIndex = 0}
         currentLoopIndex++;

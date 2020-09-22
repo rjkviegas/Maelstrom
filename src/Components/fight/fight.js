@@ -4,23 +4,21 @@ import OpponentContext from '../../config/opponentContext.js'
 import { Player } from '../../Components/player/player.js'
 import opponent,{ Opponent } from '../../Components/opponent/opponent.js'
 import { Link } from 'react-router-dom'
+import FightRoundsContext from '../../config/fightRoundsContext.js'
 export default function Fight() {
 
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
-    const {  OpponentObj, dispatchOpp } = useContext(OpponentContext);
+    const { OpponentObj, dispatchOpp } = useContext(OpponentContext);
+    const { FightRounds, dispatchFight } = useContext(FightRoundsContext)
 
     const handleAttack = () => {
-      if(PlayerObj.hp < 0) { return }
-      dispatch({type: 'set_attack', payload: true});
-      dispatchOpp({type: 'attacked', payload: 20});
-
-    
-      /* setTimeout(() => { */
-/*       dispatchOpp({type: 'set_attack', payload: true});
-      dispatch({type: 'attacked', payload: 15}); */
-      /* }, 1500) */
-     
-      // changeAnimation(2000);
+      if(PlayerObj.hp < 0) { 
+        return 
+      } else {
+        dispatchFight({type: 'next_round', payload: 1})
+        dispatch({type: 'set_attack', payload: true});
+        dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*10)});
+      }
     }
 
     function handleNewFight(){
@@ -29,13 +27,6 @@ export default function Fight() {
       dispatch({type: 'reset', payload: {...PlayerObj, hp: PlayerObj.MAX_HP}})
       dispatchOpp({type: 'reset', payload: new opponent()})
     }
-    // const changeAnimation = (delay) => {
-    //   dispatch({type: 'attackAnimation', payload: true})
-    //   setTimeout(() => {
-    //       console.log("Changing Animation");
-    //       dispatch({type: 'attackAnimation', payload: false})
-    //       }, delay)
-    // }
 
     return (
     <div>
