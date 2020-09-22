@@ -39,11 +39,13 @@ const FightCanvas = (props) => {
         return
       } else {
         AttackAnimation(PlayerObj, OpponentObj, canvas, ctx);
+      
+        console.log(1)
       }
 
       if(PlayerObj.is_attacking && !OpponentObj.is_attacking) {
         if (OpponentObj.is_attacking || !PlayerObj.is_attacking) { return }
-
+        console.log(2)
         //canvas.currentActor = "PlayerAttackAnimation"
         setTimeout(() => { 
           if(OpponentObj.hp < 0) {
@@ -58,7 +60,7 @@ const FightCanvas = (props) => {
         }, 1000 )
       } else if (OpponentObj.is_attacking && !PlayerObj.is_attacking) {
         if (!OpponentObj.is_attacking || PlayerObj.is_attacking) { return }
-
+        console.log(3)
         
         setTimeout(() => { 
           //OpponentAttackAnimation(OpponentObj, canvas, ctx);    
@@ -66,20 +68,24 @@ const FightCanvas = (props) => {
         }, 2000 );
       } else if (PlayerObj.is_special_attacking) {
         console.log("special attack time!")
+        
         PlayerSpecialAttackAnimation(PlayerObj, OpponentObj, canvas, ctx)
+       
         setTimeout(() => { 
           if(OpponentObj.hp < 0) {
 
             return 
           } else {
-     
+         
             dispatchOpp({type: 'set_attack', payload: true});
             dispatch({type: 'attacked', payload: Math.floor(Math.random()*10)});
             dispatch({type: 'set_special_attack', payload: false});
             dispatch({type: 'set_attack', payload: false});
+       
+          
           }
         }, 1000 )
-       
+       console.log(4)
       } else {
 
         //IdleAnimation(PlayerObj, OpponentObj, canvas, ctx); 

@@ -6,7 +6,7 @@ import React, { useContext } from 'react'
 import { banditAttack } from './bandit/bandit_attack.js';
 const framespersecond = 16
 let animation; let animation_time = 0;
-export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ctx) {
+export default function AttackAnimation(PlayerObj, OpponentObj, canvas, ctx) {
   let endframe; let bothAttacked = false; let finalTurnCompleted = false;
   let sprites; let character; let opponent;
   let playerAttackSrcY = 0; let opponentIdleSrcY = 0; 
