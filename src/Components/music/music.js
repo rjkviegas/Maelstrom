@@ -9,7 +9,7 @@ export function BackgroundMusic() {
     const playMusic = function() {
         music.background.play()
         music.background.loop = true;
-        music.background.volume = 0.3
+        music.background.volume = 0.1
     }
 
     music.background.onload = playMusic()  
