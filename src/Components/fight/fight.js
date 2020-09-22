@@ -17,7 +17,7 @@ export default function Fight() {
       } else {
         dispatchFight({type: 'next_round', payload: 1})
         dispatch({type: 'set_attack', payload: true});
-        dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*10)});
+        dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*1000)});
       }
     }
 
