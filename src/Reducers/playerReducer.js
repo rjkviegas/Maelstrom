@@ -8,6 +8,8 @@ export default function playerReducer(state, action) {
         return {...state, name: action.payload}
       case "set_attack": 
         return { ...state, is_attacking: action.payload}
+      case "set_special_attack":
+        return {...state, is_special_attacking: action.payload}
       case "unset_attack": 
         return { ...state, is_atacking: action.payload} 
       case "reset":

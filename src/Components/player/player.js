@@ -11,6 +11,7 @@ class player {
     this.hp = starting_hitpoints
     this.MAX_HP = starting_hitpoints
     this.is_attacking = false
+    this.is_special_attacking = false
     this.current_avatar = wizardIdle
     this.current_avatar_text = function() {
       if (this.current_avatar === wizardIdle ) { return "wizard idle" } else { return "wizard attacking"}
