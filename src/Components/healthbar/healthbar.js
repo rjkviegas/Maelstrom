@@ -7,32 +7,11 @@ function PlayerHealthBar({PlayerObj}) {
   return (
     <div className="health-bar">
       <div className="health-bar-glass">
-          <div className="health-bar-fluid anim-width" data-testid="player-health-bar" style={{width: barWidth}}></div>
+        <div className="health-bar-fluid anim-width" data-testid="player-health-bar" style={{width: barWidth,  fontSize: '10px', textAlign: 'center'}}>{PlayerObj.hp < 0 ? 0 : PlayerObj.hp}</div>
       </div>
     </div>
   )
 }
-
-    // function renderPlayerHealthBar() {
-    //   var node = PlayerHealthBar();
-    //   const canvas = document.getElementById('game-area')
-    //   const context = canvas.getContext('2d')
-
-    //   const PlayerHealthBarImage = () => {  
-    //     domtoimage.toPng(node)
-    //       .then (function (dataUrl) {
-    //           var img = new Image();
-    //           img.src = dataUrl;
-    //           document.appendChild(img);
-    //       })
-    //       .catch(function (error) {
-    //           console.error('oops, something went wrong!', error);
-    //       });
-    //   }
-
-    //   context.drawImage(PlayerHealthBarImage(), 0,0);
-    //   }
-
 
 export default PlayerHealthBar;
 

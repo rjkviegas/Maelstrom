@@ -6,7 +6,7 @@ import { wizardIdle } from '../characterAnimation/wizard/wizard_idle.js'
 
 const STARTING_HITPOINTS = 100;
 const STARTING_GOLD = 0;
-
+const VICTORIES = 0;
 class Player {
 
   constructor(idleImage = wizardIdle, attackImage = wizardAttack, deathImage = wizardDead, deathFrameNumber = 7) {
@@ -23,8 +23,9 @@ class Player {
     this.attackImage = attackImage
     this.deathImage = deathImage
     this.deathFrameNumber = deathFrameNumber
+    
     this.isDead = () => { return this.hp <= 0}
-
+    this.victories = VICTORIES;
   }
 }
 
