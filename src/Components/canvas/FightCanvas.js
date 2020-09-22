@@ -67,7 +67,18 @@ const FightCanvas = (props) => {
       } else if (PlayerObj.is_special_attacking) {
         console.log("special attack time!")
         PlayerSpecialAttackAnimation(PlayerObj, OpponentObj, canvas, ctx)
-        
+        setTimeout(() => { 
+          if(OpponentObj.hp < 0) {
+
+            return 
+          } else {
+     
+            dispatchOpp({type: 'set_attack', payload: true});
+            dispatch({type: 'attacked', payload: Math.floor(Math.random()*10)});
+            dispatch({type: 'set_special_attack', payload: false});
+            dispatch({type: 'set_attack', payload: false});
+          }
+        }, 1000 )
        
       } else {
 
