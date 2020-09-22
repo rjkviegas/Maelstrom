@@ -54,34 +54,34 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   PlayerObj.attackImage.onload = loadOne()
 
   function renderPlayerDead() {
-    drawFrame(PlayerObj.deathImage, PlayerObj.deathImage.cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // DEAD PLAYER
+    drawFrame(PlayerObj.deathImage, PlayerObj.deathImage.cycleLoop[currentLoopIndex], PlayerObj.deathSourceY, 0, 0); // DEAD PLAYER
   }
 
   function renderPlayerIdle() {
-    drawFrame(PlayerObj.idleImage, PlayerObj.idleImage.cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // IDLE PLAYER
+    drawFrame(PlayerObj.idleImage, PlayerObj.idleImage.cycleLoop[currentLoopIndex], PlayerObj.idleSourceY, 0, 0); // IDLE PLAYER
   }
 
   function renderOpponentIdle(){
-    drawFrame(OpponentObj.idleImage, OpponentObj.idleImage.cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // OPPONENT IDLE
+    drawFrame(OpponentObj.idleImage, OpponentObj.idleImage.cycleLoop[currentLoopIndex], OpponentObj.idleSourceY, 0, 0); // OPPONENT IDLE
   }
 
   function renderPlayerAttack(){
-    drawFrame(PlayerObj.attackImage, PlayerObj.attackImage.cycleLoop[currentLoopIndex], playerAttackSrcY, 0, 0); // ATTACKING PLAYER
+    drawFrame(PlayerObj.attackImage, PlayerObj.attackImage.cycleLoop[currentLoopIndex], PlayerObj.attackSourceY, 0, 0); // ATTACKING PLAYER
   }
   function renderOpponentDead(){
-  drawFrame(OpponentObj.deathImage, OpponentObj.deathImage.cycleLoop[currentLoopIndex], banditDeadSrcY, 0, 0); // DEAD OPPONENT   
+  drawFrame(OpponentObj.deathImage, OpponentObj.deathImage.cycleLoop[currentLoopIndex], OpponentObj.deathSourceY, 0, 0); // DEAD OPPONENT   
   }
 
   function renderOpponentAttack() {
-    drawFrame(OpponentObj.attackImage, OpponentObj.attackImage.cycleLoop[currentLoopIndex], opponentAttackSrcY, 0, 0); // ATTACKING OPPONENT
+    drawFrame(OpponentObj.attackImage, OpponentObj.attackImage.cycleLoop[currentLoopIndex], OpponentObj.attackSourceY, 0, 0); // ATTACKING OPPONENT
   }
 
   function renderOpponentDeathFrame() {
-    drawFrame(OpponentObj.deathImage, OpponentObj.deathFrameNumber, banditDeadSrcY, 0, 0);
+    drawFrame(OpponentObj.deathImage, OpponentObj.deathFrameNumber, OpponentObj.deathSourceY, 0, 0);
   }
 
   function renderPlayerDeathFrame() {
-    drawFrame(PlayerObj.deathImage, PlayerObj.deathFrameNumber, opponentIdleSrcY, 0, 0); // DEAD PLAYER
+    drawFrame(PlayerObj.deathImage, PlayerObj.deathFrameNumber, PlayerObj.deathSourceY, 0, 0); // DEAD PLAYER
   }
 
   function anyDead() {

@@ -3,7 +3,7 @@ import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import { Player } from '../../Components/player/player.js'
 import opponent,{ Opponent } from '../../Components/opponent/opponent.js'
-import { Link } from 'react-router-dom'
+import { Link, Route, Router } from 'react-router-dom'
 import FightRoundsContext from '../../config/fightRoundsContext.js'
 
 export default function Fight() {
@@ -47,8 +47,8 @@ export default function Fight() {
         (anyDead() ? 
           <div>Attack disappears</div> : 
           <div><button data-testid = 'attack_button' style={{visibility: anyPlayerAttacking() && bothAlive() ? 'hidden' : 'visible' }} onClick={() =>handleAttack()}>Attack</button></div>) : //MAIN FALSE
-      (PlayerObj.hp <= 0 ? <div><h1>YOU LOSE</h1><div><button onClick={handleNewFight}><Link to='/play'>Go back</Link></button></div> </div> : 
-        <div><h1>YOU WIN</h1> <div><button onClick={handleNewFight}><Link to='/play'>Go back</Link></button></div></div>)}
+      (PlayerObj.hp <= 0 ? <div><h1>YOU LOSE</h1><div><button onClick={handleNewFight}><Router><Route><Link to='/play'>Go back</Link></Route></Router></button></div> </div> : 
+        <div><h1>YOU WIN</h1> <div><button onClick={handleNewFight}><Router><Route><Link to='/play'>Go back</Link></Route></Router></button></div></div>)}
 
     </div>
     )

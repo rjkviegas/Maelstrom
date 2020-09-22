@@ -19,6 +19,9 @@ class opponent {
     this.MAX_HP = starting_hitpoints
     this.is_attacking = false;
     this.money = 0
+    this.idleSourceY = 0
+    this.deathSourceY = 3
+    this.attackSourceY = 2
     this.idleImage = idleImage
     this.attackImage = attackImage
     this.deathImage = deathImage
