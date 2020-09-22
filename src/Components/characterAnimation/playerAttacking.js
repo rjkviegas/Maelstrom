@@ -6,7 +6,7 @@ import React, { useContext } from 'react'
 import { banditAttack } from './bandit/bandit_attack.js';
 const framespersecond = 16
 let animation; let animation_time = 0;
-export default function PlayerAttackAnimation(playerObj, canvas, ctx) {
+export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ctx) {
   let endframe; let bothAttacked = false; let finalTurnCompleted = false;
   let sprites; let character; let opponent;
   let playerAttackSrcY = 0; let opponentIdleSrcY = 0; 
@@ -36,7 +36,7 @@ export default function PlayerAttackAnimation(playerObj, canvas, ctx) {
  
   const loadOne = () => { sprites[1].onload = loadTwo() }
   const loadTwo = () => {sprites[2].onload = loadThree()}
-  const loadThree = () => { character = wizardAttack; opponent = banditIdle; sprites[3].onload = init(framespersecond)}
+  const loadThree = () => { character = (PlayerObj.is_attacking || OpponentObj.is_attacking) ? wizardAttack : "idle"; opponent = (PlayerObj.is_attacking || OpponentObj.is_attacking) ? banditIdle : "idle"; sprites[3].onload = init(framespersecond)}
      
   sprites = [wizardAttack, banditIdle, wizardIdle, banditAttack];
   sprites[0].onload = loadOne()
@@ -69,6 +69,10 @@ export default function PlayerAttackAnimation(playerObj, canvas, ctx) {
       then = now - (elapsed % fpsInterval);
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (character === "idle" && opponent === "idle") {
+          drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // idle wizard
+          drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // idle bandit
+        }
         if(currentLoopIndex >= 7 && character === wizardAttack && opponent === banditIdle) { character = wizardIdle}
         if(character === wizardAttack && opponent === banditIdle) {
           if (currentLoopIndex <= 7) {
@@ -134,7 +138,7 @@ export default function PlayerAttackAnimation(playerObj, canvas, ctx) {
     }
 
   return () => {
-      
+    window.cancelAnimationFrame(animation)
   } 
 }
 

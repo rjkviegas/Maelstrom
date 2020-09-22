@@ -20,38 +20,47 @@ const FightCanvas = (props) => {
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext)
     let animationFrameId;
+
+    
+   
     
     useEffect(() => {
-
       canvas = canvasRef.current
       ctx = canvas.getContext('2d')
-
       //insert animation methods here
       console.log("USE EFFECT TRIGGERED")
+      if(PlayerObj.is_attacking && OpponentObj.is_attacking) {
+        return
+      } else {
+        AttackAnimation(PlayerObj, OpponentObj, canvas, ctx);
+      }
+
       if(PlayerObj.is_attacking && !OpponentObj.is_attacking) {
         if (OpponentObj.is_attacking || !PlayerObj.is_attacking) { return }
         console.log("Play attack triggered")
         //canvas.currentActor = "PlayerAttackAnimation"
-        AttackAnimation(PlayerObj, canvas, ctx); 
-        PlayerObj.toggleAttack();
-        console.log(PlayerObj.is_attacking)
         setTimeout(() => { 
-          dispatchOpp({type: 'set_attack', payload: true});
-          dispatch({type: 'attacked', payload: 15});
-          dispatch({type: 'set_attack', payload: false});
+          if(OpponentObj.hp < 0) { 
+            return 
+          } else {
+            dispatchOpp({type: 'set_attack', payload: true});
+            dispatch({type: 'attacked', payload: 15});
+            dispatch({type: 'set_attack', payload: false});
+          }
         }, 1000 )
       } else if (OpponentObj.is_attacking && !PlayerObj.is_attacking) {
         if (!OpponentObj.is_attacking || PlayerObj.is_attacking) { return }
         console.log("Opponent attack triggered")
+        
         setTimeout(() => { 
-          //OpponentAttackAnimation(OpponentObj, canvas, ctx);
+          //OpponentAttackAnimation(OpponentObj, canvas, ctx);    
           dispatchOpp({type: 'set_attack', payload: false})
         }, 2000 );
       } else if (!OpponentObj.is_attacking && !PlayerObj.is_attacking) {
         if (OpponentObj.is_attacking || PlayerObj.is_attacking) { return }
         //canvas.currentActor = "idleAnimation"
-        /* console.log("IDLE TIME")
-        setTimeout(() => { IdleAnimation(PlayerObj, OpponentObj, canvas, ctx);  },1000) */
+        console.log("IDLE TIME")
+        //setTimeout(() => { IdleAnimation(PlayerObj, OpponentObj, canvas, ctx);  },1000)
 
       } else {
         console.log("wtf? Player: " + PlayerObj.is_attacking + "| Opponent: " + OpponentObj.is_attacking)
