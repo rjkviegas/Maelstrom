@@ -58,28 +58,37 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   sprites[0].onload = loadOne()
 
   function renderPlayerDead() {
-    drawFrame(sprites[4], sprites[4].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // Wizard Dead
+    drawFrame(sprites[4], sprites[4].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // DEAD PLAYER
   }
 
   function renderPlayerIdle() {
-    drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // idle wizard
+    drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // IDLE PLAYER
   }
 
   function renderOpponentIdle(){
-    drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // idle bandit
+    drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // OPPONENT IDLE
   }
 
-  function renderPlayerAttacking(){
-    drawFrame(sprites[0], sprites[0].cycleLoop[currentLoopIndex], playerAttackSrcY, 0, 0); //player attacking
+  function renderPlayerAttack(){
+    drawFrame(sprites[0], sprites[0].cycleLoop[currentLoopIndex], playerAttackSrcY, 0, 0); // ATTACKING PLAYER
   }
   function renderOpponentDead(){
-  drawFrame(sprites[5], sprites[5].cycleLoop[currentLoopIndex], banditDeadSrcY, 0, 0); // bandit dead    
+  drawFrame(sprites[5], sprites[5].cycleLoop[currentLoopIndex], banditDeadSrcY, 0, 0); // DEAD OPPONENT   
   }
 
   function renderOpponentAttack() {
-    drawFrame(sprites[3], sprites[3].cycleLoop[currentLoopIndex], opponentAttackSrcY, 0, 0); // attacking bandit 
+    drawFrame(sprites[3], sprites[3].cycleLoop[currentLoopIndex], opponentAttackSrcY, 0, 0); // ATTACKING OPPONENT
   }
 
+  function renderOpponentDeathFrame() {
+    drawFrame(sprites[5], 7, banditDeadSrcY, 0, 0);
+  }
+
+  function renderPlayerDeathFrame() {
+    drawFrame(sprites[4], 7, opponentIdleSrcY, 0, 0); // DEAD PLAYER
+  }
+
+  
 
   function render() {
     if (animation) {
@@ -101,24 +110,22 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
           if (character === "dead") { // player is dead
             if (!deathAnimSwitch && !finalSwing) {
               if(currentLoopIndex === 7) { deathAnimSwitch = true; finalSwing = true;}
-              drawFrame(sprites[4], sprites[4].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // Wizard Dead
-              drawFrame(sprites[3], sprites[3].cycleLoop[currentLoopIndex], opponentAttackSrcY, 0, 0); // attacking bandit 
+              renderPlayerDead();
+              renderOpponentAttack(); // attacking bandit 
             } else {
-              drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // bandit idle
-              drawFrame(sprites[4], 7, opponentIdleSrcY, 0, 0); // Wizard Dead Frame
+              renderOpponentIdle(); // bandit idle
+              renderPlayerDeathFrame(); // Wizard Dead Frame
             }
           } else { // opponent is dead
             //drawFrame(sprites[0], sprites[0].cycleLoop[currentLoopIndex], playerAttackSrcY, 0, 0); // Wizard Attack
             //drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // Wizard Idle
             if(!deathAnimSwitch && !finalSwing) {
               if(currentLoopIndex === 7) { deathAnimSwitch = true; finalSwing = true;}
-              drawFrame(sprites[0], sprites[0].cycleLoop[currentLoopIndex], playerAttackSrcY, 0, 0); // Wizard Attack
-             
-              
-          
+              renderPlayerAttack();
+              renderOpponentDead();
             } else {
-              drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // Wizard Idle
-              drawFrame(sprites[5], 7, banditDeadSrcY, 0, 0); // Bandit dead frame
+              renderPlayerIdle(); // Wizard Idle
+              renderOpponentDeathFrame(); // Bandit dead frame
             }         
           }
         }
@@ -132,19 +139,17 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
           if(currentLoopIndex >= 7 && character === wizardAttack && opponent === banditIdle) { character = wizardIdle}
           if(character === wizardAttack && opponent === banditIdle) {
             if (currentLoopIndex <= 7) {
-              drawFrame(sprites[0], sprites[0].cycleLoop[currentLoopIndex], playerAttackSrcY, 0, 0); //attacking wizard
-              drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); //idle bandit
+              renderPlayerAttack(); //attacking wizard
+              renderOpponentIdle(); //idle bandit
             }
           }
 
-          
-          if(currentLoopIndex >= 7 && character === wizardIdle && opponent === banditIdle) {let putStallLogicHere = true}
           if(currentLoopIndex >= 7 && character === wizardIdle && opponent === banditIdle) { character = wizardIdle; opponent = banditAttack}
           if (character === wizardIdle && opponent === banditIdle) {
             if(currentLoopIndex <= 7){
               console.log("test 71",  currentLoopIndex)
-              drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // idle wizard
-              drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // idle bandit
+              renderPlayerIdle();              
+              renderOpponentIdle(); // idle bandit
             } 
           }
 
@@ -152,13 +157,13 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
             if(!bothAttacked) {
               console.log("attack test", animation_time)
               if(!finalTurnCompleted) { currentLoopIndex = 0; finalTurnCompleted = true; } 
-              drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // idle wizard
-              drawFrame(sprites[3], sprites[3].cycleLoop[currentLoopIndex], opponentAttackSrcY, 0, 0); // attacking bandit 
+              renderPlayerIdle();
+              renderOpponentAttack(); // attacking bandit 
               if(currentLoopIndex === 7 && finalTurnCompleted === true) {bothAttacked = true}
             } else {
               ctx.clearRect(0, 0, canvas.width, canvas.height);
-              drawFrame(sprites[2], sprites[2].cycleLoop[currentLoopIndex], playerIdleSrcY, 0, 0); // idle wizard
-              drawFrame(sprites[1], sprites[1].cycleLoop[currentLoopIndex], opponentIdleSrcY, 0, 0); // idle bandit
+              renderPlayerIdle();
+              renderOpponentIdle(); // idle bandit
             }
           }
           
