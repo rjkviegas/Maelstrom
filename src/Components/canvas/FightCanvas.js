@@ -43,7 +43,8 @@ const FightCanvas = (props) => {
 
       if(PlayerObj.is_attacking && !OpponentObj.is_attacking) {
         if (OpponentObj.is_attacking || !PlayerObj.is_attacking) { return }
-          console.log("Play attack triggered")
+          
+        console.log("Play attack triggered")
           setTimeout(() => { 
             if(OpponentObj.hp < 0) {
               console.log("Stopped here!")
@@ -51,21 +52,24 @@ const FightCanvas = (props) => {
             } else {
               console.log("Stopped here 2")
               dispatchOpp({type: 'set_attack', payload: true});
-              dispatch({type: 'attacked', payload: Math.floor(Math.random()*10)});
+              dispatch({type: 'attacked', payload: Math.floor(Math.random()*100)});
               dispatch({type: 'set_attack', payload: false});
             }
           }, 1000 )
+
       } else if (OpponentObj.is_attacking && !PlayerObj.is_attacking) {
         if (!OpponentObj.is_attacking || PlayerObj.is_attacking) { return }
-          console.log("Opponent attack triggered")
           
-          setTimeout(() => { 
-            //OpponentAttackAnimation(OpponentObj, canvas, ctx);    
+        console.log("Opponent attack triggered")  
+          setTimeout(() => {    
             dispatchOpp({type: 'set_attack', payload: false})
           }, 2000 );
+
       } else if (!OpponentObj.is_attacking && !PlayerObj.is_attacking) {
         if (OpponentObj.is_attacking || PlayerObj.is_attacking) { return }
-          console.log("IDLE TIME")
+          
+        console.log("IDLE TIME")
+
       } else {
           console.log("wtf? Player: " + PlayerObj.is_attacking + "| Opponent: " + OpponentObj.is_attacking)
       }
