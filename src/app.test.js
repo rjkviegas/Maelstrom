@@ -7,6 +7,7 @@ import FightCanvas from './Components/canvas/FightCanvas.js'
 import ReactDOM from "react-dom";
 import OpponentContext from './config/opponentContext.js'
 import PlayerContext from './config/playerContext.js'
+import FightRoundsContext from './config/fightRoundsContext';
 
 global.window = { location: { pathname: null } };
 
@@ -17,28 +18,7 @@ describe('App', () => {
           });
       });
 
-const OpponentObj  = { name: "Harry", hp: 100, MAX_HP: 100 };
-const PlayerObj = { name: "Ilja", hp: 100 };
-const fightRender = (
-  <PlayerContext.Provider value={{PlayerObj}}>
-      <OpponentContext.Provider value={{OpponentObj}}>
-        <FightCanvas />
-        <Fight />
-      </OpponentContext.Provider>
-  </PlayerContext.Provider>
-  )
-
 afterEach(cleanup);
-
-describe('App', () => {
-    it('renders attack button and health bar with 100% hp', () => {
-    const { getByTestId } = render(fightRender);
-    const element = getByTestId("health-bar-fluid")
-    expect(element.style.width).toEqual('100%');
-    expect(getByTestId('attack_button')).toBeTruthy();
-    
-    });
-});
 
 describe('App', () => {
 it('shows menu link', () => {
