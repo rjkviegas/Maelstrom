@@ -21,10 +21,6 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     window.cancelAnimationFrame(animation)
   }
 
-  console.log(PlayerObj.hp, OpponentObj.hp)
-
-  //canvas.currentActor = 'playerAttackAnimation'
-  console.log(OpponentObj)
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';

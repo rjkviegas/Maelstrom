@@ -56,12 +56,6 @@ const FightCanvas = (props) => {
         console.log("OpponentAttack set: false")  
         dispatchOpp({type: 'set_attack', payload: false})}, 2000 );
 
-      if (!OpponentObj.is_attacking && !PlayerObj.is_attacking) {          
-        console.log("IDLE TIME")
-      } else {
-        console.log("wtf? Player: " + PlayerObj.is_attacking + "| Opponent: " + OpponentObj.is_attacking)
-      }
-
       return () => {
         window.cancelAnimationFrame(animationFrameId)
       } 
