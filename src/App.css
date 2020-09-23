@@ -27,12 +27,13 @@
 }
 
 img#coin {
-  width: 50px;
+  width: 20px;
   height: auto;
 }
 
 .coins {
   right: 100px;
+  font-size: 15px;
 }
 
 /* CANVAS'  */
@@ -47,16 +48,25 @@ img#coin {
   background-position: center;
 }
 
-#shop {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  background-image: url('https://i.pinimg.com/originals/86/b8/2d/86b82d88b8d1e090370e509ac801a4fa.jpg');
-  background-size: contain;                      
-  background-repeat: no-repeat;
-  background-position: center;
+/* SHOP STUFF */
+#item {
+  padding: 20px;
+  margin: 20px;
 }
 
+.hide1 {
+  display: none;
+  font-size: 10px;
+  font-style: italic;
+  width: 300px;
+  right: 0;
+}
+
+.item1:hover + .hide1 {
+  position: relative;
+  display: block;
+  color: white;
+}
 
 /* FONT */
 @font-face {

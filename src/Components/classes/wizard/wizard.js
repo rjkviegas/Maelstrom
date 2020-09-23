@@ -6,7 +6,9 @@ import Character from '../character_super/character_super.js';
 const STARTING_HITPOINTS = 100;
 const STARTING_GOLD = 0;
 const VICTORIES = 0;
-class Player extends Character {
+const STARTING_STRENGTH = 0;
+
+export default class Wizard extends Character {
 
   constructor(idleImage = wizardIdle, attackImage = wizardAttack, deathImage = wizardDead, deathFrameNumber = 7, idleSourceY = 0, deathSourceY = 0, attackSourceY = 0) {
     super(idleImage, attackImage, deathImage, deathFrameNumber, idleSourceY, deathSourceY, attackSourceY)
@@ -16,8 +18,9 @@ class Player extends Character {
     this.current_avatar = wizardIdle
     this.money = STARTING_GOLD;
     this.victories = VICTORIES;
+    this.strength = STARTING_STRENGTH;
   }
 }
 
-export default Player;
+
 
