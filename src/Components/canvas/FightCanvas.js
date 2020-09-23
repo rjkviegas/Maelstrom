@@ -1,11 +1,11 @@
-import { OpponentHealthBar } from '../../Components/healthbar/enemyHealthbar'
+import OpponentHealthBar from '../../Components/healthbar/enemyHealthbar'
 import React, { createRef, useRef, useEffect, useContext} from 'react';
 import PlayerHealthBar from '../../Components/healthbar/healthbar'
 import IdleAnimation from '../characterAnimation/idleAnimation'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import AttackAnimation from '../characterAnimation/playerAttacking.js'
-import { Opponent } from '../opponent/opponent';
+import { Opponent } from '../classes/bandit/bandit';
 import OpponentAttackAnimation from '../characterAnimation/opponentAttacking';
 import FightRoundsContext from '../../config/fightRoundsContext';
 

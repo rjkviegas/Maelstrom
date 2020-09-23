@@ -1,6 +1,6 @@
-import { banditAttack } from "../characterAnimation/bandit/bandit_attack.js";
-import { banditDead } from "../characterAnimation/bandit/bandit_dead.js";
-import { banditIdle } from "../characterAnimation/bandit/bandit_idle.js";
+import { banditAttack } from "../../characterAnimation/bandit/bandit_attack.js";
+import { banditDead } from "../../characterAnimation/bandit/bandit_dead.js";
+import { banditIdle } from "../../characterAnimation/bandit/bandit_idle.js";
 
 
 const STARTING_HITPOINTS = 125;

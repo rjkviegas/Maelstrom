@@ -4,7 +4,7 @@ import PlayerContext from './config/playerContext.js';
 import playerReducer from './Reducers/playerReducer.js'
 import player, { Player } from './Components/player/player.js'
 import FightCanvas from './Components/canvas/FightCanvas.js'
-import opponent, { Opponent } from './Components/opponent/opponent.js';
+import Bandit from './Components/classes/bandit/bandit.js';
 import OpponentContext from './config/opponentContext.js';
 import opponentReducer from './Reducers/opponentReducer.js'
 import Fight from './Components/fight/fight.js'
@@ -14,7 +14,7 @@ import fightRoundsReducer from './Reducers/fightRoundsReducer';
 import fightRounds from './Components/fight/fightRounds';
 import FightRoundsContext from './config/fightRoundsContext';
 import ShopCanvas from './Components/canvas/shopCanvas';
-import King from './Components/classes/king';
+import King from './Components/classes/king/king.js';
 
 
 function App() {

@@ -1,19 +1,8 @@
 import React, { useContext } from 'react';
 import OpponentContext from '../../config/opponentContext';
 import './healthbar.css'
-let enemyHpPlaceholder = "80%"
 
-const enemyHealthbar = (
-
-  <div className="enemy-health-bar">
-      <div className="health-bar-glass">
-          <div className="health-bar-fluid anim-width" style={{width: enemyHpPlaceholder}}></div>
-      </div>
-  </div>
-)
-
-export function OpponentHealthBar() {
-  const { OpponentObj }  = useContext(OpponentContext)
+export default function OpponentHealthBar({OpponentObj}) {
   let barWidth = (OpponentObj.hp <= 0) ? "0%" : ((OpponentObj.hp)/OpponentObj.MAX_HP)*100 + '%'
   return (
     <div className="health-bar" data-testid="health-bar">
@@ -23,5 +12,3 @@ export function OpponentHealthBar() {
     </div>
   )
 }
-
-export default enemyHealthbar
