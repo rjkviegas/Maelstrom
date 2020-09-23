@@ -2,9 +2,9 @@ import React, { useReducer } from 'react';
 import './App.css';
 import PlayerContext from './config/playerContext.js';
 import playerReducer from './Reducers/playerReducer.js'
-import player, { Player } from './Components/player/player.js'
+import player, { Player } from './Components/classes/wizard/wizard.js'
 import FightCanvas from './Components/canvas/FightCanvas.js'
-import opponent, { Opponent } from './Components/opponent/opponent.js';
+import Bandit from './Components/classes/bandit/bandit.js';
 import OpponentContext from './config/opponentContext.js';
 import opponentReducer from './Reducers/opponentReducer.js'
 import Fight from './Components/fight/fight.js'
@@ -14,13 +14,16 @@ import fightRoundsReducer from './Reducers/fightRoundsReducer';
 import fightRounds from './Components/fight/fightRounds';
 import FightRoundsContext from './config/fightRoundsContext';
 import ShopCanvas from './Components/canvas/shopCanvas';
+import King from './Components/classes/king/king.js';
+import Slime from './Components/classes/slime/slime';
+
 
 
 function App() {
 
   const [FightRounds, dispatchFight] = useReducer(fightRoundsReducer, fightRounds)
   const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
-  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new opponent())
+  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new Slime())
   
   return (
       

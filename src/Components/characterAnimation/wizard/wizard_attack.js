@@ -4,4 +4,4 @@ wizardAttack.width = wizardAttack.width/8
 wizardAttack.height = wizardAttack.height
 wizardAttack.yOffset = -25
 wizardAttack.xOffset = -40
-wizardAttack.cycleLoop = [0, 1, 2, 3, 4, 5, 6];
+wizardAttack.cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];

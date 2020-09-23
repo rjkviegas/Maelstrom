@@ -21,10 +21,8 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     window.cancelAnimationFrame(animation)
   }
 
-  console.log(PlayerObj.hp, OpponentObj.hp)
+  console.log(OpponentObj, OpponentObj.attackImage)
 
-  //canvas.currentActor = 'playerAttackAnimation'
-  console.log(OpponentObj)
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
@@ -141,37 +139,37 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
             renderPlayerIdle();
             renderOpponentIdle();
           }
-          
-          if(currentLoopIndex >= endFrame && character === wizardAttack && opponent === banditIdle) { character = wizardIdle}
-          if(character === wizardAttack && opponent === banditIdle) {
-            if (currentLoopIndex <= endFrame) {
-              renderPlayerAttack(); //attacking wizard
-              renderOpponentIdle(); //idle bandit
+          if (bothAlive()){
+            if(currentLoopIndex >= endFrame && character === wizardAttack && opponent === banditIdle) { character = wizardIdle}
+            if(character === wizardAttack && opponent === banditIdle) {
+              if (currentLoopIndex <= endFrame) {
+                renderPlayerAttack(); //attacking wizard
+                renderOpponentIdle(); //idle bandit
+              }
             }
-          }
 
-          if(currentLoopIndex >= endFrame && character === wizardIdle && opponent === banditIdle) { character = wizardIdle; opponent = banditAttack}
-          if (character === wizardIdle && opponent === banditIdle) {
-            if(currentLoopIndex <= endFrame){
-              console.log("test endFrame1",  currentLoopIndex)
-              renderPlayerIdle();              
-              renderOpponentIdle(); // idle bandit
-            } 
-          }
-
-          if(character === wizardIdle  && opponent === banditAttack) {
-            if(!bothAttacked) {
-              console.log("attack test", animation_time)
-              if(!finalTurnCompleted) { currentLoopIndex = 0; finalTurnCompleted = true; } 
-              renderPlayerIdle();
-              renderOpponentAttack(); // attacking bandit 
-              if(currentLoopIndex === endFrame && finalTurnCompleted === true) {bothAttacked = true}
-            } else {
-              ctx.clearRect(0, 0, canvas.width, canvas.height);
-              renderPlayerIdle();
-              renderOpponentIdle(); // idle bandit
+            if(currentLoopIndex >= endFrame && character === wizardIdle && opponent === banditIdle) { character = wizardIdle; opponent = banditAttack}
+            if (character === wizardIdle && opponent === banditIdle) {
+              if(currentLoopIndex <= endFrame){
+                console.log("test endFrame1",  currentLoopIndex)
+                renderPlayerIdle();              
+                renderOpponentIdle(); // idle bandit
+              } 
             }
-          }
+
+            if(character === wizardIdle  && opponent === banditAttack) {
+              if(!bothAttacked) {
+                if(!finalTurnCompleted) { currentLoopIndex = 0; finalTurnCompleted = true; } 
+                renderPlayerIdle();
+                renderOpponentAttack(); // attacking bandit 
+                if(currentLoopIndex === endFrame && finalTurnCompleted === true) {bothAttacked = true}
+              } else {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                renderPlayerIdle();
+                renderOpponentIdle(); // idle bandit
+              }
+            }
+        }
           
         if (currentLoopIndex >= endFrame) { currentLoopIndex = 0}
         currentLoopIndex++;

@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
-import { Player } from '../../Components/player/player.js'
-import opponent,{ Opponent } from '../../Components/opponent/opponent.js'
+import opponent,{ Opponent } from '../classes/bandit/bandit.js'
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import FightRoundsContext from '../../config/fightRoundsContext.js'
 
@@ -18,7 +17,7 @@ export default function Fight() {
       } else {
         dispatchFight({type: 'next_round', payload: 1})
         dispatch({type: 'set_attack', payload: true});
-        dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*20)});
+        dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*70)});
       }
     }
 
