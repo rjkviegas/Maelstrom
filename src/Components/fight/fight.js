@@ -4,6 +4,7 @@ import OpponentContext from '../../config/opponentContext.js'
 import opponent,{ Opponent } from '../classes/bandit/bandit.js'
 import { useHistory } from "react-router-dom";
 import FightRoundsContext from '../../config/fightRoundsContext.js'
+import generateRandomOpponent from '../classes/opponentGenerator.js';
 
 export default function Fight() {
 
@@ -43,11 +44,9 @@ export default function Fight() {
 
 
     function handleNewFight() {
-      dispatch({type: 'set_attack', payload: false});
-      dispatchOpp({type: 'set_attack', payload: false});
       playerRewardCheck() // position warning
-      dispatch({type: 'reset', payload: {...PlayerObj, hp: PlayerObj.MAX_HP}})
-      dispatchOpp({type: 'reset', payload: new opponent()})
+      dispatch({type: 'reset', payload: {...PlayerObj, hp: PlayerObj.MAX_HP, is_attacking: false}})
+      dispatchOpp({type: 'reset', payload: generateRandomOpponent()})
       history.push("/play")
     }
 
