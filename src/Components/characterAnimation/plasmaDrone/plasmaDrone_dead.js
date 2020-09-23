@@ -1,0 +1,9 @@
+export const plasmaDroneDead = new Image();
+plasmaDroneDead.src = "assets/characterSprites/plasmaDrone/Death.png";
+plasmaDroneDead.width = 1152/6;
+plasmaDroneDead.height = 204/1;
+plasmaDroneDead.yOffset = 20;
+plasmaDroneDead.xOffset = 100;
+plasmaDroneDead.cycleLoop = [0,1,2,3,4,5,6,7];
+plasmaDroneDead.resizeYScale = 0.8
+plasmaDroneDead.resizeXScale = 0.8
