@@ -16,16 +16,16 @@ export default function CharacterCanvas() {
         setNameValue(e.target.value)
     }
 
-    let history = useHistory()
+   /*  let history = useHistory()
     function handleClick() {
         history.push('/play');
-    }
+    } */
 
     return (
         <div>
             <div>
                 <form onSubmit={handleSubmit}>
-                <label for="id">Rename</label>
+                <label>Rename</label>
                 <input type="text" id="rename" onChange={e => handleChange(e)}/>
                 <input type="submit" id="submit_rename"/>
                 </form>
