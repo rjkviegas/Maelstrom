@@ -11,7 +11,6 @@ class King extends Character{
     this.name = 'Opponent_Placeholder'
     this.hp = STARTING_HITPOINTS
     this.MAX_HP = STARTING_HITPOINTS
-    this.is_attacking = false;
     this.money = 0
   }
 }
