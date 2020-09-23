@@ -23,6 +23,8 @@ export default function playerReducer(state, action) {
         return {...state, hasSword: action.payload}
       case "ADDED_SHIELD_TO_INVENTORY":
         return {...state, hasShield: action.payload}
+      case "TAKEN_HEALTH_POTION":
+        return {...state, hp: state.hp + action.payload}
       default: 
         return {...state};
     }
