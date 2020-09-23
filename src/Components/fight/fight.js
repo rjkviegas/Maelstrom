@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import opponent,{ Opponent } from '../classes/bandit/bandit.js'
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, useHistory } from "react-router-dom";
 import FightRoundsContext from '../../config/fightRoundsContext.js'
 
 export default function Fight() {
@@ -10,6 +10,8 @@ export default function Fight() {
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext);
     const { FightRounds, dispatchFight } = useContext(FightRoundsContext)
+    
+    let history = useHistory();
 
     const handleAttack = () => {
       if(PlayerObj.hp < 0) { 
@@ -38,6 +40,7 @@ export default function Fight() {
       dispatchOpp({type: 'set_attack', payload: false});
       dispatch({type: 'reset', payload: {...PlayerObj, hp: PlayerObj.MAX_HP}})
       dispatchOpp({type: 'reset', payload: new opponent()})
+      history.push("/play")
     }
 
     return (
@@ -47,7 +50,7 @@ export default function Fight() {
           <div>Attack disappears</div> : 
           <div><button data-testid = 'attack_button' style={{visibility: anyPlayerAttacking() && bothAlive() ? 'hidden' : 'visible' }} onClick={() =>handleAttack()}>Attack</button></div>) : //MAIN FALSE
       (PlayerObj.hp <= 0 ? <div><h1 data-testid="lose-message">YOU LOSE</h1><div><button onClick={handleNewFight}><Router><Route><Link to='/play'>Go back</Link></Route></Router></button></div> </div> : 
-        <div><h1 data-testid="win-message">YOU WIN</h1> <div><button onClick={handleNewFight}><Router><Route><Link to='/play'>Go back</Link></Route></Router></button></div></div>)}
+        <div><h1 data-testid="win-message">YOU WIN</h1> <div><button onClick={handleNewFight}>Go back</button></div></div>)}
 
     </div>
     )
