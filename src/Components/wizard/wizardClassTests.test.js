@@ -1,4 +1,4 @@
-import player from './player.js'
+import player from './wizard.js'
 import { wizardIdle } from '../characterAnimation/wizard/wizard_idle.js'
 
 const player1 = new player()

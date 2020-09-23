@@ -1,5 +1,3 @@
-import React,{ useContext } from 'react'
-import PlayerContext from '../../config/playerContext.js'
 import { wizardAttack } from '../characterAnimation/wizard/wizard_attack.js';
 import { wizardDead } from '../characterAnimation/wizard/wizard_dead.js';
 import { wizardIdle } from '../characterAnimation/wizard/wizard_idle.js'
