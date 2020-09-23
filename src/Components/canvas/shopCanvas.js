@@ -28,7 +28,7 @@ const ShopCanvas = () => {
     }
     
     return (
-        <div data-testid="shop">
+        <div data-testid="shop" style={{height: '400px'}}>
 
             <Gold PlayerObj={PlayerObj}/>
 
