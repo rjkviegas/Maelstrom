@@ -1,13 +1,10 @@
 import { wizardAttack } from './wizard/wizard_attack.js';
 import { wizardIdle } from './wizard/wizard_idle.js'
 import { banditIdle } from './bandit/bandit_idle.js';
-import PlayerAttacking from './playerAttacking'
-import React, { useContext } from 'react'
 import { banditAttack } from './bandit/bandit_attack.js';
-import { wizardDead } from './wizard/wizard_dead.js';
-import { banditDead } from './bandit/bandit_dead.js';
+
 const framespersecond = 16
-let animation; let animation_time = 0;
+let animation; let animation_time;
 let count = 1;
 export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ctx) {
   const endFrame = 7;

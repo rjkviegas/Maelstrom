@@ -1,11 +1,10 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Fight from './fight.js'
 import OpponentContext from '../../config/opponentContext.js'
 import PlayerContext from '../../config/playerContext'
-import { render, cleanup, fireEvent } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import FightRoundsContext from "../../config/fightRoundsContext.js";
-import {shallow} from 'enzyme'
+
 
 const OpponentObj  = { name: "Mouldie Harry", hp: 1};
 const PlayerObj = { name: "Righteous Ilja", hp: 10000 };

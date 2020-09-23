@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import PlayerContext from '../../config/playerContext';
-
+import { useHistory } from "react-router-dom";
 
 export default function CharacterCanvas() {
 
@@ -16,11 +16,16 @@ export default function CharacterCanvas() {
         setNameValue(e.target.value)
     }
 
+   /*  let history = useHistory()
+    function handleClick() {
+        history.push('/play');
+    } */
+
     return (
         <div>
             <div>
                 <form onSubmit={handleSubmit}>
-                <label for="id">Rename</label>
+                <label>Rename</label>
                 <input type="text" id="rename" onChange={e => handleChange(e)}/>
                 <input type="submit" id="submit_rename"/>
                 </form>
@@ -29,5 +34,10 @@ export default function CharacterCanvas() {
         </div>
     )
 }
+
+
+
+    
+
 
 

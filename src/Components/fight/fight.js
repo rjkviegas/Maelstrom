@@ -1,16 +1,17 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
-import opponent,{ Opponent } from '../classes/bandit/bandit.js'
 import { useHistory } from "react-router-dom";
 import FightRoundsContext from '../../config/fightRoundsContext.js'
+import generateRandomOpponent from '../classes/opponentGenerator.js';
 
 export default function Fight() {
 
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext);
-    const { FightRounds, dispatchFight } = useContext(FightRoundsContext)
-    
+    const { dispatchFight } = useContext(FightRoundsContext)
+    const RUN_PENALTY_PERCENTAGE = 0.3
+    const RUN_PENALTY_MINIMUM = 10
     let history = useHistory();
 
     const handleAttack = () => {
@@ -38,16 +39,21 @@ export default function Fight() {
     }
 
     function handleNewFight() {
+      playerRewardCheck() // position warning
       dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
       dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false});
-      playerRewardCheck() // position warning
-      dispatch({type: 'RESET', payload: {...PlayerObj, hp: PlayerObj.MAX_HP}})
-      dispatchOpp({type: 'RESET', payload: new opponent()})
+      dispatch({type: 'RESET', payload: {...PlayerObj, hp: PlayerObj.MAX_HP, is_attacking: false}})
+      dispatchOpp({type: 'RESET', payload: generateRandomOpponent()})
       history.push("/play")
     }
 
     function handleRun() {
-      dispatch({type: 'MONEY_DEDUCTED', payload: PlayerObj.money * 0.1}); // Penalty for running? Can also just ignore this method and just handleNewFight();
+      let PENALTY = Math.max(PlayerObj.money * RUN_PENALTY_PERCENTAGE, RUN_PENALTY_MINIMUM) 
+      if(PlayerObj.money - PENALTY < 0) {
+        dispatch({type: 'MONEY_DEDUCTED', payload: {deduction: PlayerObj.money, escapes: 1} }); // Penalty for running? Can also just ignore this method and just handleNewFight();
+      } else {
+        dispatch({type: 'MONEY_DEDUCTED', payload: {deduction: PENALTY, escapes: 1}})
+      }
       handleNewFight();
     }
 
