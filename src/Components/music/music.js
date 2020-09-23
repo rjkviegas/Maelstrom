@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import backgroundMusic from '../../media/background_music.mp3'
 
 let music = {}
@@ -6,9 +6,12 @@ music.background = new Audio(backgroundMusic)
 music.fight = new Audio()
 
 export function BackgroundMusic() {
+
+    const [volume, setVolume] = useState(0.1)
+
     const playMusic = function() {
         music.background.loop = true;
-        music.background.volume = 0.0
+        music.background.volume = volume
         music.background.play()
     }
 

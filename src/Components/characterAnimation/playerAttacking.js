@@ -74,8 +74,15 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   }
 
   function renderPlayerDeathFrame() {
-    drawFrame(PlayerObj.deathImage, PlayerObj.deathFrameNumber, PlayerObj.deathSourceY, 0, 0); // DEAD PLAYER
-    
+    drawFrame(PlayerObj.deathImage, PlayerObj.deathFrameNumber, PlayerObj.deathSourceY, 0, 0); // DEAD PLAYER    
+  }
+
+  function playPlayerDeathSound() {
+    if(PlayerObj.deathSound) PlayerObj.deathSound.play();
+  }
+
+  function playOpponentDeathSound() {
+    if(OpponentObj.deathSound) OpponentObj.deathSound.play();
   }
 
   function anyDead() {
@@ -114,21 +121,20 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
               if(currentLoopIndex === endFrame) { deathAnimSwitch = true; finalSwing = true;}
               renderPlayerDead();
               renderOpponentAttack(); // attacking bandit 
+              playPlayerDeathSound()
             } else {
               renderOpponentIdle(); // bandit idle
               renderPlayerDeathFrame(); // Wizard Dead Frame
-              PlayerObj.deathSound.play()
             }
           } else if (opponentDead()) { // opponent is dead
             if(!deathAnimSwitch && !finalSwing) {
               if(currentLoopIndex === endFrame) { deathAnimSwitch = true; finalSwing = true;}
               renderPlayerAttack();
               renderOpponentDead();
-              OpponentObj.deathSound.play()
+              playOpponentDeathSound();
             } else {
               renderPlayerIdle(); // Wizard Idle
-              renderOpponentDeathFrame(); // Bandit dead frame
-              
+              renderOpponentDeathFrame(); // Bandit dead frame          
             }         
           }
         }
@@ -142,8 +148,8 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
             if(currentLoopIndex >= endFrame && character === wizardAttack && opponent === banditIdle) { character = wizardIdle}
             if(character === wizardAttack && opponent === banditIdle) {
               if (currentLoopIndex <= endFrame) {
-                renderPlayerAttack(); //attacking wizard
                 renderOpponentIdle(); //idle bandit
+                renderPlayerAttack(); //attacking wizard
               }
             }
 
@@ -184,7 +190,6 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     then = Date.now();
     startTime = then;
     render()
-   
     }
 
   return () => {
