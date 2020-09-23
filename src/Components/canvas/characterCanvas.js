@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import PlayerContext from '../../config/playerContext';
-
+import { useHistory } from "react-router-dom";
 
 export default function CharacterCanvas() {
 
@@ -16,6 +16,11 @@ export default function CharacterCanvas() {
         setNameValue(e.target.value)
     }
 
+    let history = useHistory()
+    function handleClick() {
+        history.push('/play');
+    }
+
     return (
         <div>
             <div>
@@ -29,5 +34,10 @@ export default function CharacterCanvas() {
         </div>
     )
 }
+
+
+
+    
+
 
 

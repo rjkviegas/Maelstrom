@@ -1,4 +1,5 @@
 import King from "../Components/classes/king/king.js";
+import generateRandomOpponent from "../Components/classes/opponentGenerator.js";
 
 export default function opponentReducer(state, action) {
     switch(action.type) {
@@ -11,7 +12,7 @@ export default function opponentReducer(state, action) {
       case "unset_attack": 
         return { ...state, is_attacking: action.payload}   
       case "reset":
-        return new King();
+        return new generateRandomOpponent();
       default: 
         return {...state};
     }
