@@ -19,6 +19,8 @@ export default function playerReducer(state, action) {
         return {...state, strength: state.strength + action.payload}
       case "ADD_DEFENCE":
         return {...state, defence: state.defence + action.payload}
+        case "DEDUCT_MONIES":
+          return {...state, money: state.money - action.payload}
       default: 
         return {...state};
     }
