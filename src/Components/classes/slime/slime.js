@@ -13,6 +13,8 @@ export default class Slime extends Character {
         this.hp = STARTING_HITPOINTS
         this.MAX_HP = STARTING_HITPOINTS
         this.money = 15
+        this.attackSound = new Audio("https://opengameart.org/sites/default/files/s.mp3")
+        this.deathSound = new Audio("http://freesoundeffect.net/sites/default/files/yucky-slime-sound-effect-31445313.mp3")
       }
 
 }

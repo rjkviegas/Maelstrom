@@ -1,21 +1,19 @@
 import OpponentHealthBar from '../../Components/healthbar/enemyHealthbar'
-import React, { createRef, useRef, useEffect, useContext} from 'react';
+import React, { createRef, useEffect, useContext } from 'react';
 import PlayerHealthBar from '../../Components/healthbar/healthbar'
-import IdleAnimation from '../characterAnimation/idleAnimation'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import AttackAnimation from '../characterAnimation/playerAttacking.js'
-import { Opponent } from '../classes/bandit/bandit';
-import OpponentAttackAnimation from '../characterAnimation/opponentAttacking';
 import FightRoundsContext from '../../config/fightRoundsContext';
 
-let canvas, ctx
-let cancelAnimationFrame = window.requestAnimationFrame || 
-                        window.mozRequestAnimationFrame ||
-                        window.webkitRequestAnimationFrame ||
-                        window.msRequestAnimationFrame;
+let canvas, ctx;
+let cancelAnimationFrame = window.requestAnimationFrame 
+                          || window.mozRequestAnimationFrame
+                          || window.webkitRequestAnimationFrame
+                          || window.msRequestAnimationFrame
+                          ;
 
-const FightCanvas = (props) => {
+const FightCanvas = () => {
   
     let canvasRef = createRef(null)
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
@@ -29,38 +27,34 @@ const FightCanvas = (props) => {
       
       canvas = canvasRef.current
       ctx = canvas.getContext('2d')
-      console.log("USE EFFECT TRIGGERED")
       if(PlayerObj.is_attacking && OpponentObj.is_attacking) {
-        dispatch({type: 'set_attack', payload: false});
-        dispatchOpp({type: 'set_attack', payload: false});
-        dispatchFight({type: 'next_round', payload: 1})
+        dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
+        dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false});
+        dispatchFight({type: 'ADVANCED_ROUND', payload: 1})
         return
       } else {
         AttackAnimation(PlayerObj, OpponentObj, canvas, ctx);
       }
 
-    if(PlayerObj.is_attacking || OpponentObj.is_attacking) {   
-      
-      setTimeout(() => { 
-        if(OpponentObj.hp < 0) {
-          console.log("Stopped here!")
-          return 
-        } else {
-          console.log("OpponentAttack set: true, Player take damage, PlayerAttack set: false")
-          dispatchOpp({type: 'set_attack', payload: true});
-          dispatch({type: 'attacked', payload: Math.floor(Math.random()*5)});
-          dispatch({type: 'set_attack', payload: false});
-        }}, 1000 )
+      if (PlayerObj.is_attacking || OpponentObj.is_attacking) {   
+        
+        setTimeout(() => { 
+            if (OpponentObj.hp < 0) {return} 
+            let damage = Math.floor(Math.random()*5) - PlayerObj.defence;
+            dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: true});
+            dispatch({type: 'ATTACKED', payload: ((damage < 0) ? 0 : damage) });
+            dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
+        }, 1500 )
 
-      setTimeout(() => {    
-        console.log("OpponentAttack set: false")  
-        dispatchOpp({type: 'set_attack', payload: false})}, 2000 );
+        setTimeout(() => {    
+          dispatchOpp({type: 'set_attack', payload: false})
+        }, 2000 );
 
-      return () => {
-        window.cancelAnimationFrame(animationFrameId)
-      } 
-    }
-  },[PlayerObj])
+        return () => {
+          window.cancelAnimationFrame(animationFrameId)
+        } 
+      }
+    },[PlayerObj])
     
     return (
     <div>
@@ -72,9 +66,7 @@ const FightCanvas = (props) => {
        <div style={{align: "center"}}>
          <canvas ref={canvasRef} style={{ }} id="game-area" data-testid="game-area" /> 
        </div>
-      
     </div>)
 }
-
 
 export default FightCanvas;

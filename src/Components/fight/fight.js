@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext } from 'react'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
-import opponent,{ Opponent } from '../classes/bandit/bandit.js'
 import { useHistory } from "react-router-dom";
 import FightRoundsContext from '../../config/fightRoundsContext.js'
 import generateRandomOpponent from '../classes/opponentGenerator.js';
@@ -10,19 +9,16 @@ export default function Fight() {
 
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext);
-    const { FightRounds, dispatchFight } = useContext(FightRoundsContext)
+    const { dispatchFight } = useContext(FightRoundsContext)
     const RUN_PENALTY_PERCENTAGE = 0.3
     const RUN_PENALTY_MINIMUM = 10
     let history = useHistory();
 
     const handleAttack = () => {
-      if(PlayerObj.hp < 0) { 
-        return 
-      } else {
-        dispatchFight({type: 'next_round', payload: 1})
-        dispatch({type: 'set_attack', payload: true});
-        dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*(70 + PlayerObj.strength))});
-      }
+      if(PlayerObj.hp < 0) {return}
+        dispatchFight({type: 'ADVANCED_ROUND', payload: 1})
+        dispatch({type: 'SET_ATTACKING_STATUS', payload: true});
+        dispatchOpp({type: 'ATTACKED', payload: Math.floor(Math.random()*(10 + PlayerObj.strength))});
     }
 
     function anyPlayerAttacking() {
@@ -42,11 +38,12 @@ export default function Fight() {
       dispatch({type: 'MONEY_ADDED', payload: OpponentObj.money}) 
     }
 
-
     function handleNewFight() {
       playerRewardCheck() // position warning
-      dispatch({type: 'reset', payload: {...PlayerObj, hp: PlayerObj.MAX_HP, is_attacking: false}})
-      dispatchOpp({type: 'reset', payload: generateRandomOpponent()})
+      dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
+      dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false});
+      dispatch({type: 'RESET', payload: {...PlayerObj, hp: PlayerObj.MAX_HP, is_attacking: false}})
+      dispatchOpp({type: 'RESET', payload: generateRandomOpponent()})
       history.push("/play")
     }
 
