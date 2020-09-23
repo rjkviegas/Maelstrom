@@ -11,6 +11,8 @@ class Mushroom extends Character{
     this.name = 'Opponent_Placeholder'
     this.hp = STARTING_HITPOINTS
     this.MAX_HP = STARTING_HITPOINTS
+    this.attackSound = new Audio("http://freesoundeffect.net/sites/default/files/monster-liquid-attack-sound-effect-50543213.mp3")
+    this.deathSound = new Audio("http://freesoundeffect.net/sites/default/files/alien-monster-dying--1-sound-effect-73367310.mp3")
     this.is_attacking = false;
     this.money = 0
   }
