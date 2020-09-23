@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from "react-router-dom";
 import PlayerContext from '../../config/playerContext.js';
 import Gold from '../gold/gold.js'
+import PlayerHealthBar from '../healthbar/healthbar.js'
 
 const ShopCanvas = () => {
     const SWORD_STRENGTH = 5;
@@ -52,9 +53,9 @@ const ShopCanvas = () => {
 
     return (
         <div data-testid="shop">
-
+            <PlayerHealthBar PlayerObj={PlayerObj} />
             <Gold PlayerObj={PlayerObj}/>
-                
+            
                 {!PlayerObj.hasSword ? visibleSword : <div></div> }
                 {!PlayerObj.hasShield ? visibleShield : <div></div> }
                 {healthPot}
