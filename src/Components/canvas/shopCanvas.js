@@ -12,8 +12,11 @@ const ShopCanvas = () => {
     }
 
     const addStrength = () => {
-        console.log(dispatch)
         dispatch({type: 'ADD_STRENGTH', payload: 5});
+    }
+    
+    const addDefence = () => {
+        dispatch({type: 'ADD_DEFENCE', payload: 5})
     }
     
     return (
@@ -27,7 +30,7 @@ const ShopCanvas = () => {
                 <p className="hide1">The Sword of 1000 truths, once said to belong to King Arthur... But that myth is lost to the Maelstrom. Grants extra damage.</p>
 
                 <div className="item1">
-                    <button data-testid="shield-button" id="item" onClick={"minusGold(); addDefence()"} >Shield</button>
+                    <button data-testid="shield-button" id="item" onClick={addDefence}>Shield</button>
                 </div>
                 <p className="hide1">A shield, once wielded by a great Ragnar Lothbrok who fought in the shield wall attacking East Anglia. Grants extra defence.</p>
         

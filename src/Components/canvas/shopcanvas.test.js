@@ -27,15 +27,15 @@ describe("Shop canvas", function() {
         expect(getByTestId("back-button")).toBeTruthy();
     });
 
-    it("shop has a back button which returns to main menu", function() {
-        const addStrength = jest.fn()
-        const { getByTestId } = render(
-            <PlayerContext.Provider value={{PlayerObj}}>
-                <ShopCanvas addStrength = { addStrength }/> 
-            </PlayerContext.Provider>
-            ); 
-        fireEvent.click(getByTestId("sword-button"))
-        expect(addStrength).toHaveBeenCalled();
-    })
+    // it("shop has a back button which returns to main menu", function() {
+    //     const addStrength = jest.fn()
+    //     const { getByTestId } = render(
+    //         <PlayerContext.Provider value={{PlayerObj}}>
+    //             <ShopCanvas addStrength = { addStrength }/> 
+    //         </PlayerContext.Provider>
+    //         ); 
+    //     fireEvent.click(getByTestId("sword-button"))
+    //     expect(addStrength).toHaveBeenCalled();
+    // })
 
 });

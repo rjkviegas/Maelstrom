@@ -17,8 +17,6 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     window.cancelAnimationFrame(animation)
   }
 
-  console.log(OpponentObj, PlayerObj)
-
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
@@ -147,7 +145,6 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
             if(currentLoopIndex >= endFrame && character === wizardIdle && opponent === banditIdle) { character = wizardIdle; opponent = banditAttack}
             if (character === wizardIdle && opponent === banditIdle) {
               if(currentLoopIndex <= endFrame){
-                console.log("test endFrame1",  currentLoopIndex)
                 renderPlayerIdle();              
                 renderOpponentIdle(); // idle bandit
               } 
