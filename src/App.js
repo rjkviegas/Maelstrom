@@ -15,13 +15,15 @@ import fightRounds from './Components/fight/fightRounds';
 import FightRoundsContext from './config/fightRoundsContext';
 import ShopCanvas from './Components/canvas/shopCanvas';
 import King from './Components/classes/king/king.js';
+import Slime from './Components/classes/slime/slime';
+
 
 
 function App() {
 
   const [FightRounds, dispatchFight] = useReducer(fightRoundsReducer, fightRounds)
   const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
-  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new King())
+  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new Slime())
   
   return (
       

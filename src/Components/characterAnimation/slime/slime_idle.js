@@ -1,7 +1,7 @@
-export const kingAttack = new Image();
-kingAttack.src = "./assets/characterSprites/slime/SlimeSheet.png";
-kingAttack.width = 256 / 8
-kingAttack.height = 75 / 3
-kingAttack.yOffset = 38
-kingAttack.xOffset = 150
-kingAttack.cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
+export const slimeIdle = new Image();
+slimeIdle.src = "./assets/characterSprites/slime/SlimeSheet.png";
+slimeIdle.width = 256 / 8
+slimeIdle.height = 75 / 3
+slimeIdle.yOffset = 117.5
+slimeIdle.xOffset = 195
+slimeIdle.cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
