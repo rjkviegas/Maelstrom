@@ -17,14 +17,12 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     window.cancelAnimationFrame(animation)
   }
 
-  console.log(OpponentObj, PlayerObj)
-
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
       const scale = 1; 
-      const scaledWidth = img.width*scale;
-      const scaledHeight = img.height*scale;
+      const scaledWidth = img.width*img.resizeXScale || img.width*scale;
+      const scaledHeight = img.height*img.resizeYScale || img.height*scale;
 
       ctx.drawImage(img,
                       (frameX * img.width), (frameY * img.height), img.width, img.height,
@@ -60,22 +58,27 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   }
 
   function renderPlayerAttack(){
-    drawFrame(PlayerObj.attackImage, PlayerObj.attackImage.cycleLoop[currentLoopIndex], PlayerObj.attackSourceY, 0, 0); // ATTACKING PLAYER
+    drawFrame(PlayerObj.attackImage, PlayerObj.attackImage.cycleLoop[currentLoopIndex], PlayerObj.attackSourceY, 0, 0);// ATTACKING PLAYER
+    PlayerObj.attackSound.volume = 0.2;
+    PlayerObj.attackSound.play();
   }
   function renderOpponentDead(){
-  drawFrame(OpponentObj.deathImage, OpponentObj.deathImage.cycleLoop[currentLoopIndex], OpponentObj.deathSourceY, 0, 0); // DEAD OPPONENT   
+    drawFrame(OpponentObj.deathImage, OpponentObj.deathImage.cycleLoop[currentLoopIndex], OpponentObj.deathSourceY, 0, 0); // DEAD OPPONENT   
   }
 
   function renderOpponentAttack() {
     drawFrame(OpponentObj.attackImage, OpponentObj.attackImage.cycleLoop[currentLoopIndex], OpponentObj.attackSourceY, 0, 0); // ATTACKING OPPONENT
+    if(OpponentObj.attackSound){OpponentObj.attackSound.play()}
   }
 
   function renderOpponentDeathFrame() {
     drawFrame(OpponentObj.deathImage, OpponentObj.deathFrameNumber, OpponentObj.deathSourceY, 0, 0);
+    
   }
 
   function renderPlayerDeathFrame() {
     drawFrame(PlayerObj.deathImage, PlayerObj.deathFrameNumber, PlayerObj.deathSourceY, 0, 0); // DEAD PLAYER
+    
   }
 
   function anyDead() {
@@ -117,15 +120,18 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
             } else {
               renderOpponentIdle(); // bandit idle
               renderPlayerDeathFrame(); // Wizard Dead Frame
+              PlayerObj.deathSound.play()
             }
           } else if (opponentDead()) { // opponent is dead
             if(!deathAnimSwitch && !finalSwing) {
               if(currentLoopIndex === endFrame) { deathAnimSwitch = true; finalSwing = true;}
               renderPlayerAttack();
               renderOpponentDead();
+              OpponentObj.deathSound.play()
             } else {
               renderPlayerIdle(); // Wizard Idle
               renderOpponentDeathFrame(); // Bandit dead frame
+              
             }         
           }
         }
@@ -147,7 +153,6 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
             if(currentLoopIndex >= endFrame && character === wizardIdle && opponent === banditIdle) { character = wizardIdle; opponent = banditAttack}
             if (character === wizardIdle && opponent === banditIdle) {
               if(currentLoopIndex <= endFrame){
-                console.log("test endFrame1",  currentLoopIndex)
                 renderPlayerIdle();              
                 renderOpponentIdle(); // idle bandit
               } 

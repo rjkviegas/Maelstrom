@@ -1,0 +1,9 @@
+export const plasmaDroneIdle = new Image();
+plasmaDroneIdle.src = "assets/characterSprites/plasmaDrone/Idle.png";
+plasmaDroneIdle.width = 2184/24;
+plasmaDroneIdle.height = 92/1;
+plasmaDroneIdle.yOffset = 38
+plasmaDroneIdle.xOffset = 150
+plasmaDroneIdle.cycleLoop = [0, 1, 2, 3, 4, 5, 6, 7];
+plasmaDroneIdle.resizeYScale = 0.8
+plasmaDroneIdle.resizeXScale = 0.8

@@ -14,13 +14,10 @@ export default function Fight() {
     let history = useHistory();
 
     const handleAttack = () => {
-      if(PlayerObj.hp < 0) { 
-        return 
-      } else {
+      if(PlayerObj.hp < 0) {return}
         dispatchFight({type: 'ADVANCED_ROUND', payload: 1})
         dispatch({type: 'SET_ATTACKING_STATUS', payload: true});
-        dispatchOpp({type: 'ATTACKED', payload: Math.floor(Math.random()*(70 + PlayerObj.strength))});
-      }
+        dispatchOpp({type: 'ATTACKED', payload: Math.floor(Math.random()*(10 + PlayerObj.strength))});
     }
 
     function anyPlayerAttacking() {
@@ -39,7 +36,6 @@ export default function Fight() {
       if (PlayerObj.hp <= 0 || OpponentObj.hp > 0) return; // OpponentObj hp check protects against running and still getting money!
       dispatch({type: 'MONEY_ADDED', payload: OpponentObj.money}) 
     }
-
 
     function handleNewFight() {
       dispatch({type: 'SET_ATTACKING_STATUS', payload: false});

@@ -1,0 +1,9 @@
+export const plasmaDroneAttack = new Image();
+plasmaDroneAttack.src = "assets/characterSprites/plasmaDrone/Attack.png";
+plasmaDroneAttack.width = 2560/20;
+plasmaDroneAttack.height = 128/1;
+plasmaDroneAttack.yOffset = 38;
+plasmaDroneAttack.xOffset = 150;
+plasmaDroneAttack.cycleLoop = [0,2,4,6,8,10,12,14];
+plasmaDroneAttack.resizeYScale = 0.8
+plasmaDroneAttack.resizeXScale = 0.8

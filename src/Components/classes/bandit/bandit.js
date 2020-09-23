@@ -14,6 +14,8 @@ class Bandit extends Character {
     this.hp = STARTING_HITPOINTS
     this.MAX_HP = STARTING_HITPOINTS
     this.money = 0
+    this.attackSound = new Audio('http://freesoundeffect.net/sites/default/files/swordstrike-s08wa-1732-sound-effect-77188111.mp3')
+    this.deathSound = new Audio("https://opengameart.org/sites/default/files/5_1.mp3")
   }
 }
 
