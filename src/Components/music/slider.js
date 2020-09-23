@@ -29,7 +29,7 @@ export default function InputSlider(props) {
       </Typography> */}
       <Grid container spacing={2} alignItems="center">
         <Grid item>
-          <VolumeUp />
+          <VolumeUp/>
         </Grid>
         <Grid item xs>
           <Slider
