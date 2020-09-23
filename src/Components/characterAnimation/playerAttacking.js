@@ -60,7 +60,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   }
 
   function renderPlayerAttack(){
-    drawFrame(PlayerObj.attackImage, PlayerObj.attackImage.cycleLoop[currentLoopIndex], PlayerObj.attackSourceY, 0, 0); // ATTACKING PLAYER
+    drawFrame(PlayerObj.attackImage, PlayerObj.attackImage.cycleLoop[currentLoopIndex], PlayerObj.attackSourceY, 0, 0);// ATTACKING PLAYER
   }
   function renderOpponentDead(){
   drawFrame(OpponentObj.deathImage, OpponentObj.deathImage.cycleLoop[currentLoopIndex], OpponentObj.deathSourceY, 0, 0); // DEAD OPPONENT   
