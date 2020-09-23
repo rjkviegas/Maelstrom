@@ -6,10 +6,12 @@ import Gold from '../gold/gold.js'
 
 const ShopCanvas = () => {
     const { PlayerObj }  = useContext(PlayerContext);
+    
     let history = useHistory()
     function handleClick() {
         history.push('/play');
     }
+    
     return (
         <div>
             <Gold PlayerObj={PlayerObj}/>
