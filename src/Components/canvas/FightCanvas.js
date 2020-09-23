@@ -50,7 +50,7 @@ const FightCanvas = (props) => {
           dispatchOpp({type: 'set_attack', payload: true});
           dispatch({type: 'attacked', payload: Math.floor(Math.random()*5)});
           dispatch({type: 'set_attack', payload: false});
-        }}, 1000 )
+        }}, 1500 )
 
       setTimeout(() => {    
         console.log("OpponentAttack set: false")  

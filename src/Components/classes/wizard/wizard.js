@@ -20,6 +20,7 @@ export default class Wizard extends Character {
     this.money = STARTING_GOLD;
     this.victories = VICTORIES;
     this.strength = STARTING_STRENGTH;
+    this.deathSound = new Audio("https://opengameart.org/sites/default/files/8.mp3")
   }
 }
 
