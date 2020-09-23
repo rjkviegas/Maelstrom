@@ -12,7 +12,7 @@ export default class Slime extends Character {
         this.name = 'Slime'
         this.hp = STARTING_HITPOINTS
         this.MAX_HP = STARTING_HITPOINTS
-        this.money = 0
+        this.money = 15
       }
 
 }

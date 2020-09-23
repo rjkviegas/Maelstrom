@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import './App.css';
 import PlayerContext from './config/playerContext.js';
 import playerReducer from './Reducers/playerReducer.js'
-import player, { Player } from './Components/classes/wizard/wizard.js'
+import Wizard from './Components/classes/wizard/wizard.js'
 import FightCanvas from './Components/canvas/FightCanvas.js'
 import Bandit from './Components/classes/bandit/bandit.js';
 import OpponentContext from './config/opponentContext.js';
@@ -16,15 +16,17 @@ import FightRoundsContext from './config/fightRoundsContext';
 import ShopCanvas from './Components/canvas/shopCanvas';
 import King from './Components/classes/king/king.js';
 import Slime from './Components/classes/slime/slime';
+import generateRandomOpponent from './Components/classes/opponentGenerator';
+import CharacterCanvas from './Components/canvas/characterCanvas';
 
 
 
 function App() {
 
   const [FightRounds, dispatchFight] = useReducer(fightRoundsReducer, fightRounds)
-  const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
-  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new Slime())
-  
+  const [PlayerObj, dispatch] = useReducer(playerReducer, new Wizard())
+  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, generateRandomOpponent())
+
   return (
       
       <div className="App">
@@ -44,6 +46,13 @@ function App() {
               <Link to="/fight" data-testid="fight">Fight</Link>
               <Link to="/shop">Shop</Link>
               <Link to="/character">Your character</Link>
+            </Route>
+
+            <Route exact path='/character'>
+              <PlayerContext.Provider value={{PlayerObj, dispatch}}>
+                <CharacterCanvas/>
+                <Link to="/play">Go back</Link>
+              </PlayerContext.Provider>
             </Route>
 
             <Route exact path='/shop'>

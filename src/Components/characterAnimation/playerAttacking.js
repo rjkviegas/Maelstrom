@@ -12,16 +12,12 @@ let count = 1;
 export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ctx) {
   const endFrame = 7;
   let bothAttacked = false; let finalTurnCompleted = false; let deathAnimSwitch = false; let finalSwing = false;
-  let sprites; let character; let opponent; 
-  let playerAttackSrcY = 0; let opponentIdleSrcY = 0; 
-  let playerIdleSrcY = 0; let opponentAttackSrcY = 2;
-
-  let banditDeadSrcY = 3;
+  let character; let opponent; 
   if (animation) {
     window.cancelAnimationFrame(animation)
   }
 
-  console.log(OpponentObj, OpponentObj.attackImage)
+  console.log(OpponentObj, PlayerObj)
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       ctx.imageSmoothingEnabled = true;
