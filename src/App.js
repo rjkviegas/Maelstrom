@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import './App.css';
 import PlayerContext from './config/playerContext.js';
 import playerReducer from './Reducers/playerReducer.js'
-import player, { Player } from './Components/wizard/wizard.js'
+import player, { Player } from './Components/classes/wizard/wizard.js'
 import FightCanvas from './Components/canvas/FightCanvas.js'
 import Bandit from './Components/classes/bandit/bandit.js';
 import OpponentContext from './config/opponentContext.js';

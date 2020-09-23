@@ -5,7 +5,7 @@ import { banditIdle } from "../../characterAnimation/bandit/bandit_idle.js";
 
 const STARTING_HITPOINTS = 125;
 
-class opponent {
+class Bandit {
 
   constructor(idleImage = banditIdle, attackImage = banditAttack, deathImage = banditDead, deathFrameNumber = 7){
     this.name = 'Opponent_Placeholder'
@@ -24,4 +24,4 @@ class opponent {
   }
 }
 
-export default opponent;
+export default Bandit;
