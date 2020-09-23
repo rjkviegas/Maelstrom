@@ -35,9 +35,16 @@ export default function Fight() {
       return PlayerObj.hp <= 0 || OpponentObj.hp <= 0
     }
 
+    function playerRewardCheck() {
+      if (PlayerObj.hp <= 0 || OpponentObj.hp > 0) return; // Incase we add run away from fight, we need Opponent.hp > 0 guard check
+      dispatch({type: 'MONEY_ADDED', payload: OpponentObj.money}) 
+    }
+
+
     function handleNewFight(){
       dispatch({type: 'set_attack', payload: false});
       dispatchOpp({type: 'set_attack', payload: false});
+      playerRewardCheck()
       dispatch({type: 'reset', payload: {...PlayerObj, hp: PlayerObj.MAX_HP}})
       dispatchOpp({type: 'reset', payload: new opponent()})
       history.push("/play")
@@ -49,9 +56,9 @@ export default function Fight() {
         (anyDead() ? 
           <div>Attack disappears</div> : 
           <div><button data-testid = 'attack_button' style={{visibility: anyPlayerAttacking() && bothAlive() ? 'hidden' : 'visible' }} onClick={() =>handleAttack()}>Attack</button></div>) : //MAIN FALSE
-      (PlayerObj.hp <= 0 ? <div><h1 data-testid="lose-message">YOU LOSE</h1><div><button onClick={handleNewFight}><Router><Route><Link to='/play'>Go back</Link></Route></Router></button></div> </div> : 
-        <div><h1 data-testid="win-message">YOU WIN</h1> <div><button onClick={handleNewFight}>Go back</button></div></div>)}
-
+      (PlayerObj.hp <= 0 ? <div><h1 data-testid="lose-message">YOU LOSE</h1><div><button onClick={handleNewFight}>Go back</button></div> </div> : 
+        <div><h1 data-testid="win-message">YOU WIN</h1> <div><button onClick={handleNewFight}>Go back</button></div></div>)
+      }
     </div>
     )
 }
