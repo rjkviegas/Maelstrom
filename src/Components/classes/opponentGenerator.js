@@ -1,9 +1,14 @@
 import Bandit from "./bandit/bandit.js";
+import EvilWizard from "./evilWizard/evilWizard.js";
+import FlyingEye from "./flyingEye/flyingEye.js";
 import King from "./king/king.js";
+import Mushroom from "./mushroom/mushroom.js";
+import PlasmaDrone from "./plasmaDrone/plasmaDrone.js";
 import Slime from "./slime/slime.js";
 
+
 let ALL_POTENTIAL_OPPONENTS = []
-ALL_POTENTIAL_OPPONENTS.push(Slime, Bandit , King)
+ALL_POTENTIAL_OPPONENTS.push(PlasmaDrone)
 
 export default function generateRandomOpponent(){
     for (let i = ALL_POTENTIAL_OPPONENTS.length - 1; i > 0; i--) {

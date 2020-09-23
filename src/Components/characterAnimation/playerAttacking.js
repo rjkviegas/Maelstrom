@@ -23,8 +23,8 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
       const scale = 1; 
-      const scaledWidth = img.width*scale;
-      const scaledHeight = img.height*scale;
+      const scaledWidth = img.width*img.resizeXScale || img.width*scale;
+      const scaledHeight = img.height*img.resizeYScale || img.height*scale;
 
       ctx.drawImage(img,
                       (frameX * img.width), (frameY * img.height), img.width, img.height,
