@@ -6,10 +6,14 @@ import Gold from '../gold/gold.js'
 const ShopCanvas = () => {
     const { PlayerObj }  = useContext(PlayerContext);
     return (
-        <div>
+        <div data-testid="shop">
+
             <Gold PlayerObj={PlayerObj}/>
-            <canvas id="shop" data-testid="shop" />
-            <button><Router><Route><Link to='/play'>Go back</Link></Route></Router></button>
+
+            <button id="item">Sword</button>
+            <button id="item">Shield</button>
+            <button id="item">Health Potion</button>
+ 
         </div>
     )
 }

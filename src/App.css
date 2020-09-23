@@ -48,15 +48,12 @@ img#coin {
   background-position: center;
 }
 
-#shop {
-  position: relative;
-  height: 100%;
-  width: 100%;
-  background-image: url('https://i.pinimg.com/originals/86/b8/2d/86b82d88b8d1e090370e509ac801a4fa.jpg');
-  background-size: contain;                      
-  background-repeat: no-repeat;
-  background-position: center;
+/* SHOP STUFF */
+#item {
+  padding: 20px;
+  margin: 20px;
 }
+
 
 
 /* FONT */
