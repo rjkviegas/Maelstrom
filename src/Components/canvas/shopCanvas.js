@@ -34,7 +34,8 @@ const ShopCanvas = () => {
     }
 
     const buyHealthPot = () => {
-        if (PlayerObj.money < POT_COST && PlayerObj.hp !== PlayerObj.MAX_HP ) return;
+        if (PlayerObj.money < POT_COST ) return;
+        if (PlayerObj.hp < PlayerObj.MAX_HP) return;
 
         dispatch({type: 'TAKEN_HEALTH_POTION', payload: HEALTH_POTION })
         dispatch({type: 'DEDUCT_MONIES', payload: POT_COST});
