@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import OpponentContext from '../../config/opponentContext';
+import React from 'react';
 import './healthbar.css'
 
 export default function OpponentHealthBar({OpponentObj}) {
