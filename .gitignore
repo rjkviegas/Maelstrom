@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-!/node_modules/jsdom/**
+# !/node_modules/jsdom/**
 /.pnp
 .pnp.js
 /app/node_modules
