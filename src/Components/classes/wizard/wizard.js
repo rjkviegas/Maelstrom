@@ -8,7 +8,7 @@ const STARTING_GOLD = 0;
 const VICTORIES = 0;
 const STARTING_STRENGTH = 0;
 
-class Player extends Character {
+export default class Wizard extends Character {
 
   constructor(idleImage = wizardIdle, attackImage = wizardAttack, deathImage = wizardDead, deathFrameNumber = 7, idleSourceY = 0, deathSourceY = 0, attackSourceY = 0) {
     super(idleImage, attackImage, deathImage, deathFrameNumber, idleSourceY, deathSourceY, attackSourceY)
@@ -22,5 +22,5 @@ class Player extends Character {
   }
 }
 
-export default Player;
+
 

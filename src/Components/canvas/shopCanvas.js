@@ -1,9 +1,16 @@
 import React, { useContext } from 'react';
+import { useHistory } from "react-router-dom";
 import PlayerContext from '../../config/playerContext.js';
 import Gold from '../gold/gold.js'
 
 const ShopCanvas = () => {
     const { PlayerObj }  = useContext(PlayerContext);
+    
+    let history = useHistory()
+    function handleClick() {
+        history.push('/play');
+    }
+    
     return (
         <div data-testid="shop">
 
@@ -18,7 +25,8 @@ const ShopCanvas = () => {
                     <button id="item" onClick={"minusGold(); addDefence()"} >Shield</button>
                 </div>
                 <p className="hide1">A shield, once wielded by a great Ragnar Lothbrok who fought in the shield wall attacking East Anglia. Grants extra defence.</p>
-                
+        
+            <button onClick={handleClick}>Go back</button>
         </div>
     )
 }

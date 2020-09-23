@@ -20,17 +20,15 @@ const fightCanvasRender = (
   </PlayerContext.Provider>
   )
 
-let container;
-beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-    ReactDOM.render( fightCanvasRender, container);
-});
-
 afterEach(cleanup);
 
 test("healthbars are rendered", () =>{
-    const { queryByTestId } = render(<> fightCanvasRender </>);
+    const { queryByTestId } = render(fightCanvasRender);
     expect(queryByTestId("healthbars")).toBeTruthy();
     
+});
+
+test("canvas is rendered", () => {
+    const { queryByTestId } = render(fightCanvasRender);
+    expect(queryByTestId("game-area")).toBeTruthy();
 });
