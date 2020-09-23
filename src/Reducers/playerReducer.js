@@ -13,11 +13,11 @@ export default function playerReducer(state, action) {
         return {...state, money: Math.floor(state.money - action.payload.deduction), escapes: state.escapes + action.payload.escapes} 
       case "PLAYER_RENAMED":
         return {...state, name: action.payload}
-      case "ADD_STRENGTH":
+      case "ADDED_STRENGTH":
         return {...state, strength: state.strength + action.payload}
-      case "ADD_DEFENCE":
+      case "ADDED_DEFENCE":
         return {...state, defence: state.defence + action.payload}
-      case "DEDUCT_MONIES":
+      case "DEDUCTED_MONEY":
         return {...state, money: state.money - action.payload}
       default: 
         return {...state};
