@@ -58,6 +58,7 @@ function App() {
             <Route exact path='/shop'>
               <PlayerContext.Provider value={{PlayerObj}}>
                 <ShopCanvas />
+                <Link to="/play" data-testid="play_link">Back</Link>
               </PlayerContext.Provider>
             </Route>
 
