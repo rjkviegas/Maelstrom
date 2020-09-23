@@ -5,6 +5,7 @@ import OpponentContext from '../../config/opponentContext.js'
 import PlayerContext from '../../config/playerContext'
 import { render, cleanup, fireEvent } from "@testing-library/react";
 import FightRoundsContext from "../../config/fightRoundsContext.js";
+import {shallow} from 'enzyme'
 
 const OpponentObj  = { name: "Mouldie Harry", hp: 1};
 const PlayerObj = { name: "Righteous Ilja", hp: 10000 };
@@ -12,6 +13,7 @@ const FightRounds = { round: 0 };
 const dispatch = jest.fn();
 const dispatchOpp = jest.fn();
 const dispatchFight = jest.fn();
+// const handleNewFight = jest.fn();
 
 describe("Fight", function() {
     it("displays attack button", function() {
@@ -51,5 +53,18 @@ describe("Fight", function() {
             </PlayerContext.Provider>
         );
         expect(getByTestId("lose-message")).toHaveTextContent("YOU LOSE")
+    })
+    it("shows go back button", function() {
+        const PlayerObj = { hp: 0 };
+        const { getByTestId } = render(
+            <PlayerContext.Provider value={{PlayerObj, dispatch}}>
+                <OpponentContext.Provider value={{OpponentObj, dispatchOpp}}>
+                    <FightRoundsContext.Provider value={{FightRounds, dispatchFight}}>
+                    <Fight />
+                    </FightRoundsContext.Provider>
+                </OpponentContext.Provider>
+            </PlayerContext.Provider>
+        );
+        expect(getByTestId("goback-button")).toHaveTextContent("Go back")
     })
 });
