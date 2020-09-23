@@ -22,7 +22,9 @@
       "!**/node_modules/**",
       "!**/vendor/**"
     ],
-    "coverageReporters": ["text"]
+    "coverageReporters": [
+      "text"
+    ]
   },
   "scripts": {
     "start": "react-scripts start",

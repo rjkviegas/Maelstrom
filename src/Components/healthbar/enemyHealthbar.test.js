@@ -1,16 +1,11 @@
 import React from 'react';
 import './healthbar.css';
-import { OpponentHealthBar } from './enemyHealthbar'
-import OpponentContext from '../../config/opponentContext';
+import OpponentHealthBar from './enemyHealthbar'
 import { render } from "@testing-library/react";
 
 
 const OpponentObj  = { name: "Ilja", hp: 100, MAX_HP: 100 };
-const opponentHealthbarRender = (
-  <OpponentContext.Provider value={{OpponentObj}}>
-    <OpponentHealthBar />,
-  </OpponentContext.Provider> 
-)
+const opponentHealthbarRender = (<OpponentHealthBar OpponentObj={OpponentObj}/>)
 
 describe("Opponent Healthbar", function() {
     it("Opponent Healthbar renders with 100% width", function() {
