@@ -17,31 +17,34 @@ const ShopCanvas = () => {
 
     const buySword = () => {
         if (PlayerObj.money < MIN_MONIES) return;
+        
         dispatch({type: 'ADD_STRENGTH', payload: SWORD_STRENGTH});
         dispatch({type: 'DEDUCT_MONIES', payload: MIN_MONIES});
+        dispatch({type: 'ADDED_SWORD_TO_INVENTORY', payload: true})
     }
     
     const buyShield = () => {
         if (PlayerObj.money < MIN_MONIES) return;
+        
         dispatch({type: 'ADD_DEFENCE', payload: SHIELD_DEFENCE});
         dispatch({type: 'DEDUCT_MONIES', payload: MIN_MONIES});
+        dispatch({type: 'ADDED_SHIELD_TO_INVENTORY', payload: true})  
     }
-    
+
+    let visibleSword = (<div><div className="item1"><button data-testid="sword-button" id="item" onClick={buySword}>Sword</button></div>
+        <p className="hide1">The Sword of 1000 truths, once said to belong to King Arthur... But that myth is lost to the Maelstrom. Grants extra damage.</p></div>)
+
+    let visibleShield = (<div><div className="item1"><button data-testid="shield-button" id="item" onClick={buyShield}>Shield</button></div>
+        <p className="hide1">A shield, once wielded by a great Ragnar Lothbrok who fought in the shield wall attacking East Anglia. Grants extra defence.</p></div>)
+
     return (
         <div data-testid="shop">
 
             <Gold PlayerObj={PlayerObj}/>
-
-                <div className="item1">
-                    <button data-testid="sword-button" id="item" onClick={buySword}>Sword</button>
-                </div>
-                <p className="hide1">The Sword of 1000 truths, once said to belong to King Arthur... But that myth is lost to the Maelstrom. Grants extra damage.</p>
-
-                <div className="item1">
-                    <button data-testid="shield-button" id="item" onClick={buyShield}>Shield</button>
-                </div>
-                <p className="hide1">A shield, once wielded by a great Ragnar Lothbrok who fought in the shield wall attacking East Anglia. Grants extra defence.</p>
-        
+                
+                {!PlayerObj.hasSword ? visibleSword : <div></div> }
+                {!PlayerObj.hasShield ? visibleShield : <div></div> }
+              
             <button data-testid="back-button" onClick={handleClick}>Go back</button>
         </div>
     )

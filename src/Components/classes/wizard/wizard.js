@@ -4,7 +4,7 @@ import { wizardIdle } from '../../characterAnimation/wizard/wizard_idle.js';
 import Character from '../character_super/character_super.js';
 
 const STARTING_HITPOINTS = 100;
-const STARTING_GOLD = 0;
+const STARTING_GOLD = 400;
 const VICTORIES = 0;
 const STARTING_STRENGTH = 0;
 const STARTING_ESCAPES = 0;
@@ -25,6 +25,8 @@ export default class Wizard extends Character {
     this.strength = STARTING_STRENGTH;
     this.escapes = STARTING_ESCAPES;
     this.defence = STARTING_DEFENCE;
+    this.hasSword = false
+    this.hasShield = false
   }
 }
 
