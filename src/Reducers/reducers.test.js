@@ -2,6 +2,7 @@ import playerReducer from './playerReducer.js';
 import opponentReducer from './opponentReducer.js';
 import fightRoundsReducer from './fightRoundsReducer.js';
 import King from "../Components/classes/king/king.js";
+import Character from '../Components/classes/character_super/character_super.js';
 
 describe('player reducer', () => {
   it('should return the initial state', () => {
@@ -47,12 +48,13 @@ describe('player reducer', () => {
     })
   })
 
-  it('should handle MONEY_ADDED', () => {
-    expect(playerReducer({money: 100}, {
+  it('should handle MONEY_DEDUCTED', () => {
+    expect(playerReducer({money: 100, escapes: 0}, {
       type: "MONEY_DEDUCTED",
-      payload: 50
+      payload: {deduction: 50, escapes: 1}
     })).toEqual({
-      money: 50
+      money: 50,
+      escapes: 1
     })
   })
 
@@ -109,13 +111,13 @@ describe('opponent reducer', () => {
     })
   });
   
-  /* it('should handle RESET', () => {
+/*   it('should handle RESET', () => {
     expect(opponentReducer({hp: 2, MAX_HP: 100}, {
       type: 'RESET',
     })).toBeInstanceOf(
-     
+      Character
     )
-  }); */
+  });  */
 
   it('should handle default', () => {
     expect(opponentReducer({hp: 100}, {
