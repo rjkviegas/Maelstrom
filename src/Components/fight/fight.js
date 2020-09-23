@@ -67,8 +67,8 @@ export default function Fight() {
           <div><button data-testid = 'run_button' style={{visibility: anyPlayerAttacking() && bothAlive() ? 'hidden' : 'visible' }} onClick={() =>handleRun()}>Run</button></div>
           </div>
         ) : //MAIN FALSE
-      (PlayerObj.hp <= 0 ? <div><h1 data-testid="lose-message">YOU LOSE</h1><div data-testid="goback-button"><button onClick={handleNewFight}>Go back</button></div> </div> : 
-        <div><h1 data-testid="win-message">YOU WIN</h1> <div data-testid="goback-button"><button onClick={handleNewFight}>Go back</button></div></div>)
+      (PlayerObj.hp <= 0 ? <div><h1 data-testid="lose-message">YOU LOSE</h1><div ><button data-testid="goback-button" onClick={handleNewFight}>Go back</button></div> </div> : 
+        <div><h1 data-testid="win-message">YOU WIN</h1> <div><button data-testid="goback-button" onClick={handleNewFight}>Go back</button></div></div>)
       }
     </div>
     )
