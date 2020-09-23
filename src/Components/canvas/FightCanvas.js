@@ -31,9 +31,9 @@ const FightCanvas = (props) => {
       ctx = canvas.getContext('2d')
       console.log("USE EFFECT TRIGGERED")
       if(PlayerObj.is_attacking && OpponentObj.is_attacking) {
-        dispatch({type: 'set_attack', payload: false});
-        dispatchOpp({type: 'set_attack', payload: false});
-        dispatchFight({type: 'next_round', payload: 1})
+        dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
+        dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false});
+        dispatchFight({type: 'ADVANCED_ROUND', payload: 1})
         return
       } else {
         AttackAnimation(PlayerObj, OpponentObj, canvas, ctx);
@@ -47,14 +47,14 @@ const FightCanvas = (props) => {
           return 
         } else {
           console.log("OpponentAttack set: true, Player take damage, PlayerAttack set: false")
-          dispatchOpp({type: 'set_attack', payload: true});
-          dispatch({type: 'attacked', payload: Math.floor(Math.random()*5)});
-          dispatch({type: 'set_attack', payload: false});
+          dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: true});
+          dispatch({type: 'ATTACKED', payload: Math.floor(Math.random()*5)});
+          dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
         }}, 1000 )
 
       setTimeout(() => {    
         console.log("OpponentAttack set: false")  
-        dispatchOpp({type: 'set_attack', payload: false})}, 2000 );
+        dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false})}, 2000 );
 
       return () => {
         window.cancelAnimationFrame(animationFrameId)
