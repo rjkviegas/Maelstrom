@@ -3,7 +3,7 @@ import { evilWizardDead } from "../../characterAnimation/evilWizard/evilWizard_d
 import { evilWizardIdle } from "../../characterAnimation/evilWizard/evilWizard_idle.js";
 import Character from "../character_super/character_super";
 
-const STARTING_HITPOINTS = 5;
+const STARTING_HITPOINTS = 70;
 
 class EvilWizard extends Character{
   constructor(idleImage = evilWizardIdle, attackImage = evilWizardAttack, deathImage = evilWizardDead, deathFrameNumber = 4, idleSourceY = 0, deathSourceY = 0, attackSourceY = 0){

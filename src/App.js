@@ -15,7 +15,7 @@ import fightRounds from './Components/fight/fightRounds';
 import FightRoundsContext from './config/fightRoundsContext';
 import ShopCanvas from './Components/canvas/shopCanvas';
 import King from './Components/classes/king/king.js';
-import EvilWizard from './Components/classes/evilWizard/evilWizard';
+import FlyingEye from './Components/classes/flyingEye/flyingEye.js';
 
 
 
@@ -23,7 +23,7 @@ function App() {
 
   const [FightRounds, dispatchFight] = useReducer(fightRoundsReducer, fightRounds)
   const [PlayerObj, dispatch] = useReducer(playerReducer, new player())
-  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new EvilWizard())
+  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new FlyingEye())
   
   return (
       
