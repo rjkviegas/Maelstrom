@@ -61,13 +61,16 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
 
   function renderPlayerAttack(){
     drawFrame(PlayerObj.attackImage, PlayerObj.attackImage.cycleLoop[currentLoopIndex], PlayerObj.attackSourceY, 0, 0);// ATTACKING PLAYER
+    PlayerObj.attackSound.volume = 0.2;
+    PlayerObj.attackSound.play();
   }
   function renderOpponentDead(){
-  drawFrame(OpponentObj.deathImage, OpponentObj.deathImage.cycleLoop[currentLoopIndex], OpponentObj.deathSourceY, 0, 0); // DEAD OPPONENT   
+    drawFrame(OpponentObj.deathImage, OpponentObj.deathImage.cycleLoop[currentLoopIndex], OpponentObj.deathSourceY, 0, 0); // DEAD OPPONENT   
   }
 
   function renderOpponentAttack() {
     drawFrame(OpponentObj.attackImage, OpponentObj.attackImage.cycleLoop[currentLoopIndex], OpponentObj.attackSourceY, 0, 0); // ATTACKING OPPONENT
+    if(OpponentObj.attackSound){OpponentObj.attackSound.play()}
   }
 
   function renderOpponentDeathFrame() {
