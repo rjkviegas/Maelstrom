@@ -49,7 +49,7 @@ const ShopCanvas = () => {
         <p className="hide1">A shield, once wielded by a great Ragnar Lothbrok who fought in the shield wall attacking East Anglia. Grants extra defence. Costs 200 blasei shards.</p></div>)
 
     let healthPot = (<div><div className="item1"><button data-testid="healthpot-button" id="item" onClick={buyHealthPot}>Health Potion 40ɓ</button></div>
-    <p className="hide1">A natural concoction of sorts, brewed and distilled by the Su'lgaryan Druids who inhabit the dense forestland. Grants 10 HP. Costs 40 blasei shards.</p></div>)
+        <p className="hide1">A natural concoction of sorts, brewed and distilled by the Su'lgaryan Druids who inhabit the dense forestland. Grants 10 HP. Costs 40 blasei shards.</p></div>)
 
     return (
         <div data-testid="shop">
