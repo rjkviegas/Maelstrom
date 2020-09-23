@@ -1,6 +1,7 @@
 import playerReducer from './playerReducer.js';
 import opponentReducer from './opponentReducer.js';
 import fightRoundsReducer from './fightRoundsReducer.js';
+import King from "../Components/classes/king/king.js";
 
 describe('player reducer', () => {
   it('should return the initial state', () => {
@@ -82,13 +83,13 @@ describe('opponent reducer', () => {
     })
   });
   
-  // it('should handle reset', () => {
-  //   expect(opponentReducer({hp: 2, MAX_HP: 100}, {
-  //     type: "reset",
-  //   })).toEqual({
-  //     hp: 125
-  //   })
-  // });
+  it('should handle reset', () => {
+    expect(opponentReducer({hp: 2, MAX_HP: 100}, {
+      type: "reset",
+    })).toBeInstanceOf(
+     King
+    )
+  });
 
   it('should handle default', () => {
     expect(opponentReducer({hp: 100}, {
