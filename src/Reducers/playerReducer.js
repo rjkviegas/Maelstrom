@@ -1,13 +1,11 @@
 
 export default function playerReducer(state, action) {
     switch(action.type) {
-      case "attacked":     
+      case "ATTACKED":     
         return { ...state, hp: state.hp - action.payload}
-      case "set_attack": 
+      case "SET_ATTACKING_STATUS": 
         return { ...state, is_attacking: action.payload}
-      case "unset_attack": 
-        return { ...state, is_attacking: action.payload} 
-      case "reset":
+      case "RESET":
         return { ...state, hp: state.MAX_HP}
       case "MONEY_ADDED":
         return { ...state, money: state.money + action.payload} 

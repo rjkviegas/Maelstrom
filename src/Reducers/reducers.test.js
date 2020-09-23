@@ -11,9 +11,9 @@ describe('player reducer', () => {
     expect(playerReducer(undefined, {})).toEqual({});
   });
   
-  it('should handle attacked', () => {
+  it('should handle ATTACKED', () => {
     expect(playerReducer({hp: 1000}, {
-        type: "attacked",
+        type: "ATTACKED",
         payload: 10
       })).toEqual({
         hp: 990
@@ -22,28 +22,54 @@ describe('player reducer', () => {
 
   it('should handle set_attack', () => {
     expect(playerReducer({is_attacking: false}, {
-      type: "set_attack",
+      type: 'SET_ATTACKING_STATUS',
       payload: true
     })).toEqual({
       is_attacking: true
     })
   });
-
-  it('should handle unset_attack', () => {
-    expect(playerReducer({is_attacking: true}, {
-      type: "unset_attack",
-      payload: false
-    })).toEqual({
-      is_attacking: false
-    })
-  });
   
-  it('should handle reset', () => {
+  it('should handle RESET', () => {
     expect(playerReducer({hp: 2, MAX_HP: 100}, {
-      type: "reset",
+      type: 'RESET',
     })).toEqual({
       hp: 100,
       MAX_HP:100
+    })
+  });
+
+  it('should handle MONEY_ADDED', () => {
+    expect(playerReducer({money: 100}, {
+      type: "MONEY_ADDED",
+      payload: 50
+    })).toEqual({
+      money: 150
+    })
+  })
+
+  it('should handle MONEY_ADDED', () => {
+    expect(playerReducer({money: 100}, {
+      type: "MONEY_DEDUCTED",
+      payload: 50
+    })).toEqual({
+      money: 50
+    })
+  })
+
+  it('should handle PLAYER_RENAMED', () => {
+    expect(playerReducer({name: "Big Ry"}, {
+      type: "PLAYER_RENAMED",
+      payload: "Big Ry BJJ Champion of the World"
+    })).toEqual({
+      name: "Big Ry BJJ Champion of the World"
+    })
+  })
+
+  it('should handle default', () => {
+    expect(playerReducer({attribute: "value"}, {
+      type: "default",
+    })).toEqual({
+      attribute: "value"
     })
   });
 });
@@ -56,36 +82,36 @@ describe('opponent reducer', () => {
     expect(opponentReducer(undefined, {})).toEqual({});
   });
   
-  it('should handle attacked', () => {
+  it('should handle ATTACKED', () => {
     expect(opponentReducer({hp: 1000}, {
-        type: "attacked",
+        type: "ATTACKED",
         payload: 10
       })).toEqual({
         hp: 990
       })
   });
 
-  it('should handle set_attack', () => {
+  it('should handle SET_ATTACKING_STATUS toggle to true', () => {
     expect(opponentReducer({is_attacking: false}, {
-      type: "set_attack",
+      type: 'SET_ATTACKING_STATUS',
       payload: true
     })).toEqual({
       is_attacking: true
     })
   });
 
-  it('should handle unset_attack', () => {
+  it('should handle SET_ATTACKING_STATUS toggle to false', () => {
     expect(opponentReducer({is_attacking: true}, {
-      type: "unset_attack",
+      type: "SET_ATTACKING_STATUS",
       payload: false
     })).toEqual({
       is_attacking: false
     })
   });
   
-  it('should handle reset', () => {
+  it('should handle RESET', () => {
     expect(opponentReducer({hp: 2, MAX_HP: 100}, {
-      type: "reset",
+      type: 'RESET',
     })).toBeInstanceOf(
      King
     )
@@ -108,9 +134,9 @@ describe('fightRounds reducer', () => {
     expect(fightRoundsReducer(undefined, {})).toEqual({});
   });
   
-  it('should handle next_round', () => {
+  it('should handle ADVANCED_ROUND', () => {
     expect(fightRoundsReducer({round: 1}, {
-        type: "next_round",
+        type: "ADVANCED_ROUND",
         payload: 1
       })).toEqual({
         round: 2

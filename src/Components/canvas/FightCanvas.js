@@ -27,10 +27,10 @@ const FightCanvas = () => {
       
       canvas = canvasRef.current
       ctx = canvas.getContext('2d')
-      if (PlayerObj.is_attacking && OpponentObj.is_attacking) {
-        dispatch({type: 'set_attack', payload: false});
-        dispatchOpp({type: 'set_attack', payload: false});
-        dispatchFight({type: 'next_round', payload: 1})
+      if(PlayerObj.is_attacking && OpponentObj.is_attacking) {
+        dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
+        dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false});
+        dispatchFight({type: 'ADVANCED_ROUND', payload: 1})
         return
       } else {
         AttackAnimation(PlayerObj, OpponentObj, canvas, ctx);
@@ -41,9 +41,9 @@ const FightCanvas = () => {
         setTimeout(() => { 
             if (OpponentObj.hp < 0) {return} 
             let damage = Math.floor(Math.random()*5) - PlayerObj.defence;
-            dispatchOpp({type: 'set_attack', payload: true});
-            dispatch({type: 'attacked', payload: ((damage < 0) ? 0 : damage) });
-            dispatch({type: 'set_attack', payload: false});
+            dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: true});
+            dispatch({type: 'ATTACKED', payload: ((damage < 0) ? 0 : damage) });
+            dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
         }, 1500 )
 
         setTimeout(() => {    
@@ -66,7 +66,6 @@ const FightCanvas = () => {
        <div style={{align: "center"}}>
          <canvas ref={canvasRef} style={{ }} id="game-area" data-testid="game-area" /> 
        </div>
-      
     </div>)
 }
 

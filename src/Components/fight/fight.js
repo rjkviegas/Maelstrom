@@ -14,13 +14,10 @@ export default function Fight() {
     let history = useHistory();
 
     const handleAttack = () => {
-      if(PlayerObj.hp < 0) { 
-        return 
-      } else {    
-        dispatchFight({type: 'next_round', payload: 1})
-        dispatch({type: 'set_attack', payload: true});
-        dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*(70 + PlayerObj.strength))});
-      }
+      if(PlayerObj.hp < 0) {return}
+        dispatchFight({type: 'ADVANCED_ROUND', payload: 1})
+        dispatch({type: 'SET_ATTACKING_STATUS', payload: true});
+        dispatchOpp({type: 'ATTACKED', payload: Math.floor(Math.random()*(10 + PlayerObj.strength))});
     }
 
     function anyPlayerAttacking() {
@@ -40,13 +37,12 @@ export default function Fight() {
       dispatch({type: 'MONEY_ADDED', payload: OpponentObj.money}) 
     }
 
-
     function handleNewFight() {
-      dispatch({type: 'set_attack', payload: false});
-      dispatchOpp({type: 'set_attack', payload: false});
+      dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
+      dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false});
       playerRewardCheck() // position warning
-      dispatch({type: 'reset', payload: {...PlayerObj, hp: PlayerObj.MAX_HP}})
-      dispatchOpp({type: 'reset', payload: new opponent()})
+      dispatch({type: 'RESET', payload: {...PlayerObj, hp: PlayerObj.MAX_HP}})
+      dispatchOpp({type: 'RESET', payload: new opponent()})
       history.push("/play")
     }
 
