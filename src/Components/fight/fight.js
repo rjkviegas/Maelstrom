@@ -53,11 +53,10 @@ export default function Fight() {
 
     function handleRun() {
       let PENALTY = Math.max(PlayerObj.money * RUN_PENALTY_PERCENTAGE, RUN_PENALTY_MINIMUM) 
-      console.log(PENALTY)
-      if(PlayerObj.money - PENALTY <= 0) {
-        dispatch({type: 'MONEY_DEDUCTED', payload: PlayerObj.money}); // Penalty for running? Can also just ignore this method and just handleNewFight();
+      if(PlayerObj.money - PENALTY < 0) {
+        dispatch({type: 'MONEY_DEDUCTED', payload: {deduction: PlayerObj.money, escapes: 1} }); // Penalty for running? Can also just ignore this method and just handleNewFight();
       } else {
-        dispatch({type: 'MONEY_DEDUCTED', payload: PENALTY})
+        dispatch({type: 'MONEY_DEDUCTED', payload: {deduction: PENALTY, escapes: 1}})
       }
       handleNewFight();
     }

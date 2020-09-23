@@ -19,6 +19,7 @@ export default class Wizard extends Character {
     this.money = STARTING_GOLD;
     this.victories = VICTORIES;
     this.strength = STARTING_STRENGTH;
+    this.escapes = 0
   }
 }
 
