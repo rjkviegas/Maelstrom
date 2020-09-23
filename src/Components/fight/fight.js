@@ -16,7 +16,7 @@ export default function Fight() {
     const handleAttack = () => {
       if(PlayerObj.hp < 0) { 
         return 
-      } else {
+      } else {    
         dispatchFight({type: 'next_round', payload: 1})
         dispatch({type: 'set_attack', payload: true});
         dispatchOpp({type: 'attacked', payload: Math.floor(Math.random()*(70 + PlayerObj.strength))});

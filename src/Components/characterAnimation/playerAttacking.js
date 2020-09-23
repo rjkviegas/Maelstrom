@@ -58,22 +58,27 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   }
 
   function renderPlayerAttack(){
-    drawFrame(PlayerObj.attackImage, PlayerObj.attackImage.cycleLoop[currentLoopIndex], PlayerObj.attackSourceY, 0, 0); // ATTACKING PLAYER
+    drawFrame(PlayerObj.attackImage, PlayerObj.attackImage.cycleLoop[currentLoopIndex], PlayerObj.attackSourceY, 0, 0);// ATTACKING PLAYER
+    PlayerObj.attackSound.volume = 0.2;
+    PlayerObj.attackSound.play();
   }
   function renderOpponentDead(){
-  drawFrame(OpponentObj.deathImage, OpponentObj.deathImage.cycleLoop[currentLoopIndex], OpponentObj.deathSourceY, 0, 0); // DEAD OPPONENT   
+    drawFrame(OpponentObj.deathImage, OpponentObj.deathImage.cycleLoop[currentLoopIndex], OpponentObj.deathSourceY, 0, 0); // DEAD OPPONENT   
   }
 
   function renderOpponentAttack() {
     drawFrame(OpponentObj.attackImage, OpponentObj.attackImage.cycleLoop[currentLoopIndex], OpponentObj.attackSourceY, 0, 0); // ATTACKING OPPONENT
+    if(OpponentObj.attackSound){OpponentObj.attackSound.play()}
   }
 
   function renderOpponentDeathFrame() {
     drawFrame(OpponentObj.deathImage, OpponentObj.deathFrameNumber, OpponentObj.deathSourceY, 0, 0);
+    
   }
 
   function renderPlayerDeathFrame() {
     drawFrame(PlayerObj.deathImage, PlayerObj.deathFrameNumber, PlayerObj.deathSourceY, 0, 0); // DEAD PLAYER
+    
   }
 
   function anyDead() {
@@ -115,15 +120,18 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
             } else {
               renderOpponentIdle(); // bandit idle
               renderPlayerDeathFrame(); // Wizard Dead Frame
+              PlayerObj.deathSound.play()
             }
           } else if (opponentDead()) { // opponent is dead
             if(!deathAnimSwitch && !finalSwing) {
               if(currentLoopIndex === endFrame) { deathAnimSwitch = true; finalSwing = true;}
               renderPlayerAttack();
               renderOpponentDead();
+              OpponentObj.deathSound.play()
             } else {
               renderPlayerIdle(); // Wizard Idle
               renderOpponentDeathFrame(); // Bandit dead frame
+              
             }         
           }
         }
