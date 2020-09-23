@@ -54,7 +54,19 @@ img#coin {
   margin: 20px;
 }
 
+.hide1 {
+  display: none;
+  font-size: 10px;
+  font-style: italic;
+  width: 300px;
+  right: 0;
+}
 
+.item1:hover + .hide1 {
+  position: relative;
+  display: block;
+  color: white;
+}
 
 /* FONT */
 @font-face {
