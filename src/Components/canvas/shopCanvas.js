@@ -36,7 +36,7 @@ const ShopCanvas = () => {
     
     const buyHealthPot = () => {
         if (PlayerObj.money < POT_COST ) return;
-        if (PlayerObj.hp < PlayerObj.MAX_HP) return;
+        if (PlayerObj.hp > PlayerObj.MAX_HP) return;
 
         dispatch({type: 'TAKEN_HEALTH_POTION', payload: HEALTH_POTION })
         dispatch({type: 'DEDUCTED_MONEY', payload: POT_COST});
@@ -52,17 +52,23 @@ const ShopCanvas = () => {
         <p className="hide1">A natural concoction of sorts, brewed and distilled by the Su'lgaryan Druids who inhabit the dense forestland. Grants 10 HP. Costs 40 blasei shards.</p></div>)
     
     return (
-        <div data-testid="shop" style={{height: '400px'}}>
-           <PlayerHealthBar PlayerObj={PlayerObj} />
+        <div data-testid="shop" >
+            <div data-testid="welcoming" >
+                <p id="welcome_title">Welcome to the store</p>
+                <p id="welcome">What can we get you, maybe a potion to drink?</p>
+            </div>
+
+            <PlayerHealthBar PlayerObj={PlayerObj} />
+
             <Gold PlayerObj={PlayerObj}/>
-                <div style={{paddingTop: "20px", height: '350px', paddingBottom: '10px'}}>
-                     
-                   {!PlayerObj.hasSword ? visibleSword : <div></div> }
-                   {!PlayerObj.hasShield ? visibleShield : <div></div> }
-                   {healthPot}
-                     
+            
+                <div>
+                    {!PlayerObj.hasSword ? visibleSword : <div></div> }
+                    {!PlayerObj.hasShield ? visibleShield : <div></div> }
+                    {healthPot}
+                
+                    <button data-testid="back-button" onClick={handleClick}>Go back</button>
                 </div>
-                <button data-testid="back-button" onClick={handleClick}>Go back</button>
        </div>
     )
 }

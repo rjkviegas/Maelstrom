@@ -17,7 +17,7 @@ export default class Wizard extends Character {
 
   constructor(idleImage = wizardIdle, attackImage = wizardAttack, deathImage = wizardDead, deathFrameNumber = 7, idleSourceY = 0, deathSourceY = 0, attackSourceY = 0) {
     super(idleImage, attackImage, deathImage, deathFrameNumber, idleSourceY, deathSourceY, attackSourceY)
-    this.name = 'placeholder';
+    this.name = "";
     this.hp = STARTING_HITPOINTS;
     this.MAX_HP = STARTING_HITPOINTS;
     this.attackSound = new Audio("https://opengameart.org/sites/default/files/ig.mp3")

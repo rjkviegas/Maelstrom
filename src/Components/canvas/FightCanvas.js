@@ -59,10 +59,17 @@ const FightCanvas = () => {
     
     return (
     <div>
+      <div id="player_stats">{PlayerObj.name}
+        <p id="stat">level: {PlayerObj.level}</p>
+        <p id="stat">victories: {PlayerObj.vicotories}</p>
+      </div>
+      
       <div id="healthbars" data-testid="healthbars">
+        
         <PlayerHealthBar PlayerObj={PlayerObj}/>
         <OpponentHealthBar OpponentObj={OpponentObj}/>
-       </div>
+        
+      </div>
 
        <div style={{align: "center"}}>
          <canvas ref={canvasRef} style={{ }} id="game-area" data-testid="game-area" /> 

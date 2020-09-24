@@ -27,4 +27,14 @@ describe("Shop canvas", function() {
         expect(getByTestId("back-button")).toBeTruthy();
         expect(getByTestId("healthpot-button")).toBeTruthy();
     });
+
+    it("shop has greeting", function() {
+        const { getByTestId } = render(
+            <PlayerContext.Provider value={{PlayerObj}}>
+                <ShopCanvas />
+            </PlayerContext.Provider>
+            );
+        expect(getByTestId("welcoming")).toHaveTextContent("Welcome to the store");
+        expect(getByTestId("welcoming")).toHaveTextContent("What can we get you, maybe a potion");
+    });
 });
