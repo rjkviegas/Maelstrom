@@ -4,15 +4,20 @@ import { banditIdle } from './bandit/bandit_idle.js';
 import { banditAttack } from './bandit/bandit_attack.js';
 
 const framespersecond = 16
-let animation; let animation_time;
+let animation; 
+let animation_time;
 let count = 1;
+
 export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ctx) {
   const endFrame = 7;
-  let bothAttacked = false; let finalTurnCompleted = false; let deathAnimSwitch = false; let finalSwing = false;
-  let character; let opponent; 
-  if (animation) {
-    window.cancelAnimationFrame(animation)
-  }
+  let bothAttacked = false;
+  let finalTurnCompleted = false;
+  let deathAnimSwitch = false;
+  let finalSwing = false;
+  let character;
+  let opponent; 
+  
+  if (animation) { window.cancelAnimationFrame(animation)}
 
   function drawFrame(img, frameX, frameY, canvasX, canvasY) {
       ctx.imageSmoothingEnabled = true;
@@ -100,6 +105,10 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   function bothAlive() {
     return (PlayerObj.hp > 0 && OpponentObj.hp > 0)
   }
+
+  function incrementFrame() {
+    currentLoopIndex++;
+  }
   
 
   function render() {
@@ -119,6 +128,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
           if (playerDead()) { // player is dead
             if (!deathAnimSwitch && !finalSwing) {
               if(currentLoopIndex === endFrame) { deathAnimSwitch = true; finalSwing = true;}
+
               renderPlayerDead();
               renderOpponentAttack(); // attacking bandit 
               playPlayerDeathSound()
@@ -129,6 +139,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
           } else if (opponentDead()) { // opponent is dead
             if(!deathAnimSwitch && !finalSwing) {
               if(currentLoopIndex === endFrame) { deathAnimSwitch = true; finalSwing = true;}
+              
               renderPlayerAttack();
               renderOpponentDead();
               playOpponentDeathSound();
@@ -176,7 +187,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
         }
           
         if (currentLoopIndex >= endFrame) { currentLoopIndex = 0}
-        currentLoopIndex++;
+        incrementFrame();
         animation_time++; 
     }
     
