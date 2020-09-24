@@ -8,7 +8,7 @@ music.fight = new Audio()
 
 export function BackgroundMusic() {
 
-    const [volume, setVolume] = useState(0.01)
+    const [volume, setVolume] = useState(0.05)
 
     const playMusic = function() {
         music.background.loop = true;

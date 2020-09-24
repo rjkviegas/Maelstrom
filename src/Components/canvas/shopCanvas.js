@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import PlayerContext from '../../config/playerContext.js';
 import Gold from '../gold/gold.js'
@@ -13,9 +13,9 @@ const ShopCanvas = () => {
     const HEALTH_POTION_COST = 10;
     const MIN_MONIES = 200;
     const purchased_text = "You have already purchased this item"
-
-    const { PlayerObj, dispatch }  = useContext(PlayerContext)
     
+    const { PlayerObj, dispatch }  = useContext(PlayerContext)
+    const [invalid, invalidate] = useState(null)
     let history = useHistory()
     function handleClick(e) {
         console.log("clicky clicky")
@@ -30,7 +30,7 @@ const ShopCanvas = () => {
     }
 
     const buySword = () => {
-        if (PlayerObj.money < items.sword.cost) return;
+        if (PlayerObj.money < items.sword.cost)  { invalidate("You do not have enough money"); return; }
 
         dispatch({type: 'ADDED_STRENGTH', payload: items.sword.strength});
         dispatch({type: 'DEDUCTED_MONEY', payload: items.sword.cost});
@@ -38,7 +38,7 @@ const ShopCanvas = () => {
     }
     
     const buyShield = () => {
-        if (PlayerObj.money < items.shield.cost) return;
+        if (PlayerObj.money < items.shield.cost)  { invalidate("You do not have enough money"); return; }
       
         dispatch({type: 'ADDED_DEFENCE', payload: items.shield.defence});
         dispatch({type: 'DEDUCTED_MONEY', payload: items.shield.cost});
@@ -46,8 +46,8 @@ const ShopCanvas = () => {
     }
     
     const buyHealthPot = () => {
-        if (PlayerObj.money < HEALTH_POTION_COST ) return;
-        if (PlayerObj.hp >= PlayerObj.MAX_HP) return;
+        if (PlayerObj.money < HEALTH_POTION_COST ) { invalidate("You do not have enough money"); return; }
+        if (PlayerObj.hp >= PlayerObj.MAX_HP) { invalidate("You are already full HP!"); return;} 
         let proposed_new_HP = PlayerObj.hp + HEALTH_POTION_HP_BOOST
         let boost_to_player = ((proposed_new_HP) > PlayerObj.MAX_HP) ? (PlayerObj.MAX_HP - PlayerObj.hp) : HEALTH_POTION_HP_BOOST
         dispatch({type: 'TAKEN_HEALTH_POTION', payload: boost_to_player })
@@ -65,19 +65,17 @@ const ShopCanvas = () => {
     
     return (
         <div data-testid="shop" style={{height: '400px'}}>    
-                    <div style={{zIndex: '100'}}><button data-testid="back-button" id="back-button" onClick={(e) => handleClick(e)}>Go back</button></div> 
+            <div style={{zIndex: '100'}}><button data-testid="back-button" id="back-button" onClick={(e) => handleClick(e)}>Go back</button></div> 
             <div>
                 <PlayerHealthBar PlayerObj={PlayerObj} />
                 <Gold PlayerObj={PlayerObj}/>
-                    <div style={{paddingTop: "20px", height: '350px', marginBottom: '90px'}}>
-                        
+                <div style={{paddingTop: "20px", height: '350px', marginBottom: '90px'}}> 
+                {/*     {invalid === null ? '': <p>{invalid}</p>}    */}
                     {!PlayerObj.hasSword ? visibleSword : <div>{purchased_text}</div> }
                     {!PlayerObj.hasShield ? visibleShield :  <div>{purchased_text}</div>  }
-                    {healthPot}
-                        
-                    </div> 
-            </div>   
-            
+                    {healthPot}                        
+                </div> 
+            </div>          
        </div>
     )
 }
