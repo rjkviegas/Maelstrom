@@ -19,7 +19,7 @@ export function BackgroundMusic() {
     music.background.onload = playMusic()
 
     return (
-        <div style={{paddingTop: '10px'}}>
+        <div style={{marginTop: '100px'}}>
             <InputSlider valueInc={setVolume}/>
         </div>
     ) 

@@ -70,7 +70,7 @@ img#coin {
 .hide1 {
   display: none;
   font-size: 12px;
-  width: 300px;
+  width: 700px;
 }
 
 .item1:hover + .hide1 {

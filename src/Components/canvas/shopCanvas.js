@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import PlayerContext from '../../config/playerContext.js';
 import Gold from '../gold/gold.js'
 import PlayerHealthBar from '../healthbar/healthbar.js'
+import './shopCanvas.css'
 
 const ShopCanvas = () => {
     const SWORD_STRENGTH = 5;
@@ -67,20 +68,19 @@ const ShopCanvas = () => {
     return (
         <div data-testid="shop" style={{height: '400px'}}>
             <div data-testid="welcoming" >
-                <p id="welcome_title">Welcome to the store</p>
                 <p id="welcome">What can we get you, maybe a potion to drink?</p>
             </div>     
-            <div style={{zIndex: '100'}}><button data-testid="back-button" id="back-button" onClick={(e) => handleClick(e)}>Go back</button></div> 
             <div>
+                <div><button data-testid="back-button" id="back-button" onClick={(e) => handleClick(e)}>Go back</button></div>
                 <PlayerHealthBar PlayerObj={PlayerObj} />
                 <Gold PlayerObj={PlayerObj}/>
-                <div style={{paddingTop: "20px", height: '350px', marginBottom: '90px'}}> 
-                {/*     {invalid === null ? '': <p>{invalid}</p>}    */}
+                        {/*     {invalid === null ? '': <p>{invalid}</p>}    */}
+                <div id="shop_display">        
                     {!PlayerObj.hasSword ? visibleSword : <div>{purchased_text}</div> }
                     {!PlayerObj.hasShield ? visibleShield :  <div>{purchased_text}</div>  }
-                    {healthPot}                        
+                    <div>{healthPot}</div>                
                 </div> 
-            </div> 
+            </div>
        </div>
     )
 }
