@@ -3,7 +3,7 @@ import './App.css';
 import PlayerContext from './config/playerContext.js';
 import playerReducer from './Reducers/playerReducer.js'
 import Wizard from './Components/classes/wizard/wizard.js'
-import FightCanvas from './Components/canvas/FightCanvas.js'
+import FightCanvas from './Components/screens/FightCanvas.js'
 import OpponentContext from './config/opponentContext.js';
 import opponentReducer from './Reducers/opponentReducer.js'
 import Fight from './Components/fight/fight.js'
@@ -12,9 +12,10 @@ import { BackgroundMusic } from './Components/music/music';
 import fightRoundsReducer from './Reducers/fightRoundsReducer';
 import fightRounds from './Components/fight/fightRounds';
 import FightRoundsContext from './config/fightRoundsContext';
-import ShopCanvas from './Components/canvas/shopCanvas';
+import ShopCanvas from './Components/screens/shopCanvas';
 import generateRandomOpponent from './Components/classes/opponentGenerator';
-import CharacterCanvas from './Components/canvas/characterCanvas';
+import CharacterScreen from './Components/screens/characterScreen';
+import PlayerName from './Components/setName/setName.js'
 
 
 
@@ -25,7 +26,7 @@ function App() {
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, generateRandomOpponent())
 
   return (
-      
+
       <div className="App">
       <header className="App-header">
         <Router><h1>Maelstrom</h1> 
@@ -36,7 +37,9 @@ function App() {
             </Route>
 
             <Route exact path='/startgame'>
-              <Link to="/play" data-testid="play_link">Menu</Link>
+              <PlayerContext.Provider value={{PlayerObj, dispatch}}>
+                <PlayerName/>
+              </PlayerContext.Provider>
             </Route>
 
             <Route exact path='/play'>
@@ -47,7 +50,7 @@ function App() {
 
             <Route exact path='/character'>
               <PlayerContext.Provider value={{PlayerObj, dispatch}}>
-                <CharacterCanvas/>
+                <CharacterScreen/>
                 <Link to="/play">Go back</Link>
               </PlayerContext.Provider>
             </Route>

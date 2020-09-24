@@ -16,7 +16,7 @@ const useStyles = makeStyles({
 
 export default function InputSlider(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(30);
+  const [value, setValue] = React.useState(20);
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
     props.valueInc(newValue/100)

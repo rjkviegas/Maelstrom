@@ -1,6 +1,6 @@
-import { kingAttack } from "../../characterAnimation/king/king_attack";
-import { kingDeath } from "../../characterAnimation/king/king_dead";
-import { kingIdle } from "../../characterAnimation/king/king_idle";
+import { kingAttack } from "./king_attack";
+import { kingDeath } from "../../classes/king/king_dead";
+import { kingIdle } from "../../classes/king/king_idle";
 import Character from "../character_super/character_super";
 
 const STARTING_HITPOINTS = 100;

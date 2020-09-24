@@ -1,6 +1,6 @@
-import { plasmaDroneAttack } from "../../characterAnimation/plasmaDrone/plasmaDrone_attack.js";
-import { plasmaDroneDead } from "../../characterAnimation/plasmaDrone/plasmaDrone_dead.js";
-import { plasmaDroneIdle } from "../../characterAnimation/plasmaDrone/plasmaDrone_idle.js";
+import { plasmaDroneAttack } from "./plasmaDrone_attack.js";
+import { plasmaDroneDead } from "../../classes/plasmaDrone/plasmaDrone_dead.js";
+import { plasmaDroneIdle } from "../../classes/plasmaDrone/plasmaDrone_idle.js";
 import Character from "../character_super/character_super";
 
 const STARTING_HITPOINTS = 150;
