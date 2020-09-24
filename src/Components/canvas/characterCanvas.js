@@ -22,7 +22,7 @@ export default function CharacterCanvas() {
                 <form onSubmit={handleSubmit}>
                 <label>Rename</label>
                 <input type="text" id="rename" onChange={e => handleChange(e)}/>
-                <input type="submit" id="submit_rename"/>
+                <input type="submit" id="submit_rename" value="Submit"/>
                 </form>
             </div>
             <div style={{fontSize: '16px', width: '700px', wordWrap: 'break-word', paddingTop: '20px', paddingBottom: '20px'}}>
