@@ -52,10 +52,10 @@ const ShopCanvas = () => {
         <p className="hide1">A natural concoction of sorts, brewed and distilled by the Su'lgaryan Druids who inhabit the dense forestland. Grants 10 HP. Costs 40 blasei shards.</p></div>)
     
     return (
-        <div data-testid="shop" style={{height: '400px'}}>
+        <div data-testid="shop" >
            <PlayerHealthBar PlayerObj={PlayerObj} />
             <Gold PlayerObj={PlayerObj}/>
-                <div style={{paddingTop: "20px", height: '350px', paddingBottom: '10px'}}>
+                <div>
                      
                    {!PlayerObj.hasSword ? visibleSword : <div></div> }
                    {!PlayerObj.hasShield ? visibleShield : <div></div> }
