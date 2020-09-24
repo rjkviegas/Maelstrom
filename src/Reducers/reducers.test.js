@@ -1,8 +1,6 @@
 import playerReducer from './playerReducer.js';
 import opponentReducer from './opponentReducer.js';
 import fightRoundsReducer from './fightRoundsReducer.js';
-import King from "../Components/classes/king/king.js";
-import Character from '../Components/classes/character_super/character_super.js';
 
 describe('player reducer', () => {
   it('should return the initial state', () => {

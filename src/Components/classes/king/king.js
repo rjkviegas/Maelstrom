@@ -3,7 +3,7 @@ import { kingDeath } from "../../characterAnimation/king/king_dead";
 import { kingIdle } from "../../characterAnimation/king/king_idle";
 import Character from "../character_super/character_super";
 
-const STARTING_HITPOINTS = 500;
+const STARTING_HITPOINTS = 100;
 const DIVIDER = 5;
 const REWARD_MONEY = 50;
 const DEFAULT_BASE_DAMAGE = 50;

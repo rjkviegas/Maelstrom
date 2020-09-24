@@ -4,7 +4,8 @@ import { banditIdle } from './bandit/bandit_idle.js';
 import { banditAttack } from './bandit/bandit_attack.js';
 
 const framespersecond = 16
-let animation; let animation_time;
+let animation; 
+let animation_time;
 let count = 1;
 export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ctx) {
   const endFrame = 7;

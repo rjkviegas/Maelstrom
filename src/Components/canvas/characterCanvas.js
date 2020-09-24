@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import PlayerContext from '../../config/playerContext';
-import { useHistory } from "react-router-dom";
 
 export default function CharacterCanvas() {
 

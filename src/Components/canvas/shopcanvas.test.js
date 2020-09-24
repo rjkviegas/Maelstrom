@@ -1,7 +1,7 @@
 import React from "react";
 import ShopCanvas from "./shopCanvas";
 import PlayerContext from "../../config/playerContext";
-import { render, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 const PlayerObj = { money: 0 }
 
