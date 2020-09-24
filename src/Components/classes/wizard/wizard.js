@@ -9,6 +9,9 @@ const VICTORIES = 0;
 const STARTING_STRENGTH = 0;
 const STARTING_ESCAPES = 0;
 const STARTING_DEFENCE = 0;
+const STARTING_EXPERIENCE = 0;
+const STARTING_LEVEL = 0;
+const DEFAULT_BASE_DAMAGE = 25;
 
 export default class Wizard extends Character {
 
@@ -25,6 +28,8 @@ export default class Wizard extends Character {
     this.strength = STARTING_STRENGTH;
     this.escapes = STARTING_ESCAPES;
     this.defence = STARTING_DEFENCE;
+    this.baseDamage = DEFAULT_BASE_DAMAGE
+    this.experience = STARTING_EXPERIENCE
   }
 }
 

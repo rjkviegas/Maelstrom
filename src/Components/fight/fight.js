@@ -14,11 +14,19 @@ export default function Fight() {
     const RUN_PENALTY_MINIMUM = 10
     let history = useHistory();
 
+    function nextLevel(character){ 
+      return Math.round((4 * (character.level**3))/5) 
+    }
+    
+    function calculateLevel(character) {
+      return Math.floor(Math.cbrt(((5 * character.experience)/4)))
+    }
+
     const handleAttack = () => {
       if(PlayerObj.hp < 0) {return}
         dispatchFight({type: 'ADVANCED_ROUND', payload: 1})
         dispatch({type: 'SET_ATTACKING_STATUS', payload: true});
-        dispatchOpp({type: 'ATTACKED', payload: Math.floor(Math.random()*(10 + PlayerObj.strength))});
+        dispatchOpp({type: 'ATTACKED', payload: Math.floor(Math.random()*(PlayerObj.baseDamage + PlayerObj.strength))});
     }
 
     function anyPlayerAttacking() {
@@ -35,7 +43,7 @@ export default function Fight() {
 
     function playerRewardCheck() {
       if (PlayerObj.hp <= 0 || OpponentObj.hp > 0) return; // OpponentObj hp check protects against running and still getting money!
-      dispatch({type: 'MONEY_ADDED', payload: OpponentObj.money}) 
+      dispatch({type: 'FIGHT_REWARDS_GRANTED', payload: {addition: OpponentObj.money, experience: OpponentObj.experience}}) 
     }
 
     function handleNewFight() {
@@ -64,10 +72,12 @@ export default function Fight() {
           <div><button data-testid = 'attack_button' style={{visibility: anyPlayerAttacking() && bothAlive() ? 'hidden' : 'visible' }} onClick={() =>handleAttack()}>Attack</button></div>
           <div><button data-testid = 'run_button' style={{visibility: anyPlayerAttacking() && bothAlive() ? 'hidden' : 'visible' }} onClick={() =>handleRun()}>Run</button></div>
         </div>
-        : //MAIN FALSE
-      (PlayerObj.hp <= 0 ? <div><h1 data-testid="lose-message">YOU LOSE</h1><div data-testid="goback-button"><button onClick={handleNewFight}>Go back</button></div> </div> : 
+        : // EITHER IS DEAD
+      (PlayerObj.hp <= 0 ? 
+        <div><h1 data-testid="lose-message">YOU LOSE</h1><div data-testid="goback-button"><button onClick={handleNewFight}>Go back</button></div> </div> : 
         <div><h1 data-testid="win-message">YOU WIN</h1> <div data-testid="goback-button"><button onClick={handleNewFight}>Go back</button></div></div>)
       }
     </div>
     )
 }
+

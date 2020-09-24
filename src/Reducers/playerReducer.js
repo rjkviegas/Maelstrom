@@ -7,8 +7,8 @@ export default function playerReducer(state, action) {
         return { ...state, is_attacking: action.payload}
       case "RESET":
         return { ...state, hp: state.MAX_HP}
-      case "MONEY_ADDED":
-        return { ...state, money: state.money + action.payload} 
+      case "FIGHT_REWARDS_GRANTED":
+        return { ...state, money: state.money + action.payload.addition, experience: state.experience + action.payload.experience} 
       case "MONEY_DEDUCTED":
         return {...state, money: Math.floor(state.money - action.payload.deduction), escapes: state.escapes + action.payload.escapes} 
       case "PLAYER_RENAMED":

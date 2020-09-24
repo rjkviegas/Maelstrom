@@ -19,7 +19,7 @@ const FightCanvas = () => {
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext)
     const { FightRounds, dispatchFight } = useContext(FightRoundsContext)
-
+    
     let animationFrameId;
 
     // SET ROUNDS WITH CONTEXT, PASSING THE ROUNDS TO THIS USEFFECT DEPENDENCY ARRAY    
@@ -40,7 +40,7 @@ const FightCanvas = () => {
         
         setTimeout(() => { 
             if (OpponentObj.hp < 0) {return} 
-            let damage = Math.floor(Math.random()*5) - PlayerObj.defence;
+            let damage = Math.floor(Math.random()*OpponentObj.baseDamage) - PlayerObj.defence;
             dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: true});
             dispatch({type: 'ATTACKED', payload: ((damage < 0) ? 0 : damage) });
             dispatch({type: 'SET_ATTACKING_STATUS', payload: false});

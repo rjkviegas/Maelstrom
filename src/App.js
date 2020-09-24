@@ -26,7 +26,7 @@ function App() {
   const [FightRounds, dispatchFight] = useReducer(fightRoundsReducer, fightRounds)
   const [PlayerObj, dispatch] = useReducer(playerReducer, new Wizard())
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, generateRandomOpponent())
-
+  console.log(OpponentObj)
   return (
       
       <div className="App">
