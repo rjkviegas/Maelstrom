@@ -60,8 +60,9 @@ export default function Fight() {
         </div>
         : // EITHER IS DEAD
       (PlayerObj.hp <= 0 ? 
-        <div><h1 data-testid="lose-message">YOU LOSE</h1><div data-testid="goback-button"><button onClick={handleNewFight}>Go back</button></div> </div> : 
-        <div><h1 data-testid="win-message">YOU WIN</h1> <div data-testid="goback-button"><button onClick={handleNewFight}>Go back</button></div></div>)
+        <div><h1 data-testid="lose-message">YOU LOSE</h1><div data-testid="goback-button"><button onClick={handleNewFight}>You couldn't escape the maelstrom</button></div> </div> : 
+        <div><h1 data-testid="win-message">YOU WIN</h1> <div data-testid="goback-button"><button onClick={handleNewFight}>You have evaded the maelstrom this time</button></div></div>)
+      // Opponents have their own win(/loss?) button texts to provide to the player
       }
     </div>
     )
