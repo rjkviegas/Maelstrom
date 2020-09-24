@@ -48,6 +48,14 @@ img#coin {
   background-position: center;
 }
 
+#player_stats {
+  font-size: 10px;
+}
+
+#stat {
+  font-size: 8px;
+}
+
 /* SHOP STUFF */
 #item {
   padding: 20px;
