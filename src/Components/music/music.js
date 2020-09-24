@@ -8,7 +8,7 @@ music.fight = new Audio()
 
 export function BackgroundMusic() {
 
-    const [volume, setVolume] = useState(0.3)
+    const [volume, setVolume] = useState(0.05)
 
     const playMusic = function() {
         music.background.loop = true;
@@ -16,16 +16,11 @@ export function BackgroundMusic() {
         music.background.play()
     }
 
-    music.background.onload = playMusic()  
-
-    const toggleSound = function() {
-        music.background.paused ? music.background.play() : music.background.pause()
-    }
+    music.background.onload = playMusic()
 
     return (
-        <div style={{paddingTop: '10px'}}>
+        <div style={{marginTop: '100px'}}>
             <InputSlider valueInc={setVolume}/>
-            <button onClick={() => toggleSound()} style={{paddingTop: '20px', background: 'none', borderStyle: 'none', color: 'whitesmoke'}}>Toggle Music</button>
         </div>
     ) 
 }

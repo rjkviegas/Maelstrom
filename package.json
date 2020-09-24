@@ -19,7 +19,7 @@
       "!**/serviceWorker.js",
       "!**/Components/characterAnimation/idleAnimation.js",
       "!**/Components/characterAnimation/opponentAttacking.js",
-      "!**/Components/characterAnimation/playerAttacking.js",
+      "!**/Components/characterAnimation/FightAnimation.js",
       "**/*.{js,jsx}",
       "!**/node_modules/**",
       "!**/vendor/**"

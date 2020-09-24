@@ -12,7 +12,7 @@ describe("player initializes", function() {
         expect(player1.current_avatar).toBe(wizardIdle);
     });
     it("with no money", function() {
-        expect(player1.money).toEqual(0);
+        expect(player1.money).toEqual(100);
     });
     
 });
