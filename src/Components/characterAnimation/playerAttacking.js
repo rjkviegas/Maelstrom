@@ -124,10 +124,10 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        if ( anyDead() ) {
+    
           if (playerDead()) { // player is dead
             if (!deathAnimSwitch && !finalSwing) {
-              if(currentLoopIndex === endFrame) { deathAnimSwitch = true; finalSwing = true;}
+              if(currentLoopIndex >= endFrame) { deathAnimSwitch = true; finalSwing = true;}
 
               renderPlayerDead();
               renderOpponentAttack(); // attacking bandit 
@@ -138,7 +138,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
             }
           } else if (opponentDead()) { // opponent is dead
             if(!deathAnimSwitch && !finalSwing) {
-              if(currentLoopIndex === endFrame) { deathAnimSwitch = true; finalSwing = true;}
+              if(currentLoopIndex >= endFrame) { deathAnimSwitch = true; finalSwing = true;}
               
               renderPlayerAttack();
               renderOpponentDead();
@@ -148,7 +148,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
               renderOpponentDeathFrame(); // Bandit dead frame          
             }         
           }
-        }
+        
 
 
           if (character === "idle" && opponent === "idle" && bothAlive()) {
