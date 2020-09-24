@@ -68,6 +68,7 @@ const ShopCanvas = () => {
     return (
         <div data-testid="shop" style={{height: '400px'}}>
             <div data-testid="welcoming" >
+                <p id="welcome">Welcome to the store"</p>
                 <p id="welcome">What can we get you, maybe a potion to drink?</p>
             </div>     
             <div>
