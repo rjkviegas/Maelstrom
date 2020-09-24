@@ -9,7 +9,7 @@ export default function PlayerName() {
     
     let history = useHistory()
     function valid() {
-        if(name === " ") { return false }
+        if(name === "") { return false }
         return true
     }
     function handleChange(e) {
@@ -27,7 +27,7 @@ export default function PlayerName() {
             <form onSubmit={handleSubmit}>
                 <input type="text-field" placeholder="Enter name..." onChange={handleChange}/>
                     {valid ? <div>Enter your name</div> : <div>Your name is not valid</div> }
-                <button type="submit" value="Create Player" style={{visibility: valid ? 'visible' : 'hidden'}} onClick={handleSubmit} disabled={!valid}>Submit name</button>          
+                <button data-testid="submit_name" id="submit_name" type="submit" value="Create Player" style={{visibility: valid ? 'visible' : 'hidden'}} onClick={handleSubmit} disabled={!valid}>Submit name</button>          
             </form>
         </div>
     )
