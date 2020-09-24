@@ -19,4 +19,9 @@ describe("Character Parent Class", function() {
     it("its attacking property is false", function() {
         expect(referenceCharacter.is_attacking).toEqual(false);
     });
+
+    it("can calculate next level", function() {
+      referenceCharacter.level = 1;
+      expect(referenceCharacter.nextLevel()).toEqual(1)
+    });
 })

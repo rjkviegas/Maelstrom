@@ -3,7 +3,7 @@ import CharacterCanvas from "./characterCanvas";
 import PlayerContext from "../../config/playerContext";
 import { render } from '@testing-library/react'
 
-const PlayerObj = { money: 100 }
+const PlayerObj = { money: 100, name: "Harry" }
 
 describe("Character", function() {
 
