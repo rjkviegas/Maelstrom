@@ -69,6 +69,33 @@ describe('player reducer', () => {
     })
   })
 
+  it('should handle ADDED_STRENGTH', () => {
+    expect(playerReducer({strength: 10}, {
+      type: "ADDED_STRENGTH",
+      payload: 5
+    })).toEqual({
+      strength: 15
+    })
+  })
+
+  it('should handle ADDED_DEFENCE', () => {
+    expect(playerReducer({defence: 10}, {
+      type: "ADDED_DEFENCE",
+      payload: 5
+    })).toEqual({
+      defence: 15
+    })
+  })
+
+  it('should handle DEDUCTED_MONEY', () => {
+    expect(playerReducer({money: 100}, {
+      type: "DEDUCTED_MONEY",
+      payload: 50
+    })).toEqual({
+      money: 50
+    })
+  })
+
   it('should handle default', () => {
     expect(playerReducer({attribute: "value"}, {
       type: "default",
@@ -113,13 +140,15 @@ describe('opponent reducer', () => {
     })
   });
   
-/*   it('should handle RESET', () => {
-    expect(opponentReducer({hp: 2, MAX_HP: 100}, {
+   it('should handle RESET', () => {
+    expect(opponentReducer({hp: 2, is_attacking: true}, {
       type: 'RESET',
-    })).toBeInstanceOf(
-      Character
-    )
-  });  */
+      payload: { hp: 100, is_attacking: false }
+    })).toEqual({
+      hp: 100, 
+      is_attacking: false
+    })
+  });  
 
   it('should handle default', () => {
     expect(opponentReducer({hp: 100}, {

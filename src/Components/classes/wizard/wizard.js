@@ -31,6 +31,8 @@ export default class Wizard extends Character {
     this.baseDamage = DEFAULT_BASE_DAMAGE;
     this.experience = STARTING_EXPERIENCE;
     this.level = STARTING_LEVEL;
+    this.hasSword = false
+    this.hasShield = false
   }
 }
 

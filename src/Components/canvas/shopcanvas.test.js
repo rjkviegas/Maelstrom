@@ -25,6 +25,7 @@ describe("Shop canvas", function() {
         expect(getByTestId("sword-button")).toBeTruthy();
         expect(getByTestId("shield-button")).toBeTruthy();
         expect(getByTestId("back-button")).toBeTruthy();
+        expect(getByTestId("healthpot-button")).toBeTruthy();
     });
 
     // it("shop has a back button which returns to main menu", function() {

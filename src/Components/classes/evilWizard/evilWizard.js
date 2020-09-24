@@ -14,6 +14,8 @@ class EvilWizard extends Character{
     this.name = 'Opponent_Placeholder'
     this.hp = STARTING_HITPOINTS
     this.MAX_HP = STARTING_HITPOINTS
+    this.attackSound = new Audio("https://opengameart.org/sites/default/files/audio_preview/foom_0.wav.mp3")
+    this.deathSound = new Audio("https://opengameart.org/sites/default/files/8.mp3")
     this.is_attacking = false;
     this.money = REWARD_MONEY;
     this.experience = STARTING_HITPOINTS/DIVIDER;

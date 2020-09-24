@@ -52,7 +52,7 @@ describe('App', () => {
         const { getByText } = render(<App />);
         const linkElement = getByText(/Menu/i);
         expect(global.window.location.pathname).toEqual('/startgame');
-        fireEvent.click(linkElement, { button: 0});
+        fireEvent.click(linkElement, { button: 0 });
         expect(linkElement).toHaveTextContent('Fight')
         expect(global.window.location.pathname).toEqual('/play');
     });

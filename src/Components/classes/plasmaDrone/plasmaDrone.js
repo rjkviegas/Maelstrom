@@ -14,6 +14,8 @@ class PlasmaDrone extends Character{
     this.name = 'Plasma Drone'
     this.hp = STARTING_HITPOINTS
     this.MAX_HP = STARTING_HITPOINTS
+    this.attackSound = new Audio("http://freesoundeffect.net/sites/default/files/laser--release-from-firing--2-sound-effect-93548584.mp3")
+    this.deathSound = new Audio("http://freesoundeffect.net/sites/default/files/firework-explode--exterior--slight-spark-at-end-sound-effect-70764161.mp3")
     this.is_attacking = false;
     this.money = REWARD_MONEY
     this.experience = STARTING_HITPOINTS/DIVIDER;
