@@ -30,27 +30,29 @@ describe('player reducer', () => {
     })
   });
   
-  it('should handle RESET', () => {
+  it('should handle PLAYER_ATTACK/HP_RESET', () => {
     expect(playerReducer({hp: 2, MAX_HP: 100}, {
-      type: 'RESET',
+      type: 'PLAYER_ATTACK/HP_RESET', payload: {hp: 100, is_attacking: false}
     })).toEqual({
-      hp: 100,
-      MAX_HP:100
+      hp: 2,
+      MAX_HP:100,
+      is_attacking: false
     })
   });
 
-  it('should handle MONEY_ADDED', () => {
-    expect(playerReducer({money: 100}, {
-      type: "MONEY_ADDED",
-      payload: 50
-    })).toEqual({
-      money: 150
-    })
+  it('should handle FIGHT_WIN_REWARDS_GRANTED', () => {
+    let current_experience = 3
+    expect(playerReducer({money: 100, is_attacking: true, experience: 0, hp: 100, level: 1}, {
+      type: "FIGHT_WIN_REWARDS_GRANTED",
+      payload: {addition: 50, experience: 10, is_attacking: false, hp: 100}
+    })).toEqual(
+      {money: 150, experience: 10, is_attacking: false, hp: 100}
+    )
   })
 
-  it('should handle MONEY_DEDUCTED', () => {
+  it('should handle PENALTY_DEDUCTED', () => {
     expect(playerReducer({money: 100, escapes: 0}, {
-      type: "MONEY_DEDUCTED",
+      type: "PENALTY_DEDUCTED",
       payload: {deduction: 50, escapes: 1}
     })).toEqual({
       money: 50,
