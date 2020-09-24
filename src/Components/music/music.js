@@ -23,7 +23,7 @@ export function BackgroundMusic() {
     }
 
     return (
-        <div>
+        <div style={{paddingTop: '10px'}}>
             <InputSlider valueInc={setVolume}/>
             <button onClick={() => toggleSound()} style={{paddingTop: '20px', background: 'none', borderStyle: 'none', color: 'whitesmoke'}}>Toggle Music</button>
         </div>

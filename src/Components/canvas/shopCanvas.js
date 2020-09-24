@@ -31,18 +31,20 @@ const ShopCanvas = () => {
         <div data-testid="shop" style={{height: '400px'}}>
 
             <Gold PlayerObj={PlayerObj}/>
+                <div style={{paddingTop: "20px", height: '350px', paddingBottom: '10px'}}>
+                    <div className="item1">
+                        <button data-testid="sword-button" id="item" onClick={buySword}>Sword</button>
+                    </div>
+                    <p className="hide1">The Sword of 1000 truths, once said to belong to King Arthur... But that myth is lost to the Maelstrom. Grants extra damage.</p>
 
-                <div className="item1">
-                    <button data-testid="sword-button" id="item" onClick={buySword}>Sword</button>
+                    <div className="item1">
+                        <button data-testid="shield-button" id="item" onClick={buyShield}>Shield</button>
+                    </div>
+                    <p className="hide1">A shield, once wielded by a great Ragnar Lothbrok who fought in the shield wall attacking East Anglia. Grants extra defence.</p>
+            
+                  
                 </div>
-                <p className="hide1">The Sword of 1000 truths, once said to belong to King Arthur... But that myth is lost to the Maelstrom. Grants extra damage.</p>
-
-                <div className="item1">
-                    <button data-testid="shield-button" id="item" onClick={buyShield}>Shield</button>
-                </div>
-                <p className="hide1">A shield, once wielded by a great Ragnar Lothbrok who fought in the shield wall attacking East Anglia. Grants extra defence.</p>
-        
-            <button data-testid="back-button" onClick={handleClick}>Go back</button>
+                <button data-testid="back-button" onClick={handleClick}>Go back</button>
         </div>
     )
 }

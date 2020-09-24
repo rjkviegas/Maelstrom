@@ -16,11 +16,6 @@ export default function CharacterCanvas() {
         setNameValue(e.target.value)
     }
 
-   /*  let history = useHistory()
-    function handleClick() {
-        history.push('/play');
-    } */
-
     return (
         <div>
             <div>
@@ -30,7 +25,12 @@ export default function CharacterCanvas() {
                 <input type="submit" id="submit_rename"/>
                 </form>
             </div>
-            <div style={{fontSize: '12px', width: '700px', wordWrap: 'break-word'}}>{JSON.stringify(PlayerObj)}</div>
+            <div style={{fontSize: '16px', width: '700px', wordWrap: 'break-word', paddingTop: '20px', paddingBottom: '20px'}}>
+                <div data-testid="player_name" id="player_name">Name: {PlayerObj.name}</div>
+                <div data-testid="base_damage" id="base_damage">Base Damage: {PlayerObj.baseDamage}</div>
+                <div data-testid="strength" id="strength">Strength bonus: {PlayerObj.strength}</div>
+                <div data-testid="defence" id="defence">Defence bonus: {PlayerObj.defence}</div>
+            </div>
         </div>
     )
 }
