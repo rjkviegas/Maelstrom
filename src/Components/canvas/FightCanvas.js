@@ -59,7 +59,7 @@ const FightCanvas = () => {
     
     return (
     <div>
-      <div id="player_stats">Your stats
+      <div id="player_stats">{PlayerObj.name}
         <p id="stat">level: {PlayerObj.level}</p>
         <p id="stat">victories: {PlayerObj.vicotories}</p>
       </div>

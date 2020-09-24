@@ -70,14 +70,13 @@ img#coin {
 .hide1 {
   display: none;
   font-size: 12px;
-  width: 400px;
+  width: 300px;
 }
 
 .item1:hover + .hide1 {
   position: relative;
   display: block;
   color: white;
-  right: 100px;
 }
 
 /* FONT */
