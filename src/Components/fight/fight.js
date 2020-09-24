@@ -11,7 +11,7 @@ export default function Fight() {
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext);
     const { dispatchFight } = useContext(FightRoundsContext)
     const RUN_PENALTY_PERCENTAGE = 0.3
-    const RUN_PENALTY_MINIMUM = 10
+    const RUN_PENALTY_MINIMUM = 5
     const DEATH_PENALTY = PlayerObj.money
     let history = useHistory();
 
@@ -30,26 +30,23 @@ export default function Fight() {
       return OpponentObj.hp > 0 && PlayerObj.hp > 0
     }
 
-    function anyDead() {
-      return PlayerObj.hp <= 0 || OpponentObj.hp <= 0
-    }
-
     function playerRewardCheck() {
       if (PlayerObj.hp <= 0 || OpponentObj.hp > 0) return; // OpponentObj hp check protects against running and still getting money!
+      //const level = PlayerObj.c
       dispatch({type: 'FIGHT_WIN_REWARDS_GRANTED', payload: {addition: OpponentObj.money, experience: OpponentObj.experience, hp: PlayerObj.MAX_HP, is_attacking: false}}) 
     }
 
     function handleNewFight() {
       playerRewardCheck() // position warning
       if (PlayerObj.hp <= 0) dispatch({type: "PLAYER_DIED", payload: {hp: PlayerObj.MAX_HP, is_attacking: false, death_penalty: DEATH_PENALTY}}); 
-      dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false});
+      dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false}); // need to check if this line is needed. I suspect not.
       dispatchOpp({type: 'RESET', payload: generateRandomOpponent()})
       history.push("/play")
     }
 
     function handleRun() {
-      let PENALTY = Math.max(PlayerObj.money * RUN_PENALTY_PERCENTAGE, RUN_PENALTY_MINIMUM) 
-      let FINAL_PENALTY = (PlayerObj.money - PENALTY < 0) ? PlayerObj.money : PENALTY
+      let PENALTY = Math.max(PlayerObj.money * RUN_PENALTY_PERCENTAGE, RUN_PENALTY_MINIMUM) // Penalty is the larger of the two
+      let FINAL_PENALTY = (PlayerObj.money - PENALTY < 0) ? PlayerObj.money : PENALTY // No negative money pls
       dispatch({type: 'PENALTY_DEDUCTED', payload: {deduction: FINAL_PENALTY, escapes: 1} }); // Penalty for running? Can also just ignore this method and just handleNewFight();
       handleNewFight();
     }
