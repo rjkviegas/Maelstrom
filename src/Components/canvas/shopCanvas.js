@@ -31,7 +31,7 @@ const ShopCanvas = () => {
     }
 
     const buySword = () => {
-        if (PlayerObj.money < items.sword.cost)  { invalidate("You do not have enough money"); return; }
+        if (PlayerObj.money < items.sword.cost)  { invalidate("Insufficient funds"); return; }
 
         dispatch({type: 'ADDED_STRENGTH', payload: items.sword.strength});
         dispatch({type: 'DEDUCTED_MONEY', payload: items.sword.cost});
@@ -39,7 +39,7 @@ const ShopCanvas = () => {
     }
     
     const buyShield = () => {
-        if (PlayerObj.money < items.shield.cost)  { invalidate("You do not have enough money"); return; }
+        if (PlayerObj.money < items.shield.cost)  { invalidate("Insufficient funds"); return; }
       
         dispatch({type: 'ADDED_DEFENCE', payload: items.shield.defence});
         dispatch({type: 'DEDUCTED_MONEY', payload: items.shield.cost});
@@ -48,7 +48,7 @@ const ShopCanvas = () => {
     
     const buyHealthPot = () => {
 
-        if (PlayerObj.money < HEALTH_POTION_COST ) { invalidate("You do not have enough money"); return; }
+        if (PlayerObj.money < HEALTH_POTION_COST ) { invalidate("Insufficient funds"); return; }
         if (PlayerObj.hp >= PlayerObj.MAX_HP) { invalidate("You are already full HP!"); return;} 
         let proposed_new_HP = PlayerObj.hp + HEALTH_POTION_HP_BOOST
         let boost_to_player = ((proposed_new_HP) > PlayerObj.MAX_HP) ? (PlayerObj.MAX_HP - PlayerObj.hp) : HEALTH_POTION_HP_BOOST
@@ -75,12 +75,12 @@ const ShopCanvas = () => {
                 <div><button data-testid="back-button" id="back-button" onClick={(e) => handleClick(e)}>Go back</button></div>
                 <PlayerHealthBar PlayerObj={PlayerObj} />
                 <Gold PlayerObj={PlayerObj}/>
-                        {/*     {invalid === null ? '': <p>{invalid}</p>}    */}
                 <div id="shop_display">        
                     {!PlayerObj.hasSword ? visibleSword : <div>{purchased_text}</div> }
                     {!PlayerObj.hasShield ? visibleShield :  <div>{purchased_text}</div>  }
                     <div>{healthPot}</div>                
                 </div> 
+                {invalid === null ? '': <p>{invalid}</p>}
             </div>
        </div>
     )
