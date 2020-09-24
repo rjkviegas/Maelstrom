@@ -1,6 +1,6 @@
 import OpponentHealthBar from '../../Components/healthbar/enemyHealthbar'
 import React, { createRef, useEffect, useContext } from 'react';
-import PlayerHealthBar from '../../Components/healthbar/healthbar'
+import PlayerHealthBar from '../../Components/healthbar/playerHealthbar'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import AttackAnimation from '../characterAnimation/FightAnimation.js'
@@ -64,7 +64,7 @@ const FightCanvas = () => {
     <div>
       <div id="player_stats">{PlayerObj.name}
         <p id="stat">level: {PlayerObj.level}</p>
-        <p id="stat">victories: {PlayerObj.vicotories}</p>
+        <p id="stat">victories: {PlayerObj.victories}</p>
       </div>
       
       <div id="healthbars" data-testid="healthbars">

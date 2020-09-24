@@ -1,6 +1,6 @@
 import React from 'react';
-import './healthbar.css';
-import OpponentHealthBar from './enemyHealthbar'
+import '../../../Components/healthbar/healthbar.css';
+import OpponentHealthBar from '../../../Components/healthbar/enemyHealthbar.js'
 import { render } from "@testing-library/react";
 
 

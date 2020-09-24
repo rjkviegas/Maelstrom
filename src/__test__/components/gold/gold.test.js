@@ -1,5 +1,5 @@
 import React from "react";
-import Gold from "./gold";
+import Gold from "../../../Components/gold/gold.js";
 import { render } from "@testing-library/react"
 
 const PlayerObj = { name: "Ilja MoneyBags", money: -8000 };

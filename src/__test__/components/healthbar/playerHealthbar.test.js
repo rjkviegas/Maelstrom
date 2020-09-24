@@ -1,7 +1,7 @@
 import React from 'react';
-import './healthbar.css';
+import '../../../Components/healthbar/healthbar.css';
 import { render } from "@testing-library/react";
-import PlayerHealthBar from './healthbar'
+import PlayerHealthBar from '../../../Components/healthbar/playerHealthbar.js'
 
 
 const playerObj  = { name: "Ilja", hp: 100, MAX_HP: 100 };

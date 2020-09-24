@@ -1,9 +1,9 @@
 import React from "react";
-import Fight from './fight.js'
-import OpponentContext from '../../config/opponentContext.js'
-import PlayerContext from '../../config/playerContext'
+import Fight from '../../../Components/fight/fight.js'
+import OpponentContext from '../../../config/opponentContext.js'
+import PlayerContext from '../../../config/playerContext'
 import { render } from "@testing-library/react";
-import FightRoundsContext from "../../config/fightRoundsContext.js";
+import FightRoundsContext from "../../../config/fightRoundsContext.js";
 
 
 const OpponentObj  = { name: "Mouldie Harry", hp: 1};
@@ -12,7 +12,6 @@ const FightRounds = { round: 0 };
 const dispatch = jest.fn();
 const dispatchOpp = jest.fn();
 const dispatchFight = jest.fn();
-// const handleNewFight = jest.fn();
 
 describe("Fight", function() {
     it("displays attack button", function() {

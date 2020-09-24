@@ -25,7 +25,7 @@ function App() {
   const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, generateRandomOpponent())
 
   return (
-      
+
       <div className="App">
       <header className="App-header">
         <Router><h1>Maelstrom</h1> 

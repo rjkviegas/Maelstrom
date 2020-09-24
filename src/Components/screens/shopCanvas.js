@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import PlayerContext from '../../config/playerContext.js';
 import Gold from '../gold/gold.js'
-import PlayerHealthBar from '../healthbar/healthbar.js'
+import PlayerHealthBar from '../healthbar/playerHealthbar.js'
 import './shopCanvas.css'
 
 const ShopCanvas = () => {

@@ -29,11 +29,10 @@ export default function Fight() {
     function bothAlive() {
       return OpponentObj.hp > 0 && PlayerObj.hp > 0
     }
-
     function playerRewardCheck() {
       if (PlayerObj.hp <= 0 || OpponentObj.hp > 0) return; // OpponentObj hp check protects against running and still getting money!
       let level = (PlayerObj.experience + OpponentObj.experience) > PlayerObj.nextLevel() ? (PlayerObj.level + 1) : PlayerObj.level
-      dispatch({type: 'FIGHT_WIN_REWARDS_GRANTED', payload: {addition: OpponentObj.money, experience: OpponentObj.experience, hp: PlayerObj.MAX_HP, is_attacking: false, level}}) 
+      dispatch({type: 'FIGHT_WIN_REWARDS_GRANTED', payload: {addition: OpponentObj.money, experience: OpponentObj.experience, hp: PlayerObj.MAX_HP, is_attacking: false, level, victories: 1}}) 
     }
 
     function handleNewFight() {

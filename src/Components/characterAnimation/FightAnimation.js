@@ -2,6 +2,7 @@ import { wizardAttack } from '../classes/wizard/wizard_attack.js';
 import { wizardIdle } from '../classes/wizard/wizard_idle.js'
 import { banditIdle } from '../classes/bandit/bandit_idle.js';
 import { banditAttack } from '../classes/bandit/bandit_attack.js';
+import { animationHelper } from './animationHelper.js'
 
 const framespersecond = 16
 let animation; 
@@ -108,7 +109,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   }
 
   function renderOpponentAttack() {
-    if (isPlayerDead()) { return renderOpponentIdle()};
+    if (isDead(PlayerObj)) { return renderOpponentIdle()};
 
     drawFrame(
       OpponentObj.attackImage,
@@ -121,7 +122,8 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   }
 
   function renderOpponentDeathFrame() {
-    drawFrame(OpponentObj.deathImage,
+    drawFrame(
+      OpponentObj.deathImage,
       OpponentObj.deathFrameNumber,
       OpponentObj.deathSourceY,
       0,
@@ -141,13 +143,13 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
 
   function playPlayerDeathSound() {
     if (PlayerObj.deathSound) {
-      PlayerObj.deathSound.play()
+      PlayerObj.deathSound.play();
     }
   }
 
   function playOpponentDeathSound() {
     if (OpponentObj.deathSound) {
-      OpponentObj.deathSound.play()
+      OpponentObj.deathSound.play();
     }
   }
 
@@ -168,12 +170,12 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     playOpponentDeathSound();
   }
 
-  function isPlayerDead() {
-    return (PlayerObj.hp <= 0)
+  function resetLoopIndex() {
+    currentLoopIndex = 0;
   }
 
-  function isOpponentDead() {
-    return (OpponentObj.hp <= 0)
+  function isDead(character) {
+    return character.hp <= 0;
   }
 
   function incrementFrame() {
@@ -185,7 +187,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   }
 
   function areBothAlive() {
-    return (PlayerObj.hp > 0 && OpponentObj.hp > 0);
+    return (!isDead(PlayerObj) && !isDead(OpponentObj));
   }
 
   function loopIndexIsEndFrame() {
@@ -214,7 +216,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
 
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      if (isPlayerDead()) {
+      if (isDead(PlayerObj)) {
         if (!deathAnimSwitch && !finalSwing) {
           if (loopIndexIsEndFrame()) {
             deathAnimSwitch = true;
@@ -225,7 +227,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
           renderOpponentIdle();
           renderPlayerDeathFrame();
         }
-      } else if (isOpponentDead()) {
+      } else if (isDead(OpponentObj)) {
         if (!deathAnimSwitch && !finalSwing) {
           if (loopIndexIsEndFrame()) { 
             deathAnimSwitch = true; 
@@ -252,7 +254,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
           }
         }
 
-        if(currentLoopIndex >= endFrame && character === wizardIdle && opponent === banditIdle) {
+        if(loopIndexIsEndFrame() && character === wizardIdle && opponent === banditIdle) {
           character = wizardIdle; opponent = banditAttack;
         }
 
@@ -281,7 +283,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
       }
 
       if (loopIndexIsEndFrame()) {
-        currentLoopIndex = 0;
+        resetLoopIndex();
       }
       incrementFrame();
     }
