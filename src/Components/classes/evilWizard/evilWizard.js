@@ -1,6 +1,6 @@
-import { evilWizardAttack } from "../../characterAnimation//evilWizard/evilWizard_attack.js";
-import { evilWizardDead } from "../../characterAnimation/evilWizard/evilWizard_dead.js";
-import { evilWizardIdle } from "../../characterAnimation/evilWizard/evilWizard_idle.js";
+import { evilWizardAttack } from "../../classes/evilWizard/evilWizard_attack.js";
+import { evilWizardDead } from "../../classes/evilWizard/evilWizard_dead.js";
+import { evilWizardIdle } from "../../classes/evilWizard/evilWizard_idle.js";
 import Character from "../character_super/character_super";
 
 const STARTING_HITPOINTS = 70;

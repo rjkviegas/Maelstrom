@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
-import App from './App';
+import App from '../../App.js';
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 

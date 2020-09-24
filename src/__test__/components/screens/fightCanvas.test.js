@@ -1,10 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import FightCanvas from './FightCanvas.js'
-import OpponentContext from '../../config/opponentContext.js'
-import PlayerContext from '../../config/playerContext'
-import { render, cleanup, fireEvent } from "@testing-library/react";
-import FightRoundsContext from "../../config/fightRoundsContext.js";
+import FightCanvas from '../../../Components/screens/FightCanvas.js'
+import OpponentContext from '../../../config/opponentContext.js'
+import PlayerContext from '../../../config/playerContext'
+import { render, cleanup } from "@testing-library/react";
+import FightRoundsContext from "../../../config/fightRoundsContext.js";
 
 
 const OpponentObj  = { name: "Mouldie Harry", hp: 1, deathImage: jest.fn(), attackImage: jest.fn(), idleImage: jest.fn() };

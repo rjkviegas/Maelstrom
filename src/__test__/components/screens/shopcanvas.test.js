@@ -1,6 +1,6 @@
 import React from "react";
-import ShopCanvas from "./shopCanvas";
-import PlayerContext from "../../config/playerContext";
+import ShopCanvas from "../../../Components/screens/shopCanvas.js";
+import PlayerContext from "../../../config/playerContext.js";
 import { render } from '@testing-library/react'
 
 const PlayerObj = { money: 100 }

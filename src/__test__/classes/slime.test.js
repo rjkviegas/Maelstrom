@@ -1,4 +1,4 @@
-import Slime from './slime.js'
+import Slime from '../../Components/classes/slime/slime.js'
 
 const slime = new Slime()
 

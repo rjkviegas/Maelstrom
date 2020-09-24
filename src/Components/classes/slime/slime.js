@@ -1,6 +1,6 @@
-import { slimeAttack } from "../../characterAnimation/slime/slime_attack";
-import { slimeDeath } from "../../characterAnimation/slime/slime_death";
-import { slimeIdle } from "../../characterAnimation/slime/slime_idle";
+import { slimeAttack } from "./slime_attack";
+import { slimeDeath } from "./slime_death";
+import { slimeIdle } from "./slime_idle";
 import Character from "../character_super/character_super";
 
 const STARTING_HITPOINTS = 50;

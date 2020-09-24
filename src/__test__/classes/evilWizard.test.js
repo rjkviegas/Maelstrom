@@ -1,5 +1,5 @@
-import EvilWizard from './evilWizard.js'
-import { STARTING_HITPOINTS as EVIL_WIZARD_DEFAULT_HP } from './evilWizard.js'
+import EvilWizard, {STARTING_HITPOINTS as WIZARD_HP} from '../../Components/classes/evilWizard/evilWizard.js'
+
 const evilWizard = new EvilWizard()
 
 describe("evilWizard", function() {
@@ -9,11 +9,11 @@ describe("evilWizard", function() {
     });
 
     it("has hp", function() {
-        expect(evilWizard.hp).toEqual(EVIL_WIZARD_DEFAULT_HP);
+        expect(evilWizard.hp).toEqual(WIZARD_HP);
     });
 
     it("has a starting max hp reference", function() {
-        expect(evilWizard.MAX_HP).toEqual(EVIL_WIZARD_DEFAULT_HP);
+        expect(evilWizard.MAX_HP).toEqual(WIZARD_HP);
     });
 
     it("its attacking property is false", function() {

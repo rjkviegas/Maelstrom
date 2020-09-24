@@ -1,5 +1,6 @@
-import King from './king.js'
-import { STARTING_HITPOINTS as KING_DEFAULT_HP } from './king.js'
+import King from '../../Components/classes/king/king.js'
+import { STARTING_HITPOINTS as KING_DEFAULT_HP } from '../../Components/classes/king/king.js'
+
 const king = new King()
 
 describe("King", function() {

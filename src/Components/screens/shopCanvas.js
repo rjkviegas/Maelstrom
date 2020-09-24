@@ -12,8 +12,7 @@ const ShopCanvas = () => {
     const SHIELD_COST = 200;
     const HEALTH_POTION_HP_BOOST = 10;
     const HEALTH_POTION_COST = 10;
-    const MIN_MONIES = 200;
-    const purchased_text = "You have already purchased this item"
+    const purchased_text = "You have purchased this item"
     
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const [invalid, invalidate] = useState(null)
@@ -68,7 +67,7 @@ const ShopCanvas = () => {
     return (
         <div data-testid="shop" style={{height: '400px'}}>
             <div data-testid="welcoming" >
-                <p id="welcome">Welcome to the store"</p>
+                <p id="welcome">Welcome to the store</p>
                 <p id="welcome">What can we get you, maybe a potion to drink?</p>
             </div>     
             <div>

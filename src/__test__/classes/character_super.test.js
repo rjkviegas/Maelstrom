@@ -1,4 +1,4 @@
-import Character from './character_super.js'
+import Character from '../../Components/classes/character_super/character_super.js'
 
 const referenceCharacter = new Character()
 

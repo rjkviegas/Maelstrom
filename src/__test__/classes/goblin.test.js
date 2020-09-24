@@ -1,5 +1,6 @@
-import Goblin from './goblin.js'
-import { STARTING_HITPOINTS as GOBLIN_DEFAULT_HP } from './goblin.js'
+import Goblin from '../../Components/classes/goblin/goblin.js'
+import { STARTING_HITPOINTS as GOBLIN_DEFAULT_HP } from '../../Components/classes/goblin/goblin.js'
+
 const goblin = new Goblin()
 
 describe("Goblin", function() {

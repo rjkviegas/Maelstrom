@@ -1,6 +1,6 @@
 import React from "react";
-import CharacterCanvas from "./characterCanvas";
-import PlayerContext from "../../config/playerContext";
+import CharacterScreen from "../../../Components/screens/characterScreen.js";
+import PlayerContext from "../../../config/playerContext.js";
 import { render } from '@testing-library/react'
 
 const PlayerObj = { money: 100, name: "Harry" }
@@ -10,7 +10,7 @@ describe("Character", function() {
     it("character is displayed", function() {
         const { getByTestId } = render(
             <PlayerContext.Provider value={{PlayerObj}}>
-                <CharacterCanvas />
+                <CharacterScreen />
             </PlayerContext.Provider>
             );
             expect(getByTestId("player_name")).toBeTruthy();

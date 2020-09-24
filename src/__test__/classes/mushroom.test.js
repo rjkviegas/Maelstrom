@@ -1,5 +1,6 @@
-import Mushroom from './mushroom.js'
-import { STARTING_HITPOINTS as MUSHROOM_DEFAULT_HP } from './mushroom.js'
+import Mushroom from '../../Components/classes/mushroom/mushroom.js'
+import { STARTING_HITPOINTS as MUSHROOM_DEFAULT_HP } from '../../Components/classes/mushroom/mushroom.js'
+
 const mushroom = new Mushroom()
 
 describe("Mushroom", function() {

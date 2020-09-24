@@ -1,6 +1,6 @@
-import playerReducer from './playerReducer.js';
-import opponentReducer from './opponentReducer.js';
-import fightRoundsReducer from './fightRoundsReducer.js';
+import playerReducer from '../../Reducers/playerReducer.js';
+import opponentReducer from '../../Reducers/opponentReducer.js';
+import fightRoundsReducer from '../../Reducers/fightRoundsReducer.js';
 
 describe('player reducer', () => {
   it('should return the initial state', () => {

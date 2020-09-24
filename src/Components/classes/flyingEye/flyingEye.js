@@ -1,6 +1,6 @@
-import { flyingEyeAttack } from "../../characterAnimation/flyingEye/flyingEye_attack.js";
-import { flyingEyeDead } from "../../characterAnimation/flyingEye/flyingEye_dead.js";
-import { flyingEyeIdle } from "../../characterAnimation/flyingEye/flyingEye_idle.js";
+import { flyingEyeAttack } from "../../classes/flyingEye/flyingEye_attack.js";
+import { flyingEyeDead } from "./flyingEye_dead.js";
+import { flyingEyeIdle } from "../../classes/flyingEye/flyingEye_idle.js";
 import Character from "../character_super/character_super";
 
 const STARTING_HITPOINTS = 75;

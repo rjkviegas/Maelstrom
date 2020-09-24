@@ -1,19 +1,18 @@
-import Bandit from './bandit.js';
-
+import Bandit, { STARTING_HITPOINTS }  from '../../src/Components/classes/bandit/bandit.js'
 const bandito = new Bandit()
 
 describe("Bandit", function() {
 
     it("has a name", function() {
-        expect(bandito.name).toEqual("Opponent_Placeholder");
+        expect(bandito.name).toEqual("Bandit");
     });
 
     it("has hp", function() {
-        expect(bandito.hp).toEqual(125);
+        expect(bandito.hp).toEqual(STARTING_HITPOINTS);
     });
 
     it("has a starting max hp reference", function() {
-        expect(bandito.MAX_HP).toEqual(125);
+        expect(bandito.MAX_HP).toEqual(STARTING_HITPOINTS);
     });
 
     it("its attacking property is false", function() {

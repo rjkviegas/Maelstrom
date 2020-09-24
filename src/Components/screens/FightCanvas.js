@@ -5,14 +5,14 @@ import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import AttackAnimation from '../characterAnimation/FightAnimation.js'
 import FightRoundsContext from '../../config/fightRoundsContext';
-import { CloseOutlined } from '@material-ui/icons';
 
-let canvas, ctx;
-let cancelAnimationFrame = window.requestAnimationFrame 
-                          || window.mozRequestAnimationFrame
-                          || window.webkitRequestAnimationFrame
-                          || window.msRequestAnimationFrame
-                          ;
+let canvas;
+let ctx;
+// let cancelAnimationFrame = window.requestAnimationFrame 
+//                           || window.mozRequestAnimationFrame
+//                           || window.webkitRequestAnimationFrame
+//                           || window.msRequestAnimationFrame
+//                           ;
 
 const FightCanvas = () => {
   
@@ -58,7 +58,7 @@ const FightCanvas = () => {
           window.cancelAnimationFrame(animationFrameId)
         } 
       }
-    },[PlayerObj])
+    },[PlayerObj]) // eslint-disable-line 
     
     return (
     <div>

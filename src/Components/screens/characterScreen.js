@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import PlayerContext from '../../config/playerContext';
 
-export default function CharacterCanvas() {
+export default function CharacterScreen() {
 
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const [nameValue, setNameValue] = useState(PlayerObj.name)
@@ -35,10 +35,3 @@ export default function CharacterCanvas() {
         </div>
     )
 }
-
-
-
-    
-
-
-

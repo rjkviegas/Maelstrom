@@ -1,6 +1,6 @@
-import { mushroomAttack } from "../../characterAnimation/mushroom/mushroom_attack.js";
-import { mushroomDead } from "../../characterAnimation/mushroom/mushroom_dead.js";
-import { mushroomIdle } from "../../characterAnimation/mushroom/mushroom_idle.js";
+import { mushroomAttack } from "./mushroom_attack.js";
+import { mushroomDead } from "../../classes/mushroom/mushroom_dead.js";
+import { mushroomIdle } from "../../classes/mushroom/mushroom_idle.js";
 import Character from "../character_super/character_super";
 
 const STARTING_HITPOINTS = 100;

@@ -1,5 +1,6 @@
-import PlasmaDrone from './plasmaDrone.js'
-import { STARTING_HITPOINTS as PLASMA_DRONE_DEFAULT_HP } from './plasmaDrone.js'
+import PlasmaDrone from '../../Components/classes/plasmaDrone/plasmaDrone.js'
+import { STARTING_HITPOINTS as PLASMA_DRONE_DEFAULT_HP } from '../../Components/classes/plasmaDrone/plasmaDrone.js'
+
 const plasmaDrone = new PlasmaDrone()
 
 describe("plasmaDrone", function() {

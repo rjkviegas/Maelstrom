@@ -1,6 +1,6 @@
-import { goblinAttack } from "../../characterAnimation/goblin/goblin_attack.js";
-import { goblinDead } from "../../characterAnimation/goblin/goblin_dead.js";
-import { goblinIdle } from "../../characterAnimation/goblin/goblin_idle.js";
+import { goblinAttack } from "./goblin_attack.js";
+import { goblinDead } from "../../classes/goblin/goblin_dead.js";
+import { goblinIdle } from "../../classes/goblin/goblin_idle.js";
 import Character from "../character_super/character_super";
 
 const STARTING_HITPOINTS = 100;

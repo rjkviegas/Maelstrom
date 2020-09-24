@@ -10,7 +10,7 @@ export default function Fight() {
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext);
     const { dispatchFight } = useContext(FightRoundsContext)
-    const RUN_PENALTY_PERCENTAGE = 0.3
+    const RUN_PENALTY_PERCENTAGE = 0.1
     const RUN_PENALTY_MINIMUM = 5
     const DEATH_PENALTY = PlayerObj.money
     let history = useHistory();
