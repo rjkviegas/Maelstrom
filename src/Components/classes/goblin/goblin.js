@@ -11,6 +11,8 @@ class Goblin extends Character{
     this.name = 'Opponent_Placeholder'
     this.hp = STARTING_HITPOINTS
     this.MAX_HP = STARTING_HITPOINTS
+    this.attackSound = new Audio("http://freesoundeffect.net/sites/default/files/goblin-little-grump-sound-effect-38494874.mp3")
+    this.deathSound = new Audio("https://opengameart.org/sites/default/files/audio_preview/Goblin%20Scream.wav.mp3")
     this.is_attacking = false;
     this.money = 0
   }
