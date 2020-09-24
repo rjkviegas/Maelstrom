@@ -12,14 +12,13 @@ const ShopCanvas = () => {
     const SHIELD_COST = 200;
     const HEALTH_POTION_HP_BOOST = 10;
     const HEALTH_POTION_COST = 10;
-    const purchased_text = "You have purchased this item"
+    const purchased_text = "Out of stock";
     
-    const { PlayerObj, dispatch }  = useContext(PlayerContext)
-    const [invalid, invalidate] = useState(null)
-    let history = useHistory()
+    const { PlayerObj, dispatch }  = useContext(PlayerContext);
+    const [invalid, invalidate] = useState(null);
+    let history = useHistory();
+
     function handleClick(e) {
-        console.log("clicky clicky")
-        console.log(e)
         history.push('/play');
     }
 
@@ -68,18 +67,19 @@ const ShopCanvas = () => {
         <div data-testid="shop" style={{height: '400px'}}>
             <div data-testid="welcoming" >
                 <p id="welcome">Welcome to the store</p>
-                <p id="welcome">What can we get you, maybe a potion to drink?</p>
+                <p style={{fontSize: "10px"}}>What can we get you, maybe a potion to drink?</p>
+                <p style={{fontSize: "10px"}}>Our inhouse maid Ryan will bring it over</p>
             </div>     
             <div>
                 <div><button data-testid="back-button" id="back-button" onClick={(e) => handleClick(e)}>Go back</button></div>
-                <PlayerHealthBar PlayerObj={PlayerObj} />
-                <Gold PlayerObj={PlayerObj}/>
+                    <PlayerHealthBar PlayerObj={PlayerObj} />
+                    <Gold PlayerObj={PlayerObj}/>
                 <div id="shop_display">        
-                    {!PlayerObj.hasSword ? visibleSword : <div>{purchased_text}</div> }
-                    {!PlayerObj.hasShield ? visibleShield :  <div>{purchased_text}</div>  }
+                    {!PlayerObj.hasSword ? visibleSword : <div style={{fontSize: "15px", padding: "10px"}}>{purchased_text}</div> }
+                    {!PlayerObj.hasShield ? visibleShield :  <div style={{fontSize: "15px", padding: "10px"}}>{purchased_text}</div>  }
                     <div>{healthPot}</div>                
                 </div> 
-                {invalid === null ? '': <p>{invalid}</p>}
+                {invalid === null ? '': <p style={{fontSize: "15px"}} >{invalid}</p>}
             </div>
        </div>
     )

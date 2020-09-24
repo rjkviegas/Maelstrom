@@ -24,14 +24,14 @@
 
 // switch (!deathAnimSwitch &&!finalswing){
 //   case true:
-//     if(isPlayerDead()){
+//     if(isDead(PlayerObj)){
 //       loopIndexIsEndFrame() ? { deathAnimSwitch = true; finalSwing = true; } : renderOpponentKillsPlayer();
 //     }else{
 //       loopIndexIsEndFrame() ? { deathAnimSwitch = true; finalSwing = true; } : renderPlayerKillsOpponent();
 //     }
 //     break;
 //   case false:
-//     if(isPlayerDead()){
+//     if(isDead(OpponentObj)){
 //       renderOpponentIdle();
 //       renderPlayerDeathFrame();
 //     }else{

@@ -98,7 +98,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     PlayerObj.attackSound.play();
   }
 
-  function renderisOpponentDead(){
+  function renderOpponentDead(){
     drawFrame(
       OpponentObj.deathImage,
       OpponentObj.deathImage.cycleLoop[currentLoopIndex],
@@ -166,7 +166,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
 
   function renderPlayerKillsOpponent() {
     renderPlayerAttack();
-    renderisOpponentDead();
+    renderOpponentDead();
     playOpponentDeathSound();
   }
 
@@ -203,6 +203,15 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     renderOpponentIdle();
   }
 
+  function deadAnimAndFinalSwing() {
+    return (!deathAnimSwitch && !finalSwing);
+  }
+
+  function setDeathAndFinalSwingToTrue(){
+    deathAnimSwitch = true; 
+    finalSwing = true;
+  }
+
   function render() {
     if (animation) {
       window.cancelAnimationFrame(animation);
@@ -217,10 +226,9 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       if (isDead(PlayerObj)) {
-        if (!deathAnimSwitch && !finalSwing) {
+        if (deadAnimAndFinalSwing()) {
           if (loopIndexIsEndFrame()) {
-            deathAnimSwitch = true;
-            finalSwing = true;
+            setDeathAndFinalSwingToTrue();
           }
           renderOpponentKillsPlayer();
         } else {
@@ -228,10 +236,9 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
           renderPlayerDeathFrame();
         }
       } else if (isDead(OpponentObj)) {
-        if (!deathAnimSwitch && !finalSwing) {
+        if (deadAnimAndFinalSwing()) {
           if (loopIndexIsEndFrame()) { 
-            deathAnimSwitch = true; 
-            finalSwing = true;
+            setDeathAndFinalSwingToTrue();
           }
           renderPlayerKillsOpponent();
         } else {
