@@ -12,6 +12,7 @@ export default function Fight() {
     const { dispatchFight } = useContext(FightRoundsContext)
     const RUN_PENALTY_PERCENTAGE = 0.3
     const RUN_PENALTY_MINIMUM = 10
+    const DEATH_PENALTY = PlayerObj.money
     let history = useHistory();
 
     function nextLevel(character){ 
@@ -47,10 +48,15 @@ export default function Fight() {
     }
 
     function handleNewFight() {
+      console.log("check")
       playerRewardCheck() // position warning
-      dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
+      if(PlayerObj.hp > 0 && OpponentObj.hp <= 0) {
+        dispatch({type: "PLAYER_ATTACK/HP_RESET", payload: {hp: PlayerObj.MAX_HP, is_attacking: false}});
+      } else if (PlayerObj.hp <= 0) {
+        console.log("check 2")
+        dispatch({type: "PLAYER_DIED", payload: {hp: PlayerObj.MAX_HP, is_attacking: false, death_penalty: DEATH_PENALTY}}) // 
+      } 
       dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false});
-      dispatch({type: 'RESET', payload: {...PlayerObj, hp: PlayerObj.MAX_HP, is_attacking: false}})
       dispatchOpp({type: 'RESET', payload: generateRandomOpponent()})
       history.push("/play")
     }
@@ -58,9 +64,9 @@ export default function Fight() {
     function handleRun() {
       let PENALTY = Math.max(PlayerObj.money * RUN_PENALTY_PERCENTAGE, RUN_PENALTY_MINIMUM) 
       if(PlayerObj.money - PENALTY < 0) {
-        dispatch({type: 'MONEY_DEDUCTED', payload: {deduction: PlayerObj.money, escapes: 1} }); // Penalty for running? Can also just ignore this method and just handleNewFight();
+        dispatch({type: 'PENALTY_DEDUCTED', payload: {deduction: PlayerObj.money, escapes: 1} }); // Penalty for running? Can also just ignore this method and just handleNewFight();
       } else {
-        dispatch({type: 'MONEY_DEDUCTED', payload: {deduction: PENALTY, escapes: 1}})
+        dispatch({type: 'PENALTY_DEDUCTED', payload: {deduction: PENALTY, escapes: 1}})
       }
       handleNewFight();
     }
