@@ -50,11 +50,11 @@ describe('player reducer', () => {
   });
 
   it('should handle FIGHT_WIN_REWARDS_GRANTED', () => {
-    expect(playerReducer({ money: 100, is_attacking: true, experience: 0, hp: 100 }, {
+    expect(playerReducer({ money: 100, is_attacking: true, experience: 0, hp: 100, victories: 1 }, {
       type: "FIGHT_WIN_REWARDS_GRANTED",
-      payload: { addition: 50, experience: 10, is_attacking: false, hp: 100 }
+      payload: { addition: 50, experience: 10, is_attacking: false, hp: 100, victories: 1 }
     })).toEqual(
-      { money: 150, experience: 10, is_attacking: false, hp: 100 }
+      { money: 150, experience: 10, is_attacking: false, hp: 100, victories: 2 }
     )
   })
 

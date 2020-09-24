@@ -29,6 +29,7 @@ export default function CharacterScreen() {
                 <div data-testid="experience" id="experience">Experience gained: {PlayerObj.experience}</div><br></br>
                 <div data-testid="level" id="level">Level: {PlayerObj.level}</div><br></br>
                 <div data-testid="victories" id="victories">Victories: {PlayerObj.victories}</div><br></br>
+                <div data-testid="base_damage" id="base_damage">Base Damage: {PlayerObj.baseDamage}</div>
                 <div data-testid="strength" id="strength">Strength bonus: {PlayerObj.strength}</div><br></br>
                 <div data-testid="defence" id="defence">Defence bonus: {PlayerObj.defence}</div><br></br>
             </div>
