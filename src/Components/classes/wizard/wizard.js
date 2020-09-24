@@ -25,6 +25,8 @@ export default class Wizard extends Character {
     this.strength = STARTING_STRENGTH;
     this.escapes = STARTING_ESCAPES;
     this.defence = STARTING_DEFENCE;
+    this.hasSword = false
+    this.hasShield = false
   }
 }
 
