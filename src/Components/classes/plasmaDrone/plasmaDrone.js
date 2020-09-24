@@ -25,3 +25,4 @@ class PlasmaDrone extends Character{
 }
 
 export default PlasmaDrone;
+export {STARTING_HITPOINTS}

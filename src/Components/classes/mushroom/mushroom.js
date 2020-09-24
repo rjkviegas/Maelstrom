@@ -25,3 +25,4 @@ class Mushroom extends Character{
 }
 
 export default Mushroom;
+export {STARTING_HITPOINTS}

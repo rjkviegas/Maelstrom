@@ -4,7 +4,6 @@ import PlayerContext from './config/playerContext.js';
 import playerReducer from './Reducers/playerReducer.js'
 import Wizard from './Components/classes/wizard/wizard.js'
 import FightCanvas from './Components/canvas/FightCanvas.js'
-import Bandit from './Components/classes/bandit/bandit.js';
 import OpponentContext from './config/opponentContext.js';
 import opponentReducer from './Reducers/opponentReducer.js'
 import Fight from './Components/fight/fight.js'
@@ -14,8 +13,6 @@ import fightRoundsReducer from './Reducers/fightRoundsReducer';
 import fightRounds from './Components/fight/fightRounds';
 import FightRoundsContext from './config/fightRoundsContext';
 import ShopCanvas from './Components/canvas/shopCanvas';
-import King from './Components/classes/king/king.js';
-import Slime from './Components/classes/slime/slime';
 import generateRandomOpponent from './Components/classes/opponentGenerator';
 import CharacterCanvas from './Components/canvas/characterCanvas';
 
