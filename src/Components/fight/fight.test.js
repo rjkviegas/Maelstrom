@@ -64,6 +64,6 @@ describe("Fight", function() {
                 </OpponentContext.Provider>
             </PlayerContext.Provider>
         );
-        expect(getByTestId("goback-button")).toHaveTextContent("Go back")
+        expect(getByTestId("goback-button")).toHaveTextContent("You couldn't escape the maelstrom")
     })
 });
