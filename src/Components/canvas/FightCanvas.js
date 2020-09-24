@@ -3,7 +3,7 @@ import React, { createRef, useEffect, useContext } from 'react';
 import PlayerHealthBar from '../../Components/healthbar/healthbar'
 import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
-import AttackAnimation from '../characterAnimation/playerAttacking.js'
+import AttackAnimation from '../characterAnimation/FightAnimation.js'
 import FightRoundsContext from '../../config/fightRoundsContext';
 import { CloseOutlined } from '@material-ui/icons';
 
