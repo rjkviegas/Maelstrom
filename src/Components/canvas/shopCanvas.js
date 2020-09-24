@@ -17,7 +17,9 @@ const ShopCanvas = () => {
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     
     let history = useHistory()
-    function handleClick() {
+    function handleClick(e) {
+        console.log("clicky clicky")
+        console.log(e)
         history.push('/play');
     }
 
@@ -61,18 +63,20 @@ const ShopCanvas = () => {
         <p className="hide1">A natural concoction of sorts, brewed and distilled by the Su'lgaryan Druids who inhabit the dense forestland. Grants {items.health_potion.hp_boost} HP. Costs {items.health_potion.cost} blasei shards.</p></div>)
     
     return (
-        <div data-testid="shop" style={{height: '400px'}}>
-        
-            <PlayerHealthBar PlayerObj={PlayerObj} />
-            <Gold PlayerObj={PlayerObj}/>
-                <div style={{paddingTop: "20px", height: '350px', marginBottom: '90px'}}>
-                     
-                   {!PlayerObj.hasSword ? visibleSword : <div></div> }
-                   {!PlayerObj.hasShield ? visibleShield : <div></div> }
-                   {healthPot}
-                     
-                </div>
-                <div><button data-testid="back-button" onClick={handleClick}>Go back</button></div>
+        <div data-testid="shop" style={{height: '400px'}}>        
+            <div>
+            <div style={{zIndex: '100'}}><button data-testid="back-button" id="back-button" onClick={(e) => handleClick(e)}>Go back</button></div> 
+                <PlayerHealthBar PlayerObj={PlayerObj} />
+                <Gold PlayerObj={PlayerObj}/>
+                    <div style={{paddingTop: "20px", height: '350px', marginBottom: '90px'}}>
+                        
+                    {!PlayerObj.hasSword ? visibleSword : <div></div> }
+                    {!PlayerObj.hasShield ? visibleShield : <div></div> }
+                    {healthPot}
+                        
+                    </div> 
+            </div>   
+            
        </div>
     )
 }

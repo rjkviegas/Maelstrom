@@ -16,16 +16,11 @@ export function BackgroundMusic() {
         music.background.play()
     }
 
-    music.background.onload = playMusic()  
-
-    const toggleSound = function() {
-        music.background.paused ? music.background.play() : music.background.pause()
-    }
+    music.background.onload = playMusic()
 
     return (
         <div style={{paddingTop: '10px'}}>
             <InputSlider valueInc={setVolume}/>
-            {/* <button onClick={() => toggleSound()} style={{paddingTop: '20px', background: 'none', borderStyle: 'none', color: 'whitesmoke'}}>Toggle Music</button> */}
         </div>
     ) 
 }
