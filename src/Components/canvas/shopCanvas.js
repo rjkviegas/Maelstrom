@@ -36,7 +36,7 @@ const ShopCanvas = () => {
     
     const buyHealthPot = () => {
         if (PlayerObj.money < POT_COST ) return;
-        if (PlayerObj.hp < PlayerObj.MAX_HP) return;
+        if (PlayerObj.hp > PlayerObj.MAX_HP) return;
 
         dispatch({type: 'TAKEN_HEALTH_POTION', payload: HEALTH_POTION })
         dispatch({type: 'DEDUCTED_MONEY', payload: POT_COST});
@@ -53,16 +53,16 @@ const ShopCanvas = () => {
     
     return (
         <div data-testid="shop" >
-           <PlayerHealthBar PlayerObj={PlayerObj} />
+            
+            <PlayerHealthBar PlayerObj={PlayerObj} />
             <Gold PlayerObj={PlayerObj}/>
                 <div>
-                     
-                   {!PlayerObj.hasSword ? visibleSword : <div></div> }
-                   {!PlayerObj.hasShield ? visibleShield : <div></div> }
-                   {healthPot}
-                     
+                    {!PlayerObj.hasSword ? visibleSword : <div></div> }
+                    {!PlayerObj.hasShield ? visibleShield : <div></div> }
+                    {healthPot}
+                
+                    <button data-testid="back-button" onClick={handleClick}>Go back</button>
                 </div>
-                <button data-testid="back-button" onClick={handleClick}>Go back</button>
        </div>
     )
 }

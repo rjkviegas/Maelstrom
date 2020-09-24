@@ -25,12 +25,12 @@ export default function CharacterCanvas() {
                 </form>
             </div>
             <div style={{fontSize: '16px', width: '700px', wordWrap: 'break-word', paddingTop: '20px', paddingBottom: '20px'}}>
-                <div data-testid="player_name" id="player_name">Name: {PlayerObj.name}</div>
-                <div data-testid="experience" id="experience">Experience gained: {PlayerObj.experience}</div>
-                <div data-testid="level" id="level">Level: {PlayerObj.level}</div>
-                <div data-testid="base_damage" id="base_damage">Base Damage: {PlayerObj.baseDamage}</div>
-                <div data-testid="strength" id="strength">Strength bonus: {PlayerObj.strength}</div>
-                <div data-testid="defence" id="defence">Defence bonus: {PlayerObj.defence}</div>
+                <div data-testid="player_name" id="player_name">Name: {PlayerObj.name}</div><br></br>
+                <div data-testid="experience" id="experience">Experience gained: {PlayerObj.experience}</div><br></br>
+                <div data-testid="level" id="level">Level: {PlayerObj.level}</div><br></br>
+                <div data-testid="base_damage" id="base_damage">Base Damage: {PlayerObj.baseDamage}</div><br></br>
+                <div data-testid="strength" id="strength">Strength bonus: {PlayerObj.strength}</div><br></br>
+                <div data-testid="defence" id="defence">Defence bonus: {PlayerObj.defence}</div><br></br>
             </div>
         </div>
     )
