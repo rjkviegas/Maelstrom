@@ -1,20 +1,25 @@
 .health-bar
 {
     position: relative;
-    
+    padding: 10px;
     display: inline-block;
-    
     margin: 6px 0;
+}
+
+#player_name {
+    font-size: 10px;
 }
 
 .enemy-health-bar
 {
     position: relative;
-    
-    
     display: inline-block;
-    
+    padding: 10px;
     margin: 6px 0;
+}
+
+#opponent_name {
+    font-size: 10px;
 }
 
 .health-bar-glass
@@ -22,9 +27,7 @@
     display: inline-block;
     width: 200px;
     height: 16px;
-    
     z-index: 10;
-    
     border: 2px solid #000000;
     box-shadow: inset 0 0 0 2px #dbd75d;
 }
@@ -32,9 +35,7 @@
 .health-bar-fluid
 {
     height: 100%;
-    
     background: #d34549;
-    
     box-shadow: inset 0 3px 0 -1px #d3aa9a, 
         inset 0 -4px 0 -2px #4d494d, 
         inset 4px 0 0 -2px #4d494d, 
