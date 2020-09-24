@@ -42,7 +42,7 @@ const ShopCanvas = () => {
         dispatch({type: 'DEDUCTED_MONEY', payload: POT_COST});
     }
     
-    let visibleSword = (<div><div className="item1"><button data-testid="sword-button" id="item" onClick={buySword}>Sword 200ɓ</button></div>
+    let visibleSword = (<div><div className="itemSword"><button data-testid="sword-button" id="item" onClick={buySword}>Sword 200ɓ</button></div>
         <p className="hide1">The Sword of 1000 truths, once said to belong to King Arthur... But that myth is lost to the Maelstrom. Grants extra damage. Costs 200 blasei shards.</p></div>)
 
     let visibleShield = (<div><div className="item1"><button data-testid="shield-button" id="item" onClick={buyShield}>Shield 200ɓ</button></div>

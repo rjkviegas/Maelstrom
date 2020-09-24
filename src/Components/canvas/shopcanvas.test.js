@@ -1,9 +1,9 @@
 import React from "react";
 import ShopCanvas from "./shopCanvas";
 import PlayerContext from "../../config/playerContext";
-import { render, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
-const PlayerObj = { money: 0 }
+const PlayerObj = { money: 100 }
 
 describe("Shop canvas", function() {
 
@@ -37,5 +37,4 @@ describe("Shop canvas", function() {
         expect(getByTestId("welcoming")).toHaveTextContent("Welcome to the store");
         expect(getByTestId("welcoming")).toHaveTextContent("What can we get you, maybe a potion");
     });
-
 });
