@@ -124,30 +124,30 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    
-          if (playerDead()) { // player is dead
-            if (!deathAnimSwitch && !finalSwing) {
-              if(currentLoopIndex >= endFrame) { deathAnimSwitch = true; finalSwing = true;}
+        
+        if (playerDead()) { // player is dead
+          if (!deathAnimSwitch && !finalSwing) {
+            if(currentLoopIndex >= endFrame) { deathAnimSwitch = true; finalSwing = true;}
 
-              renderPlayerDead();
-              renderOpponentAttack(); // attacking bandit 
-              playPlayerDeathSound()
-            } else {
-              renderOpponentIdle(); // bandit idle
-              renderPlayerDeathFrame(); // Wizard Dead Frame
-            }
-          } else if (opponentDead()) { // opponent is dead
-            if(!deathAnimSwitch && !finalSwing) {
-              if(currentLoopIndex >= endFrame) { deathAnimSwitch = true; finalSwing = true;}
-              
-              renderPlayerAttack();
-              renderOpponentDead();
-              playOpponentDeathSound();
-            } else {
-              renderPlayerIdle(); // Wizard Idle
-              renderOpponentDeathFrame(); // Bandit dead frame          
-            }         
+            renderPlayerDead();
+            renderOpponentAttack(); // attacking bandit 
+            playPlayerDeathSound()
+          } else {
+            renderOpponentIdle(); // bandit idle
+            renderPlayerDeathFrame(); // Wizard Dead Frame
           }
+        } else if (opponentDead()) { // opponent is dead
+          if(!deathAnimSwitch && !finalSwing) {
+            if(currentLoopIndex >= endFrame) { deathAnimSwitch = true; finalSwing = true;}
+            
+            renderPlayerAttack();
+            renderOpponentDead();
+            playOpponentDeathSound();
+          } else {
+            renderPlayerIdle(); // Wizard Idle
+            renderOpponentDeathFrame(); // Bandit dead frame          
+          }         
+        }
         
 
 
