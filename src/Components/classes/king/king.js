@@ -24,3 +24,4 @@ class King extends Character{
 }
 
 export default King;
+export {STARTING_HITPOINTS};
