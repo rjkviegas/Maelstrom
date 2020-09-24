@@ -25,3 +25,4 @@ class Goblin extends Character{
 }
 
 export default Goblin;
+export {STARTING_HITPOINTS}

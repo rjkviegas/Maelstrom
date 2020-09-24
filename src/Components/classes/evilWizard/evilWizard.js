@@ -11,7 +11,7 @@ const DEFAULT_BASE_DAMAGE = 20;
 class EvilWizard extends Character{
   constructor(idleImage = evilWizardIdle, attackImage = evilWizardAttack, deathImage = evilWizardDead, deathFrameNumber = 4, idleSourceY = 0, deathSourceY = 0, attackSourceY = 0){
     super(idleImage, attackImage, deathImage, deathFrameNumber, idleSourceY, deathSourceY, attackSourceY)
-    this.name = 'Opponent_Placeholder'
+    this.name = 'Evil Wizard'
     this.hp = STARTING_HITPOINTS
     this.MAX_HP = STARTING_HITPOINTS
     this.attackSound = new Audio("https://opengameart.org/sites/default/files/audio_preview/foom_0.wav.mp3")
@@ -25,3 +25,4 @@ class EvilWizard extends Character{
 }
 
 export default EvilWizard;
+export {STARTING_HITPOINTS};

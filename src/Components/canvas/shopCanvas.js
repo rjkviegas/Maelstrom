@@ -46,6 +46,7 @@ const ShopCanvas = () => {
     }
     
     const buyHealthPot = () => {
+
         if (PlayerObj.money < HEALTH_POTION_COST ) { invalidate("You do not have enough money"); return; }
         if (PlayerObj.hp >= PlayerObj.MAX_HP) { invalidate("You are already full HP!"); return;} 
         let proposed_new_HP = PlayerObj.hp + HEALTH_POTION_HP_BOOST
@@ -64,7 +65,11 @@ const ShopCanvas = () => {
         <p className="hide1">A natural concoction of sorts, brewed and distilled by the Su'lgaryan Druids who inhabit the dense forestland. Grants {items.health_potion.hp_boost} HP. Costs {items.health_potion.cost} blasei shards.</p></div>)
     
     return (
-        <div data-testid="shop" style={{height: '400px'}}>    
+        <div data-testid="shop" style={{height: '400px'}}>
+            <div data-testid="welcoming" >
+                <p id="welcome_title">Welcome to the store</p>
+                <p id="welcome">What can we get you, maybe a potion to drink?</p>
+            </div>     
             <div style={{zIndex: '100'}}><button data-testid="back-button" id="back-button" onClick={(e) => handleClick(e)}>Go back</button></div> 
             <div>
                 <PlayerHealthBar PlayerObj={PlayerObj} />
@@ -75,7 +80,7 @@ const ShopCanvas = () => {
                     {!PlayerObj.hasShield ? visibleShield :  <div>{purchased_text}</div>  }
                     {healthPot}                        
                 </div> 
-            </div>          
+            </div> 
        </div>
     )
 }

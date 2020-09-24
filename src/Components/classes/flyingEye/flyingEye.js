@@ -25,3 +25,4 @@ class FlyingEye extends Character{
 }
 
 export default FlyingEye;
+export {STARTING_HITPOINTS}

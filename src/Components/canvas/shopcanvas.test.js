@@ -1,9 +1,9 @@
 import React from "react";
 import ShopCanvas from "./shopCanvas";
 import PlayerContext from "../../config/playerContext";
-import { render, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
-const PlayerObj = { money: 0 }
+const PlayerObj = { money: 100 }
 
 describe("Shop canvas", function() {
 
@@ -28,15 +28,13 @@ describe("Shop canvas", function() {
         expect(getByTestId("healthpot-button")).toBeTruthy();
     });
 
-    // it("shop has a back button which returns to main menu", function() {
-    //     const addStrength = jest.fn()
-    //     const { getByTestId } = render(
-    //         <PlayerContext.Provider value={{PlayerObj}}>
-    //             <ShopCanvas addStrength = { addStrength }/> 
-    //         </PlayerContext.Provider>
-    //         ); 
-    //     fireEvent.click(getByTestId("sword-button"))
-    //     expect(addStrength).toHaveBeenCalled();
-    // })
-
+    it("shop has greeting", function() {
+        const { getByTestId } = render(
+            <PlayerContext.Provider value={{PlayerObj}}>
+                <ShopCanvas />
+            </PlayerContext.Provider>
+            );
+        expect(getByTestId("welcoming")).toHaveTextContent("Welcome to the store");
+        expect(getByTestId("welcoming")).toHaveTextContent("What can we get you, maybe a potion");
+    });
 });

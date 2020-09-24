@@ -48,7 +48,20 @@ img#coin {
   background-position: center;
 }
 
+#player_stats {
+  font-size: 10px;
+}
+
+#stat {
+  font-size: 8px;
+}
+
 /* SHOP STUFF */
+
+#welcome {
+  font-size: 15px;
+}
+
 #item {
   padding: 20px;
   margin: 20px;
@@ -58,7 +71,6 @@ img#coin {
   display: none;
   font-size: 12px;
   width: 300px;
-  right: 0;
 }
 
 .item1:hover + .hide1 {

@@ -1,8 +1,6 @@
 import playerReducer from './playerReducer.js';
 import opponentReducer from './opponentReducer.js';
 import fightRoundsReducer from './fightRoundsReducer.js';
-import King from "../Components/classes/king/king.js";
-import Character from '../Components/classes/character_super/character_super.js';
 
 describe('player reducer', () => {
   it('should return the initial state', () => {
@@ -21,7 +19,7 @@ describe('player reducer', () => {
       })
   });
 
-  it('should handle set_attack', () => {
+  it('should handle SET_ATTACKING_STATUS', () => {
     expect(playerReducer({is_attacking: false}, {
       type: 'SET_ATTACKING_STATUS',
       payload: true
@@ -40,13 +38,23 @@ describe('player reducer', () => {
     })
   });
 
+  it('should handle PLAYER_DIED', () => {
+    expect(playerReducer({hp: 0, is_attacking: true, money: 100}, {
+      type: 'PLAYER_DIED', 
+      payload: { hp: 50, is_attacking: false, death_penalty: 70 }
+    })).toEqual({
+      hp: 50,
+      is_attacking: false,
+      money: 30
+    })
+  });
+
   it('should handle FIGHT_WIN_REWARDS_GRANTED', () => {
-    let current_experience = 3
-    expect(playerReducer({money: 100, is_attacking: true, experience: 0, hp: 100, level: 1}, {
+    expect(playerReducer({ money: 100, is_attacking: true, experience: 0, hp: 100 }, {
       type: "FIGHT_WIN_REWARDS_GRANTED",
-      payload: {addition: 50, experience: 10, is_attacking: false, hp: 100}
+      payload: { addition: 50, experience: 10, is_attacking: false, hp: 100 }
     })).toEqual(
-      {money: 150, experience: 10, is_attacking: false, hp: 100}
+      { money: 150, experience: 10, is_attacking: false, hp: 100 }
     )
   })
 
@@ -93,6 +101,33 @@ describe('player reducer', () => {
       payload: 50
     })).toEqual({
       money: 50
+    })
+  })
+
+  it('should handle ADDED_SWORD_TO_INVENTORY', () => {
+    expect(playerReducer({ hasSword: false}, {
+      type: 'ADDED_SWORD_TO_INVENTORY',
+      payload: true 
+    })).toEqual({
+      hasSword: true
+    })
+  })
+
+  it('should handle ADDED_SHIELD_TO_INVENTORY', () => {
+    expect(playerReducer({ hasShield: false}, {
+      type: 'ADDED_SHIELD_TO_INVENTORY',
+      payload: true 
+    })).toEqual({
+      hasShield: true
+    })
+  })
+
+  it('should handle TAKEN_HEALTH_POTION', () => {
+    expect(playerReducer({ hp: 50}, {
+      type: 'TAKEN_HEALTH_POTION',
+      payload: 50
+    })).toEqual({
+      hp: 100
     })
   })
 
