@@ -4,7 +4,7 @@ import OpponentContext from '../../config/opponentContext.js'
 import { useHistory } from "react-router-dom";
 import FightRoundsContext from '../../config/fightRoundsContext.js'
 import generateRandomOpponent from '../classes/opponentGenerator.js';
-
+import { FIRST_TIME_DELAY, SECOND_TIME_DELAY} from '../screens/FightCanvas.js'
 export default function Fight() {
 
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
@@ -54,7 +54,7 @@ export default function Fight() {
     <div>
       { bothAlive() ? 
         <div>
-          <div><button data-testid = 'attack_button' style={{visibility: anyPlayerAttacking() && bothAlive() ? 'hidden' : 'visible' }} onClick={() =>handleAttack()}>Attack</button></div>
+        <div><button data-testid = 'attack_button' style={{visibility: anyPlayerAttacking() && bothAlive() ? 'hidden' : 'visible' }} onClick={() =>handleAttack()}>Attack</button></div>
           <div><button data-testid = 'run_button' style={{visibility: anyPlayerAttacking() && bothAlive() ? 'hidden' : 'visible' }} onClick={() =>handleRun()}>Run</button></div>
         </div>
         : // EITHER IS DEAD

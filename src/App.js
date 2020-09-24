@@ -15,6 +15,7 @@ import FightRoundsContext from './config/fightRoundsContext';
 import ShopCanvas from './Components/screens/shopCanvas';
 import generateRandomOpponent from './Components/classes/opponentGenerator';
 import CharacterScreen from './Components/screens/characterScreen';
+import PlayerName from './Components/setName/setName.js'
 
 
 
@@ -36,7 +37,9 @@ function App() {
             </Route>
 
             <Route exact path='/startgame'>
-              <Link to="/play" data-testid="play_link">Menu</Link>
+              <PlayerContext.Provider value={{PlayerObj, dispatch}}>
+                <PlayerName/>
+              </PlayerContext.Provider>
             </Route>
 
             <Route exact path='/play'>

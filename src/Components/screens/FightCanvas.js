@@ -13,6 +13,9 @@ let ctx;
 //                           || window.webkitRequestAnimationFrame
 //                           || window.msRequestAnimationFrame
 //                           ;
+const TIMER_DELAY = 500;
+const FIRST_TIME_DELAY = TIMER_DELAY * 2;
+const SECOND_TIME_DELAY = TIMER_DELAY * 3;
 
 const FightCanvas = () => {
   
@@ -22,8 +25,7 @@ const FightCanvas = () => {
     const { dispatchFight } = useContext(FightRoundsContext)
     
     let animationFrameId;
-
-    // SET ROUNDS WITH CONTEXT, PASSING THE ROUNDS TO THIS USEFFECT DEPENDENCY ARRAY    
+   
     useEffect(() => {
       
       canvas = canvasRef.current
@@ -42,17 +44,17 @@ const FightCanvas = () => {
         if(PlayerObj.is_attacking) { console.log("PlayerObj attacking", PlayerObj)}
         if (OpponentObj.is_attacking) { console.log("OpponentObj attacking", OpponentObj)}
         setTimeout(() => { 
-            if (OpponentObj.hp < 0) {return} 
-            //let damage = Math.floor(Math.random()*OpponentObj.baseDamage) - PlayerObj.defence;
-            let damage = Math.floor(OpponentObj.baseDamage*(100/(100+PlayerObj.defence)))
+            if (OpponentObj.hp < 0) {return}; 
+            
+            let damage = Math.floor((Math.random() * OpponentObj.baseDamage)*(10/(10+PlayerObj.defence)));
             dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: true});
             dispatch({type: 'ATTACKED', payload: ((damage < 0) ? 0 : damage) });
             dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
-        }, 1000 )
+        }, FIRST_TIME_DELAY )
 
         setTimeout(() => {    
           dispatchOpp({type: 'set_attack', payload: false})
-        }, 1500 );
+        }, SECOND_TIME_DELAY );
 
         return () => {
           window.cancelAnimationFrame(animationFrameId)
@@ -81,3 +83,5 @@ const FightCanvas = () => {
 }
 
 export default FightCanvas;
+export {FIRST_TIME_DELAY as FIRST_DELAY};
+export {SECOND_TIME_DELAY as SECOND_DELAY};

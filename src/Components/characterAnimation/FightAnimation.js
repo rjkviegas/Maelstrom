@@ -109,7 +109,7 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   }
 
   function renderOpponentAttack() {
-    if (isDead(PlayerObj)) { return renderOpponentIdle()};
+    if (isDead(PlayerObj)) { return renderOpponentIdle() };
 
     drawFrame(
       OpponentObj.attackImage,
@@ -118,7 +118,9 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
       0,
       0
     );
-    if (OpponentObj.attackSound) { OpponentObj.attackSound.play() };
+    if (OpponentObj.attackSound) {
+      OpponentObj.attackSound.play()
+    };
   }
 
   function renderOpponentDeathFrame() {
@@ -158,6 +160,11 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     renderPlayerAttack();
   }
 
+  function renderOpponentAttacksPlayer() {
+    renderPlayerIdle();
+    renderOpponentAttack();
+  }
+
   function renderOpponentKillsPlayer() {
     renderPlayerDead();
     renderOpponentAttack();
@@ -182,8 +189,12 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     currentLoopIndex++;
   }
 
-  function areBothIdle() {
+  function areBothIdleStrings() {
     return (character === "idle" && opponent === "idle");
+  }
+
+  function arePlayerAndOpponentIdle() {
+    return (character === wizardIdle && opponent === banditIdle);
   }
 
   function areBothAlive() {
@@ -192,10 +203,6 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
 
   function loopIndexIsEndFrame() {
     return (currentLoopIndex >= endFrame);
-  }
-
-  function bothWaitingToAttack() {
-    return (areBothAlive() && areBothIdle());
   }
 
   function renderBothIdle() {
@@ -207,9 +214,21 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     return (!deathAnimSwitch && !finalSwing);
   }
 
-  function setDeathAndFinalSwingToTrue(){
+  function setDeathAndFinalSwingToTrue() {
     deathAnimSwitch = true; 
     finalSwing = true;
+  }
+
+  function isPlayerAttackingOpponentIdle() {
+    return (character === wizardAttack && opponent === banditIdle);
+  }
+
+  function isOpponentAttackingPlayerIdle() {
+    return (character === wizardIdle && opponent === banditAttack);
+  }
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
   function render() {
@@ -223,67 +242,63 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      clearCanvas();
 
-      if (isDead(PlayerObj)) {
-        if (deadAnimAndFinalSwing()) {
-          if (loopIndexIsEndFrame()) {
-            setDeathAndFinalSwingToTrue();
-          }
-          renderOpponentKillsPlayer();
-        } else {
+      if (isDead(PlayerObj) && deadAnimAndFinalSwing()) {
+        if (loopIndexIsEndFrame()) {
+          setDeathAndFinalSwingToTrue();
+        }
+        renderOpponentKillsPlayer();
+      } else if (isDead(PlayerObj) && !deadAnimAndFinalSwing()) {
           renderOpponentIdle();
           renderPlayerDeathFrame();
+      } else if (isDead(OpponentObj) && deadAnimAndFinalSwing()) {
+        if (loopIndexIsEndFrame()) { 
+          setDeathAndFinalSwingToTrue();
         }
-      } else if (isDead(OpponentObj)) {
-        if (deadAnimAndFinalSwing()) {
-          if (loopIndexIsEndFrame()) { 
-            setDeathAndFinalSwingToTrue();
-          }
-          renderPlayerKillsOpponent();
-        } else {
+        renderPlayerKillsOpponent();
+      } else if (isDead(OpponentObj) && !deadAnimAndFinalSwing()) {
           renderPlayerIdle();
           renderOpponentDeathFrame();         
-        }         
-      }
+      } 
 
-      if (bothWaitingToAttack()) {
-        renderBothIdle();
-      }
       if (areBothAlive()){
-        if (loopIndexIsEndFrame() && (character === wizardAttack && opponent === banditIdle)) {
+        if (areBothIdleStrings()) {
+          renderBothIdle();
+        }
+
+        if (loopIndexIsEndFrame() && (isPlayerAttackingOpponentIdle())) {
           character = wizardIdle;
         }
 
-        if(character === wizardAttack && opponent === banditIdle) {
+        if(isPlayerAttackingOpponentIdle()) {
           if (currentLoopIndex <= endFrame) {
             renderPlayerAttacksOpponent();
           }
         }
 
-        if(loopIndexIsEndFrame() && character === wizardIdle && opponent === banditIdle) {
+        if(loopIndexIsEndFrame() && arePlayerAndOpponentIdle()) {
           character = wizardIdle; opponent = banditAttack;
         }
 
-        if (character === wizardIdle && opponent === banditIdle) {
+        if (arePlayerAndOpponentIdle()) {
           if(currentLoopIndex <= endFrame){
             renderBothIdle();
           } 
         }
 
-        if ((character === wizardIdle && opponent === banditAttack)) {
+        if (isOpponentAttackingPlayerIdle()) {
           if (!bothAttacked) {
             if(!finalTurnCompleted) {
-              currentLoopIndex = 0;
+              resetLoopIndex();
               finalTurnCompleted = true;
             } 
-            renderPlayerIdle();
-            renderOpponentAttack();
+            renderOpponentAttacksPlayer();
             if (currentLoopIndex === endFrame && finalTurnCompleted === true) {
               bothAttacked = true;
             }
           } else {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            clearCanvas();
             renderBothIdle();
           }
         }
