@@ -30,18 +30,18 @@ const ShopCanvas = () => {
     }
 
     const buySword = () => {
-        if (PlayerObj.money < MIN_MONIES) return;
+        if (PlayerObj.money < items.sword.cost) return;
 
-        dispatch({type: 'ADDED_STRENGTH', payload: SWORD_STRENGTH});
-        dispatch({type: 'DEDUCTED_MONEY', payload: MIN_MONIES});
+        dispatch({type: 'ADDED_STRENGTH', payload: items.sword.strength});
+        dispatch({type: 'DEDUCTED_MONEY', payload: items.sword.cost});
         dispatch({type: 'ADDED_SWORD_TO_INVENTORY', payload: true})
     }
     
     const buyShield = () => {
-        if (PlayerObj.money < MIN_MONIES) return;
+        if (PlayerObj.money < items.shield.cost) return;
       
-        dispatch({type: 'ADDED_DEFENCE', payload: SHIELD_DEFENCE});
-        dispatch({type: 'DEDUCTED_MONEY', payload: MIN_MONIES});
+        dispatch({type: 'ADDED_DEFENCE', payload: items.shield.defence});
+        dispatch({type: 'DEDUCTED_MONEY', payload: items.shield.cost});
         dispatch({type: 'ADDED_SHIELD_TO_INVENTORY', payload: true})  
     }
     
@@ -51,7 +51,7 @@ const ShopCanvas = () => {
         let proposed_new_HP = PlayerObj.hp + HEALTH_POTION_HP_BOOST
         let boost_to_player = ((proposed_new_HP) > PlayerObj.MAX_HP) ? (PlayerObj.MAX_HP - PlayerObj.hp) : HEALTH_POTION_HP_BOOST
         dispatch({type: 'TAKEN_HEALTH_POTION', payload: boost_to_player })
-        dispatch({type: 'DEDUCTED_MONEY', payload: HEALTH_POTION_COST});
+        dispatch({type: 'DEDUCTED_MONEY', payload: items.health_potion.cost});
     }
     
     let visibleSword = (<div><div className="item1"><button data-testid="sword-button" id="item" onClick={buySword}>Sword {items.sword.cost}ɓ</button></div>
