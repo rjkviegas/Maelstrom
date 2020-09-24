@@ -1,5 +1,5 @@
 import React from 'react'
-import App from '../../app.js'
+import App from '../../App.js'
 import { render } from "@testing-library/react";
 
 it("shows slider", function() {
