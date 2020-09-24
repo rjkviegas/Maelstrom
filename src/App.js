@@ -25,7 +25,7 @@ function App() {
 
   const [FightRounds, dispatchFight] = useReducer(fightRoundsReducer, fightRounds)
   const [PlayerObj, dispatch] = useReducer(playerReducer, new Wizard())
-  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, new Slime())
+  const [OpponentObj, dispatchOpp] = useReducer(opponentReducer, generateRandomOpponent())
 
   return (
       
