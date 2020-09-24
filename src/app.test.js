@@ -2,12 +2,7 @@ import React from 'react';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 import App from './App';
 import ShallowRenderer from 'react-test-renderer/shallow';
-import Fight from './Components/fight/fight.js'
-import FightCanvas from './Components/canvas/FightCanvas.js'
-import ReactDOM from "react-dom";
-import OpponentContext from './config/opponentContext.js'
-import PlayerContext from './config/playerContext.js'
-import FightRoundsContext from './config/fightRoundsContext';
+
 
 global.window = { location: { pathname: null } };
 

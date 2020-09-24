@@ -18,7 +18,7 @@ const FightCanvas = () => {
     let canvasRef = createRef(null)
     const { PlayerObj, dispatch }  = useContext(PlayerContext)
     const { OpponentObj, dispatchOpp } = useContext(OpponentContext)
-    const { FightRounds, dispatchFight } = useContext(FightRoundsContext)
+    const { dispatchFight } = useContext(FightRoundsContext)
     
     let animationFrameId;
 
