@@ -15,14 +15,6 @@ export default function Fight() {
     const DEATH_PENALTY = PlayerObj.money
     let history = useHistory();
 
-    function nextLevel(character){ 
-      return Math.round((4 * (character.level**3))/5) 
-    }
-    
-    function calculateLevel(character) {
-      return Math.floor(Math.cbrt(((5 * character.experience)/4)))
-    }
-
     const handleAttack = () => {
       if(PlayerObj.hp < 0) {return}
         dispatchFight({type: 'ADVANCED_ROUND', payload: 1})
@@ -44,18 +36,12 @@ export default function Fight() {
 
     function playerRewardCheck() {
       if (PlayerObj.hp <= 0 || OpponentObj.hp > 0) return; // OpponentObj hp check protects against running and still getting money!
-      dispatch({type: 'FIGHT_REWARDS_GRANTED', payload: {addition: OpponentObj.money, experience: OpponentObj.experience}}) 
+      dispatch({type: 'FIGHT_WIN_REWARDS_GRANTED', payload: {addition: OpponentObj.money, experience: OpponentObj.experience, hp: PlayerObj.MAX_HP, is_attacking: false}}) 
     }
 
     function handleNewFight() {
-      console.log("check")
       playerRewardCheck() // position warning
-      if(PlayerObj.hp > 0 && OpponentObj.hp <= 0) {
-        dispatch({type: "PLAYER_ATTACK/HP_RESET", payload: {hp: PlayerObj.MAX_HP, is_attacking: false}});
-      } else if (PlayerObj.hp <= 0) {
-        console.log("check 2")
-        dispatch({type: "PLAYER_DIED", payload: {hp: PlayerObj.MAX_HP, is_attacking: false, death_penalty: DEATH_PENALTY}}) // 
-      } 
+      if (PlayerObj.hp <= 0) dispatch({type: "PLAYER_DIED", payload: {hp: PlayerObj.MAX_HP, is_attacking: false, death_penalty: DEATH_PENALTY}}); 
       dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false});
       dispatchOpp({type: 'RESET', payload: generateRandomOpponent()})
       history.push("/play")
@@ -63,11 +49,8 @@ export default function Fight() {
 
     function handleRun() {
       let PENALTY = Math.max(PlayerObj.money * RUN_PENALTY_PERCENTAGE, RUN_PENALTY_MINIMUM) 
-      if(PlayerObj.money - PENALTY < 0) {
-        dispatch({type: 'PENALTY_DEDUCTED', payload: {deduction: PlayerObj.money, escapes: 1} }); // Penalty for running? Can also just ignore this method and just handleNewFight();
-      } else {
-        dispatch({type: 'PENALTY_DEDUCTED', payload: {deduction: PENALTY, escapes: 1}})
-      }
+      let FINAL_PENALTY = (PlayerObj.money - PENALTY < 0) ? PlayerObj.money : PENALTY
+      dispatch({type: 'PENALTY_DEDUCTED', payload: {deduction: FINAL_PENALTY, escapes: 1} }); // Penalty for running? Can also just ignore this method and just handleNewFight();
       handleNewFight();
     }
 
