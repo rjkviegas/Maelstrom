@@ -24,7 +24,7 @@ export default function InputSlider(props) {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{paddingTop: '200px'}}>
     {/*<Typography id="input-slider" gutterBottom>
       </Typography> */}
       <Grid container spacing={2} alignItems="center">

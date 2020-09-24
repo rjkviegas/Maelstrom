@@ -53,16 +53,17 @@ const ShopCanvas = () => {
     
     return (
         <div data-testid="shop" style={{height: '400px'}}>
-           <PlayerHealthBar PlayerObj={PlayerObj} />
+        
+            <PlayerHealthBar PlayerObj={PlayerObj} />
             <Gold PlayerObj={PlayerObj}/>
-                <div style={{paddingTop: "20px", height: '350px', paddingBottom: '10px'}}>
+                <div style={{paddingTop: "20px", height: '350px', marginBottom: '90px'}}>
                      
                    {!PlayerObj.hasSword ? visibleSword : <div></div> }
                    {!PlayerObj.hasShield ? visibleShield : <div></div> }
                    {healthPot}
                      
                 </div>
-                <button data-testid="back-button" onClick={handleClick}>Go back</button>
+                <div><button data-testid="back-button" onClick={handleClick}>Go back</button></div>
        </div>
     )
 }
