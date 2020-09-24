@@ -20,17 +20,17 @@ const ShopCanvas = () => {
 
     const buySword = () => {
         if (PlayerObj.money < MIN_MONIES) return;
-        
-        dispatch({type: 'ADD_STRENGTH', payload: SWORD_STRENGTH});
-        dispatch({type: 'DEDUCT_MONIES', payload: MIN_MONIES});
+
+        dispatch({type: 'ADDED_STRENGTH', payload: SWORD_STRENGTH});
+        dispatch({type: 'DEDUCTED_MONEY', payload: MIN_MONIES});
         dispatch({type: 'ADDED_SWORD_TO_INVENTORY', payload: true})
     }
     
     const buyShield = () => {
         if (PlayerObj.money < MIN_MONIES) return;
-        
-        dispatch({type: 'ADD_DEFENCE', payload: SHIELD_DEFENCE});
-        dispatch({type: 'DEDUCT_MONIES', payload: MIN_MONIES});
+      
+        dispatch({type: 'ADDED_DEFENCE', payload: SHIELD_DEFENCE});
+        dispatch({type: 'DEDUCTED_MONEY', payload: MIN_MONIES});
         dispatch({type: 'ADDED_SHIELD_TO_INVENTORY', payload: true})  
     }
 
