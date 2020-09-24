@@ -5,7 +5,7 @@ export default function playerReducer(state, action) {
         return { ...state, hp: state.hp - action.payload}
       case "SET_ATTACKING_STATUS": 
         return { ...state, is_attacking: action.payload}
-      case "PLAYER_ATTACK/HP_RESET":
+      case "PLAYER_ATTACK/HP_RESET": // NEEDS TO BE RENAMED APPROPRIATELY. HP NO LONGER RESETS.
         return { ...state, is_attacking: action.payload.is_attacking} //PRCR - PR CLEANUP REQUIRED WHERE THIS IS DEFINED - HP REMOVED
       case "PLAYER_DIED":
         return {...state, hp: action.payload.hp, is_attacking: action.payload.is_attacking, money: state.money - action.payload.death_penalty}

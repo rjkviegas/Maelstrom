@@ -34,7 +34,7 @@ describe('player reducer', () => {
     expect(playerReducer({hp: 2, MAX_HP: 100}, {
       type: 'PLAYER_ATTACK/HP_RESET', payload: {hp: 100, is_attacking: false}
     })).toEqual({
-      hp: 100,
+      hp: 2,
       MAX_HP:100,
       is_attacking: false
     })
