@@ -6,6 +6,7 @@ import Slider from '@material-ui/core/Slider';
 import Input from '@material-ui/core/Input';
 import VolumeUp from '@material-ui/icons/VolumeUp';
 
+
 const useStyles = makeStyles({
   root: {
     width: 250,
@@ -36,6 +37,8 @@ export default function InputSlider(props) {
             value={typeof value === 'number' ? value : 0}
             onChange={handleSliderChange}
             aria-labelledby="input-slider"
+            data-testid="music_slider"
+            id="music_slider"
           />
         </Grid>
       </Grid>
