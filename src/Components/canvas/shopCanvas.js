@@ -53,12 +53,15 @@ const ShopCanvas = () => {
     
     return (
         <div data-testid="shop" >
-            <div>
+            <div data-testid="welcoming" >
                 <p id="welcome_title">Welcome to the store</p>
                 <p id="welcome">What can we get you, maybe a potion to drink?</p>
             </div>
+
             <PlayerHealthBar PlayerObj={PlayerObj} />
+
             <Gold PlayerObj={PlayerObj}/>
+            
                 <div>
                     {!PlayerObj.hasSword ? visibleSword : <div></div> }
                     {!PlayerObj.hasShield ? visibleShield : <div></div> }
