@@ -5,6 +5,7 @@ import PlayerContext from '../../config/playerContext.js'
 import OpponentContext from '../../config/opponentContext.js'
 import AttackAnimation from '../characterAnimation/playerAttacking.js'
 import FightRoundsContext from '../../config/fightRoundsContext';
+import { CloseOutlined } from '@material-ui/icons';
 
 let canvas, ctx;
 let cancelAnimationFrame = window.requestAnimationFrame 
@@ -27,17 +28,19 @@ const FightCanvas = () => {
       
       canvas = canvasRef.current
       ctx = canvas.getContext('2d')
+
+      AttackAnimation(PlayerObj, OpponentObj, canvas, ctx);
+
       if(PlayerObj.is_attacking && OpponentObj.is_attacking) {
         dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
         dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: false});
-        dispatchFight({type: 'ADVANCED_ROUND', payload: 1})
+        dispatchFight({type: 'ADVANCED_ROUND', payload: 1});
         return
-      } else {
-        AttackAnimation(PlayerObj, OpponentObj, canvas, ctx);
-      }
-
+      } 
+  
       if (PlayerObj.is_attacking || OpponentObj.is_attacking) {   
-        
+        if(PlayerObj.is_attacking) { console.log("PlayerObj attacking", PlayerObj)}
+        if (OpponentObj.is_attacking) { console.log("OpponentObj attacking", OpponentObj)}
         setTimeout(() => { 
             if (OpponentObj.hp < 0) {return} 
             //let damage = Math.floor(Math.random()*OpponentObj.baseDamage) - PlayerObj.defence;
@@ -45,11 +48,11 @@ const FightCanvas = () => {
             dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: true});
             dispatch({type: 'ATTACKED', payload: ((damage < 0) ? 0 : damage) });
             dispatch({type: 'SET_ATTACKING_STATUS', payload: false});
-        }, 1500 )
+        }, 1000 )
 
         setTimeout(() => {    
           dispatchOpp({type: 'set_attack', payload: false})
-        }, 2000 );
+        }, 1500 );
 
         return () => {
           window.cancelAnimationFrame(animationFrameId)
