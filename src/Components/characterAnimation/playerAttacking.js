@@ -32,8 +32,8 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   var fpsInterval, startTime, now, then, elapsed;
 
  
-  const loadOne = () => { OpponentObj.idleImage.onload = loadTwo() }
-  const loadTwo = () => { PlayerObj.idleImage.onload = loadThree()}
+  const loadOne = () => { PlayerObj.idleImage.onload = loadTwo() }
+  const loadTwo = () => { OpponentObj.idleImage.onload = loadThree()}
   const loadThree = () => { OpponentObj.attackImage.onload = loadFour();}
   const loadFour = () => { PlayerObj.deathImage.onload = loadFive() }
   const loadFive = () => { 
@@ -48,7 +48,9 @@ export default function PlayerAttackAnimation(PlayerObj, OpponentObj, canvas, ct
   }
 
   function renderPlayerIdle() {
+
     drawFrame(PlayerObj.idleImage, PlayerObj.idleImage.cycleLoop[currentLoopIndex], PlayerObj.idleSourceY, 0, 0); // IDLE PLAYER
+ 
   }
 
   function renderOpponentIdle(){

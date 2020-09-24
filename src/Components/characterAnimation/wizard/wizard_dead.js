@@ -1,5 +1,5 @@
 export const wizardDead = new Image();
-wizardDead.src = "./assets/characterSprites/EVil Wizard 2/Death28Frames.png";
+wizardDead.src = "./assets/characterSprites/Evil_Wizard_2/Death28Frames.png";
 wizardDead.width = wizardDead.width/8
 wizardDead.height = wizardDead.height/1
 wizardDead.yOffset = -25

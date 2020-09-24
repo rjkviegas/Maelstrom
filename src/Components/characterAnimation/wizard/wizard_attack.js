@@ -1,5 +1,5 @@
 export const wizardAttack = new Image();
-wizardAttack.src = "./assets/characterSprites/EVil Wizard 2/Attack1.png";
+wizardAttack.src = "./assets/characterSprites/Evil_Wizard_2/Attack1.png";
 wizardAttack.width = wizardAttack.width/8
 wizardAttack.height = wizardAttack.height/1
 wizardAttack.yOffset = -25
