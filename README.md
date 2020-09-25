@@ -5,9 +5,7 @@
 Maelstrom is a fantasy turned based role playing game!
 A world bending whirlpool has merged the sci-fi and fantasy worlds into one, you must battle against all divisions of monsters to get gold and survive!
 
-Play [here](https://maelstrom-rpg.netlify.app/)!
-
-# How to play
+Hosted on Netflify, play [here](https://maelstrom-rpg.netlify.app/)!
 
 ## The dev team
 - [Ryan Viegas](https://github.com/rjkviegas)
@@ -16,7 +14,9 @@ Play [here](https://maelstrom-rpg.netlify.app/)!
 - [Daniel Moris](https://github.com/dwram)
 - [Dillon Barker](https://github.com/DillonBarker)
 
-## What you can run
+## Screenshots
+
+## To run and test locally
 
 1. clone this repo
 2. `npm install`, this will install the dependencies needed.
@@ -27,5 +27,5 @@ Play [here](https://maelstrom-rpg.netlify.app/)!
 - **Languages:** JavaScript, HTML5 and CSS
 - **Front end:** React
 - **CI/CD:** Travis-CI   
-- **Hosting:** Heroku
+- **Hosting:** Netlify
 - **Testing:** Jest
