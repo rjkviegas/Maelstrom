@@ -10,8 +10,8 @@ const ShopCanvas = () => {
     const SWORD_COST = 200;
     const SHIELD_DEFENCE = 5;
     const SHIELD_COST = 200;
-    const HEALTH_POTION_HP_BOOST = 15;
-    const HEALTH_POTION_COST = 3;
+    const HEALTH_POTION_HP_BOOST = 20;
+    const HEALTH_POTION_COST = 10;
     const purchased_text = "Out of stock";
     
     const { PlayerObj, dispatch }  = useContext(PlayerContext);
