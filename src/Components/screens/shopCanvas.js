@@ -55,10 +55,10 @@ const ShopCanvas = () => {
     }
     
     let visibleSword = (<div><div className="item1"><button data-testid="sword-button" id="item" onClick={buySword}>Sword {items.sword.cost}ɓ</button></div>
-        <p className="hide1">The Sword of 1000 truths, once said to belong to King Arthur... But that myth is lost to the Maelstrom. Grants extra {items.sword.strength} damage stats. Costs {items.sword.cost} blasei shards.</p></div>)
+        <p className="hide1">The Sword of 1000 truths, once said to belong to King Arthur... But that myth is lost to the Maelstrom. Grants +{items.sword.strength} damage. Costs {items.sword.cost} blasei shards.</p></div>)
 
     let visibleShield = (<div><div className="item1"><button data-testid="shield-button" id="item" onClick={buyShield}>Shield {items.shield.cost}ɓ</button></div>
-        <p className="hide1">A shield, once wielded by a great Ragnar Lothbrok who fought in the shield wall attacking East Anglia. Grants extra {items.shield.defence} defence stats. Costs {items.shield.cost} blasei shards.</p></div>)
+        <p className="hide1">Once wielded by Ragnar Lothbrok during the East Anglian assault. Grants +{items.shield.defence} defence. Costs {items.shield.cost} blasei shards.</p></div>)
 
     let healthPot = (<div><div className="item1"><button data-testid="healthpot-button" id="item" onClick={buyHealthPot}>Health Potion {items.health_potion.cost}ɓ</button></div>
         <p className="hide1">A natural concoction of sorts, brewed and distilled by the Su'lgaryan Druids who inhabit the dense forestland. Grants {items.health_potion.hp_boost} HP. Costs {items.health_potion.cost} blasei shards.</p></div>)
@@ -68,7 +68,6 @@ const ShopCanvas = () => {
             <div data-testid="welcoming" >
                 <p id="welcome">Welcome to the store</p>
                 <p style={{fontSize: "10px"}}>What can we get you, maybe a potion to drink?</p>
-                <p style={{fontSize: "10px"}}>Our inhouse maid Ryan will bring it over</p>
             </div>     
             <div>
                 <div><button data-testid="back-button" id="back-button" onClick={(e) => handleClick(e)}>Go back</button></div>

@@ -5,11 +5,17 @@ import PlayerContext from '../../config/playerContext'
 export default function PlayerName() {
     
     const { dispatch }  = useContext(PlayerContext);
-    const [name, setName] = useState(null);
-    
+    const [name, setName] = useState("");
+    let message = ""
+    const nameLimit = 3
+    const emptyName = "Enter a name"
+    const notEnoughCharactersInName = "You need at least " + {nameLimit} + " characters in your name"
+    const whiteSpaceInName = "Your name cannot contain any spaces"
     let history = useHistory()
     function valid() {
-        if(name === "") { return false }
+        if(name === "") { message = emptyName ;return false; }
+        if(name.length < nameLimit ) { message = notEnoughCharactersInName; return false; }
+        if(name.match(/\s/)) { message = whiteSpaceInName ;  return false; }
         return true
     }
     function handleChange(e) {
@@ -17,17 +23,21 @@ export default function PlayerName() {
     }
 
     function handleSubmit(e){
-        e.preventDefault()
-        dispatch({type: "PLAYER_RENAMED", payload: name})
-        history.push('/play')
+        e.preventDefault();
+        dispatch({type: "PLAYER_RENAMED", payload: name});
+        history.push('/play');
     }
 
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <input type="text-field" placeholder="Enter name..." onChange={handleChange}/>
-                    {valid ? <div>Enter your name</div> : <div>Your name is not valid</div> }
-                <button data-testid="submit_name" id="submit_name" type="submit" value="Create Player" style={{visibility: valid ? 'visible' : 'hidden'}} onClick={handleSubmit} disabled={!valid}>Submit name</button>          
+                <input type="text-field" placeholder="Enter name..." 
+                onChange={handleChange}/>
+                    {(!valid() || name === '') && <div style={{ fontWeight: 'bold', margin: '10px' }}>{message}</div>}
+                <button data-testid="submit_name" id="submit_name" type="submit" 
+                    style={{visibility: valid() ? 'visible' : 'hidden'}} 
+                    onClick={handleSubmit} disabled={!valid()}>Submit name
+                </button>          
             </form>
         </div>
     )

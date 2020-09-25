@@ -4,7 +4,7 @@ import { wizardIdle } from '../../classes/wizard/wizard_idle.js';
 import Character from '../character_super/character_super.js';
 
 const STARTING_HITPOINTS = 100;
-const STARTING_GOLD = 10000;
+const STARTING_GOLD = 100;
 const VICTORIES = 0;
 const STARTING_STRENGTH = 0;
 const STARTING_ESCAPES = 0;

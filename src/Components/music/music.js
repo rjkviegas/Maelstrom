@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import backgroundMusic from '../../media/background_music.mp3'
 import InputSlider from './slider'
+import '../../App.css'
 
 let music = {}
 music.background = new Audio(backgroundMusic)
@@ -19,8 +20,8 @@ export function BackgroundMusic() {
     music.background.onload = playMusic()
 
     return (
-        <div style={{marginTop: '100px'}}>
+        <footer style={{marginTop: '100px'}}>
             <InputSlider valueInc={setVolume}/>
-        </div>
+        </footer>
     ) 
 }

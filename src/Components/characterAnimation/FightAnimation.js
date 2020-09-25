@@ -2,7 +2,7 @@ import { wizardAttack } from '../classes/wizard/wizard_attack.js';
 import { wizardIdle } from '../classes/wizard/wizard_idle.js'
 import { banditIdle } from '../classes/bandit/bandit_idle.js';
 import { banditAttack } from '../classes/bandit/bandit_attack.js';
-import { animationHelper } from './animationHelper.js'
+
 
 const framespersecond = 16
 let animation; 
