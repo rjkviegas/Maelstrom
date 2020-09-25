@@ -7,13 +7,14 @@ export default function PlayerName() {
     const { dispatch }  = useContext(PlayerContext);
     const [name, setName] = useState("");
     let message = ""
+    const nameLimit = 3
     const emptyName = "Enter a name"
-    const notEnoughCharactersInName = "You have at least four characters in your name"
+    const notEnoughCharactersInName = "You need at least " + {nameLimit} + " characters in your name"
     const whiteSpaceInName = "Your name cannot contain any spaces"
     let history = useHistory()
     function valid() {
         if(name === "") { message = emptyName ;return false; }
-        if(name.length <= 3 ) { message = notEnoughCharactersInName; return false; }
+        if(name.length < nameLimit ) { message = notEnoughCharactersInName; return false; }
         if(name.match(/\s/)) { message = whiteSpaceInName ;  return false; }
         return true
     }
