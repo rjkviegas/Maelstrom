@@ -4,7 +4,6 @@ import OpponentContext from '../../config/opponentContext.js'
 import { useHistory } from "react-router-dom";
 import FightRoundsContext from '../../config/fightRoundsContext.js'
 import generateRandomOpponent from '../classes/opponentGenerator.js';
-import { FIRST_TIME_DELAY, SECOND_TIME_DELAY} from '../screens/FightCanvas.js'
 export default function Fight() {
 
     const { PlayerObj, dispatch }  = useContext(PlayerContext)

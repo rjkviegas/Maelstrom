@@ -23,9 +23,9 @@ export default function PlayerName() {
     }
 
     function handleSubmit(e){
-        e.preventDefault()
-        dispatch({type: "PLAYER_RENAMED", payload: name})
-        history.push('/play')
+        e.preventDefault();
+        dispatch({type: "PLAYER_RENAMED", payload: name});
+        history.push('/play');
     }
 
     return (
