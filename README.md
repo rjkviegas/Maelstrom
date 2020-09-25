@@ -17,7 +17,7 @@ Hosted on Netflify, play [here](https://maelstrom-rpg.netlify.app/)!
 ## Screenshots
 
 #### Welcome to the Maelstrom
-![](public/screenshots/Title page.png =250x250)
+<img src="public/screenshots/Title page.png" width="250" height="250" >
 
 #### Fight hoards of enemies from the sci-fi and fantasy worlds! 
 <img src="public/screenshots/Fight 1.png">
