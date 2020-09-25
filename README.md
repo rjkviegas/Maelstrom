@@ -11,7 +11,7 @@ Hosted on Netlify, play [here](https://maelstrom-rpg.netlify.app/)!
 - [Ryan Viegas](https://github.com/rjkviegas)
 - [Harry Lingard-Bright](https://github.com/harrylb14/)
 - [Ilja Gonciarov](https://github.com/Gonciarov)
-- [Daniel Moris](https://github.com/dwram)
+- [Daniel Morris](https://github.com/dwram)
 - [Dillon Barker](https://github.com/DillonBarker)
 
 ## Screenshots
