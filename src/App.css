@@ -20,6 +20,17 @@
   color: #61dafb;
 }
 
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:red;
+  color: white;
+  text-align: center;
+  z-index: 100;
+}
+
 #healthbars{
   right: 40%;
   z-index: 1;

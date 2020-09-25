@@ -6,11 +6,15 @@ export default function PlayerName() {
     
     const { dispatch }  = useContext(PlayerContext);
     const [name, setName] = useState("");
-    
+    let message = ""
+    const emptyName = "Enter a name"
+    const notEnoughCharactersInName = "You have at least four characters in your name"
+    const whiteSpaceInName = "Your name cannot contain any spaces"
     let history = useHistory()
     function valid() {
-        if(name === "") { return false }
-        if(name.length <= 3 ) { return false }
+        if(name === "") { message = emptyName ;return false; }
+        if(name.length <= 3 ) { message = notEnoughCharactersInName; return false; }
+        if(name.match(/\s/)) { message = whiteSpaceInName ;  return false; }
         return true
     }
     function handleChange(e) {
@@ -28,7 +32,7 @@ export default function PlayerName() {
             <form onSubmit={handleSubmit}>
                 <input type="text-field" placeholder="Enter name..." 
                 onChange={handleChange}/>
-                    {(!valid() || name === '') && <div style={{ fontWeight: 'bold', margin: '10px' }}>Please check your value</div>}
+                    {(!valid() || name === '') && <div style={{ fontWeight: 'bold', margin: '10px' }}>{message}</div>}
                 <button data-testid="submit_name" id="submit_name" type="submit" 
                     style={{visibility: valid() ? 'visible' : 'hidden'}} 
                     onClick={handleSubmit} disabled={!valid()}>Submit name
