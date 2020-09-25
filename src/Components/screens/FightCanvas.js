@@ -41,8 +41,6 @@ const FightCanvas = () => {
       } 
   
       if (PlayerObj.is_attacking || OpponentObj.is_attacking) {   
-        if(PlayerObj.is_attacking) { console.log("PlayerObj attacking", PlayerObj)}
-        if (OpponentObj.is_attacking) { console.log("OpponentObj attacking", OpponentObj)}
         setTimeout(() => { 
             if (OpponentObj.hp < 0) {return}; 
             
