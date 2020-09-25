@@ -9,7 +9,7 @@ export default function PlayerName() {
     let message = ""
     const nameLimit = 3
     const emptyName = "Enter a name"
-    const notEnoughCharactersInName = "You need at least " + {nameLimit} + " characters in your name"
+    const notEnoughCharactersInName = "You need at least " + nameLimit + " characters in your name"
     const whiteSpaceInName = "Your name cannot contain any spaces"
     let history = useHistory()
     function valid() {
