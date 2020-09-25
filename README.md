@@ -5,7 +5,7 @@
 Maelstrom is a fantasy turned based role playing game!
 A world bending whirlpool has merged the sci-fi and fantasy worlds into one, you must battle against all divisions of monsters to get gold and survive!
 
-Hosted on Netflify, play [here](https://maelstrom-rpg.netlify.app/)!
+Hosted on Netlify, play [here](https://maelstrom-rpg.netlify.app/)!
 
 ## The dev team
 - [Ryan Viegas](https://github.com/rjkviegas)
