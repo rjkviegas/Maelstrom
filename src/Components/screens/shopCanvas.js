@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import PlayerContext from '../../config/playerContext.js';
 import Gold from '../gold/gold.js'
-import PlayerHealthBar from '../healthbar/playerHealthbar.js'
+import { PlayerShopBar } from '../healthbar/playerHealthbar.js'
 import './shopCanvas.css'
 
 const ShopCanvas = () => {
@@ -71,7 +71,7 @@ const ShopCanvas = () => {
             </div>     
             <div>
                 <div><button data-testid="back-button" id="back-button" onClick={(e) => handleClick(e)}>Go back</button></div>
-                    <PlayerHealthBar PlayerObj={PlayerObj} />
+                    <PlayerShopBar PlayerObj={PlayerObj} />
                     <Gold PlayerObj={PlayerObj}/>
                 <div id="shop_display">        
                     {!PlayerObj.hasSword ? visibleSword : <div style={{fontSize: "15px", padding: "10px"}}>{purchased_text}</div> }
