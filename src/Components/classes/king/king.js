@@ -3,9 +3,9 @@ import { kingDeath } from "../../classes/king/king_dead";
 import { kingIdle } from "../../classes/king/king_idle";
 import Character from "../character_super/character_super";
 
-const STARTING_HITPOINTS = 100;
+const STARTING_HITPOINTS = 200;
 const DIVIDER = 5;
-const REWARD_MONEY = 50;
+const REWARD_MONEY = 200;
 const DEFAULT_BASE_DAMAGE = 50;
 
 class King extends Character{

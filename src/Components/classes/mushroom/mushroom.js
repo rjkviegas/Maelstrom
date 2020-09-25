@@ -5,7 +5,7 @@ import Character from "../character_super/character_super";
 
 const STARTING_HITPOINTS = 100;
 const DIVIDER = 5;
-const REWARD_MONEY = 10;
+const REWARD_MONEY = 35;
 const DEFAULT_BASE_DAMAGE = 30;
 
 class Mushroom extends Character{
