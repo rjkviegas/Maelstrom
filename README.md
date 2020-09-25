@@ -16,19 +16,19 @@ Hosted on Netflify, play [here](https://maelstrom-rpg.netlify.app/)!
 
 ## Screenshots
 
-#### Welcome to the Maelstrom
-<img src="public/screenshots/Title page.png" width="250" height="250" >
+### Welcome to the Maelstrom
+<img src="public/screenshots/Title page.png" width="400" height="400" >
 
-#### Fight hoards of enemies from the sci-fi and fantasy worlds! 
-<img src="public/screenshots/Fight 1.png">
-<img src="public/screenshots/Fight 2.png">
-<img src="public/screenshots/Fight 3.png">
+### Fight hoards of enemies from the sci-fi and fantasy worlds! 
+<img src="public/screenshots/Fight 1.png" width="400" height="400">
+<img src="public/screenshots/Fight 2.png" width="400" height="400">
+<img src="public/screenshots/Fight 3.png" width="400" height="400">
 
-#### Shop for upgrades and health potions
-<img src="public/screenshots/Shop.png">
+### Shop for upgrades and health potions
+<img src="public/screenshots/Shop.png" width="400" height="400">
 
-#### Experience true role playing and level up your character
-<img src="public/screenshots/Character screen.png">
+### Experience true role playing and level up your character
+<img src="public/screenshots/Character screen.png" width="400" height="400">
 
 ## To run and test locally
 
