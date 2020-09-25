@@ -42,7 +42,7 @@ const FightCanvas = () => {
   
       if (PlayerObj.is_attacking || OpponentObj.is_attacking) {   
         setTimeout(() => { 
-            if (OpponentObj.hp < 0) {return}; 
+            if (OpponentObj.hp <= 0) {return}; 
             
             let damage = Math.floor((Math.random() * OpponentObj.baseDamage)*(10/(10+PlayerObj.defence)));
             dispatchOpp({type: 'SET_ATTACKING_STATUS', payload: true});

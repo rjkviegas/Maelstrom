@@ -1,23 +1,36 @@
 # Welcome to Maelstrom
 
-![Netlify Status](https://api.netlify.com/api/v1/badges/e3af813d-7367-41cc-8d5d-10c4fee3f327/deploy-status)
 ![image](https://travis-ci.com/dwram/Maelstrom.svg?token=qT72mABNmswyKZFVotqL&branch=master)
 
 Maelstrom is a fantasy turned based role playing game!
 A world bending whirlpool has merged the sci-fi and fantasy worlds into one, you must battle against all divisions of monsters to get gold and survive!
 
-Play [here](https://maelstrom-rpg.netlify.app/)!
-
-# How to play
+Hosted on Netlify, play [here](https://maelstrom-rpg.netlify.app/)!
 
 ## The dev team
 - [Ryan Viegas](https://github.com/rjkviegas)
 - [Harry Lingard-Bright](https://github.com/harrylb14/)
 - [Ilja Gonciarov](https://github.com/Gonciarov)
-- [Daniel Moris](https://github.com/dwram)
+- [Daniel Morris](https://github.com/dwram)
 - [Dillon Barker](https://github.com/DillonBarker)
 
-## What you can run
+## Screenshots
+
+### Welcome to the Maelstrom
+<img src="public/screenshots/Title page.png" width="400" height="400" >
+
+### Fight hoards of enemies from the sci-fi and fantasy worlds! 
+<img src="public/screenshots/Fight 1.png" width="400" height="400">
+<img src="public/screenshots/Fight 2.png" width="400" height="400">
+<img src="public/screenshots/Fight 3.png" width="400" height="400">
+
+### Shop for upgrades and health potions
+<img src="public/screenshots/Shop.png" width="400" height="400">
+
+### Experience true role playing and level up your character
+<img src="public/screenshots/Character screen.png" width="400" height="400">
+
+## To run and test locally
 
 1. clone this repo
 2. `npm install`, this will install the dependencies needed.
@@ -28,5 +41,5 @@ Play [here](https://maelstrom-rpg.netlify.app/)!
 - **Languages:** JavaScript, HTML5 and CSS
 - **Front end:** React
 - **CI/CD:** Travis-CI   
-- **Hosting:** Heroku
+- **Hosting:** Netlify
 - **Testing:** Jest
